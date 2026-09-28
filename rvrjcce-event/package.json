@@ -1,0 +1,19 @@
+{
+  "name": "rvrjcce-event-website",
+  "version": "1.0.0",
+  "description": "Premium, modern, production-quality university event website for RVRJCCE, Andhra Pradesh",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "rvrjcce",
+    "university-event",
+    "inter-college",
+    "sports",
+    "cultural"
+  ],
+  "author": "RVRJCCE Organizing Committee",
+  "license": "UNLICENSED"
+}
