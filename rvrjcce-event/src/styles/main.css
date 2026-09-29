@@ -2250,7 +2250,30 @@ img, svg {
    Registration Page & Forms (/register)
    ========================================================================== */
 .registration-page {
+  position: relative;
+  min-height: calc(100vh - var(--nav-height));
   padding: clamp(3rem, 5vw, 4.5rem) 0 clamp(4rem, 6vw, 6rem);
+  overflow: hidden;
+}
+
+.registration-page::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(850px, 80vw);
+  height: 85%;
+  max-height: 950px;
+  background: url('/wave-ribbon.png') no-repeat center center / contain;
+  opacity: 0.70;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.registration-page .container {
+  position: relative;
+  z-index: 2;
 }
 
 .form-layout-grid {
@@ -2417,7 +2440,30 @@ img, svg {
    Admin Dashboard (/admin)
    ========================================================================== */
 .admin-page {
+  position: relative;
+  min-height: calc(100vh - var(--nav-height));
   padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(4rem, 6vw, 6rem);
+  overflow: hidden;
+}
+
+.admin-page::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(850px, 80vw);
+  height: 85%;
+  max-height: 950px;
+  background: url('/wave-ribbon.png') no-repeat center center / contain;
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.admin-page .container {
+  position: relative;
+  z-index: 2;
 }
 
 .admin-header {
