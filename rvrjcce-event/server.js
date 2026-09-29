@@ -194,6 +194,13 @@ const server = http.createServer(async (req, res) => {
 
   // Static file serving
   let filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);
+  if (!fs.existsSync(filePath)) {
+    const rawName = pathname.replace(/^\//, '');
+    const publicCandidate = path.join(process.cwd(), 'public', rawName);
+    if (fs.existsSync(publicCandidate) && fs.statSync(publicCandidate).isFile()) {
+      filePath = publicCandidate;
+    }
+  }
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
       // Fallback to index.html for SPA client routes (/register, /admin, etc.)

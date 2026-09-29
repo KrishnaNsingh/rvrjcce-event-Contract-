@@ -20,6 +20,11 @@ fs.copyFileSync(
   path.join(DIST_DIR, 'main.css')
 );
 
+const PUBLIC_SRC = path.join(process.cwd(), 'public');
+if (fs.existsSync(PUBLIC_SRC)) {
+  fs.cpSync(PUBLIC_SRC, DIST_DIR, { recursive: true });
+}
+
 const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +32,7 @@ const html = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RVRJCCE — Inter-College Sports & Cultural Meet 2026</title>
   <meta name="description" content="Official website for RVR & JC College of Engineering Inter-College Sports and Literary & Cultural competitions. Guntur, Andhra Pradesh.">
+  <link rel="icon" type="image/x-icon" href="/rvricon.ico">
   <link rel="stylesheet" href="/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>

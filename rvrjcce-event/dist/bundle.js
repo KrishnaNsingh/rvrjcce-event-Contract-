@@ -37148,10 +37148,17 @@ function Navbar({ currentRoute, onNavigate }) {
     {
       className: "nav-brand",
       style: { cursor: "pointer" },
-      onClick: () => handleNavClick("home")
+      onClick: () => handleNavClick("home"),
+      title: `${INSTITUTION.name} \u2014 Home`
     },
-    /* @__PURE__ */ react_default.createElement("div", { className: "brand-crest" }, /* @__PURE__ */ react_default.createElement("span", null, "RVR")),
-    /* @__PURE__ */ react_default.createElement("div", { className: "brand-text" }, /* @__PURE__ */ react_default.createElement("span", { className: "brand-title" }, INSTITUTION.name), /* @__PURE__ */ react_default.createElement("span", { className: "brand-subtitle" }, "Andhra Pradesh"))
+    /* @__PURE__ */ react_default.createElement(
+      "img",
+      {
+        src: "/rvricon.ico",
+        alt: `${INSTITUTION.name} University Logo`,
+        className: "brand-logo"
+      }
+    )
   ), /* @__PURE__ */ react_default.createElement(
     spotlight_navbar_default,
     {

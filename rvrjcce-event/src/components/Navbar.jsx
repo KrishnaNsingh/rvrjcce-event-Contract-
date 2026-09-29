@@ -85,19 +85,18 @@ export function Navbar({ currentRoute, onNavigate }) {
     <header className={`site-nav ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <div className="nav-inner">
-          {/* Institution Crest & Title (Untouched) */}
+          {/* University Logo */}
           <div
             className="nav-brand"
             style={{ cursor: 'pointer' }}
             onClick={() => handleNavClick('home')}
+            title={`${INSTITUTION.name} — Home`}
           >
-            <div className="brand-crest">
-              <span>RVR</span>
-            </div>
-            <div className="brand-text">
-              <span className="brand-title">{INSTITUTION.name}</span>
-              <span className="brand-subtitle">Andhra Pradesh</span>
-            </div>
+            <img
+              src="/rvricon.ico"
+              alt={`${INSTITUTION.name} University Logo`}
+              className="brand-logo"
+            />
           </div>
 
           {/* Middle Section: Award-Winning Spotlight Navbar */}
