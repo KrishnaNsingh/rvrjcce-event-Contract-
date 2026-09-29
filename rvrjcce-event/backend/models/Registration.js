@@ -2,10 +2,14 @@ import mongoose from 'mongoose';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import url from 'node:url';
 import { getEventDetails } from '../config/eventSchedule.js';
 import { getNextSequence } from './Counter.js';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'registrations.json');
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const PROJECT_ROOT = path.resolve(__dirname, '../..');
+const DATA_FILE = path.join(PROJECT_ROOT, 'data', 'registrations.json');
 
 const teammateSchema = new mongoose.Schema({
   memberNumber: { type: Number, default: 1 },
@@ -450,7 +454,7 @@ class RegistrationService {
       if (mongoose.Types.ObjectId.isValid(id)) {
         filter = { $or: [{ _id: id }, { registrationId: id }] };
       }
-      return await MongooseRegistration.findOneAndUpdate(filter, updates, { new: true }).lean();
+      return await MongooseRegistration.findOneAndUpdate(filter, updates, { returnDocument: 'after' }).lean();
     }
 
     const docs = this._readLocal();

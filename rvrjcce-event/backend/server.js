@@ -8,11 +8,20 @@ import { connectDB, getDbStatus } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import registrationRoutes from './routes/registrationRoutes.js';
 
-dotenv.config();
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const PROJECT_ROOT = path.resolve(__dirname, '..');
+
+// Load environment variables from root or backend
+if (fs.existsSync(path.join(PROJECT_ROOT, '.env'))) {
+  dotenv.config({ path: path.join(PROJECT_ROOT, '.env') });
+} else {
+  dotenv.config();
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const PUBLIC_DIR = path.join(process.cwd(), 'dist');
+const PUBLIC_DIR = path.join(PROJECT_ROOT, 'dist');
 
 // Middleware
 app.use(cors());
@@ -34,8 +43,8 @@ app.use('/api', registrationRoutes);
 
 // Static assets
 app.use(express.static(PUBLIC_DIR));
-if (fs.existsSync(path.join(process.cwd(), 'public'))) {
-  app.use(express.static(path.join(process.cwd(), 'public')));
+if (fs.existsSync(path.join(PROJECT_ROOT, 'public'))) {
+  app.use(express.static(path.join(PROJECT_ROOT, 'public')));
 }
 
 // SPA Fallback: send index.html for client-side routing

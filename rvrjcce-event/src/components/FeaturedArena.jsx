@@ -1,5 +1,5 @@
 import React from '../core/react.js';
-import WaveGridBackground from './ui/wave-grid-background.tsx';
+import WaveGridBackground from './ui/wave-grid-background.js';
 
 export function FeaturedArena({ onSelectCategory, onRegisterClick }) {
   return (

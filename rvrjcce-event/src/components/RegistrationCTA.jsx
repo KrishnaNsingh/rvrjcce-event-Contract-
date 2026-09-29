@@ -1,6 +1,6 @@
 import React from '../core/react.js';
 import { INSTITUTION } from '../../config/eventConfig.js';
-import AnimatedButton from './ui/animated-button.tsx';
+import AnimatedButton from './ui/animated-button.js';
 
 export function RegistrationCTA({ onRegisterClick }) {
   return (

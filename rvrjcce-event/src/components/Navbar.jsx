@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from '../core/react.js';
 import { INSTITUTION } from '../../config/eventConfig.js';
-import AnimatedButton from './ui/animated-button.tsx';
-import SpotlightNavbar from './ui/spotlight-navbar.tsx';
+import AnimatedButton from './ui/animated-button.js';
+import SpotlightNavbar from './ui/spotlight-navbar.js';
 
 export function Navbar({ currentRoute, onNavigate }) {
   const [isScrolled, setIsScrolled] = useState(false);

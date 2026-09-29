@@ -12,7 +12,7 @@ export async function getNextSequence(sequenceName = 'registrationId') {
     const counter = await Counter.findByIdAndUpdate(
       sequenceName,
       { $inc: { seq: 1 } },
-      { new: true, upsert: true }
+      { returnDocument: 'after', upsert: true }
     );
     const seqNum = counter.seq;
     // Format CD26 + 6 digit zero padding (e.g. CD26000001)

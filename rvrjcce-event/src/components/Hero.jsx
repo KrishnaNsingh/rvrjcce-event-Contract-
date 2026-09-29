@@ -1,6 +1,6 @@
 import React from '../core/react.js';
 import { INSTITUTION } from '../../config/eventConfig.js';
-import AnimatedButton from './ui/animated-button.tsx';
+import AnimatedButton from './ui/animated-button.js';
 
 export function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
   const participantCount = liveStats && liveStats.total ? `${liveStats.total}+` : '1,200+';
