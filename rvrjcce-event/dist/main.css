@@ -292,8 +292,10 @@ img, svg {
    Navigation Bar
    ========================================================================== */
 .site-nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   width: 100%;
   background-color: transparent;
@@ -305,17 +307,20 @@ img, svg {
               border-color 0.35s ease, 
               box-shadow 0.35s ease, 
               backdrop-filter 0.35s ease,
-              -webkit-backdrop-filter 0.35s ease,
-              padding 0.2s ease;
+              -webkit-backdrop-filter 0.35s ease;
 }
 
 .site-nav.scrolled,
 .site-nav.nav-solid {
-  background-color: rgba(251, 251, 250, 0.95);
+  background-color: rgba(251, 251, 250, 0.96);
   backdrop-filter: blur(14px) saturate(180%);
   -webkit-backdrop-filter: blur(14px) saturate(180%);
   border-bottom: 1px solid var(--border-light);
   box-shadow: 0 4px 20px -2px rgba(14, 34, 61, 0.07);
+}
+
+.main-with-nav-offset {
+  padding-top: var(--nav-height);
 }
 
 .nav-inner {
@@ -377,6 +382,7 @@ img, svg {
   letter-spacing: 0.04em;
   color: var(--text-primary);
   line-height: 1.2;
+  transition: text-shadow 0.3s ease;
 }
 
 .brand-subtitle {
@@ -385,6 +391,16 @@ img, svg {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.site-nav:not(.scrolled):not(.nav-solid) .brand-title {
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.site-nav:not(.scrolled):not(.nav-solid) .brand-subtitle {
+  color: #1A2433;
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
 }
 
 /* ==========================================================================
@@ -525,9 +541,9 @@ img, svg {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: calc(var(--nav-height) + 1rem) 0 2.25rem;
+  padding: calc(var(--nav-height) + 2.5rem) 0 3.25rem;
   overflow: hidden;
-  background-color: #121417;
+  background-color: #0E1626;
 }
 
 /* Panoramic Drone Aerial Campus Background */
@@ -541,13 +557,13 @@ img, svg {
 
 .hero-panoramic-image {
   position: absolute;
-  inset: -2%;
-  width: 104%;
-  height: 104%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background-size: cover;
-  background-position: center 32%;
-  filter: contrast(108%) saturate(125%) brightness(98%);
-  transform: scale(1.02);
+  background-position: center 30%;
+  filter: contrast(106%) saturate(120%) brightness(100%);
+  transform: scale(1.01);
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -556,15 +572,14 @@ img, svg {
   inset: 0;
   background: 
     linear-gradient(180deg, 
-      rgba(255, 255, 255, 0.65) 0%, 
-      rgba(255, 255, 255, 0.18) 18%, 
-      rgba(255, 255, 255, 0.02) 35%,
-      transparent 55%
+      rgba(255, 255, 255, 0.12) 0%, 
+      rgba(255, 255, 255, 0.03) 18%, 
+      transparent 35%
     ),
-    radial-gradient(ellipse 850px 600px at 20% 42%, 
-      rgba(255, 255, 255, 0.88) 0%, 
-      rgba(255, 255, 255, 0.58) 45%, 
-      rgba(255, 255, 255, 0.15) 75%, 
+    radial-gradient(ellipse 900px 650px at 20% 42%, 
+      rgba(255, 255, 255, 0.18) 0%, 
+      rgba(255, 255, 255, 0.08) 45%, 
+      rgba(255, 255, 255, 0.02) 75%, 
       transparent 90%
     );
 }
@@ -575,12 +590,12 @@ img, svg {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 250px;
+  height: 110px;
   background: linear-gradient(to bottom,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(251, 251, 250, 0.25) 35%,
-    rgba(251, 251, 250, 0.70) 70%,
-    var(--bg-surface, #FFFFFF) 100%
+    transparent 0%,
+    rgba(251, 251, 250, 0.20) 40%,
+    rgba(251, 251, 250, 0.75) 80%,
+    var(--bg-page, #FBFBFA) 100%
   );
   pointer-events: none;
   z-index: 2;
@@ -593,7 +608,7 @@ img, svg {
   max-width: 860px;
   position: relative;
   z-index: 10;
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
 }
 
 /* Left Column: Big Editorial Typography (THE PERFECT HOME style) */
@@ -610,9 +625,17 @@ img, svg {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
-  color: #1A385E;
+  color: #0E223D;
   margin-bottom: 1.25rem;
   text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 5px 14px 5px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  width: fit-content;
+  box-shadow: 0 2px 10px rgba(14, 34, 61, 0.06);
   animation: editorialReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -630,10 +653,13 @@ img, svg {
   line-height: 0.94;
   font-weight: 600;
   letter-spacing: -0.025em;
-  color: #12161E;
+  color: #0E1626;
   margin: 0 0 1.25rem 0;
   text-transform: uppercase;
-  text-shadow: 0 2px 20px rgba(255, 255, 255, 0.85);
+  text-shadow: 
+    0 2px 14px rgba(255, 255, 255, 0.98),
+    0 0 30px rgba(255, 255, 255, 0.85),
+    0 0 55px rgba(255, 255, 255, 0.65);
 }
 
 .editorial-line {
@@ -659,15 +685,17 @@ img, svg {
 .hero-editorial-sub {
   font-size: clamp(0.9375rem, 1.25vw, 1.125rem);
   line-height: 1.5;
-  color: #2C3542;
-  font-weight: 450;
+  color: #101B2B;
+  font-weight: 600;
   margin: 0 0 1.75rem 0;
-  max-width: 520px;
+  max-width: 540px;
   letter-spacing: 0.01em;
   opacity: 0;
   transform: translateY(20px);
   animation: editorialReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.48s forwards;
-  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.9);
+  text-shadow: 
+    0 1px 12px rgba(255, 255, 255, 0.98),
+    0 0 24px rgba(255, 255, 255, 0.85);
 }
 
 .hero-editorial-actions {
@@ -1012,13 +1040,13 @@ img, svg {
    Bottom Floating Highlights Strip (Exact Reference Match)
    ========================================================================== */
 .hero-bottom-strip {
-  display: grid;
-  grid-template-columns: 1.15fr 0.9fr 1.25fr;
-  gap: clamp(1.5rem, 3.5vw, 3rem);
+  display: flex;
   align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  flex-wrap: wrap;
   position: relative;
   z-index: 10;
-  margin-top: 1rem;
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 /* Bottom Left Terracotta Card */

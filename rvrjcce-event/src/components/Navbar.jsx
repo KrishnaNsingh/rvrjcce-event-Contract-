@@ -10,7 +10,7 @@ export function Navbar({ currentRoute, onNavigate }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const threshold = currentRoute === 'home' ? 80 : 10;
+      const threshold = currentRoute === 'home' ? 50 : 10;
       setIsScrolled(window.scrollY > threshold);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });

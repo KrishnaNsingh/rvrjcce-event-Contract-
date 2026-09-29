@@ -88,7 +88,7 @@ export function App() {
         onNavigate={navigateTo}
       />
 
-      <main>
+      <main className={currentRoute !== 'home' ? 'main-with-nav-offset' : ''}>
         {currentRoute === 'home' && (
           <>
             {/* 1. Hero Section */}
