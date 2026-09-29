@@ -10,11 +10,13 @@ export function Navbar({ currentRoute, onNavigate }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const threshold = currentRoute === 'home' ? 80 : 10;
+      setIsScrolled(window.scrollY > threshold);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentRoute]);
 
   // Scroll-responsive synchronization for middle spotlight navbar
   useEffect(() => {
@@ -38,20 +40,22 @@ export function Navbar({ currentRoute, onNavigate }) {
       const sportsEl = document.getElementById('sports-section');
       const culturalEl = document.getElementById('cultural-section');
 
-      const triggerLine = window.innerHeight * 0.4;
+      const triggerLine = window.innerHeight * 0.45;
 
-      if (culturalEl && culturalEl.getBoundingClientRect().top <= triggerLine && culturalEl.getBoundingClientRect().bottom >= 100) {
-        setActiveNavIndex(2); // Literary & Cultural
+      if (culturalEl && culturalEl.getBoundingClientRect().top <= triggerLine) {
+        setActiveNavIndex(3); // Literary & Cultural
         return;
       }
-      if (sportsEl && sportsEl.getBoundingClientRect().top <= triggerLine && sportsEl.getBoundingClientRect().bottom >= 100) {
-        setActiveNavIndex(1); // Sports
+      if (sportsEl && sportsEl.getBoundingClientRect().top <= triggerLine) {
+        setActiveNavIndex(2); // Sports
         return;
       }
-      if (discoveryEl && discoveryEl.getBoundingClientRect().top <= triggerLine && discoveryEl.getBoundingClientRect().bottom >= 100) {
-        setActiveNavIndex(3); // Events
+      if (discoveryEl && discoveryEl.getBoundingClientRect().top <= triggerLine) {
+        setActiveNavIndex(1); // Events
         return;
       }
+
+      setActiveNavIndex(0); // Home fallback
     };
 
     window.addEventListener('scroll', handleScrollSpy, { passive: true });
@@ -82,7 +86,7 @@ export function Navbar({ currentRoute, onNavigate }) {
   ];
 
   return (
-    <header className={`site-nav ${isScrolled ? 'scrolled' : ''}`}>
+    <header className={`site-nav ${isScrolled ? 'scrolled' : ''} ${currentRoute !== 'home' ? 'nav-solid' : ''}`}>
       <div className="container">
         <div className="nav-inner">
           {/* University Logo */}

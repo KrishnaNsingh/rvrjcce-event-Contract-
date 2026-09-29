@@ -22,9 +22,9 @@ export interface SpotlightNavbarProps {
 export function SpotlightNavbar({
     items = [
         { label: "Home", href: "#home" },
+        { label: "Events", href: "#discovery-section" },
         { label: "Sports", href: "#sports-section" },
         { label: "Literary & Cultural", href: "#cultural-section" },
-        { label: "Events", href: "#discovery-section" },
         { label: "Register", href: "/register" },
         { label: "Admin Portal", href: "/admin" },
     ],

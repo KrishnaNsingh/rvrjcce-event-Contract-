@@ -296,15 +296,26 @@ img, svg {
   top: 0;
   z-index: 1000;
   width: 100%;
-  background-color: rgba(251, 251, 250, 0.95);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border-light);
-  transition: padding 0.2s ease, box-shadow 0.2s ease;
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s ease, 
+              box-shadow 0.35s ease, 
+              backdrop-filter 0.35s ease,
+              -webkit-backdrop-filter 0.35s ease,
+              padding 0.2s ease;
 }
 
-.site-nav.scrolled {
-  box-shadow: 0 2px 10px rgba(18, 20, 23, 0.05);
+.site-nav.scrolled,
+.site-nav.nav-solid {
+  background-color: rgba(251, 251, 250, 0.95);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 4px 20px -2px rgba(14, 34, 61, 0.07);
 }
 
 .nav-inner {
@@ -534,8 +545,8 @@ img, svg {
   width: 104%;
   height: 104%;
   background-size: cover;
-  background-position: center 36%;
-  filter: contrast(106%) saturate(115%) brightness(96%);
+  background-position: center 32%;
+  filter: contrast(108%) saturate(125%) brightness(98%);
   transform: scale(1.02);
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -545,24 +556,44 @@ img, svg {
   inset: 0;
   background: 
     linear-gradient(180deg, 
-      rgba(251, 251, 250, 0.55) 0%, 
-      rgba(251, 251, 250, 0.20) 25%, 
-      rgba(14, 25, 41, 0.40) 65%, 
-      rgba(14, 25, 41, 0.85) 90%, 
-      rgba(251, 251, 250, 1) 100%
+      rgba(255, 255, 255, 0.65) 0%, 
+      rgba(255, 255, 255, 0.18) 18%, 
+      rgba(255, 255, 255, 0.02) 35%,
+      transparent 55%
     ),
-    radial-gradient(ellipse at 24% 45%, rgba(251, 251, 250, 0.92) 0%, rgba(251, 251, 250, 0.55) 50%, transparent 85%);
+    radial-gradient(ellipse 850px 600px at 20% 42%, 
+      rgba(255, 255, 255, 0.88) 0%, 
+      rgba(255, 255, 255, 0.58) 45%, 
+      rgba(255, 255, 255, 0.15) 75%, 
+      transparent 90%
+    );
 }
 
-/* Hero Grid Layout */
+/* Hero to Second Section Smooth Melt-In Blend */
+.hero-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(251, 251, 250, 0.25) 35%,
+    rgba(251, 251, 250, 0.70) 70%,
+    var(--bg-surface, #FFFFFF) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Hero Grid Layout - Clean Spacious Editorial */
 .hero-reference-grid {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: clamp(1.75rem, 4vw, 3.5rem);
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 860px;
   position: relative;
   z-index: 10;
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 
 /* Left Column: Big Editorial Typography (THE PERFECT HOME style) */
@@ -654,7 +685,8 @@ img, svg {
   background-color: #1A1F26;
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 0.95rem 2.25rem;
+  padding: 0 2.25rem;
+  height: 42px;
   border-radius: 9999px;
   font-size: 0.875rem;
   font-weight: 700;
@@ -663,6 +695,7 @@ img, svg {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   box-shadow: 0 8px 24px -4px rgba(18, 20, 23, 0.35);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
@@ -674,6 +707,12 @@ img, svg {
   background-color: #0E223D;
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 14px 32px -4px rgba(14, 34, 61, 0.45);
+}
+
+.hero-editorial-actions .btn-animated-navy {
+  height: 42px;
+  padding: 0 1.75rem;
+  font-size: 0.9375rem;
 }
 
 .btn-editorial-register {
@@ -1096,7 +1135,13 @@ img, svg {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 1.25rem 1.75rem;
+  background: rgba(14, 34, 61, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
 .bottom-statement-title {
@@ -1222,7 +1267,7 @@ img, svg {
    ========================================================================== */
 .intro-section {
   background-color: var(--bg-surface);
-  border-top: 1px solid var(--border-light);
+  border-top: none;
   border-bottom: 1px solid var(--border-light);
 }
 

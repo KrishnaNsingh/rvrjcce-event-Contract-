@@ -36936,9 +36936,9 @@ var import_react22 = __toESM(require_react(), 1);
 function SpotlightNavbar({
   items = [
     { label: "Home", href: "#home" },
+    { label: "Events", href: "#discovery-section" },
     { label: "Sports", href: "#sports-section" },
     { label: "Literary & Cultural", href: "#cultural-section" },
-    { label: "Events", href: "#discovery-section" },
     { label: "Register", href: "/register" },
     { label: "Admin Portal", href: "/admin" }
   ],
@@ -37082,11 +37082,13 @@ function Navbar({ currentRoute, onNavigate }) {
   const [activeNavIndex, setActiveNavIndex] = (0, import_react.useState)(0);
   (0, import_react.useEffect)(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const threshold = currentRoute === "home" ? 80 : 10;
+      setIsScrolled(window.scrollY > threshold);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [currentRoute]);
   (0, import_react.useEffect)(() => {
     if (currentRoute === "register") {
       setActiveNavIndex(4);
@@ -37105,19 +37107,20 @@ function Navbar({ currentRoute, onNavigate }) {
       const discoveryEl = document.getElementById("discovery-section");
       const sportsEl = document.getElementById("sports-section");
       const culturalEl = document.getElementById("cultural-section");
-      const triggerLine = window.innerHeight * 0.4;
-      if (culturalEl && culturalEl.getBoundingClientRect().top <= triggerLine && culturalEl.getBoundingClientRect().bottom >= 100) {
-        setActiveNavIndex(2);
-        return;
-      }
-      if (sportsEl && sportsEl.getBoundingClientRect().top <= triggerLine && sportsEl.getBoundingClientRect().bottom >= 100) {
-        setActiveNavIndex(1);
-        return;
-      }
-      if (discoveryEl && discoveryEl.getBoundingClientRect().top <= triggerLine && discoveryEl.getBoundingClientRect().bottom >= 100) {
+      const triggerLine = window.innerHeight * 0.45;
+      if (culturalEl && culturalEl.getBoundingClientRect().top <= triggerLine) {
         setActiveNavIndex(3);
         return;
       }
+      if (sportsEl && sportsEl.getBoundingClientRect().top <= triggerLine) {
+        setActiveNavIndex(2);
+        return;
+      }
+      if (discoveryEl && discoveryEl.getBoundingClientRect().top <= triggerLine) {
+        setActiveNavIndex(1);
+        return;
+      }
+      setActiveNavIndex(0);
     };
     window.addEventListener("scroll", handleScrollSpy, { passive: true });
     handleScrollSpy();
@@ -37143,7 +37146,7 @@ function Navbar({ currentRoute, onNavigate }) {
     { label: "Register", href: "/register", route: "register", sectionId: null },
     { label: "Admin Portal", href: "/admin", route: "admin", sectionId: null }
   ];
-  return /* @__PURE__ */ react_default.createElement("header", { className: `site-nav ${isScrolled ? "scrolled" : ""}` }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "nav-inner" }, /* @__PURE__ */ react_default.createElement(
+  return /* @__PURE__ */ react_default.createElement("header", { className: `site-nav ${isScrolled ? "scrolled" : ""} ${currentRoute !== "home" ? "nav-solid" : ""}` }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "nav-inner" }, /* @__PURE__ */ react_default.createElement(
     "div",
     {
       className: "nav-brand",
@@ -37185,7 +37188,7 @@ function Navbar({ currentRoute, onNavigate }) {
       "aria-label": "Toggle navigation menu"
     },
     /* @__PURE__ */ react_default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, mobileMenuOpen ? /* @__PURE__ */ react_default.createElement("path", { d: "M18 6L6 18M6 6l12 12" }) : /* @__PURE__ */ react_default.createElement("path", { d: "M4 6h16M4 12h16M4 18h16" }))
-  )))), /* @__PURE__ */ react_default.createElement("div", { className: `mobile-nav-drawer ${mobileMenuOpen ? "open" : ""}` }, /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home") }, "Home"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "sports-section") }, "Sports (Boys & Girls)"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "cultural-section") }, "Literary & Cultural"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "discovery-section") }, "Events Overview"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("register") }, "Event Registration"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("admin") }, "Admin Portal"), /* @__PURE__ */ react_default.createElement("div", { style: { marginTop: "1.25rem" } }, /* @__PURE__ */ react_default.createElement(
+  )))), /* @__PURE__ */ react_default.createElement("div", { className: `mobile-nav-drawer ${mobileMenuOpen ? "open" : ""}` }, /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home") }, "Home"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "discovery-section") }, "Events Overview"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "sports-section") }, "Sports (Boys & Girls)"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "cultural-section") }, "Literary & Cultural"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("register") }, "Event Registration"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("admin") }, "Admin Portal"), /* @__PURE__ */ react_default.createElement("div", { style: { marginTop: "1.25rem" } }, /* @__PURE__ */ react_default.createElement(
     animated_button_default,
     {
       className: "btn-animated-navy",
@@ -37198,42 +37201,14 @@ function Navbar({ currentRoute, onNavigate }) {
 
 // src/components/Hero.jsx
 function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
-  const [activeCategory, setActiveCategory] = (0, import_react.useState)("sports");
-  const [activeHotspot, setActiveHotspot] = (0, import_react.useState)(null);
   const participantCount = liveStats && liveStats.total ? `${liveStats.total}+` : "1,200+";
-  const hotspots = [
-    {
-      id: "sports",
-      label: "Main Sports Arena",
-      venue: "Volleyball, Cricket & Hardcourt Brackets",
-      x: 32,
-      y: 32,
-      category: "sports"
-    },
-    {
-      id: "oat",
-      label: "Open Air Theatre (OAT)",
-      venue: "Dance, Band & Dramatics Main Stage",
-      x: 64,
-      y: 52,
-      category: "oat"
-    },
-    {
-      id: "studio",
-      label: "Creative Arts Wing",
-      venue: "Fine Arts, Tekraft & Literary Arenas",
-      x: 82,
-      y: 72,
-      category: "cultural"
-    }
-  ];
   return /* @__PURE__ */ react_default.createElement("section", { className: "hero-reference-section", id: "home" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-panoramic-bg", "aria-hidden": "true" }, /* @__PURE__ */ react_default.createElement(
     "div",
     {
       className: "hero-panoramic-image",
       style: { backgroundImage: "url('/campus-hero-web.jpg')" }
     }
-  ), /* @__PURE__ */ react_default.createElement("div", { className: "hero-panoramic-overlay" })), /* @__PURE__ */ react_default.createElement("div", { className: "container relative z-10" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-reference-grid" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-col" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-tag" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-dot" }), /* @__PURE__ */ react_default.createElement("span", null, INSTITUTION.name, " \u2022 40TH INTER-COLLEGIATE FESTIVAL")), /* @__PURE__ */ react_default.createElement("h1", { className: "hero-editorial-heading" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-1" }, "WHERE"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-2" }, "COMPETITION"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-3" }, "MEETS ART", /* @__PURE__ */ react_default.createElement("span", { className: "editorial-reg" }, "\xAE"))), /* @__PURE__ */ react_default.createElement("p", { className: "hero-editorial-sub" }, "/ Where Athletic Grit Meets Creative Expression \u2022 Annual Meet 2026 /"), /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-actions" }, /* @__PURE__ */ react_default.createElement(
+  ), /* @__PURE__ */ react_default.createElement("div", { className: "hero-panoramic-overlay" }), /* @__PURE__ */ react_default.createElement("div", { className: "hero-bottom-fade" })), /* @__PURE__ */ react_default.createElement("div", { className: "container relative z-10" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-reference-grid" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-col" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-tag" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-dot" }), /* @__PURE__ */ react_default.createElement("span", null, INSTITUTION.name, " \u2022 40TH INTER-COLLEGIATE FESTIVAL")), /* @__PURE__ */ react_default.createElement("h1", { className: "hero-editorial-heading" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-1" }, "WHERE"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-2" }, "COMPETITION"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-3" }, "MEETS ART", /* @__PURE__ */ react_default.createElement("span", { className: "editorial-reg" }, "\xAE"))), /* @__PURE__ */ react_default.createElement("p", { className: "hero-editorial-sub" }, "/ Where Athletic Grit Meets Creative Expression \u2022 Annual Meet 2026 /"), /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-actions" }, /* @__PURE__ */ react_default.createElement(
     "button",
     {
       className: "btn-editorial-start",
@@ -37244,72 +37219,14 @@ function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
     /* @__PURE__ */ react_default.createElement("span", null, "START"),
     /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.4" }, /* @__PURE__ */ react_default.createElement("path", { d: "M5 12h14M12 5l7 7-7 7" }))
   ), /* @__PURE__ */ react_default.createElement(
-    "button",
+    animated_button_default,
     {
-      className: "btn-editorial-register",
+      className: "btn-animated-navy",
       onClick: onRegisterClick,
-      id: "hero-register-btn",
-      title: "Register for Competitions"
+      id: "hero-register-btn"
     },
-    /* @__PURE__ */ react_default.createElement("span", null, "Register Now")
-  ))), /* @__PURE__ */ react_default.createElement("div", { className: "hero-showcase-col" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-floating-card" }, /* @__PURE__ */ react_default.createElement("div", { className: "showcase-top-bar" }, /* @__PURE__ */ react_default.createElement("div", { className: "showcase-pills" }, /* @__PURE__ */ react_default.createElement(
-    "button",
-    {
-      className: `showcase-pill ${activeCategory === "sports" ? "active" : ""}`,
-      onClick: () => setActiveCategory("sports")
-    },
-    "Sports"
-  ), /* @__PURE__ */ react_default.createElement(
-    "button",
-    {
-      className: `showcase-pill ${activeCategory === "cultural" ? "active" : ""}`,
-      onClick: () => setActiveCategory("cultural")
-    },
-    "Cultural"
-  ), /* @__PURE__ */ react_default.createElement(
-    "button",
-    {
-      className: `showcase-pill ${activeCategory === "oat" ? "active" : ""}`,
-      onClick: () => setActiveCategory("oat")
-    },
-    "OAT Stage"
-  ))), /* @__PURE__ */ react_default.createElement("div", { className: "showcase-text-header" }, /* @__PURE__ */ react_default.createElement("h3", { className: "showcase-card-title" }, "Unique Discipline & Spirit"), /* @__PURE__ */ react_default.createElement("p", { className: "showcase-card-sub" }, "From hardcourt rallies to auditorium showcases.")), /* @__PURE__ */ react_default.createElement("div", { className: "showcase-window" }, /* @__PURE__ */ react_default.createElement(
-    "div",
-    {
-      className: "showcase-window-img",
-      style: { backgroundImage: "url('/campus-hero-web.jpg')" }
-    }
-  ), /* @__PURE__ */ react_default.createElement("div", { className: "showcase-window-overlay" }), hotspots.map((spot) => /* @__PURE__ */ react_default.createElement(
-    "div",
-    {
-      key: spot.id,
-      className: `showcase-hotspot ${activeHotspot === spot.id || activeCategory === spot.category ? "active" : ""}`,
-      style: { left: `${spot.x}%`, top: `${spot.y}%` },
-      onMouseEnter: () => setActiveHotspot(spot.id),
-      onMouseLeave: () => setActiveHotspot(null),
-      onClick: onExploreEvents
-    },
-    /* @__PURE__ */ react_default.createElement("span", { className: "hotspot-ping" }),
-    /* @__PURE__ */ react_default.createElement("span", { className: "hotspot-center" }),
-    /* @__PURE__ */ react_default.createElement("div", { className: "hotspot-tooltip" }, /* @__PURE__ */ react_default.createElement("div", { className: "tooltip-title" }, spot.label), /* @__PURE__ */ react_default.createElement("div", { className: "tooltip-venue" }, spot.venue))
-  )), /* @__PURE__ */ react_default.createElement(
-    "div",
-    {
-      className: "showcase-tour-callout",
-      onClick: onExploreEvents,
-      title: "Explore Campus Arena"
-    },
-    /* @__PURE__ */ react_default.createElement("div", { className: "tour-callout-header" }, /* @__PURE__ */ react_default.createElement("span", null, "CAMPUS TOUR")),
-    /* @__PURE__ */ react_default.createElement("div", { className: "tour-callout-body" }, /* @__PURE__ */ react_default.createElement("div", { className: "tour-play-btn" }, /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "currentColor" }, /* @__PURE__ */ react_default.createElement("polygon", { points: "6 4 20 12 6 20 6 4" }))), /* @__PURE__ */ react_default.createElement(
-      "div",
-      {
-        className: "tour-thumb",
-        style: { backgroundImage: "url('/sports-web.jpg')" }
-      }
-    )),
-    /* @__PURE__ */ react_default.createElement("div", { className: "tour-callout-footer" }, /* @__PURE__ */ react_default.createElement("span", null, "Virtual Arena View")),
-    /* @__PURE__ */ react_default.createElement("div", { className: "tour-leader-line" })
-  ))))), /* @__PURE__ */ react_default.createElement("div", { className: "hero-bottom-strip" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-terracotta" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-text" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-headline" }, "24 Hours of Pure Grit!"), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-caption" }, "02 Flagship Disciplines \u2022 OAT Venues")), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-icon-area" }, /* @__PURE__ */ react_default.createElement("svg", { width: "42", height: "42", viewBox: "0 0 48 48", fill: "none" }, /* @__PURE__ */ react_default.createElement("path", { d: "M24 4L42 14V34L24 44L6 34V14L24 4Z", fill: "rgba(255,255,255,0.20)", stroke: "#FFFFFF", strokeWidth: "1.5" }), /* @__PURE__ */ react_default.createElement("path", { d: "M24 4V44M6 14L24 24L42 14M6 34L24 24", stroke: "#FFFFFF", strokeWidth: "1.5", strokeOpacity: "0.8" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "24", cy: "24", r: "5", fill: "#FFFFFF" })))), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stats-center" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatars" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatar", style: { backgroundImage: "url('/sports-web.jpg')" }, title: "Athletics" }), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatar", style: { backgroundImage: "url('/cultural-web.jpg')" }, title: "Cultural Arts" })), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-details" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-num" }, participantCount), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-lbl" }, "Registered Participants"))), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-statement-right" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-statement-title" }, "WE UNITE ATHLETIC GRIT & STAGE BRILLIANCE"), /* @__PURE__ */ react_default.createElement("button", { className: "bottom-statement-link", onClick: onExploreEvents }, /* @__PURE__ */ react_default.createElement("span", null, "EXPLORE FIXTURES"), /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M5 12h14M12 5l7 7-7 7" })))))));
+    "Register Now"
+  )))), /* @__PURE__ */ react_default.createElement("div", { className: "hero-bottom-strip" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-terracotta" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-text" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-headline" }, "24 Hours of Pure Grit!"), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-caption" }, "02 Flagship Disciplines \u2022 OAT Venues")), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-icon-area" }, /* @__PURE__ */ react_default.createElement("svg", { width: "42", height: "42", viewBox: "0 0 48 48", fill: "none" }, /* @__PURE__ */ react_default.createElement("path", { d: "M24 4L42 14V34L24 44L6 34V14L24 4Z", fill: "rgba(255,255,255,0.20)", stroke: "#FFFFFF", strokeWidth: "1.5" }), /* @__PURE__ */ react_default.createElement("path", { d: "M24 4V44M6 14L24 24L42 14M6 34L24 24", stroke: "#FFFFFF", strokeWidth: "1.5", strokeOpacity: "0.8" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "24", cy: "24", r: "5", fill: "#FFFFFF" })))), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stats-center" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatars" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatar", style: { backgroundImage: "url('/sports-web.jpg')" }, title: "Athletics" }), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatar", style: { backgroundImage: "url('/cultural-web.jpg')" }, title: "Cultural Arts" })), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-details" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-num" }, participantCount), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-lbl" }, "Registered Participants"))), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-statement-right" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-statement-title" }, "WE UNITE ATHLETIC GRIT & STAGE BRILLIANCE"), /* @__PURE__ */ react_default.createElement("button", { className: "bottom-statement-link", onClick: onExploreEvents }, /* @__PURE__ */ react_default.createElement("span", null, "EXPLORE FIXTURES"), /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M5 12h14M12 5l7 7-7 7" })))))));
 }
 
 // src/components/IntroSection.jsx
