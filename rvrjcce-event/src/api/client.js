@@ -2,9 +2,23 @@
  * REST API Client for RVRJCCE Inter-College Meet (COLORIDO 2K26)
  */
 
-const BASE_URL = typeof window !== 'undefined' && window.location.origin.includes('http')
-  ? window.location.origin
-  : '';
+const resolveBaseUrl = () => {
+  // 1. Injected at build time via esbuild (e.g. on Vercel)
+  if (typeof process !== 'undefined' && process.env && process.env.PUBLIC_API_URL) {
+    return process.env.PUBLIC_API_URL.replace(/\/+$/, '');
+  }
+  // 2. Injected at runtime via window.__API_URL__
+  if (typeof window !== 'undefined' && window.__API_URL__) {
+    return window.__API_URL__.replace(/\/+$/, '');
+  }
+  // 3. Fallback to current browser origin
+  if (typeof window !== 'undefined' && window.location && window.location.origin.includes('http')) {
+    return window.location.origin;
+  }
+  return '';
+};
+
+const BASE_URL = resolveBaseUrl();
 
 function getAuthHeader() {
   const token = typeof localStorage !== 'undefined' ? localStorage.getItem('rvrjcce_admin_token') : null;

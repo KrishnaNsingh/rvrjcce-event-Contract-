@@ -87162,7 +87162,19 @@ function getEventDetails(eventName) {
 }
 
 // src/api/client.js
-var BASE_URL = typeof window !== "undefined" && window.location.origin.includes("http") ? window.location.origin : "";
+var resolveBaseUrl = () => {
+  if (typeof process !== "undefined" && process.env && "") {
+    return "".replace(/\/+$/, "");
+  }
+  if (typeof window !== "undefined" && window.__API_URL__) {
+    return window.__API_URL__.replace(/\/+$/, "");
+  }
+  if (typeof window !== "undefined" && window.location && window.location.origin.includes("http")) {
+    return window.location.origin;
+  }
+  return "";
+};
+var BASE_URL = resolveBaseUrl();
 function getAuthHeader() {
   const token = typeof localStorage !== "undefined" ? localStorage.getItem("rvrjcce_admin_token") : null;
   return token ? { Authorization: `Bearer ${token}` } : {};

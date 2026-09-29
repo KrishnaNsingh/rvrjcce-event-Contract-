@@ -12,7 +12,9 @@ console.log('Bundling React client with esbuild...');
 const esbuildBin = process.env.ESBUILD_BIN || (fs.existsSync('/usr/share/npm-global/lib/node_modules/vercel/node_modules/esbuild/bin/esbuild') 
   ? '/usr/share/npm-global/lib/node_modules/vercel/node_modules/esbuild/bin/esbuild' 
   : 'npx esbuild');
-const cmd = `${esbuildBin} src/index.jsx --bundle --outfile=dist/bundle.js --format=esm --jsx-factory=React.createElement --jsx-fragment=React.Fragment`;
+const apiUrl = (process.env.PUBLIC_API_URL || process.env.VITE_API_URL || '').replace(/\/+$/, '');
+const defineFlag = `--define:process.env.PUBLIC_API_URL=${JSON.stringify(JSON.stringify(apiUrl))}`;
+const cmd = `${esbuildBin} src/index.jsx --bundle --outfile=dist/bundle.js --format=esm --jsx-factory=React.createElement --jsx-fragment=React.Fragment ${defineFlag}`;
 execSync(cmd, { stdio: 'inherit', shell: true });
 
 fs.copyFileSync(

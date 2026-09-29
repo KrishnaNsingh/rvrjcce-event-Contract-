@@ -1,0 +1,19 @@
+{
+  "name": "rvrjcce-event-backend",
+  "version": "1.0.0",
+  "description": "Production REST API for RVRJCCE COLORIDO 2K26 Event Platform",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
+    "mongoose": "^9.10.3"
+  }
+}
