@@ -1,108 +1,5 @@
 [
   {
-    "_id": "1e8b0a02eaa259ed4023d505",
-    "registrationId": "CD26000007",
-    "participantName": "V. Sai Teja",
-    "studentId": "Y22CS555",
-    "department": "Computer Science (CSE)",
-    "year": "3rd Year",
-    "gender": "Male",
-    "college": "RVR & JC College of Engineering",
-    "email": "saiteja.v@rvrjcce.ac.in",
-    "phoneNumber": "9848099881",
-    "category": "Sports",
-    "division": "Boys",
-    "event": "Basketball",
-    "registrationType": "Team Participation",
-    "venue": "RVRJC Hardcourt Arena 1",
-    "schedule": "2026-02-26 (09:00)",
-    "teamName": "RVR Hoopers",
-    "teammates": [
-      {
-        "memberNumber": 1,
-        "name": "V. Sai Teja",
-        "rollNo": "Y22CS555",
-        "phone": "9848099881",
-        "college": "RVRJCCE"
-      },
-      {
-        "memberNumber": 2,
-        "name": "K. Rahul",
-        "rollNo": "Y22CS556",
-        "phone": "9848099882",
-        "college": "RVRJCCE"
-      },
-      {
-        "memberNumber": 3,
-        "name": "M. Sumanth",
-        "rollNo": "Y22CS557",
-        "phone": "9848099883",
-        "college": "RVRJCCE"
-      },
-      {
-        "memberNumber": 4,
-        "name": "T. Charan",
-        "rollNo": "Y22CS558",
-        "phone": "9848099884",
-        "college": "RVRJCCE"
-      },
-      {
-        "memberNumber": 5,
-        "name": "B. Varun",
-        "rollNo": "Y22CS559",
-        "phone": "9848099885",
-        "college": "RVRJCCE"
-      }
-    ],
-    "attended": false,
-    "attendedAt": null,
-    "status": "Confirmed",
-    "registrationDate": "2026-09-29T18:37:52.803Z",
-    "notes": "Verified by Registration Desk 1 on-site",
-    "updatedAt": "2026-09-29T18:37:52.866Z"
-  },
-  {
-    "_id": "b6faa47812581f31ae6af74f",
-    "registrationId": "CD26000006",
-    "participantName": "P. Tarun Kumar (Captain)",
-    "studentId": "Y22CS999",
-    "department": "Computer Science",
-    "year": "3rd Year",
-    "gender": "Male",
-    "college": "RVR & JC College of Engineering, Guntur",
-    "email": "tarun.p@rvrjcce.ac.in",
-    "phoneNumber": "9848011223",
-    "category": "Sports",
-    "division": "Boys",
-    "event": "Basketball",
-    "registrationType": "Team Participation",
-    "venue": "RVRJC Hardcourt Arena 1",
-    "schedule": "2026-02-26 (09:00)",
-    "teamName": "Challengers V (Finals)",
-    "teammates": [
-      {
-        "memberNumber": 1,
-        "name": "P. Tarun Kumar",
-        "rollNo": "Y22CS999",
-        "phone": "9848011223",
-        "college": "RVRJCCE"
-      },
-      {
-        "memberNumber": 2,
-        "name": "M. Rohit",
-        "rollNo": "Y22CS998",
-        "phone": "9848011224",
-        "college": "RVRJCCE"
-      }
-    ],
-    "attended": false,
-    "attendedAt": null,
-    "status": "Confirmed",
-    "registrationDate": "2026-09-29T18:31:11.689Z",
-    "notes": "",
-    "updatedAt": "2026-09-29T18:33:37.584Z"
-  },
-  {
     "_id": "66f500000000000000000001",
     "registrationId": "CD26000001",
     "participantName": "Ananya Krishnamurthy",
@@ -121,8 +18,8 @@
     "schedule": "2026-02-26 (15:00)",
     "teamName": "",
     "teammates": [],
-    "attended": false,
-    "attendedAt": null,
+    "attended": true,
+    "attendedAt": "2026-09-29T16:49:14.939Z",
     "status": "Confirmed",
     "registrationDate": "2026-09-23T00:22:00.000Z"
   },
@@ -255,8 +152,8 @@
         "college": "Vignan's University"
       }
     ],
-    "attended": false,
-    "attendedAt": null,
+    "attended": true,
+    "attendedAt": "2026-09-29T13:49:14.940Z",
     "status": "Confirmed",
     "registrationDate": "2026-09-24T14:30:00.000Z"
   },
@@ -319,58 +216,5 @@
     "attendedAt": null,
     "status": "Confirmed",
     "registrationDate": "2026-09-24T18:22:00.000Z"
-  },
-  {
-    "_id": "66f500000000000000000005",
-    "registrationId": "CD26000005",
-    "participantName": "V. Sai Praneeth",
-    "studentId": "AU22EC055",
-    "department": "Electronics & Communication (ECE)",
-    "year": "4th Year",
-    "gender": "Male",
-    "college": "Andhra University College of Engineering",
-    "email": "praneeth.music@andhrauniv.edu.in",
-    "phoneNumber": "8919245671",
-    "category": "Literary & Cultural",
-    "division": "Cultural / Open",
-    "event": "Music & Band — Group",
-    "registrationType": "Team Participation",
-    "venue": "Silver Jubilee Auditorium",
-    "schedule": "2026-02-26 (17:30)",
-    "teamName": "Acoustic Mirage",
-    "teammates": [
-      {
-        "memberNumber": 1,
-        "name": "V. Sai Praneeth",
-        "rollNo": "AU22EC055",
-        "phone": "8919245671",
-        "college": "Andhra University"
-      },
-      {
-        "memberNumber": 2,
-        "name": "D. Manoj",
-        "rollNo": "AU22EC056",
-        "phone": "8919245672",
-        "college": "Andhra University"
-      },
-      {
-        "memberNumber": 3,
-        "name": "R. Teja",
-        "rollNo": "AU22CS101",
-        "phone": "8919245673",
-        "college": "Andhra University"
-      },
-      {
-        "memberNumber": 4,
-        "name": "K. Vishal",
-        "rollNo": "AU22ME032",
-        "phone": "8919245674",
-        "college": "Andhra University"
-      }
-    ],
-    "attended": false,
-    "attendedAt": null,
-    "status": "Confirmed",
-    "registrationDate": "2026-09-25T11:45:00.000Z"
   }
 ]
