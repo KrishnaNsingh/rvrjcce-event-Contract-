@@ -9,9 +9,11 @@ if (!fs.existsSync(DIST_DIR)) {
 
 console.log('Bundling React client with esbuild...');
 
-const esbuildBin = '/usr/share/npm-global/lib/node_modules/vercel/node_modules/esbuild/bin/esbuild';
+const esbuildBin = process.env.ESBUILD_BIN || (fs.existsSync('/usr/share/npm-global/lib/node_modules/vercel/node_modules/esbuild/bin/esbuild') 
+  ? '/usr/share/npm-global/lib/node_modules/vercel/node_modules/esbuild/bin/esbuild' 
+  : 'npx esbuild');
 const cmd = `${esbuildBin} src/index.jsx --bundle --outfile=dist/bundle.js --format=esm --jsx-factory=React.createElement --jsx-fragment=React.Fragment`;
-execSync(cmd, { stdio: 'inherit' });
+execSync(cmd, { stdio: 'inherit', shell: true });
 
 fs.copyFileSync(
   path.join(process.cwd(), 'src/styles/main.css'),

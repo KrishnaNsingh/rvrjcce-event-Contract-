@@ -31,7 +31,7 @@ function createElement(type, props, ...children) {
     normalizedProps.children = flatChildren.length === 1 ? flatChildren[0] : flatChildren;
   }
   return {
-    $$typeof: Symbol.for("react.element"),
+    $$typeof: /* @__PURE__ */ Symbol.for("react.element"),
     type,
     props: normalizedProps,
     key: props.key != null ? String(props.key) : null,
@@ -40,7 +40,7 @@ function createElement(type, props, ...children) {
 }
 function createTextElement(text) {
   return {
-    $$typeof: Symbol.for("react.element"),
+    $$typeof: /* @__PURE__ */ Symbol.for("react.element"),
     type: "TEXT_ELEMENT",
     props: {
       nodeValue: String(text),
