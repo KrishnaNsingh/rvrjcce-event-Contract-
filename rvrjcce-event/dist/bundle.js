@@ -1362,7 +1362,7 @@ var require_react_dom_development = __commonJS({
         return dispatcher;
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React3 = require_react(), Internals = {
+      var React4 = require_react(), Internals = {
         d: {
           f: noop2,
           r: function() {
@@ -1380,7 +1380,7 @@ var require_react_dom_development = __commonJS({
         },
         p: 0,
         findDOMNode: null
-      }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = /* @__PURE__ */ Symbol.for("react.optimistic_key"), ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+      }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = /* @__PURE__ */ Symbol.for("react.optimistic_key"), ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
       "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
         "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
       );
@@ -3066,7 +3066,7 @@ var require_react_dom_client_development = __commonJS({
         node.defaultValue !== "" + value && (node.defaultValue = "" + value);
       }
       function validateOptionProps(element, props) {
-        null == props.value && ("object" === typeof props.children && null !== props.children ? React3.Children.forEach(props.children, function(child) {
+        null == props.value && ("object" === typeof props.children && null !== props.children ? React4.Children.forEach(props.children, function(child) {
           null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = true, console.error(
             "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
           ));
@@ -20214,11 +20214,11 @@ var require_react_dom_client_development = __commonJS({
         ));
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var Scheduler = require_scheduler(), React3 = require_react(), ReactDOM2 = require_react_dom(), searchTarget = null, searchBoundary = null, assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
+      var Scheduler = require_scheduler(), React4 = require_react(), ReactDOM2 = require_react_dom(), searchTarget = null, searchBoundary = null, assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
       /* @__PURE__ */ Symbol.for("react.scope");
       var REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = /* @__PURE__ */ Symbol.for("react.legacy_hidden");
       /* @__PURE__ */ Symbol.for("react.tracing_marker");
-      var REACT_MEMO_CACHE_SENTINEL = /* @__PURE__ */ Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+      var REACT_MEMO_CACHE_SENTINEL = /* @__PURE__ */ Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
         pending: false,
         data: null,
         method: null,
@@ -23410,7 +23410,7 @@ var require_react_dom_client_development = __commonJS({
         }
       };
       (function() {
-        var isomorphicReactPackageVersion = React3.version;
+        var isomorphicReactPackageVersion = React4.version;
         if ("19.3.0" !== isomorphicReactPackageVersion)
           throw Error(
             'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.3.0\nLearn more: https://react.dev/warnings/version-mismatch")
@@ -23766,18 +23766,18 @@ var require_react_jsx_runtime_development = __commonJS({
       function isValidElement(object) {
         return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
       }
-      var React3 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+      var React4 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
         return null;
       };
-      React3 = {
+      React4 = {
         react_stack_bottom_frame: function(callStackForError) {
           return callStackForError();
         }
       };
       var specialPropKeyWarningShown;
       var didWarnAboutElementRef = {};
-      var unknownOwnerDebugStack = React3.react_stack_bottom_frame.bind(
-        React3,
+      var unknownOwnerDebugStack = React4.react_stack_bottom_frame.bind(
+        React4,
         UnknownOwner
       )();
       var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
@@ -24250,6 +24250,12 @@ function warnOnce(condition, message, errorCode) {
   warned.add(message);
 }
 
+// node_modules/motion-utils/dist/es/wrap.mjs
+var wrap = (min, max, v) => {
+  const rangeSize = max - min;
+  return ((v - min) % rangeSize + rangeSize) % rangeSize + min;
+};
+
 // node_modules/motion-utils/dist/es/easing/cubic-bezier.mjs
 var calcBezier = (t, a1, a2) => (((1 - 3 * a2 + 3 * a1) * t + (3 * a2 - 6 * a1)) * t + 3 * a1) * t;
 var subdivisionPrecision = 1e-7;
@@ -24305,6 +24311,12 @@ var easeInOut = /* @__PURE__ */ cubicBezier(0.42, 0, 0.58, 1);
 var isEasingArray = /* @__NO_SIDE_EFFECTS__ */ (ease2) => {
   return Array.isArray(ease2) && typeof ease2[0] !== "number";
 };
+
+// node_modules/motion-utils/dist/es/easing/utils/get-easing-for-segment.mjs
+// @__NO_SIDE_EFFECTS__
+function getEasingForSegment(easing, i) {
+  return isEasingArray(easing) ? easing[wrap(0, easing.length, i)] : easing;
+}
 
 // node_modules/motion-utils/dist/es/easing/utils/is-bezier-definition.mjs
 var isBezierDefinition = /* @__NO_SIDE_EFFECTS__ */ (easing) => Array.isArray(easing) && typeof easing[0] === "number";
@@ -26810,6 +26822,94 @@ var AsyncMotionValueAnimation = class extends WithPromise {
   }
 };
 
+// node_modules/motion-dom/dist/es/animation/GroupAnimation.mjs
+var GroupAnimation = class {
+  constructor(animations2) {
+    this.stop = () => this.runAll("stop");
+    this.animations = animations2.filter(Boolean);
+  }
+  get finished() {
+    return Promise.all(this.animations.map((animation) => animation.finished));
+  }
+  /**
+   * TODO: Filter out cancelled or stopped animations before returning
+   */
+  getAll(propName) {
+    return this.animations[0][propName];
+  }
+  setAll(propName, newValue) {
+    for (let i = 0; i < this.animations.length; i++) {
+      this.animations[i][propName] = newValue;
+    }
+  }
+  attachTimeline(timeline) {
+    const subscriptions = this.animations.map((animation) => animation.attachTimeline(timeline));
+    return () => {
+      subscriptions.forEach((cancel, i) => {
+        cancel && cancel();
+        this.animations[i].stop();
+      });
+    };
+  }
+  get time() {
+    return this.getAll("time");
+  }
+  set time(time2) {
+    this.setAll("time", time2);
+  }
+  get speed() {
+    return this.getAll("speed");
+  }
+  set speed(speed) {
+    this.setAll("speed", speed);
+  }
+  get state() {
+    return this.getAll("state");
+  }
+  get startTime() {
+    return this.getAll("startTime");
+  }
+  get duration() {
+    return getMax(this.animations, "duration");
+  }
+  get iterationDuration() {
+    return getMax(this.animations, "iterationDuration");
+  }
+  runAll(methodName) {
+    this.animations.forEach((controls) => controls[methodName]());
+  }
+  play() {
+    this.runAll("play");
+  }
+  pause() {
+    this.runAll("pause");
+  }
+  cancel() {
+    this.runAll("cancel");
+  }
+  complete() {
+    this.runAll("complete");
+  }
+};
+function getMax(animations2, propName) {
+  let max = 0;
+  for (let i = 0; i < animations2.length; i++) {
+    const value = animations2[i][propName];
+    if (value !== null && value > max) {
+      max = value;
+    }
+  }
+  return max;
+}
+
+// node_modules/motion-dom/dist/es/animation/GroupAnimationWithThen.mjs
+var GroupAnimationWithThen = class extends GroupAnimation {
+  then(onResolve, _onReject) {
+    return this.finished.finally(onResolve).then(() => {
+    });
+  }
+};
+
 // node_modules/motion-dom/dist/es/animation/utils/calc-child-stagger.mjs
 function calcChildStagger(children, child, delayChildren, staggerChildren = 0, staggerDirection = 1) {
   const index = Array.from(children).sort((a, b) => a.sortNodePosition(b)).indexOf(child);
@@ -27668,6 +27768,70 @@ var cornerRadiusProps = [
   "borderBottomLeftRadius"
 ];
 
+// node_modules/motion-dom/dist/es/animation/animate/effects.mjs
+var effects = [];
+function addEffect(effect) {
+  invariant(typeof effect.test === "function" && typeof effect.read === "function", "Effects passed to animate.addEffect() need test() and read().", "effect-missing-test");
+  removeEffect(effect);
+  effects.unshift(effect);
+}
+function removeEffect(effect) {
+  removeItem(effects, effect);
+}
+function findEffect(subject) {
+  return effects.find((effect) => effect.test(subject));
+}
+function animateValues(getValue, keyframes2, transition = {}, element) {
+  const animations2 = [];
+  const { velocity } = transition;
+  const reduceMotion = transition.reduceMotion ?? element?.shouldReduceMotion;
+  for (const key in keyframes2) {
+    if (key === "transition" || key === "transitionEnd")
+      continue;
+    const target = keyframes2[key];
+    if (target === void 0)
+      continue;
+    const value = getValue(key);
+    const current = value.get();
+    if (current !== void 0 && !value.isAnimating() && !Array.isArray(target) && target === current && !velocity) {
+      frame.update(() => value.set(target));
+      continue;
+    }
+    value.start(animateMotionValue(key, value, target, reduceMotion && positionalKeys.has(key) ? { type: false } : transition, element));
+    value.animation && animations2.push(value.animation);
+  }
+  const { transitionEnd } = keyframes2;
+  if (transitionEnd) {
+    const applyTransitionEnd = () => frame.update(() => {
+      for (const key in transitionEnd) {
+        getValue(key).set(transitionEnd[key]);
+      }
+    });
+    animations2.length ? Promise.all(animations2).then(applyTransitionEnd) : applyTransitionEnd();
+  }
+  return animations2;
+}
+function animateEffectSubject(effect, subject, keyframes2, transition, element) {
+  return animateValues((key) => {
+    let value = effect.get(subject, key);
+    if (!value) {
+      let initial;
+      if (!element) {
+        const target = keyframes2[key];
+        initial = firstKeyframe(target) ?? effect.read(subject, key, target);
+        invariant(initial !== void 0, `"${key}" can't be read from the animated subject. Provide [from, to] keyframes.`, "effect-unreadable-value");
+      }
+      value = motionValue(initial, { owner: element });
+      effect(subject, { [key]: value });
+    }
+    return value;
+  }, keyframes2, transition, element);
+}
+function firstKeyframe(target) {
+  const first = Array.isArray(target) ? target[0] : void 0;
+  return first === null ? void 0 : first;
+}
+
 // node_modules/motion-dom/dist/es/utils/is-html-element.mjs
 function isHTMLElement(element) {
   return isObject(element) && "offsetHeight" in element && !("ownerSVGElement" in element);
@@ -27701,15 +27865,213 @@ function resolveElements(elementOrSelector, scope, selectorCache) {
   return Array.from(elementOrSelector).filter((element) => element != null);
 }
 
-// node_modules/motion-dom/dist/es/render/html/utils/build-transform.mjs
+// node_modules/motion-dom/dist/es/effects/MotionValueState.mjs
+var MotionValueState = class {
+  /**
+   * @param step - The frameloop step renders are scheduled in. Defaults
+   * to `frame.render`. Effects that feed a render loop running in
+   * `frame.render` (GPU scenes) should write in `frame.preRender`.
+   */
+  constructor(step = frame.render) {
+    this.step = step;
+    this.values = /* @__PURE__ */ new Map();
+    this.pending = [];
+    this.numPending = 0;
+    this.flush = () => {
+      const { pending, numPending } = this;
+      this.numPending = 0;
+      for (let i = 0; i < numPending; i++)
+        pending[i]();
+    };
+  }
+  /**
+   * @param render - Writes the value to the subject. Renders read the
+   * motion value directly rather than a cached copy, so there is one
+   * place a value lives.
+   * @param computed - A value already in this state (e.g. `transform`)
+   * whose render should run whenever `value` changes.
+   */
+  set(name, value, render2, computed) {
+    this.values.get(name)?.onRemove();
+    if (computed) {
+      for (const entry of this.values.values()) {
+        if (entry.value === computed)
+          render2 = entry.render;
+      }
+    }
+    const onChange = () => render2 && this.schedule(render2);
+    value.get() !== void 0 && onChange();
+    const cancelOnChange = value.on("change", onChange);
+    const onRemove = () => {
+      cancelOnChange();
+      render2 && !computed && this.cancel(render2);
+      this.values.delete(name);
+    };
+    this.values.set(name, {
+      value,
+      render: computed ? void 0 : render2,
+      onRemove
+    });
+    return onRemove;
+  }
+  get(name) {
+    return this.values.get(name)?.value;
+  }
+  /**
+   * Detach every value from this state and return them, so another
+   * renderer can take them over. The state stays cached by its effect,
+   * so the bound transforms are reset too rather than leaking into
+   * values bound later.
+   */
+  release() {
+    const values = /* @__PURE__ */ new Map();
+    this.values.forEach((entry, name) => {
+      values.set(name, entry.value);
+      entry.onRemove();
+    });
+    this.transformKeys = this.transformValues = void 0;
+    return values;
+  }
+  schedule(render2) {
+    const { pending, numPending } = this;
+    for (let i = 0; i < numPending; i++) {
+      if (pending[i] === render2)
+        return;
+    }
+    numPending || this.step(this.flush);
+    pending[this.numPending++] = render2;
+  }
+  cancel(render2) {
+    const { pending } = this;
+    for (let i = 0; i < this.numPending; i++) {
+      if (pending[i] === render2) {
+        pending[i] = pending[--this.numPending];
+        return;
+      }
+    }
+  }
+};
+
+// node_modules/motion-dom/dist/es/effects/utils/create-effect.mjs
+function createEffect(addValue, { step, ...options } = {}) {
+  const stateCache = /* @__PURE__ */ new WeakMap();
+  const effect = (subject, values) => {
+    const state = stateCache.get(subject) ?? new MotionValueState(step);
+    stateCache.set(subject, state);
+    const subscriptions = [];
+    for (const key in values) {
+      const value = values[key];
+      const remove = addValue(subject, state, key, value);
+      subscriptions.push(remove);
+    }
+    return () => {
+      for (const cancel of subscriptions)
+        cancel();
+    };
+  };
+  return Object.assign(effect, options, {
+    get: (subject, key) => stateCache.get(subject)?.get(key),
+    flush: (subject) => stateCache.get(subject)?.flush(),
+    state: (subject) => stateCache.get(subject)
+  });
+}
+
+// node_modules/motion-dom/dist/es/effects/style/transform.mjs
 var translateAlias = {
   x: "translateX",
   y: "translateY",
   z: "translateZ",
   transformPerspective: "perspective"
 };
+var openers = {};
+function buildTransform(state) {
+  let transform = "";
+  const { transformKeys: keys = [], transformValues: values = {} } = state;
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    const value = values[key].get();
+    if (value === void 0)
+      continue;
+    const parsed = typeof value === "number" ? value : parseFloat(value);
+    if (parsed !== (key.startsWith("scale") ? 1 : 0)) {
+      transform += (transform && " ") + (openers[key] || (openers[key] = (translateAlias[key] || key) + "(")) + getValueAsType(value, transformValueTypes[key]) + ")";
+    }
+  }
+  const pathRotation = state.get("pathRotation")?.get();
+  if (pathRotation) {
+    transform += (transform && " ") + "rotate(" + getValueAsType(pathRotation, transformValueTypes.pathRotation) + ")";
+  }
+  return transform || "none";
+}
+
+// node_modules/motion-dom/dist/es/effects/style/index.mjs
+var originProps = /* @__PURE__ */ new Set(["originX", "originY", "originZ"]);
+var styleValue = (state, key) => getValueAsType(state.get(key)?.get(), numberValueTypes[key]);
+var addStyleValue = (element, state, key, value) => {
+  let render2 = void 0;
+  let computed = void 0;
+  if (transformProps.has(key)) {
+    if (key !== "pathRotation") {
+      const keys = state.transformKeys ?? (state.transformKeys = []);
+      (state.transformValues ?? (state.transformValues = {}))[key] = value;
+      if (!keys.includes(key)) {
+        keys.push(key);
+        keys.sort((a, b) => transformPropOrder.indexOf(a) - transformPropOrder.indexOf(b));
+      }
+    }
+    if (!state.get("transform")) {
+      if (!isHTMLElement(element) && !state.get("transformBox")) {
+        addStyleValue(element, state, "transformBox", new MotionValue("fill-box"));
+      }
+      state.set("transform", new MotionValue("none"), () => {
+        element.style.transform = buildTransform(state);
+      });
+    }
+    computed = state.get("transform");
+  } else if (originProps.has(key)) {
+    if (!state.get("transformOrigin")) {
+      state.set("transformOrigin", new MotionValue(""), () => {
+        const originX = styleValue(state, "originX") ?? "50%";
+        const originY = styleValue(state, "originY") ?? "50%";
+        const originZ = styleValue(state, "originZ") ?? 0;
+        element.style.transformOrigin = `${originX} ${originY} ${originZ}`;
+      });
+    }
+    computed = state.get("transformOrigin");
+  } else if (isCSSVar(key)) {
+    render2 = () => {
+      element.style.setProperty(key, value.get());
+    };
+  } else {
+    render2 = () => {
+      element.style[key] = getValueAsType(value.get(), numberValueTypes[key]);
+    };
+  }
+  return state.set(key, value, render2, computed);
+};
+var isStyleSubject = (subject) => isHTMLElement(subject) || isSVGElement(subject);
+var readStyleValue = (element, key) => {
+  if (transformProps.has(key)) {
+    return readTransformValue(element, key);
+  }
+  const computedStyle = getComputedStyle(element);
+  const value = isCSSVar(key) ? computedStyle.getPropertyValue(key) : computedStyle[key];
+  return typeof value === "string" && value.trim() || 0;
+};
+var styleSubjectEffect = /* @__PURE__ */ createEffect(addStyleValue, {
+  test: isStyleSubject,
+  read: readStyleValue
+});
+
+// node_modules/motion-dom/dist/es/render/html/utils/build-transform.mjs
+var translateAlias2 = {
+  x: "translateX",
+  y: "translateY",
+  z: "translateZ",
+  transformPerspective: "perspective"
+};
 var numTransforms = transformPropOrder.length;
-function buildTransform(latestValues, transform, transformTemplate) {
+function buildTransform2(latestValues, transform, transformTemplate) {
   let transformString = "";
   let transformIsDefault = true;
   for (let i = 0; i < numTransforms; i++) {
@@ -27728,7 +28090,7 @@ function buildTransform(latestValues, transform, transformTemplate) {
       const valueAsType = getValueAsType(value, numberValueTypes[key]);
       if (!valueIsDefault) {
         transformIsDefault = false;
-        const transformName = translateAlias[key] || key;
+        const transformName = translateAlias2[key] || key;
         transformString += `${transformName}(${valueAsType}) `;
       }
       if (transformTemplate) {
@@ -27775,7 +28137,7 @@ function buildHTMLStyles(state, latestValues, transformTemplate) {
   }
   if (!latestValues.transform) {
     if (hasTransform2 || transformTemplate) {
-      style.transform = buildTransform(latestValues, state.transform, transformTemplate);
+      style.transform = buildTransform2(latestValues, state.transform, transformTemplate);
     } else if (style.transform) {
       style.transform = "none";
     }
@@ -27854,6 +28216,78 @@ function buildSVGAttrs(state, {
   if (pathLength !== void 0) {
     buildSVGPath(attrs, pathLength, pathSpacing, pathOffset, false);
   }
+}
+
+// node_modules/motion-dom/dist/es/effects/attr/index.mjs
+function canSetAsProperty(element, name) {
+  if (!(name in element))
+    return false;
+  const descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(element), name) || Object.getOwnPropertyDescriptor(element, name);
+  return descriptor && typeof descriptor.set === "function";
+}
+var addAttrValue = (element, state, key, value, name = key) => {
+  const isProp = canSetAsProperty(element, name);
+  if (!isProp && (name.startsWith("data") || name.startsWith("aria"))) {
+    name = camelToDash(name);
+  }
+  const type = numberValueTypes[key] || numberValueTypes[name];
+  const render2 = isProp ? () => {
+    element[name] = getValueAsType(value.get(), numberValueTypes[key]);
+  } : () => {
+    const v = getValueAsType(value.get(), type);
+    if (v === null || v === void 0) {
+      element.removeAttribute(name);
+    } else {
+      element.setAttribute(name, String(v));
+    }
+  };
+  return state.set(key, value, render2);
+};
+
+// node_modules/motion-dom/dist/es/effects/svg/index.mjs
+function addSVGPathValue(element, state, key, value) {
+  frame.render(() => element.setAttribute("pathLength", "1"));
+  if (key === "pathOffset") {
+    return state.set(key, value, () => {
+      const offset = value.get();
+      element.setAttribute("stroke-dashoffset", `${-offset}`);
+    });
+  } else {
+    if (!state.get("stroke-dasharray")) {
+      state.set("stroke-dasharray", new MotionValue("1 1"), () => {
+        const pathLength = state.get("pathLength")?.get() ?? 1;
+        const pathSpacing = state.get("pathSpacing")?.get();
+        element.setAttribute("stroke-dasharray", `${pathLength} ${pathSpacing ?? 1 - Number(pathLength)}`);
+      });
+    }
+    return state.set(key, value, void 0, state.get("stroke-dasharray"));
+  }
+}
+var addSVGValue = (element, state, key, value) => {
+  if (key.startsWith("path")) {
+    return addSVGPathValue(element, state, key, value);
+  } else if (key.startsWith("attr")) {
+    return addAttrValue(element, state, key, value, convertAttrKey(key));
+  }
+  const handler = isCSSVar(key) || key in element.style ? addStyleValue : addAttrValue;
+  return handler(element, state, key, value);
+};
+var readSVGValue = (element, key) => {
+  if (transformProps.has(key)) {
+    return numberValueTypes[key]?.default || 0;
+  }
+  if (isCSSVar(key) || cssStyleProperties.includes(key)) {
+    return readStyleValue(element, key);
+  }
+  key = convertAttrKey(key);
+  return element.getAttribute(camelToDash(key)) ?? element.getAttribute(key) ?? void 0;
+};
+var svgSubjectEffect = /* @__PURE__ */ createEffect(addSVGValue, {
+  test: isSVGElement,
+  read: readSVGValue
+});
+function convertAttrKey(key) {
+  return key.replace(/^attr([A-Z])/, (_, firstChar) => firstChar.toLowerCase());
 }
 
 // node_modules/motion-dom/dist/es/projection/geometry/conversion.mjs
@@ -27985,6 +28419,52 @@ function measurePageBox(element, rootProjectionNode2, transformPagePoint) {
   }
   return viewportBox;
 }
+
+// node_modules/motion-dom/dist/es/animation/animate/element.mjs
+var noProps = {};
+var getElementEffect = (element) => isSVGElement(element) ? svgSubjectEffect : styleSubjectEffect;
+var EffectSubject = class {
+  constructor(effect, current) {
+    this.effect = effect;
+    this.current = current;
+    this.KeyframeResolver = DOMKeyframesResolver;
+  }
+  getValue(key) {
+    return this.effect.get(this.current, key);
+  }
+  readValue(key, target) {
+    return this.effect.read(this.current, key, target);
+  }
+  render() {
+    this.effect.flush(this.current);
+  }
+  measureViewportBox() {
+    return measureViewportBox(this.current);
+  }
+  getProps() {
+    return noProps;
+  }
+};
+function animateElement(element, keyframes2, transition, visualElement) {
+  if (visualElement) {
+    return animateValues((key) => visualElement.getValue(key, null), keyframes2, transition, visualElement);
+  }
+  const effect = getElementEffect(element);
+  return animateEffectSubject(effect, element, keyframes2, transition, new EffectSubject(effect, element));
+}
+
+// node_modules/motion-dom/dist/es/effects/prop/index.mjs
+var propEffect = /* @__PURE__ */ createEffect((subject, state, key, value) => {
+  return state.set(key, value, () => {
+    subject[key] = value.get();
+  });
+}, {
+  test: (subject) => isObject(subject),
+  read: (subject, key) => {
+    const value = subject[key];
+    return typeof value === "string" || typeof value === "number" ? value : void 0;
+  }
+});
 
 // node_modules/motion-dom/dist/es/frameloop/microtask.mjs
 var { schedule: microtask, cancel: cancelMicrotask } = /* @__PURE__ */ createRenderBatcher(queueMicrotask, false);
@@ -29139,7 +29619,7 @@ function createAnimateFunction(visualElement) {
   };
 }
 function createAnimationState(visualElement) {
-  let animate = createAnimateFunction(visualElement);
+  let animate2 = createAnimateFunction(visualElement);
   let state = createState();
   let isInitialRender = true;
   let wasReset = false;
@@ -29152,7 +29632,7 @@ function createAnimationState(visualElement) {
     return acc;
   };
   function setAnimateFunction(makeAnimator) {
-    animate = makeAnimator(visualElement);
+    animate2 = makeAnimator(visualElement);
   }
   function animateChanges(changedActiveType) {
     const { props } = visualElement;
@@ -29290,7 +29770,7 @@ function createAnimationState(visualElement) {
     }
     isInitialRender = false;
     wasReset = false;
-    return shouldAnimate ? animate(animations2) : Promise.resolve();
+    return shouldAnimate ? animate2(animations2) : Promise.resolve();
   }
   function setActive(type, isActive) {
     if (state[type].isActive === isActive)
@@ -30948,10 +31428,10 @@ var import_react10 = __toESM(require_react(), 1);
 // node_modules/framer-motion/dist/es/context/MotionContext/utils.mjs
 function getCurrentTreeVariants(props, context) {
   if (isControllingVariants(props)) {
-    const { initial, animate } = props;
+    const { initial, animate: animate2 } = props;
     return {
       initial: initial === false || isVariantLabel(initial) ? initial : void 0,
-      animate: isVariantLabel(animate) ? animate : void 0
+      animate: isVariantLabel(animate2) ? animate2 : void 0
     };
   }
   return props.inherit !== false ? context : {};
@@ -30959,8 +31439,8 @@ function getCurrentTreeVariants(props, context) {
 
 // node_modules/framer-motion/dist/es/context/MotionContext/create.mjs
 function useCreateMotionContext(props) {
-  const { initial, animate } = getCurrentTreeVariants(props, (0, import_react10.useContext)(MotionContext));
-  return (0, import_react10.useMemo)(() => ({ initial, animate }), [variantLabelsAsDependency(initial), variantLabelsAsDependency(animate)]);
+  const { initial, animate: animate2 } = getCurrentTreeVariants(props, (0, import_react10.useContext)(MotionContext));
+  return (0, import_react10.useMemo)(() => ({ initial, animate: animate2 }), [variantLabelsAsDependency(initial), variantLabelsAsDependency(animate2)]);
 }
 function variantLabelsAsDependency(prop) {
   return Array.isArray(prop) ? prop.join(" ") : prop;
@@ -31186,18 +31666,18 @@ function makeLatestValues(props, context, presenceContext, scrapeMotionValues) {
   for (const key in motionValues) {
     values[key] = resolveMotionValue(motionValues[key]);
   }
-  let { initial, animate } = props;
+  let { initial, animate: animate2 } = props;
   const isControllingVariants$1 = isControllingVariants(props);
   const isVariantNode$1 = isVariantNode(props);
   if (context && isVariantNode$1 && !isControllingVariants$1 && props.inherit !== false) {
     if (initial === void 0)
       initial = context.initial;
-    if (animate === void 0)
-      animate = context.animate;
+    if (animate2 === void 0)
+      animate2 = context.animate;
   }
   let isInitialAnimationBlocked = presenceContext ? presenceContext.initial === false : false;
   isInitialAnimationBlocked = isInitialAnimationBlocked || initial === false;
-  const variantToSet = isInitialAnimationBlocked ? animate : initial;
+  const variantToSet = isInitialAnimationBlocked ? animate2 : initial;
   if (variantToSet && typeof variantToSet !== "boolean" && !isAnimationControls(variantToSet)) {
     const list = Array.isArray(variantToSet) ? variantToSet : [variantToSet];
     for (let i = 0; i < list.length; i++) {
@@ -31496,9 +31976,9 @@ var AnimationFeature = class extends Feature {
     node.animationState || (node.animationState = createAnimationState(node));
   }
   updateAnimationControlsSubscription() {
-    const { animate } = this.node.getProps();
-    if (isAnimationControls(animate)) {
-      this.unmountControls = animate.subscribe(this.node);
+    const { animate: animate2 } = this.node.getProps();
+    if (isAnimationControls(animate2)) {
+      this.unmountControls = animate2.subscribe(this.node);
     }
   }
   /**
@@ -31508,9 +31988,9 @@ var AnimationFeature = class extends Feature {
     this.updateAnimationControlsSubscription();
   }
   update() {
-    const { animate } = this.node.getProps();
+    const { animate: animate2 } = this.node.getProps();
     const { animate: prevAnimate } = this.node.prevProps || {};
-    if (animate !== prevAnimate) {
+    if (animate2 !== prevAnimate) {
       this.updateAnimationControlsSubscription();
     }
   }
@@ -32728,6 +33208,379 @@ var featureBundle = {
 // node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs
 var motion = /* @__PURE__ */ createMotionProxy(featureBundle, createDomVisualElement);
 
+// node_modules/framer-motion/dist/es/animation/utils/is-dom-keyframes.mjs
+function isDOMKeyframes(keyframes2) {
+  return typeof keyframes2 === "object" && !Array.isArray(keyframes2);
+}
+
+// node_modules/framer-motion/dist/es/animation/animate/resolve-subjects.mjs
+function resolveSubjects(subject, keyframes2, scope, selectorCache) {
+  if (subject == null) {
+    return [];
+  }
+  if (typeof subject === "string" && isDOMKeyframes(keyframes2)) {
+    return resolveElements(subject, scope, selectorCache);
+  } else if (subject instanceof NodeList) {
+    return Array.from(subject);
+  } else if (Array.isArray(subject)) {
+    return subject.filter((s) => s != null);
+  } else {
+    return [subject];
+  }
+}
+
+// node_modules/framer-motion/dist/es/animation/sequence/utils/calc-repeat-duration.mjs
+function calculateRepeatDuration(duration, repeat, repeatDelay) {
+  return duration * (repeat + 1) + repeatDelay * repeat;
+}
+
+// node_modules/framer-motion/dist/es/animation/sequence/utils/calc-time.mjs
+function calcNextTime(current, next, prev, labels) {
+  if (typeof next === "number") {
+    return next;
+  } else if (next.startsWith("-") || next.startsWith("+")) {
+    return Math.max(0, current + parseFloat(next));
+  } else if (next === "<") {
+    return prev;
+  } else if (next.startsWith("<")) {
+    return Math.max(0, prev + parseFloat(next.slice(1)));
+  } else {
+    return labels.get(next) ?? current;
+  }
+}
+
+// node_modules/framer-motion/dist/es/animation/sequence/utils/edit.mjs
+function eraseKeyframes(sequence, startTime, endTime) {
+  for (let i = 0; i < sequence.length; i++) {
+    const keyframe = sequence[i];
+    if (keyframe.at > startTime && keyframe.at < endTime) {
+      removeItem(sequence, keyframe);
+      i--;
+    }
+  }
+}
+function addKeyframes(sequence, keyframes2, easing, offset, startTime, endTime) {
+  eraseKeyframes(sequence, startTime, endTime);
+  for (let i = 0; i < keyframes2.length; i++) {
+    sequence.push({
+      value: keyframes2[i],
+      at: mixNumber(startTime, endTime, offset[i]),
+      easing: getEasingForSegment(easing, i)
+    });
+  }
+}
+
+// node_modules/framer-motion/dist/es/animation/sequence/utils/normalize-times.mjs
+function normalizeTimes(times, repeat, repeatDelayUnits = 0) {
+  const totalUnits = repeat + 1 + repeat * repeatDelayUnits;
+  for (let i = 0; i < times.length; i++) {
+    times[i] = times[i] / totalUnits;
+  }
+}
+
+// node_modules/framer-motion/dist/es/animation/sequence/utils/sort.mjs
+function compareByTime(a, b) {
+  if (a.at === b.at) {
+    if (a.value === null)
+      return 1;
+    if (b.value === null)
+      return -1;
+    return 0;
+  } else {
+    return a.at - b.at;
+  }
+}
+
+// node_modules/framer-motion/dist/es/animation/sequence/create.mjs
+var defaultSegmentEasing = "easeInOut";
+var MAX_REPEAT = 20;
+function createAnimationsFromSequence(sequence, { defaultTransition = {}, ...sequenceTransition } = {}, scope, generators) {
+  const defaultDuration = defaultTransition.duration || 0.3;
+  const animationDefinitions = /* @__PURE__ */ new Map();
+  const sequences = /* @__PURE__ */ new Map();
+  const elementCache = {};
+  const timeLabels = /* @__PURE__ */ new Map();
+  let prevTime = 0;
+  let currentTime = 0;
+  let totalDuration = 0;
+  for (let i = 0; i < sequence.length; i++) {
+    const segment = sequence[i];
+    if (typeof segment === "string") {
+      timeLabels.set(segment, currentTime);
+      continue;
+    } else if (!Array.isArray(segment)) {
+      timeLabels.set(segment.name, calcNextTime(currentTime, segment.at, prevTime, timeLabels));
+      continue;
+    }
+    let [subject, keyframes2, transition = {}] = segment;
+    if (transition.at !== void 0) {
+      currentTime = calcNextTime(currentTime, transition.at, prevTime, timeLabels);
+    }
+    let maxDuration = 0;
+    const resolveValueSequence = (valueKeyframes, valueTransition, valueSequence, elementIndex = 0, numSubjects = 0) => {
+      const valueKeyframesAsList = keyframesAsList(valueKeyframes);
+      const { delay: delay2 = 0, times = defaultOffset(valueKeyframesAsList), type = defaultTransition.type || "keyframes", repeat, repeatType, repeatDelay = 0, ...remainingTransition } = valueTransition;
+      let { ease: ease2 = defaultTransition.ease || "easeOut", duration } = valueTransition;
+      const calculatedDelay = typeof delay2 === "function" ? delay2(elementIndex, numSubjects) : delay2;
+      const numKeyframes = valueKeyframesAsList.length;
+      const createGenerator = isGenerator(type) ? type : generators?.[type || "keyframes"];
+      if (numKeyframes <= 2 && createGenerator) {
+        let absoluteDelta = 100;
+        if (numKeyframes === 2 && isNumberKeyframesArray(valueKeyframesAsList)) {
+          const delta = valueKeyframesAsList[1] - valueKeyframesAsList[0];
+          absoluteDelta = Math.abs(delta);
+        }
+        const springTransition = {
+          ...defaultTransition,
+          ...remainingTransition
+        };
+        if (duration !== void 0) {
+          springTransition.duration = secondsToMilliseconds(duration);
+        }
+        const springEasing = createGeneratorEasing(springTransition, absoluteDelta, createGenerator);
+        ease2 = springEasing.ease;
+        duration = springEasing.duration;
+      }
+      duration ?? (duration = defaultDuration);
+      const startTime = currentTime + calculatedDelay;
+      if (times.length === 1 && times[0] === 0) {
+        times[1] = 1;
+      }
+      const remainder = times.length - valueKeyframesAsList.length;
+      remainder > 0 && fillOffset(times, remainder);
+      valueKeyframesAsList.length === 1 && valueKeyframesAsList.unshift(null);
+      if (repeat) {
+        warning(repeat < MAX_REPEAT, `Sequence segments can't repeat ${repeat} times \u2014 ignoring repeat option. Use a value below ${MAX_REPEAT} or apply repeat at the sequence level instead.`);
+      }
+      if (repeat && repeat < MAX_REPEAT) {
+        const repeatDelayUnits = duration > 0 ? repeatDelay / duration : 0;
+        duration = calculateRepeatDuration(duration, repeat, repeatDelay);
+        const originalKeyframes = [...valueKeyframesAsList];
+        const originalTimes = [...times];
+        ease2 = Array.isArray(ease2) ? [...ease2] : [ease2];
+        const originalEase = [...ease2];
+        const isFlipping = repeatType === "reverse" || repeatType === "mirror";
+        let flippedKeyframes = originalKeyframes;
+        let flippedEases = originalEase;
+        if (isFlipping) {
+          flippedKeyframes = [...originalKeyframes].reverse();
+          if (repeatType === "reverse") {
+            flippedEases = [...originalEase].reverse().map((e) => typeof e === "function" ? reverseEasing(e) : e);
+          }
+        }
+        for (let repeatIndex = 0; repeatIndex < repeat; repeatIndex++) {
+          const isFlipped = isFlipping && repeatIndex % 2 === 0;
+          const iterKeyframes = isFlipped ? flippedKeyframes : originalKeyframes;
+          const iterEase = isFlipped ? flippedEases : originalEase;
+          const iterStartOffset = (repeatIndex + 1) * (1 + repeatDelayUnits);
+          if (repeatDelayUnits > 0) {
+            valueKeyframesAsList.push(valueKeyframesAsList[valueKeyframesAsList.length - 1]);
+            times.push(iterStartOffset);
+            ease2.push("linear");
+          }
+          valueKeyframesAsList.push(...iterKeyframes);
+          for (let keyframeIndex = 0; keyframeIndex < iterKeyframes.length; keyframeIndex++) {
+            times.push(originalTimes[keyframeIndex] + iterStartOffset);
+            ease2.push(keyframeIndex === 0 ? "linear" : getEasingForSegment(iterEase, keyframeIndex - 1));
+          }
+        }
+        normalizeTimes(times, repeat, repeatDelayUnits);
+      }
+      const targetTime = startTime + duration;
+      addKeyframes(valueSequence, valueKeyframesAsList, ease2, times, startTime, targetTime);
+      maxDuration = Math.max(calculatedDelay + duration, maxDuration);
+      totalDuration = Math.max(targetTime, totalDuration);
+    };
+    if (isMotionValue(subject)) {
+      const subjectSequence = getSubjectSequence(subject, sequences);
+      resolveValueSequence(keyframes2, transition, getValueSequence("default", subjectSequence));
+    } else {
+      const subjects = resolveSubjects(subject, keyframes2, scope, elementCache);
+      const numSubjects = subjects.length;
+      for (let subjectIndex = 0; subjectIndex < numSubjects; subjectIndex++) {
+        keyframes2 = keyframes2;
+        transition = transition;
+        const thisSubject = subjects[subjectIndex];
+        const subjectSequence = getSubjectSequence(thisSubject, sequences);
+        for (const key in keyframes2) {
+          resolveValueSequence(keyframes2[key], getValueTransition2(transition, key), getValueSequence(key, subjectSequence), subjectIndex, numSubjects);
+        }
+      }
+    }
+    prevTime = currentTime;
+    currentTime += maxDuration;
+  }
+  sequences.forEach((valueSequences, element) => {
+    for (const key in valueSequences) {
+      const valueSequence = valueSequences[key];
+      valueSequence.sort(compareByTime);
+      const keyframes2 = [];
+      const valueOffset = [];
+      const valueEasing = [];
+      for (let i = 0; i < valueSequence.length; i++) {
+        const { at, value, easing } = valueSequence[i];
+        keyframes2.push(value);
+        valueOffset.push(progress(0, totalDuration, at));
+        valueEasing.push(easing || "easeOut");
+      }
+      if (valueOffset[0] !== 0) {
+        valueOffset.unshift(0);
+        keyframes2.unshift(keyframes2[0]);
+        valueEasing.unshift(defaultSegmentEasing);
+      }
+      if (valueOffset[valueOffset.length - 1] !== 1) {
+        valueOffset.push(1);
+        keyframes2.push(null);
+      }
+      if (!animationDefinitions.has(element)) {
+        animationDefinitions.set(element, {
+          keyframes: {},
+          transition: {}
+        });
+      }
+      const definition = animationDefinitions.get(element);
+      definition.keyframes[key] = keyframes2;
+      const { type: _type, ...remainingDefaultTransition } = defaultTransition;
+      definition.transition[key] = {
+        ...remainingDefaultTransition,
+        duration: totalDuration,
+        ease: valueEasing,
+        times: valueOffset,
+        ...sequenceTransition
+      };
+    }
+  });
+  return animationDefinitions;
+}
+function getSubjectSequence(subject, sequences) {
+  !sequences.has(subject) && sequences.set(subject, {});
+  return sequences.get(subject);
+}
+function getValueSequence(name, sequences) {
+  if (!sequences[name])
+    sequences[name] = [];
+  return sequences[name];
+}
+function keyframesAsList(keyframes2) {
+  return Array.isArray(keyframes2) ? keyframes2 : [keyframes2];
+}
+function getValueTransition2(transition, key) {
+  return transition && transition[key] ? {
+    ...transition,
+    ...transition[key]
+  } : { ...transition };
+}
+var isNumber = (keyframe) => typeof keyframe === "number";
+var isNumberKeyframesArray = (keyframes2) => keyframes2.every(isNumber);
+
+// node_modules/framer-motion/dist/es/animation/animate/subject.mjs
+function isSingleValue(subject, keyframes2) {
+  return isMotionValue(subject) || typeof subject === "number" || typeof subject === "string" && !isDOMKeyframes(keyframes2);
+}
+function animateSubject(subject, keyframes2, options, scope) {
+  const animations2 = [];
+  if (isSingleValue(subject, keyframes2)) {
+    animations2.push(animateSingleValue(subject, isDOMKeyframes(keyframes2) ? keyframes2.default || keyframes2 : keyframes2, options ? options.default || options : options));
+  } else {
+    if (subject == null) {
+      return animations2;
+    }
+    const subjects = resolveSubjects(subject, keyframes2, scope);
+    const numSubjects = subjects.length;
+    invariant(Boolean(numSubjects), "No valid elements provided.", "no-valid-elements");
+    for (let i = 0; i < numSubjects; i++) {
+      const thisSubject = subjects[i];
+      const transition = { ...options };
+      if ("delay" in transition && typeof transition.delay === "function") {
+        transition.delay = transition.delay(i, numSubjects);
+      }
+      if (thisSubject instanceof Element) {
+        animations2.push(...animateElement(thisSubject, keyframes2, transition, visualElementStore.get(thisSubject)));
+      } else {
+        animations2.push(...animateEffectSubject(findEffect(thisSubject) ?? propEffect, thisSubject, keyframes2, transition));
+      }
+    }
+  }
+  return animations2;
+}
+
+// node_modules/framer-motion/dist/es/animation/animate/sequence.mjs
+function animateSequence(sequence, options, scope) {
+  const animations2 = [];
+  const processedSequence = sequence.map((segment) => {
+    if (Array.isArray(segment) && typeof segment[0] === "function") {
+      const callback = segment[0];
+      const mv = motionValue(0);
+      mv.on("change", callback);
+      if (segment.length === 1) {
+        return [mv, [0, 1]];
+      } else if (segment.length === 2) {
+        return [mv, [0, 1], segment[1]];
+      } else {
+        return [mv, segment[1], segment[2]];
+      }
+    }
+    return segment;
+  });
+  const animationDefinitions = createAnimationsFromSequence(processedSequence, options, scope, { spring });
+  animationDefinitions.forEach(({ keyframes: keyframes2, transition }, subject) => {
+    animations2.push(...animateSubject(subject, keyframes2, transition));
+  });
+  return animations2;
+}
+
+// node_modules/framer-motion/dist/es/animation/animate/index.mjs
+function isSequence(value) {
+  return Array.isArray(value) && value.some(Array.isArray);
+}
+function createScopedAnimate(options = {}) {
+  const { scope, reduceMotion, skipAnimations } = options;
+  function scopedAnimate(subjectOrSequence, optionsOrKeyframes, options2) {
+    let animations2 = [];
+    let animationOnComplete;
+    const inherited = {};
+    if (reduceMotion !== void 0)
+      inherited.reduceMotion = reduceMotion;
+    if (skipAnimations !== void 0)
+      inherited.skipAnimations = skipAnimations;
+    if (isSequence(subjectOrSequence)) {
+      const { onComplete, ...sequenceOptions } = optionsOrKeyframes || {};
+      if (typeof onComplete === "function") {
+        animationOnComplete = onComplete;
+      }
+      animations2 = animateSequence(subjectOrSequence, { ...inherited, ...sequenceOptions }, scope);
+    } else {
+      const { onComplete, ...rest } = options2 || {};
+      if (typeof onComplete === "function") {
+        animationOnComplete = onComplete;
+      }
+      animations2 = animateSubject(subjectOrSequence, optionsOrKeyframes, { ...inherited, ...rest }, scope);
+    }
+    const animation = new GroupAnimationWithThen(animations2);
+    if (animationOnComplete) {
+      animation.finished.then(animationOnComplete);
+    }
+    if (scope) {
+      scope.animations.push(animation);
+      animation.finished.then(() => {
+        removeItem(scope.animations, animation);
+      });
+    }
+    return animation;
+  }
+  return scopedAnimate;
+}
+var animate = Object.assign(createScopedAnimate(), {
+  /**
+   * Register an effect so `animate()` can animate the subjects it
+   * claims, for instance `animate.addEffect(threeEffect)`. The most
+   * recently added effect is tested first. DOM elements are always
+   * animated directly.
+   */
+  addEffect,
+  removeEffect
+});
+
 // node_modules/clsx/dist/clsx.mjs
 function r(e) {
   var t, f, n = "";
@@ -33199,9 +34052,9 @@ var colorFunctionRegex = /^(rgba?|hsla?|hwb|(ok)?(lab|lch)|color-mix|color|light
 var shadowRegex = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/;
 var imageRegex = /^(url|image|image-set|cross-fade|element|(repeating-)?(linear|radial|conic)-gradient)\(.+\)$/;
 var isFraction = (value) => fractionRegex.test(value);
-var isNumber = (value) => !!value && !Number.isNaN(Number(value));
+var isNumber2 = (value) => !!value && !Number.isNaN(Number(value));
 var isInteger = (value) => !!value && Number.isInteger(Number(value));
-var isPercent = (value) => value.endsWith("%") && isNumber(value.slice(0, -1));
+var isPercent = (value) => value.endsWith("%") && isNumber2(value.slice(0, -1));
 var isTshirtSize = (value) => tshirtUnitRegex.test(value);
 var isAny = () => true;
 var isLengthOnly = (value) => (
@@ -33218,7 +34071,7 @@ var isNamedContainerQuery = (value) => value.startsWith("@container") && (value[
 var isArbitrarySize = (value) => getIsArbitraryValue(value, isLabelSize, isNever);
 var isArbitraryValue = (value) => arbitraryValueRegex.test(value);
 var isArbitraryLength = (value) => getIsArbitraryValue(value, isLabelLength, isLengthOnly);
-var isArbitraryNumber = (value) => getIsArbitraryValue(value, isLabelNumber, isNumber);
+var isArbitraryNumber = (value) => getIsArbitraryValue(value, isLabelNumber, isNumber2);
 var isArbitraryWeight = (value) => getIsArbitraryValue(value, isLabelWeight, isAny);
 var isArbitraryFamilyName = (value) => getIsArbitraryValue(value, isLabelFamilyName, isNever);
 var isArbitraryPosition = (value) => getIsArbitraryValue(value, isLabelPosition, isNever);
@@ -33337,10 +34190,10 @@ var getDefaultConfig = () => {
     isArbitraryVariable,
     isArbitraryValue
   ];
-  const scaleBorderWidth = () => ["", isNumber, isArbitraryVariableLength, isArbitraryLength];
+  const scaleBorderWidth = () => ["", isNumber2, isArbitraryVariableLength, isArbitraryLength];
   const scaleLineStyle = () => ["solid", "dashed", "dotted", "double"];
   const scaleBlendMode = () => ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"];
-  const scaleMaskImagePosition = () => [isNumber, isPercent, isArbitraryVariablePosition, isArbitraryPosition];
+  const scaleMaskImagePosition = () => [isNumber2, isPercent, isArbitraryVariablePosition, isArbitraryPosition];
   const scaleBlur = () => [
     // Deprecated since Tailwind CSS v4.0.0
     "",
@@ -33349,9 +34202,9 @@ var getDefaultConfig = () => {
     isArbitraryVariable,
     isArbitraryValue
   ];
-  const scaleRotate = () => ["none", isNumber, isArbitraryVariable, isArbitraryValue];
-  const scaleScale = () => ["none", isNumber, isArbitraryVariable, isArbitraryValue];
-  const scaleSkew = () => [isNumber, isArbitraryVariable, isArbitraryValue];
+  const scaleRotate = () => ["none", isNumber2, isArbitraryVariable, isArbitraryValue];
+  const scaleScale = () => ["none", isNumber2, isArbitraryVariable, isArbitraryValue];
+  const scaleSkew = () => [isNumber2, isArbitraryVariable, isArbitraryValue];
   const scaleTranslate = () => [isFraction, "full", ...scaleUnambiguousSpacing()];
   return {
     cacheSize: 500,
@@ -33371,7 +34224,7 @@ var getDefaultConfig = () => {
       perspective: ["dramatic", "near", "normal", "midrange", "distant", "none"],
       radius: [isTshirtSize],
       shadow: [isTshirtSize],
-      spacing: ["px", isNumber],
+      spacing: ["px", isNumber2],
       text: [isTshirtSize],
       "text-shadow": [isTshirtSize],
       tracking: ["tighter", "tight", "normal", "wide", "wider", "widest"]
@@ -33410,7 +34263,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/columns
        */
       columns: [{
-        columns: [isNumber, "auto", isArbitraryValue, isArbitraryVariable, themeContainer]
+        columns: [isNumber2, "auto", isArbitraryValue, isArbitraryVariable, themeContainer]
       }],
       /**
        * Break After
@@ -33667,21 +34520,21 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/flex
        */
       flex: [{
-        flex: [isNumber, isFraction, "auto", "initial", "none", isArbitraryValue]
+        flex: [isNumber2, isFraction, "auto", "initial", "none", isArbitraryValue]
       }],
       /**
        * Flex Grow
        * @see https://tailwindcss.com/docs/flex-grow
        */
       grow: [{
-        grow: ["", isNumber, isArbitraryVariable, isArbitraryValue]
+        grow: ["", isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Flex Shrink
        * @see https://tailwindcss.com/docs/flex-shrink
        */
       shrink: [{
-        shrink: ["", isNumber, isArbitraryVariable, isArbitraryValue]
+        shrink: ["", isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Order
@@ -34235,7 +35088,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/line-clamp
        */
       "line-clamp": [{
-        "line-clamp": [isNumber, "none", isArbitraryVariable, isArbitraryNumber]
+        "line-clamp": [isNumber2, "none", isArbitraryVariable, isArbitraryNumber]
       }],
       /**
        * Line Height
@@ -34309,7 +35162,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/text-decoration-thickness
        */
       "text-decoration-thickness": [{
-        decoration: [isNumber, "from-font", "auto", isArbitraryVariable, isArbitraryLength]
+        decoration: [isNumber2, "from-font", "auto", isArbitraryVariable, isArbitraryLength]
       }],
       /**
        * Text Decoration Color
@@ -34323,7 +35176,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/text-underline-offset
        */
       "underline-offset": [{
-        "underline-offset": [isNumber, "auto", isArbitraryVariable, isArbitraryValue]
+        "underline-offset": [isNumber2, "auto", isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Text Transform
@@ -34824,14 +35677,14 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/outline-offset
        */
       "outline-offset": [{
-        "outline-offset": [isNumber, isArbitraryVariable, isArbitraryValue]
+        "outline-offset": [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Outline Width
        * @see https://tailwindcss.com/docs/outline-width
        */
       "outline-w": [{
-        outline: ["", isNumber, isArbitraryVariableLength, isArbitraryLength]
+        outline: ["", isNumber2, isArbitraryVariableLength, isArbitraryLength]
       }],
       /**
        * Outline Color
@@ -34908,7 +35761,7 @@ var getDefaultConfig = () => {
        * @see https://github.com/tailwindlabs/tailwindcss/blob/v4.0.0/packages/tailwindcss/src/utilities.ts#L4158
        */
       "ring-offset-w": [{
-        "ring-offset": [isNumber, isArbitraryLength]
+        "ring-offset": [isNumber2, isArbitraryLength]
       }],
       /**
        * Ring Offset Color
@@ -34952,7 +35805,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/opacity
        */
       opacity: [{
-        opacity: [isNumber, isArbitraryVariable, isArbitraryValue]
+        opacity: [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Mix Blend Mode
@@ -34987,7 +35840,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/mask-image
        */
       "mask-image-linear-pos": [{
-        "mask-linear": [isNumber]
+        "mask-linear": [isNumber2]
       }],
       "mask-image-linear-from-pos": [{
         "mask-linear-from": scaleMaskImagePosition()
@@ -35101,7 +35954,7 @@ var getDefaultConfig = () => {
         "mask-radial-at": scalePosition()
       }],
       "mask-image-conic-pos": [{
-        "mask-conic": [isNumber]
+        "mask-conic": [isNumber2]
       }],
       "mask-image-conic-from-pos": [{
         "mask-conic-from": scaleMaskImagePosition()
@@ -35192,14 +36045,14 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/brightness
        */
       brightness: [{
-        brightness: [isNumber, isArbitraryVariable, isArbitraryValue]
+        brightness: [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Contrast
        * @see https://tailwindcss.com/docs/contrast
        */
       contrast: [{
-        contrast: [isNumber, isArbitraryVariable, isArbitraryValue]
+        contrast: [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Drop Shadow
@@ -35227,35 +36080,35 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/grayscale
        */
       grayscale: [{
-        grayscale: ["", isNumber, isArbitraryVariable, isArbitraryValue]
+        grayscale: ["", isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Hue Rotate
        * @see https://tailwindcss.com/docs/hue-rotate
        */
       "hue-rotate": [{
-        "hue-rotate": [isNumber, isArbitraryVariable, isArbitraryValue]
+        "hue-rotate": [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Invert
        * @see https://tailwindcss.com/docs/invert
        */
       invert: [{
-        invert: ["", isNumber, isArbitraryVariable, isArbitraryValue]
+        invert: ["", isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Saturate
        * @see https://tailwindcss.com/docs/saturate
        */
       saturate: [{
-        saturate: [isNumber, isArbitraryVariable, isArbitraryValue]
+        saturate: [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Sepia
        * @see https://tailwindcss.com/docs/sepia
        */
       sepia: [{
-        sepia: ["", isNumber, isArbitraryVariable, isArbitraryValue]
+        sepia: ["", isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Backdrop Filter
@@ -35282,56 +36135,56 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/backdrop-brightness
        */
       "backdrop-brightness": [{
-        "backdrop-brightness": [isNumber, isArbitraryVariable, isArbitraryValue]
+        "backdrop-brightness": [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Backdrop Contrast
        * @see https://tailwindcss.com/docs/backdrop-contrast
        */
       "backdrop-contrast": [{
-        "backdrop-contrast": [isNumber, isArbitraryVariable, isArbitraryValue]
+        "backdrop-contrast": [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Backdrop Grayscale
        * @see https://tailwindcss.com/docs/backdrop-grayscale
        */
       "backdrop-grayscale": [{
-        "backdrop-grayscale": ["", isNumber, isArbitraryVariable, isArbitraryValue]
+        "backdrop-grayscale": ["", isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Backdrop Hue Rotate
        * @see https://tailwindcss.com/docs/backdrop-hue-rotate
        */
       "backdrop-hue-rotate": [{
-        "backdrop-hue-rotate": [isNumber, isArbitraryVariable, isArbitraryValue]
+        "backdrop-hue-rotate": [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Backdrop Invert
        * @see https://tailwindcss.com/docs/backdrop-invert
        */
       "backdrop-invert": [{
-        "backdrop-invert": ["", isNumber, isArbitraryVariable, isArbitraryValue]
+        "backdrop-invert": ["", isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Backdrop Opacity
        * @see https://tailwindcss.com/docs/backdrop-opacity
        */
       "backdrop-opacity": [{
-        "backdrop-opacity": [isNumber, isArbitraryVariable, isArbitraryValue]
+        "backdrop-opacity": [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Backdrop Saturate
        * @see https://tailwindcss.com/docs/backdrop-saturate
        */
       "backdrop-saturate": [{
-        "backdrop-saturate": [isNumber, isArbitraryVariable, isArbitraryValue]
+        "backdrop-saturate": [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Backdrop Sepia
        * @see https://tailwindcss.com/docs/backdrop-sepia
        */
       "backdrop-sepia": [{
-        "backdrop-sepia": ["", isNumber, isArbitraryVariable, isArbitraryValue]
+        "backdrop-sepia": ["", isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       // --------------
       // --- Tables ---
@@ -35400,7 +36253,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/transition-duration
        */
       duration: [{
-        duration: [isNumber, "initial", isArbitraryVariable, isArbitraryValue]
+        duration: [isNumber2, "initial", isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Transition Timing Function
@@ -35414,7 +36267,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/transition-delay
        */
       delay: [{
-        delay: [isNumber, isArbitraryVariable, isArbitraryValue]
+        delay: [isNumber2, isArbitraryVariable, isArbitraryValue]
       }],
       /**
        * Animation
@@ -35921,7 +36774,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/stroke-width
        */
       "stroke-w": [{
-        stroke: [isNumber, isArbitraryVariableLength, isArbitraryLength, isArbitraryNumber]
+        stroke: [isNumber2, isArbitraryVariableLength, isArbitraryLength, isArbitraryNumber]
       }],
       /**
        * Stroke
@@ -36078,10 +36931,155 @@ var AnimatedButton = ({
 };
 var animated_button_default = AnimatedButton;
 
+// src/components/ui/spotlight-navbar.tsx
+var import_react22 = __toESM(require_react(), 1);
+function SpotlightNavbar({
+  items = [
+    { label: "Home", href: "#home" },
+    { label: "Sports", href: "#sports-section" },
+    { label: "Literary & Cultural", href: "#cultural-section" },
+    { label: "Events", href: "#discovery-section" },
+    { label: "Register", href: "/register" },
+    { label: "Admin Portal", href: "/admin" }
+  ],
+  className,
+  onItemClick,
+  defaultActiveIndex = 0,
+  activeIndex: controlledActiveIndex
+}) {
+  const navRef = (0, import_react22.useRef)(null);
+  const [internalActiveIndex, setInternalActiveIndex] = (0, import_react22.useState)(defaultActiveIndex);
+  const [hoverX, setHoverX] = (0, import_react22.useState)(null);
+  const activeIndex = controlledActiveIndex !== void 0 ? controlledActiveIndex : internalActiveIndex;
+  const spotlightX = (0, import_react22.useRef)(0);
+  const ambienceX = (0, import_react22.useRef)(0);
+  (0, import_react22.useEffect)(() => {
+    if (!navRef.current) return;
+    const nav = navRef.current;
+    const handleMouseMove = (e) => {
+      const rect = nav.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      setHoverX(x);
+      spotlightX.current = x;
+      nav.style.setProperty("--spotlight-x", `${x}px`);
+    };
+    const handleMouseLeave = () => {
+      setHoverX(null);
+      const activeItem = nav.querySelector(`[data-index="${activeIndex}"]`);
+      if (activeItem) {
+        const navRect = nav.getBoundingClientRect();
+        const itemRect = activeItem.getBoundingClientRect();
+        const targetX = itemRect.left - navRect.left + itemRect.width / 2;
+        animate(spotlightX.current, targetX, {
+          type: "spring",
+          stiffness: 220,
+          damping: 24,
+          onUpdate: (v) => {
+            spotlightX.current = v;
+            nav.style.setProperty("--spotlight-x", `${v}px`);
+          }
+        });
+      }
+    };
+    nav.addEventListener("mousemove", handleMouseMove);
+    nav.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      nav.removeEventListener("mousemove", handleMouseMove);
+      nav.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [activeIndex]);
+  (0, import_react22.useEffect)(() => {
+    if (!navRef.current) return;
+    const nav = navRef.current;
+    const activeItem = nav.querySelector(`[data-index="${activeIndex}"]`);
+    if (activeItem) {
+      const navRect = nav.getBoundingClientRect();
+      const itemRect = activeItem.getBoundingClientRect();
+      const targetX = itemRect.left - navRect.left + itemRect.width / 2;
+      animate(ambienceX.current, targetX, {
+        type: "spring",
+        stiffness: 220,
+        damping: 24,
+        onUpdate: (v) => {
+          ambienceX.current = v;
+          nav.style.setProperty("--ambience-x", `${v}px`);
+        }
+      });
+    }
+  }, [activeIndex]);
+  const handleItemClick = (item, index) => {
+    setInternalActiveIndex(index);
+    onItemClick?.(item, index);
+  };
+  return /* @__PURE__ */ import_react22.default.createElement("div", { className: cn("spotlight-navbar-wrapper relative flex justify-center", className) }, /* @__PURE__ */ import_react22.default.createElement(
+    "nav",
+    {
+      ref: navRef,
+      className: cn(
+        "spotlight-nav",
+        "relative h-10 rounded-full transition-all duration-300 overflow-hidden",
+        "flex items-center"
+      )
+    },
+    /* @__PURE__ */ import_react22.default.createElement("ul", { className: "relative flex items-center h-full px-1.5 gap-0.5 z-[10] list-none m-0 p-0" }, items.map((item, idx) => {
+      const isActive = activeIndex === idx;
+      return /* @__PURE__ */ import_react22.default.createElement("li", { key: idx, className: "relative h-full flex items-center justify-center" }, /* @__PURE__ */ import_react22.default.createElement(
+        "a",
+        {
+          href: item.href,
+          "data-index": idx,
+          onClick: (e) => {
+            e.preventDefault();
+            handleItemClick(item, idx);
+          },
+          className: cn(
+            "spotlight-nav-link",
+            isActive ? "spotlight-nav-link-active" : "spotlight-nav-link-inactive"
+          )
+        },
+        item.label
+      ));
+    })),
+    /* @__PURE__ */ import_react22.default.createElement(
+      "div",
+      {
+        className: "pointer-events-none absolute bottom-0 left-0 w-full h-full z-[1] transition-opacity duration-300",
+        style: {
+          opacity: hoverX !== null ? 1 : 0,
+          background: `
+                            radial-gradient(
+                                130px circle at var(--spotlight-x, 50%) 100%, 
+                                var(--nav-spotlight-glow, rgba(14, 34, 61, 0.09)) 0%, 
+                                transparent 60%
+                            )
+                        `
+        }
+      }
+    ),
+    /* @__PURE__ */ import_react22.default.createElement(
+      "div",
+      {
+        className: "pointer-events-none absolute bottom-0 left-0 w-full h-[2.5px] z-[2]",
+        style: {
+          background: `
+                            radial-gradient(
+                                70px circle at var(--ambience-x, 50%) 0%, 
+                                var(--nav-ambience-glow, #9E472A) 0%, 
+                                transparent 100%
+                            )
+                        `
+        }
+      }
+    )
+  ));
+}
+var spotlight_navbar_default = SpotlightNavbar;
+
 // src/components/Navbar.jsx
 function Navbar({ currentRoute, onNavigate }) {
   const [isScrolled, setIsScrolled] = (0, import_react.useState)(false);
   const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react.useState)(false);
+  const [activeNavIndex, setActiveNavIndex] = (0, import_react.useState)(0);
   (0, import_react.useEffect)(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -36089,6 +37087,42 @@ function Navbar({ currentRoute, onNavigate }) {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  (0, import_react.useEffect)(() => {
+    if (currentRoute === "register") {
+      setActiveNavIndex(4);
+      return;
+    }
+    if (currentRoute === "admin") {
+      setActiveNavIndex(5);
+      return;
+    }
+    const handleScrollSpy = () => {
+      const scrollY = window.scrollY;
+      if (scrollY < 280) {
+        setActiveNavIndex(0);
+        return;
+      }
+      const discoveryEl = document.getElementById("discovery-section");
+      const sportsEl = document.getElementById("sports-section");
+      const culturalEl = document.getElementById("cultural-section");
+      const triggerLine = window.innerHeight * 0.4;
+      if (culturalEl && culturalEl.getBoundingClientRect().top <= triggerLine && culturalEl.getBoundingClientRect().bottom >= 100) {
+        setActiveNavIndex(2);
+        return;
+      }
+      if (sportsEl && sportsEl.getBoundingClientRect().top <= triggerLine && sportsEl.getBoundingClientRect().bottom >= 100) {
+        setActiveNavIndex(1);
+        return;
+      }
+      if (discoveryEl && discoveryEl.getBoundingClientRect().top <= triggerLine && discoveryEl.getBoundingClientRect().bottom >= 100) {
+        setActiveNavIndex(3);
+        return;
+      }
+    };
+    window.addEventListener("scroll", handleScrollSpy, { passive: true });
+    handleScrollSpy();
+    return () => window.removeEventListener("scroll", handleScrollSpy);
+  }, [currentRoute]);
   const handleNavClick = (route, sectionId = null) => {
     setMobileMenuOpen(false);
     onNavigate(route);
@@ -36101,6 +37135,14 @@ function Navbar({ currentRoute, onNavigate }) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+  const NAV_ITEMS = [
+    { label: "Home", href: "#", route: "home", sectionId: null },
+    { label: "Sports", href: "#sports-section", route: "home", sectionId: "sports-section" },
+    { label: "Literary & Cultural", href: "#cultural-section", route: "home", sectionId: "cultural-section" },
+    { label: "Events", href: "#discovery-section", route: "home", sectionId: "discovery-section" },
+    { label: "Register", href: "/register", route: "register", sectionId: null },
+    { label: "Admin Portal", href: "/admin", route: "admin", sectionId: null }
+  ];
   return /* @__PURE__ */ react_default.createElement("header", { className: `site-nav ${isScrolled ? "scrolled" : ""}` }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "nav-inner" }, /* @__PURE__ */ react_default.createElement(
     "div",
     {
@@ -36110,50 +37152,18 @@ function Navbar({ currentRoute, onNavigate }) {
     },
     /* @__PURE__ */ react_default.createElement("div", { className: "brand-crest" }, /* @__PURE__ */ react_default.createElement("span", null, "RVR")),
     /* @__PURE__ */ react_default.createElement("div", { className: "brand-text" }, /* @__PURE__ */ react_default.createElement("span", { className: "brand-title" }, INSTITUTION.name), /* @__PURE__ */ react_default.createElement("span", { className: "brand-subtitle" }, "Andhra Pradesh"))
-  ), /* @__PURE__ */ react_default.createElement("nav", { className: "nav-links" }, /* @__PURE__ */ react_default.createElement(
-    "a",
-    {
-      className: `nav-link ${currentRoute === "home" ? "active" : ""}`,
-      onClick: () => handleNavClick("home")
-    },
-    "Home"
   ), /* @__PURE__ */ react_default.createElement(
-    "a",
+    spotlight_navbar_default,
     {
-      className: "nav-link",
-      onClick: () => handleNavClick("home", "sports-section")
-    },
-    "Sports"
-  ), /* @__PURE__ */ react_default.createElement(
-    "a",
-    {
-      className: "nav-link",
-      onClick: () => handleNavClick("home", "cultural-section")
-    },
-    "Literary & Cultural"
-  ), /* @__PURE__ */ react_default.createElement(
-    "a",
-    {
-      className: "nav-link",
-      onClick: () => handleNavClick("home", "discovery-section")
-    },
-    "Events"
-  ), /* @__PURE__ */ react_default.createElement(
-    "a",
-    {
-      className: `nav-link ${currentRoute === "register" ? "active" : ""}`,
-      onClick: () => handleNavClick("register")
-    },
-    "Register"
-  ), /* @__PURE__ */ react_default.createElement(
-    "a",
-    {
-      className: `nav-link ${currentRoute === "admin" ? "active" : ""}`,
-      onClick: () => handleNavClick("admin"),
-      style: { fontSize: "0.8125rem", color: "var(--text-muted)" }
-    },
-    "Admin Portal"
-  )), /* @__PURE__ */ react_default.createElement("div", { className: "nav-actions" }, /* @__PURE__ */ react_default.createElement(
+      className: "desktop-spotlight-nav",
+      items: NAV_ITEMS,
+      activeIndex: activeNavIndex,
+      onItemClick: (item, idx) => {
+        setActiveNavIndex(idx);
+        handleNavClick(item.route, item.sectionId);
+      }
+    }
+  ), /* @__PURE__ */ react_default.createElement("div", { className: "nav-actions" }, /* @__PURE__ */ react_default.createElement(
     animated_button_default,
     {
       className: "btn-animated-navy",

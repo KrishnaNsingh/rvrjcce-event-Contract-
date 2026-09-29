@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from '../core/react.js';
 import { INSTITUTION } from '../../config/eventConfig.js';
 import AnimatedButton from './ui/animated-button.tsx';
+import SpotlightNavbar from './ui/spotlight-navbar.tsx';
 
 export function Navbar({ currentRoute, onNavigate }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeNavIndex, setActiveNavIndex] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +15,49 @@ export function Navbar({ currentRoute, onNavigate }) {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Scroll-responsive synchronization for middle spotlight navbar
+  useEffect(() => {
+    if (currentRoute === 'register') {
+      setActiveNavIndex(4);
+      return;
+    }
+    if (currentRoute === 'admin') {
+      setActiveNavIndex(5);
+      return;
+    }
+
+    const handleScrollSpy = () => {
+      const scrollY = window.scrollY;
+      if (scrollY < 280) {
+        setActiveNavIndex(0); // Home
+        return;
+      }
+
+      const discoveryEl = document.getElementById('discovery-section');
+      const sportsEl = document.getElementById('sports-section');
+      const culturalEl = document.getElementById('cultural-section');
+
+      const triggerLine = window.innerHeight * 0.4;
+
+      if (culturalEl && culturalEl.getBoundingClientRect().top <= triggerLine && culturalEl.getBoundingClientRect().bottom >= 100) {
+        setActiveNavIndex(2); // Literary & Cultural
+        return;
+      }
+      if (sportsEl && sportsEl.getBoundingClientRect().top <= triggerLine && sportsEl.getBoundingClientRect().bottom >= 100) {
+        setActiveNavIndex(1); // Sports
+        return;
+      }
+      if (discoveryEl && discoveryEl.getBoundingClientRect().top <= triggerLine && discoveryEl.getBoundingClientRect().bottom >= 100) {
+        setActiveNavIndex(3); // Events
+        return;
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+    handleScrollSpy();
+    return () => window.removeEventListener('scroll', handleScrollSpy);
+  }, [currentRoute]);
 
   const handleNavClick = (route, sectionId = null) => {
     setMobileMenuOpen(false);
@@ -27,11 +72,20 @@ export function Navbar({ currentRoute, onNavigate }) {
     }
   };
 
+  const NAV_ITEMS = [
+    { label: "Home", href: "#", route: "home", sectionId: null },
+    { label: "Sports", href: "#sports-section", route: "home", sectionId: "sports-section" },
+    { label: "Literary & Cultural", href: "#cultural-section", route: "home", sectionId: "cultural-section" },
+    { label: "Events", href: "#discovery-section", route: "home", sectionId: "discovery-section" },
+    { label: "Register", href: "/register", route: "register", sectionId: null },
+    { label: "Admin Portal", href: "/admin", route: "admin", sectionId: null }
+  ];
+
   return (
     <header className={`site-nav ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <div className="nav-inner">
-          {/* Institution Crest & Title */}
+          {/* Institution Crest & Title (Untouched) */}
           <div
             className="nav-brand"
             style={{ cursor: 'pointer' }}
@@ -46,46 +100,16 @@ export function Navbar({ currentRoute, onNavigate }) {
             </div>
           </div>
 
-          {/* Desktop Navigation Links */}
-          <nav className="nav-links">
-            <a
-              className={`nav-link ${currentRoute === 'home' ? 'active' : ''}`}
-              onClick={() => handleNavClick('home')}
-            >
-              Home
-            </a>
-            <a
-              className="nav-link"
-              onClick={() => handleNavClick('home', 'sports-section')}
-            >
-              Sports
-            </a>
-            <a
-              className="nav-link"
-              onClick={() => handleNavClick('home', 'cultural-section')}
-            >
-              Literary & Cultural
-            </a>
-            <a
-              className="nav-link"
-              onClick={() => handleNavClick('home', 'discovery-section')}
-            >
-              Events
-            </a>
-            <a
-              className={`nav-link ${currentRoute === 'register' ? 'active' : ''}`}
-              onClick={() => handleNavClick('register')}
-            >
-              Register
-            </a>
-            <a
-              className={`nav-link ${currentRoute === 'admin' ? 'active' : ''}`}
-              onClick={() => handleNavClick('admin')}
-              style={{ fontSize: '0.8125rem', color: 'var(--text-muted)' }}
-            >
-              Admin Portal
-            </a>
-          </nav>
+          {/* Middle Section: Award-Winning Spotlight Navbar */}
+          <SpotlightNavbar
+            className="desktop-spotlight-nav"
+            items={NAV_ITEMS}
+            activeIndex={activeNavIndex}
+            onItemClick={(item, idx) => {
+              setActiveNavIndex(idx);
+              handleNavClick(item.route, item.sectionId);
+            }}
+          />
 
           {/* Action CTAs */}
           <div className="nav-actions">

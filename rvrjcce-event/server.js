@@ -217,12 +217,32 @@ const server = http.createServer(async (req, res) => {
   });
 });
 
-export function startServer(port = PORT) {
-  return new Promise((resolve) => {
-    server.listen(port, () => {
-      console.log(`RVRJCCE University Event Server running on http://localhost:${port}`);
-      resolve(server);
-    });
+export function startServer(port = Number(PORT)) {
+  return new Promise((resolve, reject) => {
+    const tryListen = (currentPort) => {
+      const onError = (err) => {
+        if (err.code === 'EADDRINUSE') {
+          console.warn(`Port ${currentPort} is in use. Trying port ${currentPort + 1}...`);
+          server.removeListener('error', onError);
+          tryListen(currentPort + 1);
+        } else {
+          server.removeListener('error', onError);
+          reject(err);
+        }
+      };
+
+      server.once('error', onError);
+      server.listen(currentPort, () => {
+        server.removeListener('error', onError);
+        console.log(`\n==================================================`);
+        console.log(`  RVRJCCE University Event Platform is Live!`);
+        console.log(`  URL: http://localhost:${currentPort}`);
+        console.log(`==================================================\n`);
+        resolve(server);
+      });
+    };
+
+    tryListen(port);
   });
 }
 

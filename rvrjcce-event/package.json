@@ -4,6 +4,7 @@
   "description": "Premium, modern, production-quality university event website for RVRJCCE, Andhra Pradesh",
   "type": "module",
   "scripts": {
+    "dev": "node server.js",
     "build": "node build.js",
     "start": "node server.js"
   },
@@ -19,6 +20,8 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^13.4.5",
+    "lucide-react": "^1.48.0",
+    "next-themes": "^0.4.6",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "tailwind-merge": "^3.7.0"
