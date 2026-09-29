@@ -1,9 +1,17 @@
 import React from '../core/react.js';
+import WaveGridBackground from './ui/wave-grid-background.tsx';
 
 export function FeaturedArena({ onSelectCategory, onRegisterClick }) {
   return (
     <section className="section-wrapper featured-arena-section" id="featured-arena">
-      <div className="container">
+      <div className="featured-arena-wave-bg" aria-hidden="true">
+        <WaveGridBackground
+          colorBase="#ffffff"
+          colorHigh="#0055ff"
+        />
+      </div>
+
+      <div className="container featured-arena-container">
         <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 3.5rem' }}>
           <span className="eyebrow" style={{ justifyContent: 'center' }}>
             <span className="eyebrow-dot"></span>

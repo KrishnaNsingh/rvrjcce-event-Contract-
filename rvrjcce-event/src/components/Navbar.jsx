@@ -74,9 +74,9 @@ export function Navbar({ currentRoute, onNavigate }) {
 
   const NAV_ITEMS = [
     { label: "Home", href: "#", route: "home", sectionId: null },
+    { label: "Events", href: "#discovery-section", route: "home", sectionId: "discovery-section" },
     { label: "Sports", href: "#sports-section", route: "home", sectionId: "sports-section" },
     { label: "Literary & Cultural", href: "#cultural-section", route: "home", sectionId: "cultural-section" },
-    { label: "Events", href: "#discovery-section", route: "home", sectionId: "discovery-section" },
     { label: "Register", href: "/register", route: "register", sectionId: null },
     { label: "Admin Portal", href: "/admin", route: "admin", sectionId: null }
   ];
@@ -140,14 +140,14 @@ export function Navbar({ currentRoute, onNavigate }) {
         <a className="mobile-nav-link" onClick={() => handleNavClick('home')}>
           Home
         </a>
+        <a className="mobile-nav-link" onClick={() => handleNavClick('home', 'discovery-section')}>
+          Events Overview
+        </a>
         <a className="mobile-nav-link" onClick={() => handleNavClick('home', 'sports-section')}>
           Sports (Boys & Girls)
         </a>
         <a className="mobile-nav-link" onClick={() => handleNavClick('home', 'cultural-section')}>
           Literary & Cultural
-        </a>
-        <a className="mobile-nav-link" onClick={() => handleNavClick('home', 'discovery-section')}>
-          Events Overview
         </a>
         <a className="mobile-nav-link" onClick={() => handleNavClick('register')}>
           Event Registration
