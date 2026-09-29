@@ -3,10 +3,10 @@ import { INSTITUTION } from '../../config/eventConfig.js';
 
 export function IntroSection({ liveStats }) {
   // Use dynamic count if available from API/database, otherwise display clean dynamic placeholder
-  const eventsCount = "XX+ Events";
-  const participantsCount = liveStats && liveStats.total ? `${liveStats.total}+ Registered` : "XX+ Participants";
-  const daysCount = "XX Days";
-  const venuesCount = "XX Venues";
+  const eventsCount = "02+ Events";
+  const participantsCount = liveStats && liveStats.total ? `${liveStats.total}+ Registered` : "00+ Participants";
+  const daysCount = "24 Hours";
+  const venuesCount = "OAT Venues";
 
   return (
     <section className="section-wrapper intro-section" id="intro-section">

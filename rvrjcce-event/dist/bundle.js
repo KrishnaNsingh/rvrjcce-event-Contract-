@@ -37228,21 +37228,52 @@ function IntroSection({ liveStats }) {
 
 // src/components/EventDiscovery.jsx
 function EventDiscovery({ onSelectCategory }) {
-  return /* @__PURE__ */ react_default.createElement("section", { className: "section-wrapper discovery-section", id: "discovery-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "section-header-editorial" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "TWO DISCIPLINES \u2022 ONE STAGE"), /* @__PURE__ */ react_default.createElement("h2", { className: "heading-section" }, "Event Architecture")), /* @__PURE__ */ react_default.createElement("p", { className: "text-body", style: { maxWidth: "460px" } }, "Choose between competitive inter-collegiate sports brackets or our expansive literary, dramatic, musical, and visual arts competitions.")), /* @__PURE__ */ react_default.createElement("div", { className: "discovery-pillars" }, /* @__PURE__ */ react_default.createElement(
+  const [hoveredSide, setHoveredSide] = (0, import_react.useState)(null);
+  return /* @__PURE__ */ react_default.createElement("section", { className: "section-wrapper discovery-section", id: "discovery-section" }, /* @__PURE__ */ react_default.createElement("div", { className: `discovery-split-bg ${hoveredSide ? `hover-${hoveredSide}` : ""}`, "aria-hidden": "true" }, /* @__PURE__ */ react_default.createElement("div", { className: "discovery-split-side discovery-split-sports" }, /* @__PURE__ */ react_default.createElement(
+    "div",
+    {
+      className: "discovery-split-image",
+      style: { backgroundImage: "url('/sports-web.jpg')" }
+    }
+  ), /* @__PURE__ */ react_default.createElement("div", { className: "discovery-split-overlay sports-gradient" }), /* @__PURE__ */ react_default.createElement("div", { className: "discovery-split-ambient sports-ambient" })), /* @__PURE__ */ react_default.createElement("div", { className: "discovery-split-seam" }, /* @__PURE__ */ react_default.createElement("div", { className: "seam-line" }), /* @__PURE__ */ react_default.createElement("div", { className: "seam-badge" }, /* @__PURE__ */ react_default.createElement("span", { className: "seam-dot sports-dot" }), /* @__PURE__ */ react_default.createElement("span", { className: "seam-text" }, "2026"), /* @__PURE__ */ react_default.createElement("span", { className: "seam-dot cultural-dot" }))), /* @__PURE__ */ react_default.createElement("div", { className: "discovery-split-side discovery-split-cultural" }, /* @__PURE__ */ react_default.createElement(
+    "div",
+    {
+      className: "discovery-split-image",
+      style: { backgroundImage: "url('/cultural-web.jpg')" }
+    }
+  ), /* @__PURE__ */ react_default.createElement("div", { className: "discovery-split-overlay cultural-gradient" }), /* @__PURE__ */ react_default.createElement("div", { className: "discovery-split-ambient cultural-ambient" }))), /* @__PURE__ */ react_default.createElement("div", { className: "container relative z-10" }, /* @__PURE__ */ react_default.createElement("div", { className: "section-header-editorial" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "TWO DISCIPLINES \u2022 ONE STAGE"), /* @__PURE__ */ react_default.createElement("h2", { className: "heading-section" }, "Event Architecture")), /* @__PURE__ */ react_default.createElement("p", { className: "text-body", style: { maxWidth: "460px" } }, "Choose between competitive inter-collegiate sports brackets or our expansive literary, dramatic, musical, and visual arts competitions.")), /* @__PURE__ */ react_default.createElement("div", { className: "discovery-pillars" }, /* @__PURE__ */ react_default.createElement(
     "div",
     {
       className: "discovery-card discovery-card-sports",
-      onClick: () => onSelectCategory("sports")
+      onClick: () => onSelectCategory("sports"),
+      onMouseEnter: () => setHoveredSide("sports"),
+      onMouseLeave: () => setHoveredSide(null)
     },
-    /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("div", { className: "pillar-number" }, "01 / CATEGORY"), /* @__PURE__ */ react_default.createElement("h3", { className: "pillar-title" }, "Sports Championship"), /* @__PURE__ */ react_default.createElement("div", { className: "pillar-tagline sports" }, CATEGORIES.SPORTS.tagline), /* @__PURE__ */ react_default.createElement("p", { className: "pillar-desc" }, "High-stakes athletic tournaments across Basketball, Volleyball, Throwball, Lawn Tennis, and Table Tennis, segmented into dedicated Boys and Girls divisions."), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" } }, /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-navy" }, "Boys: Basketball \u2022 Volleyball \u2022 Table Tennis"), /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-navy" }, "Girls: Throwball \u2022 Tennis \u2022 Table Tennis"))),
+    /* @__PURE__ */ react_default.createElement(
+      "div",
+      {
+        className: "card-bg-aura sports-aura",
+        style: { backgroundImage: "url('/sports-web.jpg')" }
+      }
+    ),
+    /* @__PURE__ */ react_default.createElement("div", { className: "card-content-wrap" }, /* @__PURE__ */ react_default.createElement("div", { className: "pillar-number" }, "01 / CATEGORY"), /* @__PURE__ */ react_default.createElement("h3", { className: "pillar-title" }, "Sports Championship"), /* @__PURE__ */ react_default.createElement("div", { className: "pillar-tagline sports" }, CATEGORIES.SPORTS.tagline), /* @__PURE__ */ react_default.createElement("p", { className: "pillar-desc" }, "High-stakes athletic tournaments across Basketball, Volleyball, Throwball, Lawn Tennis, and Table Tennis, segmented into dedicated Boys and Girls divisions."), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" } }, /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-navy" }, "Boys: Basketball \u2022 Volleyball \u2022 Table Tennis"), /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-navy" }, "Girls: Throwball \u2022 Tennis \u2022 Table Tennis"))),
     /* @__PURE__ */ react_default.createElement("div", { className: "pillar-footer" }, /* @__PURE__ */ react_default.createElement("span", { className: "text-caption" }, "Official refereeing & tournament brackets"), /* @__PURE__ */ react_default.createElement("span", { className: "pillar-link" }, /* @__PURE__ */ react_default.createElement("span", null, "View Sports Fixtures"), /* @__PURE__ */ react_default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M5 12h14M12 5l7 7-7 7" }))))
   ), /* @__PURE__ */ react_default.createElement(
     "div",
     {
       className: "discovery-card discovery-card-cultural",
-      onClick: () => onSelectCategory("cultural")
+      onClick: () => onSelectCategory("cultural"),
+      onMouseEnter: () => setHoveredSide("cultural"),
+      onMouseLeave: () => setHoveredSide(null)
     },
-    /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("div", { className: "pillar-number", style: { color: "var(--accent-cultural)" } }, "02 / CATEGORY"), /* @__PURE__ */ react_default.createElement("h3", { className: "pillar-title" }, "Literary & Cultural"), /* @__PURE__ */ react_default.createElement("div", { className: "pillar-tagline cultural" }, CATEGORIES.CULTURAL.tagline), /* @__PURE__ */ react_default.createElement("p", { className: "pillar-desc" }, "Eight curated creative categories spanning Fine Arts, Music & Band, Solo & Crew Dance, thematic Choreoday, Dramatics, Runway Fashion, Tekraft multimedia, and Literary debates."), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" } }, /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-terracotta" }, "Fine Arts \u2022 Music & Band \u2022 Dance"), /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-terracotta" }, "Choreoday \u2022 Dramatics \u2022 Fashion \u2022 Literary"))),
+    /* @__PURE__ */ react_default.createElement(
+      "div",
+      {
+        className: "card-bg-aura cultural-aura",
+        style: { backgroundImage: "url('/cultural-web.jpg')" }
+      }
+    ),
+    /* @__PURE__ */ react_default.createElement("div", { className: "card-content-wrap" }, /* @__PURE__ */ react_default.createElement("div", { className: "pillar-number", style: { color: "var(--accent-cultural)" } }, "02 / CATEGORY"), /* @__PURE__ */ react_default.createElement("h3", { className: "pillar-title" }, "Literary & Cultural"), /* @__PURE__ */ react_default.createElement("div", { className: "pillar-tagline cultural" }, CATEGORIES.CULTURAL.tagline), /* @__PURE__ */ react_default.createElement("p", { className: "pillar-desc" }, "Eight curated creative categories spanning Fine Arts, Music & Band, Solo & Crew Dance, thematic Choreoday, Dramatics, Runway Fashion, Tekraft multimedia, and Literary debates."), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" } }, /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-terracotta" }, "Fine Arts \u2022 Music & Band \u2022 Dance"), /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-terracotta" }, "Choreoday \u2022 Dramatics \u2022 Fashion \u2022 Literary"))),
     /* @__PURE__ */ react_default.createElement("div", { className: "pillar-footer" }, /* @__PURE__ */ react_default.createElement("span", { className: "text-caption" }, "Jury evaluated & auditorium showcases"), /* @__PURE__ */ react_default.createElement("span", { className: "pillar-link", style: { color: "var(--accent-cultural)" } }, /* @__PURE__ */ react_default.createElement("span", null, "Explore Cultural Categories"), /* @__PURE__ */ react_default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M5 12h14M12 5l7 7-7 7" }))))
   ))));
 }

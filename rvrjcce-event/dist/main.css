@@ -733,68 +733,368 @@ img, svg {
 }
 
 /* ==========================================================================
-   Event Discovery Overview (01 Sports vs 02 Cultural)
+   Event Discovery Overview (01 Sports vs 02 Cultural) — Vertical Split Design
    ========================================================================== */
 .discovery-section {
+  position: relative;
   background-color: var(--bg-page);
+  overflow: hidden;
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
 }
 
+/* Full Section Vertical Split Background Container */
+.discovery-split-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.discovery-split-side {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.discovery-split-image {
+  position: absolute;
+  top: -2%;
+  left: -2%;
+  width: 104%;
+  height: 104%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  will-change: transform, opacity;
+  transform: scale(1.0) translate3d(0, 0, 0);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Sports Side: Clear, energetic athletic volleyball match */
+.discovery-split-sports .discovery-split-image {
+  background-position: center 68%;
+  filter: contrast(108%) saturate(122%) brightness(98%);
+  opacity: 0.88;
+}
+
+.sports-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(251, 251, 250, 0.35) 0%, 
+      rgba(240, 246, 254, 0.05) 25%, 
+      rgba(14, 34, 61, 0.18) 70%, 
+      rgba(251, 251, 250, 0.50) 100%
+    );
+  transition: opacity 0.6s ease;
+}
+
+.sports-ambient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 35% 55%, rgba(14, 34, 61, 0.12) 0%, transparent 70%);
+}
+
+/* Cultural Side: Clear, rich classical dance showcase */
+.discovery-split-cultural .discovery-split-image {
+  background-position: center 40%;
+  filter: contrast(110%) saturate(130%) brightness(100%);
+  opacity: 0.90;
+}
+
+.cultural-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(251, 251, 250, 0.35) 0%, 
+      rgba(254, 246, 242, 0.05) 25%, 
+      rgba(158, 71, 42, 0.18) 70%, 
+      rgba(251, 251, 250, 0.50) 100%
+    );
+  transition: opacity 0.6s ease;
+}
+
+.cultural-ambient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 65% 55%, rgba(158, 71, 42, 0.12) 0%, transparent 70%);
+}
+
+/* Silky Smooth Hover Animations (Zero flex jumping, hardware-composited) */
+.discovery-split-bg.hover-sports .discovery-split-sports .discovery-split-image {
+  transform: scale(1.035) translate3d(0, 0, 0);
+  opacity: 0.98;
+}
+
+.discovery-split-bg.hover-sports .discovery-split-cultural .discovery-split-image {
+  transform: scale(0.985) translate3d(0, 0, 0);
+  opacity: 0.62;
+}
+
+.discovery-split-bg.hover-cultural .discovery-split-cultural .discovery-split-image {
+  transform: scale(1.035) translate3d(0, 0, 0);
+  opacity: 0.98;
+}
+
+.discovery-split-bg.hover-cultural .discovery-split-sports .discovery-split-image {
+  transform: scale(0.985) translate3d(0, 0, 0);
+  opacity: 0.62;
+}
+
+/* Seamless Vertical Center Seam */
+.discovery-split-seam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.seam-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(14, 34, 61, 0.18) 15%,
+    rgba(14, 34, 61, 0.40) 40%,
+    rgba(158, 71, 42, 0.45) 60%,
+    rgba(158, 71, 42, 0.18) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+
+.discovery-split-bg.hover-sports .seam-line {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(14, 34, 61, 0.3) 15%,
+    rgba(14, 34, 61, 0.65) 50%,
+    rgba(14, 34, 61, 0.2) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 16px rgba(14, 34, 61, 0.4);
+}
+
+.discovery-split-bg.hover-cultural .seam-line {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(158, 71, 42, 0.3) 15%,
+    rgba(158, 71, 42, 0.70) 50%,
+    rgba(158, 71, 42, 0.2) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 16px rgba(158, 71, 42, 0.45);
+}
+
+.seam-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(14, 34, 61, 0.12);
+  border-radius: 9999px;
+  padding: 4px 12px;
+  box-shadow: 
+    0 4px 16px -2px rgba(14, 34, 61, 0.08),
+    0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.discovery-split-bg.hover-sports .seam-badge {
+  border-color: rgba(14, 34, 61, 0.3);
+  box-shadow: 0 4px 20px rgba(14, 34, 61, 0.15);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.discovery-split-bg.hover-cultural .seam-badge {
+  border-color: rgba(158, 71, 42, 0.35);
+  box-shadow: 0 4px 20px rgba(158, 71, 42, 0.18);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.seam-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.sports-dot {
+  background-color: var(--accent-institution, #0E223D);
+}
+
+.cultural-dot {
+  background-color: var(--accent-cultural, #9E472A);
+}
+
+.seam-text {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+/* Header Text Enhancements */
 .section-header-editorial {
+  position: relative;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 3rem;
+  margin-bottom: 3.25rem;
   gap: 2rem;
   flex-wrap: wrap;
 }
 
+.discovery-section .heading-section {
+  color: #0E1A29;
+  text-shadow: 0 1px 14px rgba(255, 255, 255, 0.9);
+}
+
+.discovery-section .text-body {
+  color: #2D3748;
+  font-weight: 450;
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.9);
+}
+
+/* Pillar Container & Cards */
 .discovery-pillars {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: clamp(2.5rem, 4vw, 3.5rem);
+  position: relative;
+  z-index: 10;
 }
 
 .discovery-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 2.25rem;
+  position: relative;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 380px;
-  position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  min-height: 400px;
+  overflow: hidden;
+  box-shadow: 
+    0 16px 36px -6px rgba(14, 34, 61, 0.09),
+    0 2px 6px 0 rgba(14, 34, 61, 0.03),
+    inset 0 1px 0 0 rgba(255, 255, 255, 1);
+  will-change: transform, box-shadow;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s ease;
   cursor: pointer;
 }
 
 .discovery-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-float);
-  border-color: var(--border-dark);
+  transform: translateY(-8px) translate3d(0, 0, 0);
 }
 
 .discovery-card-sports {
   border-top: 4px solid var(--accent-institution);
 }
 
+.discovery-card-sports:hover {
+  border-color: rgba(14, 34, 61, 0.3);
+  border-top-color: var(--accent-institution);
+  box-shadow: 
+    0 24px 50px -10px rgba(14, 34, 61, 0.20),
+    0 4px 14px 0 rgba(14, 34, 61, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 1);
+}
+
 .discovery-card-cultural {
   border-top: 4px solid var(--accent-cultural);
 }
 
+.discovery-card-cultural:hover {
+  border-color: rgba(158, 71, 42, 0.35);
+  border-top-color: var(--accent-cultural);
+  box-shadow: 
+    0 24px 50px -10px rgba(158, 71, 42, 0.22),
+    0 4px 14px 0 rgba(158, 71, 42, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 1);
+}
+
+/* Card Background Aura */
+.card-bg-aura {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 240px;
+  background-size: cover;
+  border-radius: 0 14px 0 140px;
+  opacity: 0.28;
+  filter: saturate(125%);
+  pointer-events: none;
+  mask-image: radial-gradient(circle at top right, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at top right, black 30%, transparent 75%);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sports-aura {
+  background-position: center 65%;
+}
+
+.cultural-aura {
+  background-position: center 35%;
+}
+
+.discovery-card:hover .card-bg-aura {
+  opacity: 0.44;
+  transform: scale(1.06);
+}
+
+.card-content-wrap {
+  position: relative;
+  z-index: 2;
+}
+
 .pillar-number {
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--text-muted);
   margin-bottom: 1.25rem;
 }
 
 .pillar-title {
   font-family: var(--font-serif);
-  font-size: 2rem;
+  font-size: 2.125rem;
   font-weight: 500;
+  letter-spacing: -0.015em;
   margin-bottom: 0.5rem;
   color: var(--text-primary);
 }
@@ -802,7 +1102,8 @@ img, svg {
 .pillar-tagline {
   font-size: 0.9375rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 1.125rem;
+  display: inline-block;
 }
 
 .pillar-tagline.sports {
@@ -816,16 +1117,19 @@ img, svg {
 .pillar-desc {
   font-size: 0.9375rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 1.75rem;
 }
 
 .pillar-footer {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-top: 1.25rem;
   border-top: 1px solid var(--border-light);
+  gap: 1rem;
 }
 
 .pillar-link {
@@ -835,7 +1139,8 @@ img, svg {
   align-items: center;
   gap: 0.5rem;
   color: var(--text-primary);
-  transition: gap 0.15s ease;
+  transition: gap 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
 }
 
 .discovery-card:hover .pillar-link {
@@ -845,6 +1150,22 @@ img, svg {
 
 .discovery-card-cultural:hover .pillar-link {
   color: var(--accent-cultural);
+}
+
+/* Responsive adjustments for vertical split */
+@media (max-width: 900px) {
+  .discovery-pillars {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .discovery-split-bg {
+    flex-direction: column;
+  }
+
+  .discovery-split-seam {
+    display: none;
+  }
 }
 
 /* ==========================================================================

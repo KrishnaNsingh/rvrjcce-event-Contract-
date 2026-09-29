@@ -1,10 +1,45 @@
-import React from '../core/react.js';
+import React, { useState } from '../core/react.js';
 import { CATEGORIES } from '../../config/eventConfig.js';
 
 export function EventDiscovery({ onSelectCategory }) {
+  const [hoveredSide, setHoveredSide] = useState(null);
+
   return (
     <section className="section-wrapper discovery-section" id="discovery-section">
-      <div className="container">
+      {/* Award-Winning Vertical Split Background */}
+      <div className={`discovery-split-bg ${hoveredSide ? `hover-${hoveredSide}` : ''}`} aria-hidden="true">
+        {/* Left Vertical Half: Sports */}
+        <div className="discovery-split-side discovery-split-sports">
+          <div
+            className="discovery-split-image"
+            style={{ backgroundImage: "url('/sports-web.jpg')" }}
+          />
+          <div className="discovery-split-overlay sports-gradient" />
+          <div className="discovery-split-ambient sports-ambient" />
+        </div>
+
+        {/* Center Vertical Seam Line & Emblem */}
+        <div className="discovery-split-seam">
+          <div className="seam-line" />
+          <div className="seam-badge">
+            <span className="seam-dot sports-dot" />
+            <span className="seam-text">2026</span>
+            <span className="seam-dot cultural-dot" />
+          </div>
+        </div>
+
+        {/* Right Vertical Half: Cultural */}
+        <div className="discovery-split-side discovery-split-cultural">
+          <div
+            className="discovery-split-image"
+            style={{ backgroundImage: "url('/cultural-web.jpg')" }}
+          />
+          <div className="discovery-split-overlay cultural-gradient" />
+          <div className="discovery-split-ambient cultural-ambient" />
+        </div>
+      </div>
+
+      <div className="container relative z-10">
         <div className="section-header-editorial">
           <div>
             <span className="eyebrow">
@@ -26,8 +61,16 @@ export function EventDiscovery({ onSelectCategory }) {
           <div
             className="discovery-card discovery-card-sports"
             onClick={() => onSelectCategory('sports')}
+            onMouseEnter={() => setHoveredSide('sports')}
+            onMouseLeave={() => setHoveredSide(null)}
           >
-            <div>
+            {/* Ambient card aura */}
+            <div
+              className="card-bg-aura sports-aura"
+              style={{ backgroundImage: "url('/sports-web.jpg')" }}
+            />
+
+            <div className="card-content-wrap">
               <div className="pillar-number">01 / CATEGORY</div>
               <h3 className="pillar-title">Sports Championship</h3>
               <div className="pillar-tagline sports">{CATEGORIES.SPORTS.tagline}</div>
@@ -56,8 +99,16 @@ export function EventDiscovery({ onSelectCategory }) {
           <div
             className="discovery-card discovery-card-cultural"
             onClick={() => onSelectCategory('cultural')}
+            onMouseEnter={() => setHoveredSide('cultural')}
+            onMouseLeave={() => setHoveredSide(null)}
           >
-            <div>
+            {/* Ambient card aura */}
+            <div
+              className="card-bg-aura cultural-aura"
+              style={{ backgroundImage: "url('/cultural-web.jpg')" }}
+            />
+
+            <div className="card-content-wrap">
               <div className="pillar-number" style={{ color: 'var(--accent-cultural)' }}>02 / CATEGORY</div>
               <h3 className="pillar-title">Literary & Cultural</h3>
               <div className="pillar-tagline cultural">{CATEGORIES.CULTURAL.tagline}</div>
