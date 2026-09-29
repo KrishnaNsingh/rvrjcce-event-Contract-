@@ -1,149 +1,226 @@
-import React from '../core/react.js';
+import React, { useState } from '../core/react.js';
 import { INSTITUTION } from '../../config/eventConfig.js';
-import AnimatedButton from './ui/animated-button.tsx';
 
-export function Hero({ onExploreEvents, onRegisterClick }) {
+export function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
+  const [activeCategory, setActiveCategory] = useState('sports');
+  const [activeHotspot, setActiveHotspot] = useState(null);
+
+  const participantCount = liveStats && liveStats.total ? `${liveStats.total}+` : '1,200+';
+
+  const hotspots = [
+    {
+      id: 'sports',
+      label: 'Main Sports Arena',
+      venue: 'Volleyball, Cricket & Hardcourt Brackets',
+      x: 32,
+      y: 32,
+      category: 'sports'
+    },
+    {
+      id: 'oat',
+      label: 'Open Air Theatre (OAT)',
+      venue: 'Dance, Band & Dramatics Main Stage',
+      x: 64,
+      y: 52,
+      category: 'oat'
+    },
+    {
+      id: 'studio',
+      label: 'Creative Arts Wing',
+      venue: 'Fine Arts, Tekraft & Literary Arenas',
+      x: 82,
+      y: 72,
+      category: 'cultural'
+    }
+  ];
+
   return (
-    <section className="hero-section">
-      <div className="container">
-        <div className="hero-grid">
-          {/* Left Column: Editorial Copy & CTAs */}
-          <div className="hero-content">
-            <div className="hero-eyebrow">
-              <span className="eyebrow" style={{ marginBottom: 0 }}>
-                <span className="eyebrow-dot"></span>
-                RVRJCCE • ANDHRA PRADESH
-              </span>
-              <span className="badge badge-navy">Annual Meet 2026</span>
+    <section className="hero-reference-section" id="home">
+      {/* Full Campus Aerial Panoramic Background */}
+      <div className="hero-panoramic-bg" aria-hidden="true">
+        <div
+          className="hero-panoramic-image"
+          style={{ backgroundImage: "url('/campus-hero-web.jpg')" }}
+        />
+        <div className="hero-panoramic-overlay" />
+      </div>
+
+      <div className="container relative z-10">
+        <div className="hero-reference-grid">
+          {/* Left Column: Big Editorial Serif Typography (Reference Style) */}
+          <div className="hero-editorial-col">
+            <div className="hero-editorial-tag">
+              <span className="editorial-dot" />
+              <span>{INSTITUTION.name} • 40TH INTER-COLLEGIATE FESTIVAL</span>
             </div>
 
-            <h1 className="heading-display hero-title">
-              Where <em>Competition</em> Meets <em>Expression</em>.
+            <h1 className="hero-editorial-heading">
+              <span className="editorial-line editorial-line-1">WHERE</span>
+              <span className="editorial-line editorial-line-2">COMPETITION</span>
+              <span className="editorial-line editorial-line-3">
+                MEETS ART<span className="editorial-reg">®</span>
+              </span>
             </h1>
 
-            <p className="text-lead hero-copy">
-              A university platform bringing together students through high-intensity sports,
-              literature, fine arts, music, dance, dramatics, fashion, and cultural competitions.
-              Designed for grit, creative audacity, and inter-collegiate camaraderie.
+            <p className="hero-editorial-sub">
+              / Where Athletic Grit Meets Creative Expression • Annual Meet 2026 /
             </p>
 
-            <div className="hero-ctas">
+            <div className="hero-editorial-actions">
               <button
-                className="btn btn-primary btn-lg"
+                className="btn-editorial-start"
                 onClick={onExploreEvents}
+                id="hero-start-btn"
+                title="Start Exploring Events"
               >
-                <span>Explore Events</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <span>START</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </button>
 
-              <AnimatedButton
-                className="btn-animated-light"
-                style={{ padding: '0.875rem 1.75rem', fontSize: '0.9375rem' }}
+              <button
+                className="btn-editorial-register"
                 onClick={onRegisterClick}
+                id="hero-register-btn"
+                title="Register for Competitions"
               >
-                Register Now
-              </AnimatedButton>
-            </div>
-
-            {/* Micro Details */}
-            <div className="hero-micro-details">
-              <span>SPORTS</span>
-              <span className="hero-micro-divider"></span>
-              <span>LITERARY</span>
-              <span className="hero-micro-divider"></span>
-              <span>CULTURAL</span>
+                <span>Register Now</span>
+              </button>
             </div>
           </div>
 
-          {/* Right Column: Visual Composition representing Sports, Fine Arts & Stage */}
-          <div className="hero-visual-frame">
-            <div className="hero-visual-grid">
-              {/* Cell 1: Athletic Court / Sports */}
-              <div className="visual-cell visual-cell-sports">
-                <div className="visual-cell-tag">
-                  <span>01 • ATHLETIC ARENA</span>
-                  <span className="badge badge-navy" style={{ fontSize: '0.625rem' }}>COURT / FIELD</span>
-                </div>
-                {/* Court vector diagram & athletic composition */}
-                <div style={{ margin: 'auto 0', textAlign: 'center' }}>
-                  <svg width="100%" height="110" viewBox="0 0 200 110" fill="none" style={{ opacity: 0.85 }}>
-                    <rect x="10" y="10" width="180" height="90" rx="3" stroke="#0E223D" strokeWidth="1.5" fill="#F4F8FB" />
-                    <line x1="100" y1="10" x2="100" y2="100" stroke="#0E223D" strokeWidth="1.5" />
-                    <circle cx="100" cy="55" r="22" stroke="#0E223D" strokeWidth="1.5" fill="none" />
-                    <path d="M10 32.5 h35 a22.5 22.5 0 0 1 0 45 h-35" stroke="#0E223D" strokeWidth="1.5" fill="none" />
-                    <path d="M190 32.5 h-35 a22.5 22.5 0 0 0 0 45 h35" stroke="#0E223D" strokeWidth="1.5" fill="none" />
-                    {/* Dynamic ball trajectory arc */}
-                    <path d="M35 80 Q 95 10 165 45" stroke="#9E472A" strokeWidth="2" strokeDasharray="3 3" fill="none" />
-                    <circle cx="165" cy="45" r="4.5" fill="#9E472A" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="visual-cell-caption">
-                    Hardcourt Agility & Rally Spirit
-                  </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-                    Basketball • Volleyball • Tennis • Table Tennis
-                  </div>
+          {/* Right Column: Floating Architectural Card with Hotspots & Tour Callout */}
+          <div className="hero-showcase-col">
+            <div className="hero-floating-card">
+              {/* Top Pill Controls */}
+              <div className="showcase-top-bar">
+                <div className="showcase-pills">
+                  <button
+                    className={`showcase-pill ${activeCategory === 'sports' ? 'active' : ''}`}
+                    onClick={() => setActiveCategory('sports')}
+                  >
+                    Sports
+                  </button>
+                  <button
+                    className={`showcase-pill ${activeCategory === 'cultural' ? 'active' : ''}`}
+                    onClick={() => setActiveCategory('cultural')}
+                  >
+                    Cultural
+                  </button>
+                  <button
+                    className={`showcase-pill ${activeCategory === 'oat' ? 'active' : ''}`}
+                    onClick={() => setActiveCategory('oat')}
+                  >
+                    OAT Stage
+                  </button>
                 </div>
               </div>
 
-              {/* Cell 2: Fine Arts / Creative Crafts */}
-              <div className="visual-cell visual-cell-arts">
-                <div className="visual-cell-tag">
-                  <span style={{ color: 'var(--accent-cultural)' }}>02 • VISUAL ARTS</span>
-                  <span className="badge badge-terracotta" style={{ fontSize: '0.625rem' }}>STUDIO</span>
-                </div>
-                <div style={{ margin: 'auto 0' }}>
-                  <svg width="100%" height="60" viewBox="0 0 180 60" fill="none" style={{ opacity: 0.9 }}>
-                    <path d="M20 45 C 50 15, 80 50, 110 20 C 130 5, 150 35, 170 15" stroke="#9E472A" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                    <circle cx="20" cy="45" r="3" fill="#9E472A" />
-                    <circle cx="110" cy="20" r="3" fill="#9E472A" />
-                    <circle cx="170" cy="15" r="3" fill="#9E472A" />
-                  </svg>
-                </div>
-                <div>
-                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.9375rem', fontWeight: 500, color: 'var(--text-primary)' }}>
-                    Canvas & Brushcraft
-                  </div>
-                  <div style={{ fontSize: '0.6875rem', color: 'var(--text-muted)' }}>
-                    Fine Arts • Tekraft Media
-                  </div>
-                </div>
+              <div className="showcase-text-header">
+                <h3 className="showcase-card-title">Unique Discipline &amp; Spirit</h3>
+                <p className="showcase-card-sub">From hardcourt rallies to auditorium showcases.</p>
               </div>
 
-              {/* Cell 3: Performing Stage */}
-              <div className="visual-cell visual-cell-stage">
-                <div className="visual-cell-tag">
-                  <span>03 • AUDITORIUM</span>
-                  <span className="badge" style={{ fontSize: '0.625rem' }}>STAGE</span>
-                </div>
-                <div style={{ margin: 'auto 0' }}>
-                  <svg width="100%" height="45" viewBox="0 0 180 45" fill="none" style={{ opacity: 0.85 }}>
-                    <path d="M15 35 Q 90 5 165 35" stroke="#0E223D" strokeWidth="1.5" fill="none" />
-                    <line x1="30" y1="33" x2="30" y2="40" stroke="#0E223D" strokeWidth="1" />
-                    <line x1="60" y1="23" x2="60" y2="40" stroke="#0E223D" strokeWidth="1" />
-                    <line x1="90" y1="19" x2="90" y2="40" stroke="#0E223D" strokeWidth="1" />
-                    <line x1="120" y1="23" x2="120" y2="40" stroke="#0E223D" strokeWidth="1" />
-                    <line x1="150" y1="33" x2="150" y2="40" stroke="#0E223D" strokeWidth="1" />
-                  </svg>
-                </div>
-                <div>
-                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.9375rem', fontWeight: 500, color: 'var(--text-primary)' }}>
-                    Stage & Soundwaves
+              {/* Panoramic Visual Window */}
+              <div className="showcase-window">
+                <div
+                  className="showcase-window-img"
+                  style={{ backgroundImage: "url('/campus-hero-web.jpg')" }}
+                />
+                <div className="showcase-window-overlay" />
+
+                {/* Interactive Pulse Hotspots */}
+                {hotspots.map((spot) => (
+                  <div
+                    key={spot.id}
+                    className={`showcase-hotspot ${activeHotspot === spot.id || activeCategory === spot.category ? 'active' : ''}`}
+                    style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
+                    onMouseEnter={() => setActiveHotspot(spot.id)}
+                    onMouseLeave={() => setActiveHotspot(null)}
+                    onClick={onExploreEvents}
+                  >
+                    <span className="hotspot-ping" />
+                    <span className="hotspot-center" />
+
+                    {/* Floating Tooltip */}
+                    <div className="hotspot-tooltip">
+                      <div className="tooltip-title">{spot.label}</div>
+                      <div className="tooltip-venue">{spot.venue}</div>
+                    </div>
                   </div>
-                  <div style={{ fontSize: '0.6875rem', color: 'var(--text-muted)' }}>
-                    Choreoday • Band • Dramatics
+                ))}
+
+                {/* Floating "CAMPUS TOUR" Card linked with leader line (exact match to ROOMTOUR in reference) */}
+                <div
+                  className="showcase-tour-callout"
+                  onClick={onExploreEvents}
+                  title="Explore Campus Arena"
+                >
+                  <div className="tour-callout-header">
+                    <span>CAMPUS TOUR</span>
                   </div>
+                  <div className="tour-callout-body">
+                    <div className="tour-play-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="6 4 20 12 6 20 6 4" />
+                      </svg>
+                    </div>
+                    <div
+                      className="tour-thumb"
+                      style={{ backgroundImage: "url('/sports-web.jpg')" }}
+                    />
+                  </div>
+                  <div className="tour-callout-footer">
+                    <span>Virtual Arena View</span>
+                  </div>
+                  <div className="tour-leader-line" />
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Official Institutional Badge Stamp */}
-            <div className="hero-stamp-badge">
-              <span>{INSTITUTION.name} • 2026</span>
+        {/* Bottom Floating Highlights Bar (Exact match to reference bottom strip!) */}
+        <div className="hero-bottom-strip">
+          {/* Bottom Left Terracotta Card */}
+          <div className="bottom-card-terracotta">
+            <div className="bottom-card-text">
+              <div className="bottom-card-headline">24 Hours of Pure Grit!</div>
+              <div className="bottom-card-caption">02 Flagship Disciplines • OAT Venues</div>
             </div>
+            <div className="bottom-card-icon-area">
+              <svg width="42" height="42" viewBox="0 0 48 48" fill="none">
+                <path d="M24 4L42 14V34L24 44L6 34V14L24 4Z" fill="rgba(255,255,255,0.20)" stroke="#FFFFFF" strokeWidth="1.5" />
+                <path d="M24 4V44M6 14L24 24L42 14M6 34L24 24" stroke="#FFFFFF" strokeWidth="1.5" strokeOpacity="0.8" />
+                <circle cx="24" cy="24" r="5" fill="#FFFFFF" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Bottom Center: Avatars + Big Serif Italic Stat */}
+          <div className="bottom-stats-center">
+            <div className="bottom-avatars">
+              <div className="bottom-avatar" style={{ backgroundImage: "url('/sports-web.jpg')" }} title="Athletics" />
+              <div className="bottom-avatar" style={{ backgroundImage: "url('/cultural-web.jpg')" }} title="Cultural Arts" />
+            </div>
+            <div className="bottom-stat-details">
+              <div className="bottom-stat-num">{participantCount}</div>
+              <div className="bottom-stat-lbl">Registered Participants</div>
+            </div>
+          </div>
+
+          {/* Bottom Right: Statement + Underlined Link */}
+          <div className="bottom-statement-right">
+            <div className="bottom-statement-title">
+              WE UNITE ATHLETIC GRIT &amp; STAGE BRILLIANCE
+            </div>
+            <button className="bottom-statement-link" onClick={onExploreEvents}>
+              <span>EXPLORE FIXTURES</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

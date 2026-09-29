@@ -95,6 +95,7 @@ export function App() {
             <Hero
               onExploreEvents={() => handleScrollToSection('discovery-section')}
               onRegisterClick={() => navigateTo('register')}
+              liveStats={liveStats}
             />
 
             {/* 2. Institutional Introduction & Dynamic Stats */}
