@@ -7,14 +7,12 @@ export function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
 
   return (
     <section className="hero-reference-section" id="home">
-      {/* Full Campus Aerial Panoramic Background with Enhanced Visibility & Smooth Section Transition */}
+      {/* Full Campus Aerial Panoramic Background — Completely Visible */}
       <div className="hero-panoramic-bg" aria-hidden="true">
         <div
           className="hero-panoramic-image"
           style={{ backgroundImage: "url('/campus-hero-web.jpg')" }}
         />
-        <div className="hero-panoramic-overlay" />
-        <div className="hero-bottom-fade" />
       </div>
 
       <div className="container relative z-10">

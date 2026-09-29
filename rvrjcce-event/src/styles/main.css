@@ -562,43 +562,13 @@ img, svg {
   height: 100%;
   background-size: cover;
   background-position: center 30%;
-  filter: contrast(106%) saturate(120%) brightness(100%);
-  transform: scale(1.01);
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: none;
+  transform: none;
 }
 
-.hero-panoramic-overlay {
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(180deg, 
-      rgba(255, 255, 255, 0.12) 0%, 
-      rgba(255, 255, 255, 0.03) 18%, 
-      transparent 35%
-    ),
-    radial-gradient(ellipse 900px 650px at 20% 42%, 
-      rgba(255, 255, 255, 0.18) 0%, 
-      rgba(255, 255, 255, 0.08) 45%, 
-      rgba(255, 255, 255, 0.02) 75%, 
-      transparent 90%
-    );
-}
-
-/* Hero to Second Section Smooth Melt-In Blend */
+.hero-panoramic-overlay,
 .hero-bottom-fade {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 110px;
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(251, 251, 250, 0.20) 40%,
-    rgba(251, 251, 250, 0.75) 80%,
-    var(--bg-page, #FBFBFA) 100%
-  );
-  pointer-events: none;
-  z-index: 2;
+  display: none !important;
 }
 
 /* Hero Grid Layout - Clean Spacious Editorial */
@@ -1413,8 +1383,8 @@ img, svg {
 /* Sports Side: Clear, energetic athletic volleyball match */
 .discovery-split-sports .discovery-split-image {
   background-position: center 68%;
-  filter: contrast(108%) saturate(122%) brightness(98%);
-  opacity: 0.88;
+  filter: none;
+  opacity: 1;
 }
 
 .sports-gradient {
@@ -1422,10 +1392,9 @@ img, svg {
   inset: 0;
   background: 
     linear-gradient(180deg, 
-      rgba(251, 251, 250, 0.35) 0%, 
-      rgba(240, 246, 254, 0.05) 25%, 
-      rgba(14, 34, 61, 0.18) 70%, 
-      rgba(251, 251, 250, 0.50) 100%
+      transparent 0%, 
+      rgba(14, 34, 61, 0.14) 70%, 
+      transparent 100%
     );
   transition: opacity 0.6s ease;
 }
@@ -1433,14 +1402,14 @@ img, svg {
 .sports-ambient {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 35% 55%, rgba(14, 34, 61, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle at 35% 55%, rgba(14, 34, 61, 0.10) 0%, transparent 70%);
 }
 
 /* Cultural Side: Clear, rich classical dance showcase */
 .discovery-split-cultural .discovery-split-image {
   background-position: center 40%;
-  filter: contrast(110%) saturate(130%) brightness(100%);
-  opacity: 0.90;
+  filter: none;
+  opacity: 1;
 }
 
 .cultural-gradient {
@@ -1448,10 +1417,9 @@ img, svg {
   inset: 0;
   background: 
     linear-gradient(180deg, 
-      rgba(251, 251, 250, 0.35) 0%, 
-      rgba(254, 246, 242, 0.05) 25%, 
-      rgba(158, 71, 42, 0.18) 70%, 
-      rgba(251, 251, 250, 0.50) 100%
+      transparent 0%, 
+      rgba(158, 71, 42, 0.14) 70%, 
+      transparent 100%
     );
   transition: opacity 0.6s ease;
 }
