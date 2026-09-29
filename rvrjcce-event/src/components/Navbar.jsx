@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from '../core/react.js';
 import { INSTITUTION } from '../../config/eventConfig.js';
+import AnimatedButton from './ui/animated-button.tsx';
 
 export function Navbar({ currentRoute, onNavigate }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -88,12 +89,12 @@ export function Navbar({ currentRoute, onNavigate }) {
 
           {/* Action CTAs */}
           <div className="nav-actions">
-            <button
-              className="btn btn-primary btn-sm"
+            <AnimatedButton
+              className="btn-animated-navy"
               onClick={() => handleNavClick('register')}
             >
               Register Now
-            </button>
+            </AnimatedButton>
             <button
               className="mobile-menu-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -132,13 +133,13 @@ export function Navbar({ currentRoute, onNavigate }) {
           Admin Portal
         </a>
         <div style={{ marginTop: '1.25rem' }}>
-          <button
-            className="btn btn-primary"
+          <AnimatedButton
+            className="btn-animated-navy"
             style={{ width: '100%' }}
             onClick={() => handleNavClick('register')}
           >
             Register Now
-          </button>
+          </AnimatedButton>
         </div>
       </div>
     </header>

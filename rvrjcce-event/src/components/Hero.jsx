@@ -1,5 +1,6 @@
 import React from '../core/react.js';
 import { INSTITUTION } from '../../config/eventConfig.js';
+import AnimatedButton from './ui/animated-button.tsx';
 
 export function Hero({ onExploreEvents, onRegisterClick }) {
   return (
@@ -37,12 +38,13 @@ export function Hero({ onExploreEvents, onRegisterClick }) {
                 </svg>
               </button>
 
-              <button
-                className="btn btn-secondary btn-lg"
+              <AnimatedButton
+                className="btn-animated-light"
+                style={{ padding: '0.875rem 1.75rem', fontSize: '0.9375rem' }}
                 onClick={onRegisterClick}
               >
-                <span>Register Now</span>
-              </button>
+                Register Now
+              </AnimatedButton>
             </div>
 
             {/* Micro Details */}

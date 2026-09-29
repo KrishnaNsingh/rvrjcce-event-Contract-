@@ -1,0 +1,42 @@
+# Node modules
+node_modules/
+
+# Build output (Vite + React)
+dist/
+build/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+.env.*
+backend/node_modules
+backend/.env
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# Editor files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary Files
+*.temp
+*.tmp
+
+# Optional: lock files (if you prefer one package manager)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+backend/config/googleServiceAccount.json
+config/*.json
