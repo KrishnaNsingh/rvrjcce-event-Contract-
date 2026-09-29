@@ -1773,8 +1773,45 @@ img, svg {
    Sports Section (Dynamic & Structured)
    ========================================================================== */
 .sports-section {
+  position: relative;
   background-color: var(--bg-surface);
   border-top: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+.sports-section::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -50px;
+  transform: translateY(-50%);
+  width: min(720px, 48vw);
+  height: 95%;
+  max-height: 960px;
+  background: url('/wave-ribbon.png') no-repeat center right / contain;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sports-section::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -80px;
+  transform: translateY(-50%) scaleX(-1);
+  width: min(640px, 42vw);
+  height: 90%;
+  max-height: 900px;
+  background: url('/wave-ribbon.png') no-repeat center left / contain;
+  opacity: 0.50;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sports-section .container {
+  position: relative;
+  z-index: 2;
 }
 
 .division-tabs {
@@ -1915,7 +1952,45 @@ img, svg {
    Literary & Cultural Section (Magazine / Editorial Layout)
    ========================================================================== */
 .cultural-section {
+  position: relative;
   background-color: var(--bg-page);
+  border-top: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+.cultural-section::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -60px;
+  transform: translateY(-50%) scaleX(-1);
+  width: min(720px, 48vw);
+  height: 95%;
+  max-height: 960px;
+  background: url('/wave-ribbon.png') no-repeat center left / contain;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cultural-section::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -80px;
+  transform: translateY(-50%);
+  width: min(640px, 42vw);
+  height: 90%;
+  max-height: 900px;
+  background: url('/wave-ribbon.png') no-repeat center right / contain;
+  opacity: 0.50;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cultural-section .container {
+  position: relative;
+  z-index: 2;
 }
 
 .cultural-magazine-layout {
