@@ -93,7 +93,7 @@ export function Navbar({ currentRoute, onNavigate }) {
     { label: "Gallery", href: "#gallery-section", route: "home", sectionId: "gallery-section" },
     { label: "Results & Notices", href: "/results", route: "results", sectionId: null },
     { label: "Register", href: "/register", route: "register", sectionId: null },
-    { label: "Admin Portal", href: "/admin", route: "admin", sectionId: null }
+    { label: "Admin", href: "/admin", route: "admin", sectionId: null }
   ];
 
   return (

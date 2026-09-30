@@ -57467,7 +57467,7 @@ function Navbar({ currentRoute, onNavigate }) {
     { label: "Gallery", href: "#gallery-section", route: "home", sectionId: "gallery-section" },
     { label: "Results & Notices", href: "/results", route: "results", sectionId: null },
     { label: "Register", href: "/register", route: "register", sectionId: null },
-    { label: "Admin Portal", href: "/admin", route: "admin", sectionId: null }
+    { label: "Admin", href: "/admin", route: "admin", sectionId: null }
   ];
   return /* @__PURE__ */ react_default.createElement("header", { className: `site-nav ${isScrolled ? "scrolled" : ""} ${currentRoute !== "home" ? "nav-solid" : ""}` }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "nav-inner" }, /* @__PURE__ */ react_default.createElement(
     "div",
