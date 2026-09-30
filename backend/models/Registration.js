@@ -14,10 +14,10 @@ const DATA_FILE = fs.existsSync(localDataFile) ? localDataFile : rootDataFile;
 
 const teammateSchema = new mongoose.Schema({
   memberNumber: { type: Number, default: 1 },
-  name: { type: String, required: true },
-  rollNo: { type: String, default: 'N/A' },
-  phone: { type: String, default: 'N/A' },
-  college: { type: String, default: '' }
+  name: { type: String, default: 'Participant', trim: true },
+  rollNo: { type: String, default: 'N/A', trim: true },
+  phone: { type: String, default: 'N/A', trim: true },
+  college: { type: String, default: '', trim: true }
 }, { _id: false });
 
 const registrationSchema = new mongoose.Schema({
@@ -382,47 +382,57 @@ class RegistrationService {
     }
 
     // Determine registration type and teammates
-    const isTeamEvent = eventInfo.isTeam || (data.teammates && data.teammates.length > 0) || Boolean(data.teamName && data.teamName.trim());
+    const isTeamEvent = Boolean(eventInfo.isTeam || (data.registrationType === 'Team Participation'));
     const registrationType = isTeamEvent ? 'Team Participation' : 'Individual Participation';
 
     // Format teammates
     let teammatesList = [];
-    if (Array.isArray(data.teammates) && data.teammates.length > 0) {
-      teammatesList = data.teammates.map((m, idx) => ({
-        memberNumber: idx + 1,
-        name: m.name || '',
-        rollNo: m.rollNo || 'N/A',
-        phone: m.phone || 'N/A',
-        college: m.college || data.college || ''
-      }));
-    } else if (isTeamEvent) {
-      // At least captain
-      teammatesList = [{
-        memberNumber: 1,
-        name: data.participantName,
-        rollNo: data.studentId || 'N/A',
-        phone: data.phoneNumber || 'N/A',
-        college: data.college
-      }];
+    if (isTeamEvent) {
+      if (Array.isArray(data.teammates) && data.teammates.length > 0) {
+        // Filter out empty rows where name is blank or missing
+        const validMembers = data.teammates.filter(m => m && typeof m.name === 'string' && m.name.trim().length > 0);
+        if (validMembers.length > 0) {
+          teammatesList = validMembers.map((m, idx) => ({
+            memberNumber: idx + 1,
+            name: m.name.trim(),
+            rollNo: (m.rollNo && String(m.rollNo).trim()) || 'N/A',
+            phone: (m.phone && String(m.phone).trim()) || 'N/A',
+            college: (m.college && String(m.college).trim()) || data.college.trim()
+          }));
+        }
+      }
+      // If team event but no teammates provided/valid, ensure at least captain:
+      if (teammatesList.length === 0) {
+        teammatesList = [{
+          memberNumber: 1,
+          name: data.participantName.trim(),
+          rollNo: (data.studentId && String(data.studentId).trim()) || 'N/A',
+          phone: (data.phoneNumber && String(data.phoneNumber).trim()) || 'N/A',
+          college: data.college.trim()
+        }];
+      }
+    } else {
+      // Individual event: teammates is ALWAYS strictly empty array
+      teammatesList = [];
     }
 
     const docData = {
       registrationId,
       participantName: data.participantName.trim(),
-      studentId: data.studentId ? data.studentId.trim() : 'N/A',
-      department: data.department ? data.department.trim() : 'General',
+      studentId: data.studentId ? String(data.studentId).trim() : 'N/A',
+      department: data.department ? String(data.department).trim() : 'General',
       year: data.year || '2nd Year',
       gender: data.gender || 'Male',
       college: data.college.trim(),
       email: data.email.trim().toLowerCase(),
-      phoneNumber: data.phoneNumber.trim(),
+      phoneNumber: String(data.phoneNumber).trim(),
       category: data.category,
-      division: data.category === 'Sports' ? data.division : 'Cultural / Open',
+      division: data.category === 'Sports' ? (data.division || 'Boys') : 'Cultural / Open',
       event: data.event.trim(),
       registrationType,
-      venue: data.venue || eventInfo.venue,
-      schedule: data.schedule || eventInfo.schedule,
-      teamName: data.teamName ? data.teamName.trim() : (isTeamEvent ? `${data.participantName}'s Squad` : ''),
+      venue: data.venue || eventInfo.venue || 'RVRJC Campus Arena',
+      schedule: data.schedule || eventInfo.schedule || '2026-02-26 (10:00)',
+      teamName: isTeamEvent ? (data.teamName ? String(data.teamName).trim() : `${data.participantName.trim()}'s Squad`) : '',
       teammates: teammatesList,
       attended: Boolean(data.attended),
       attendedAt: data.attended ? new Date() : null,

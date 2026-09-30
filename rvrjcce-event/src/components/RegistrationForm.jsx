@@ -34,10 +34,8 @@ export function RegistrationForm({ initialCategory, initialDivision, initialEven
     if (isTeamEvent) {
       const requiredCount = eventMeta.defaultMembers || 5;
       setFormData(prev => {
-        // If teammates are already set, adjust count if needed
         const existing = prev.teammates || [];
-        if (existing.length === 0) {
-          // Create default roster: 1st is captain, others are members
+        if (existing.length === 0 || !existing[0]) {
           const roster = [
             {
               memberNumber: 1,
@@ -59,6 +57,12 @@ export function RegistrationForm({ initialCategory, initialDivision, initialEven
           return { ...prev, teammates: roster };
         }
         return prev;
+      });
+    } else {
+      // Individual events must never carry teammates or teamName
+      setFormData(prev => {
+        if (!prev.teammates || prev.teammates.length === 0) return prev;
+        return { ...prev, teammates: [], teamName: '' };
       });
     }
   }, [formData.event, isTeamEvent]);
@@ -96,20 +100,22 @@ export function RegistrationForm({ initialCategory, initialDivision, initialEven
 
   // Sync captain info into teammates[0]
   useEffect(() => {
-    if (isTeamEvent && formData.teammates && formData.teammates.length > 0) {
+    if (isTeamEvent) {
       setFormData(prev => {
+        if (!prev.teammates || prev.teammates.length === 0) return prev;
         const next = [...prev.teammates];
         next[0] = {
           ...next[0],
-          name: prev.participantName,
-          rollNo: prev.studentId,
-          phone: prev.phoneNumber,
-          college: prev.college
+          memberNumber: 1,
+          name: prev.participantName || '',
+          rollNo: prev.studentId || '',
+          phone: prev.phoneNumber || '',
+          college: prev.college || ''
         };
         return { ...prev, teammates: next };
       });
     }
-  }, [formData.participantName, formData.studentId, formData.phoneNumber, formData.college]);
+  }, [isTeamEvent, formData.participantName, formData.studentId, formData.phoneNumber, formData.college]);
 
   const handleChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -194,12 +200,13 @@ export function RegistrationForm({ initialCategory, initialDivision, initialEven
     }
     if (isTeamEvent) {
       if (!formData.teamName || formData.teamName.trim().length < 2) {
-        errs.teamName = "Team Name is required for group and team events";
+        errs.teamName = "Team Name is required for team competitions (minimum 2 characters)";
       }
-      // Check that at least some teammate names are filled
-      const invalidMembers = (formData.teammates || []).filter((m, idx) => idx > 0 && !m.name.trim());
-      if (invalidMembers.length > 0 && formData.teammates.length < (eventMeta.minMembers || 3)) {
-        errs.teammates = `Please provide member names for your team (minimum ${eventMeta.minMembers || 3} members required).`;
+      // If user added extra teammate rows, ensure their names are filled
+      const additionalRows = (formData.teammates || []).slice(1);
+      const emptyMember = additionalRows.find(m => m && (!m.name || !m.name.trim()));
+      if (emptyMember) {
+        errs.teammates = `Member #${emptyMember.memberNumber} name is required. Please provide a name or click "Remove" on that row.`;
       }
     }
     return errs;
@@ -217,10 +224,47 @@ export function RegistrationForm({ initialCategory, initialDivision, initialEven
 
     setIsSubmitting(true);
     try {
+      // Build clean, safe teammates list
+      let finalTeammates = [];
+      if (isTeamEvent) {
+        const captain = {
+          memberNumber: 1,
+          name: formData.participantName.trim(),
+          rollNo: (formData.studentId && formData.studentId.trim()) || 'N/A',
+          phone: (formData.phoneNumber && formData.phoneNumber.trim()) || 'N/A',
+          college: formData.college.trim()
+        };
+
+        const otherMembers = (formData.teammates || [])
+          .slice(1)
+          .filter(m => m && typeof m.name === 'string' && m.name.trim().length > 0)
+          .map((m, idx) => ({
+            memberNumber: idx + 2,
+            name: m.name.trim(),
+            rollNo: (m.rollNo && m.rollNo.trim()) || 'N/A',
+            phone: (m.phone && m.phone.trim()) || 'N/A',
+            college: (m.college && m.college.trim()) || formData.college.trim()
+          }));
+
+        finalTeammates = [captain, ...otherMembers];
+      }
+
       const payload = {
-        ...formData,
-        venue: eventMeta.venue,
-        schedule: eventMeta.schedule,
+        participantName: formData.participantName.trim(),
+        studentId: formData.studentId ? formData.studentId.trim() : 'N/A',
+        department: formData.department || 'Computer Science (CSE)',
+        year: formData.year || '2nd Year',
+        gender: formData.gender || 'Male',
+        college: formData.college.trim(),
+        email: formData.email.trim().toLowerCase(),
+        phoneNumber: formData.phoneNumber.trim(),
+        category: formData.category,
+        division: formData.category === 'Sports' ? (formData.division || 'Boys') : 'Cultural / Open',
+        event: formData.event.trim(),
+        teamName: isTeamEvent ? (formData.teamName.trim() || `${formData.participantName.trim()}'s Squad`) : '',
+        teammates: finalTeammates,
+        venue: eventMeta.venue || 'RVRJC Campus Arena',
+        schedule: eventMeta.schedule || '2026-02-26 (10:00)',
         registrationType: isTeamEvent ? 'Team Participation' : 'Individual Participation'
       };
 
@@ -228,6 +272,7 @@ export function RegistrationForm({ initialCategory, initialDivision, initialEven
       setSubmissionSuccess(response.registration);
       if (onSuccess) onSuccess(response.registration);
     } catch (err) {
+      console.error('Registration submit error:', err);
       setApiError(err.message || 'Submission failed. Please check connection and try again.');
     } finally {
       setIsSubmitting(false);
