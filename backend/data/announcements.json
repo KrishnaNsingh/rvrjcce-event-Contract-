@@ -1,0 +1,81 @@
+[
+  {
+    "id": "ANN-2026-001",
+    "title": "Championship Knockout Fixtures Released: Basketball & Volleyball",
+    "category": "Schedule Update",
+    "priority": "Important",
+    "date": "February 24, 2026",
+    "content": "Official tournament knockout brackets and court allocation timetables for the Men's & Women's Basketball and Volleyball divisions are now ratified by the referee panel. All team managers must report to the Physical Education Pavilion 30 minutes prior to tip-off.",
+    "imageUrl": "/gallery/1.jpg",
+    "venue": "Outdoor Sports Complex — Courts A & B",
+    "instructions": [
+      "College Identity Card & Official Eligibility Undertaking mandatory",
+      "Teams must be present in matching jersey kit colors with numbers",
+      "Coin toss takes place 15 minutes before scheduled match time"
+    ],
+    "coordinator": {
+      "name": "Dr. P. Gopi Krishna",
+      "contact": "+91 94402 12345 (Physical Director)"
+    },
+    "pinned": true
+  },
+  {
+    "id": "ANN-2026-002",
+    "title": "Classical & Folk Dance Arena Stage Setup & Sound Check Notice",
+    "category": "Venue Alert",
+    "priority": "Normal",
+    "date": "February 24, 2026",
+    "content": "Acoustic calibration and stage lighting checks for Classical Solo and Group Dance participants will commence at 08:30 AM in the Silver Jubilee Auditorium. Audio tracks must be submitted via USB drive in MP3 format to the sound engineers.",
+    "imageUrl": "/gallery/dance.jpeg",
+    "venue": "Silver Jubilee Auditorium — Main Proscenium Stage",
+    "instructions": [
+      "Audio track submission deadline: 09:00 AM at AV control desk",
+      "Maximum performance duration: 8 minutes with 2 minutes setup",
+      "Green rooms allocated in Block-IV ground floor"
+    ],
+    "coordinator": {
+      "name": "Dr. Ch. Suneetha",
+      "contact": "+91 98481 67890 (Cultural Convenor)"
+    },
+    "pinned": false
+  },
+  {
+    "id": "ANN-2026-003",
+    "title": "Grand Valedictory Ceremony & Overall Championship Trophy Presentation",
+    "category": "Prize Ceremony",
+    "priority": "Important",
+    "date": "February 25, 2026",
+    "content": "The 40th Inter-Collegiate Meet Closing Ceremony will be presided over by the College President and visiting dignitaries at the Open Air Theatre. Overall Institutional Championship Rolling Trophies and individual gold laurels will be conferred.",
+    "imageUrl": "/gallery/welcome.jpeg",
+    "venue": "Open Air Theatre (OAT)",
+    "instructions": [
+      "All college contingents must assemble by 04:30 PM",
+      "Award winners must be in official college attire for podium ceremony",
+      "Digital certificates will be available immediately post-ceremony"
+    ],
+    "coordinator": {
+      "name": "Dr. G. Kishore Babu",
+      "contact": "+91 94405 54321 (Dean, Student Affairs)"
+    },
+    "pinned": true
+  },
+  {
+    "id": "ANN-2026-004",
+    "title": "Complimentary Campus Shuttle & Cafeteria Timings for Visiting Contingents",
+    "category": "General",
+    "priority": "Normal",
+    "date": "February 23, 2026",
+    "content": "Dedicated transport shuttles will run between Guntur Railway Station / RTC Bus Terminal and RVRJCCE Campus from 06:00 AM onwards. Breakfast and lunch coupons are distributed at the Registration Helpdesk near Gate 1.",
+    "imageUrl": "/gallery/hall.jpeg",
+    "venue": "Campus Reception Desk & Student Dining Hall",
+    "instructions": [
+      "Present event e-pass at helpdesk to receive accommodation tokens",
+      "Hostel wardens available 24/7 for inter-district guest support"
+    ],
+    "coordinator": {
+      "name": "Hospitality Committee",
+      "contact": "+91 863 2288201 (Help Desk)"
+    },
+    "pinned": false
+  }
+]

@@ -214,3 +214,148 @@ export function adminLogout() {
   localStorage.removeItem('rvrjcce_admin_token');
   localStorage.removeItem('rvrjcce_admin_user');
 }
+
+/* ==========================================================================
+   Announcements API
+   ========================================================================== */
+export async function fetchAnnouncements(params = {}) {
+  try {
+    const query = new URLSearchParams();
+    if (params.category && params.category !== 'all') query.append('category', params.category);
+    if (params.priority && params.priority !== 'all') query.append('priority', params.priority);
+    if (params.pinned !== undefined && params.pinned !== 'all') query.append('pinned', params.pinned);
+
+    const q = query.toString();
+    const data = await safeFetchJson(`${BASE_URL}/api/announcements${q ? '?' + q : ''}`);
+    return (data && data.announcements) || [];
+  } catch (err) {
+    console.warn('API fetchAnnouncements error:', err);
+    return [];
+  }
+}
+
+export async function createAnnouncement(payload) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/announcements`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.error('API createAnnouncement error:', err);
+    throw err;
+  }
+}
+
+export async function updateAnnouncement(id, payload) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/announcements/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.error('API updateAnnouncement error:', err);
+    throw err;
+  }
+}
+
+export async function deleteAnnouncement(id) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/announcements/${id}`, {
+      method: 'DELETE',
+      headers: {
+        ...getAuthHeader()
+      }
+    });
+  } catch (err) {
+    console.error('API deleteAnnouncement error:', err);
+    throw err;
+  }
+}
+
+/* ==========================================================================
+   Tournament Results API
+   ========================================================================== */
+export async function fetchResults(params = {}) {
+  try {
+    const query = new URLSearchParams();
+    if (params.category && params.category !== 'all') query.append('category', params.category);
+    if (params.division && params.division !== 'all') query.append('division', params.division);
+    if (params.event && params.event !== 'all') query.append('event', params.event);
+    if (params.search) query.append('search', params.search);
+
+    const q = query.toString();
+    const data = await safeFetchJson(`${BASE_URL}/api/results${q ? '?' + q : ''}`);
+    return (data && data.results) || [];
+  } catch (err) {
+    console.warn('API fetchResults error:', err);
+    return [];
+  }
+}
+
+export async function createResult(payload) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/results`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.error('API createResult error:', err);
+    throw err;
+  }
+}
+
+export async function updateResult(id, payload) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/results/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.error('API updateResult error:', err);
+    throw err;
+  }
+}
+
+export async function deleteResult(id) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/results/${id}`, {
+      method: 'DELETE',
+      headers: {
+        ...getAuthHeader()
+      }
+    });
+  } catch (err) {
+    console.error('API deleteResult error:', err);
+    throw err;
+  }
+}
+
+/* ==========================================================================
+   Faculty Advisory Panel API
+   ========================================================================== */
+export async function fetchFaculty() {
+  try {
+    const data = await safeFetchJson(`${BASE_URL}/api/results/faculty`);
+    return (data && data.faculty) || [];
+  } catch (err) {
+    console.warn('API fetchFaculty error:', err);
+    return [];
+  }
+}
+

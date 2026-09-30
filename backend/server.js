@@ -7,6 +7,8 @@ import dotenv from 'dotenv';
 import { connectDB, getDbStatus } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import registrationRoutes from './routes/registrationRoutes.js';
+import announcementRoutes from './routes/announcementRoutes.js';
+import resultRoutes from './routes/resultRoutes.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,6 +46,8 @@ app.get('/api/health', (req, res) => {
 
 // API Routes
 app.use('/api/admin', authRoutes);
+app.use('/api/announcements', announcementRoutes);
+app.use('/api/results', resultRoutes);
 app.use('/api', registrationRoutes);
 
 // Static assets

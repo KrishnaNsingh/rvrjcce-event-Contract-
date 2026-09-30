@@ -10,6 +10,7 @@ import { FeaturedArena } from './components/FeaturedArena.jsx';
 import { RegistrationCTA } from './components/RegistrationCTA.jsx';
 import { RegistrationForm } from './components/RegistrationForm.jsx';
 import { AdminDashboard } from './components/AdminDashboard.jsx';
+import { AnnouncementsResultsPage } from './components/AnnouncementsResultsPage.jsx';
 import { Footer } from './components/Footer.jsx';
 import { fetchStats } from './api/client.js';
 
@@ -19,6 +20,7 @@ export function App() {
       const path = window.location.pathname.replace(/^\//, '');
       if (path === 'register') return 'register';
       if (path === 'admin') return 'admin';
+      if (path === 'results') return 'results';
     }
     return 'home';
   };
@@ -37,6 +39,7 @@ export function App() {
       const path = window.location.pathname.replace(/^\//, '');
       if (path === 'register') setCurrentRoute('register');
       else if (path === 'admin') setCurrentRoute('admin');
+      else if (path === 'results') setCurrentRoute('results');
       else setCurrentRoute('home');
     };
 
@@ -155,6 +158,12 @@ export function App() {
 
         {currentRoute === 'admin' && (
           <AdminDashboard
+            onNavigate={navigateTo}
+          />
+        )}
+
+        {currentRoute === 'results' && (
+          <AnnouncementsResultsPage
             onNavigate={navigateTo}
           />
         )}

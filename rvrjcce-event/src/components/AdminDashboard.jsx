@@ -10,9 +10,18 @@ import {
   getCsvExportUrl,
   adminLogin,
   verifyAdminSession,
-  adminLogout
+  adminLogout,
+  fetchAnnouncements,
+  createAnnouncement,
+  updateAnnouncement,
+  deleteAnnouncement,
+  fetchResults,
+  createResult,
+  updateResult,
+  deleteResult
 } from '../api/client.js';
 import { generateRegistrationPDF } from '../utils/pdfPassGenerator.js';
+import { generateCertificatePDF } from '../utils/pdfCertificateGenerator.js';
 import { EVENT_DETAILS, getEventDetails } from '../../config/eventSchedule.js';
 
 export function AdminDashboard({ onNavigate }) {
@@ -112,15 +121,262 @@ export function AdminDashboard({ onNavigate }) {
     }
   };
 
+  // Admin Navigation Tabs
+  const [adminTab, setAdminTab] = useState('registrations'); // 'registrations' | 'announcements' | 'results'
+
+  // Announcements Management State
+  const [announcementsList, setAnnouncementsList] = useState([]);
+  const [announcementsLoading, setAnnouncementsLoading] = useState(false);
+  const [announcementCategoryFilter, setAnnouncementCategoryFilter] = useState('all');
+  const [announcementSearch, setAnnouncementSearch] = useState('');
+  const [showAnnouncementModal, setShowAnnouncementModal] = useState(false);
+  const [editingAnnouncement, setEditingAnnouncement] = useState(null);
+  const [announcementFormData, setAnnouncementFormData] = useState({
+    title: '',
+    category: 'General',
+    priority: 'Normal',
+    pinned: false,
+    date: new Date().toISOString().split('T')[0],
+    content: '',
+    imageUrl: '',
+    venue: '',
+    instructions: '',
+    coordinator: ''
+  });
+
+  // Tournament Results Management State
+  const [resultsList, setResultsList] = useState([]);
+  const [resultsLoading, setResultsLoading] = useState(false);
+  const [resultCategoryFilter, setResultCategoryFilter] = useState('all');
+  const [resultSearch, setResultSearch] = useState('');
+  const [showResultModal, setShowResultModal] = useState(false);
+  const [editingResult, setEditingResult] = useState(null);
+  const [resultFormData, setResultFormData] = useState({
+    event: 'Basketball',
+    category: 'Sports',
+    division: 'Boys',
+    position: 'Winner',
+    winnerType: 'Team',
+    teamName: '',
+    participantName: '',
+    teammates: '',
+    college: '',
+    department: '',
+    scoreOrRound: '',
+    dateAnnounced: new Date().toISOString().split('T')[0],
+    certificateId: '',
+    status: 'Official'
+  });
+
+  const [deleteCustomCandidate, setDeleteCustomCandidate] = useState(null); // { type: 'announcement'|'result', item }
+
+  const loadAnnouncements = async () => {
+    setAnnouncementsLoading(true);
+    try {
+      const data = await fetchAnnouncements();
+      setAnnouncementsList(data || []);
+    } catch (err) {
+      console.error('Failed to load announcements in admin:', err);
+    } finally {
+      setAnnouncementsLoading(false);
+    }
+  };
+
+  const loadResults = async () => {
+    setResultsLoading(true);
+    try {
+      const data = await fetchResults();
+      setResultsList(data || []);
+    } catch (err) {
+      console.error('Failed to load results in admin:', err);
+    } finally {
+      setResultsLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
       loadData();
+      loadAnnouncements();
+      loadResults();
     }
   }, [isAuthenticated, categoryFilter, divisionFilter, eventFilter, attendanceFilter]);
 
   const showNotification = (msg, type = 'info') => {
     setNotification({ msg, type });
     setTimeout(() => setNotification(null), 4000);
+  };
+
+  const handleOpenCreateAnnouncement = () => {
+    setEditingAnnouncement(null);
+    setAnnouncementFormData({
+      title: '',
+      category: 'General',
+      priority: 'Normal',
+      pinned: false,
+      date: new Date().toISOString().split('T')[0],
+      content: '',
+      imageUrl: '',
+      venue: '',
+      instructions: '',
+      coordinator: ''
+    });
+    setShowAnnouncementModal(true);
+  };
+
+  const handleOpenEditAnnouncement = (ann) => {
+    setEditingAnnouncement(ann);
+    setAnnouncementFormData({
+      title: ann.title || '',
+      category: ann.category || 'General',
+      priority: ann.priority || 'Normal',
+      pinned: Boolean(ann.pinned),
+      date: ann.date ? ann.date.split('T')[0] : new Date().toISOString().split('T')[0],
+      content: ann.content || '',
+      imageUrl: ann.imageUrl || '',
+      venue: ann.venue || '',
+      instructions: Array.isArray(ann.instructions) ? ann.instructions.join('\n') : (ann.instructions || ''),
+      coordinator: ann.coordinator || ''
+    });
+    setShowAnnouncementModal(true);
+  };
+
+  const handleSaveAnnouncement = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (!announcementFormData.title.trim()) {
+      showNotification('Announcement title is required.', 'error');
+      return;
+    }
+    if (!announcementFormData.content.trim()) {
+      showNotification('Announcement content is required.', 'error');
+      return;
+    }
+
+    const payload = {
+      ...announcementFormData,
+      instructions: typeof announcementFormData.instructions === 'string'
+        ? announcementFormData.instructions.split('\n').map(s => s.trim()).filter(Boolean)
+        : []
+    };
+
+    try {
+      if (editingAnnouncement) {
+        await updateAnnouncement(editingAnnouncement._id || editingAnnouncement.id, payload);
+        showNotification('Announcement updated successfully!', 'success');
+      } else {
+        await createAnnouncement(payload);
+        showNotification('New announcement published successfully!', 'success');
+      }
+      setShowAnnouncementModal(false);
+      loadAnnouncements();
+    } catch (err) {
+      showNotification(`Failed to save announcement: ${err.message}`, 'error');
+    }
+  };
+
+  const handleTogglePinAnnouncement = async (ann) => {
+    try {
+      const newPinned = !Boolean(ann.pinned);
+      await updateAnnouncement(ann._id || ann.id, { pinned: newPinned });
+      showNotification(`Announcement ${newPinned ? 'pinned to top 📌' : 'unpinned'}`, 'success');
+      loadAnnouncements();
+    } catch (err) {
+      showNotification(`Pin toggle failed: ${err.message}`, 'error');
+    }
+  };
+
+  const handleOpenCreateResult = () => {
+    setEditingResult(null);
+    setResultFormData({
+      event: 'Basketball',
+      category: 'Sports',
+      division: 'Boys',
+      position: 'Winner',
+      winnerType: 'Team',
+      teamName: '',
+      participantName: '',
+      teammates: '',
+      college: '',
+      department: '',
+      scoreOrRound: '',
+      dateAnnounced: new Date().toISOString().split('T')[0],
+      certificateId: `RVR-CLR26-${Math.floor(10000 + Math.random() * 90000)}`,
+      status: 'Official'
+    });
+    setShowResultModal(true);
+  };
+
+  const handleOpenEditResult = (res) => {
+    setEditingResult(res);
+    setResultFormData({
+      event: res.event || 'Basketball',
+      category: res.category || 'Sports',
+      division: res.division || 'Boys',
+      position: res.position || 'Winner',
+      winnerType: res.winnerType || 'Team',
+      teamName: res.teamName || '',
+      participantName: res.participantName || '',
+      teammates: Array.isArray(res.teammates) ? res.teammates.join(', ') : (res.teammates || ''),
+      college: res.college || '',
+      department: res.department || '',
+      scoreOrRound: res.scoreOrRound || '',
+      dateAnnounced: res.dateAnnounced ? res.dateAnnounced.split('T')[0] : new Date().toISOString().split('T')[0],
+      certificateId: res.certificateId || '',
+      status: res.status || 'Official'
+    });
+    setShowResultModal(true);
+  };
+
+  const handleSaveResult = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (!resultFormData.participantName.trim() && !resultFormData.teamName.trim()) {
+      showNotification('Participant or Team Name is required.', 'error');
+      return;
+    }
+    if (!resultFormData.college.trim()) {
+      showNotification('College Name is required.', 'error');
+      return;
+    }
+
+    const payload = {
+      ...resultFormData,
+      teammates: typeof resultFormData.teammates === 'string'
+        ? resultFormData.teammates.split(',').map(s => s.trim()).filter(Boolean)
+        : []
+    };
+
+    try {
+      if (editingResult) {
+        await updateResult(editingResult._id || editingResult.id, payload);
+        showNotification('Tournament result updated successfully!', 'success');
+      } else {
+        await createResult(payload);
+        showNotification('Tournament laurel and certificate published!', 'success');
+      }
+      setShowResultModal(false);
+      loadResults();
+    } catch (err) {
+      showNotification(`Failed to save result: ${err.message}`, 'error');
+    }
+  };
+
+  const handleDeleteCustomItem = async () => {
+    if (!deleteCustomCandidate) return;
+    const { type, item } = deleteCustomCandidate;
+    try {
+      if (type === 'announcement') {
+        await deleteAnnouncement(item._id || item.id);
+        showNotification('Announcement deleted successfully.', 'success');
+        loadAnnouncements();
+      } else if (type === 'result') {
+        await deleteResult(item._id || item.id);
+        showNotification('Tournament result removed.', 'success');
+        loadResults();
+      }
+      setDeleteCustomCandidate(null);
+    } catch (err) {
+      showNotification(`Failed to delete item: ${err.message}`, 'error');
+    }
   };
 
   // Handle Login
@@ -487,8 +743,51 @@ export function AdminDashboard({ onNavigate }) {
           </div>
         )}
 
-        {/* Overview Metric Cards with Attendance Checklist Summary */}
-        <div className="admin-metrics-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))' }}>
+        {/* Primary Admin Navigation Tabs */}
+        <div className="admin-primary-tabs">
+          <button
+            className={`admin-nav-tab ${adminTab === 'registrations' ? 'active' : ''}`}
+            onClick={() => setAdminTab('registrations')}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <span>Registrations &amp; Attendance</span>
+            <span className="admin-badge">{registrations.length}</span>
+          </button>
+
+          <button
+            className={`admin-nav-tab ${adminTab === 'announcements' ? 'active' : ''}`}
+            onClick={() => setAdminTab('announcements')}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            <span>Announcements Manager</span>
+            <span className="admin-badge">{announcementsList.length}</span>
+          </button>
+
+          <button
+            className={`admin-nav-tab ${adminTab === 'results' ? 'active' : ''}`}
+            onClick={() => setAdminTab('results')}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="8" r="7" />
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+            </svg>
+            <span>Results &amp; Certificate Publisher</span>
+            <span className="admin-badge">{resultsList.length}</span>
+          </button>
+        </div>
+
+        {adminTab === 'registrations' && (
+          <>
+            {/* Overview Metric Cards with Attendance Checklist Summary */}
+            <div className="admin-metrics-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))' }}>
           <div className="admin-metric-card" style={{ borderTop: '3px solid var(--text-primary)' }}>
             <span className="metric-number">{stats.total}</span>
             <span className="metric-label">Total Registrations</span>
@@ -822,8 +1121,429 @@ export function AdminDashboard({ onNavigate }) {
             </div>
           </div>
         </div>
+          </>
+        )}
 
-        {/* 3. ON-SPOT REGISTRATION MODAL */}
+        {/* 2. ANNOUNCEMENTS MANAGER TAB */}
+        {adminTab === 'announcements' && (
+          <div className="admin-announcements-section">
+            <div className="admin-sub-header">
+              <div>
+                <h2 className="heading-subsection" style={{ marginBottom: '0.25rem' }}>
+                  Institutional Announcements &amp; Bulletins
+                </h2>
+                <p className="text-body" style={{ fontSize: '0.875rem' }}>
+                  Create and manage official notices, schedule changes, and venue allocations visible on the public portal.
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                <button
+                  className="btn btn-primary btn-sm"
+                  onClick={handleOpenCreateAnnouncement}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                  <span>Post Announcement</span>
+                </button>
+
+                <button
+                  className="btn btn-secondary btn-sm"
+                  onClick={() => onNavigate('results')}
+                  title="View Public Announcements Page"
+                >
+                  View Public Page ↗
+                </button>
+              </div>
+            </div>
+
+            {/* Filter and Search Bar */}
+            <div className="admin-controls-card" style={{ marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <label className="form-label" style={{ margin: 0, fontSize: '0.8125rem' }}>Category:</label>
+                  <select
+                    className="form-select form-select-sm"
+                    value={announcementCategoryFilter}
+                    onChange={(e) => setAnnouncementCategoryFilter(e.target.value)}
+                    style={{ minWidth: '150px' }}
+                  >
+                    <option value="all">All Categories</option>
+                    <option value="General">General</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Literary">Literary</option>
+                    <option value="Schedule">Schedule</option>
+                    <option value="Venue">Venue</option>
+                    <option value="Emergency">Emergency</option>
+                  </select>
+                </div>
+
+                <div className="search-input-wrapper" style={{ minWidth: '280px' }}>
+                  <svg className="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  <input
+                    type="text"
+                    className="form-input form-input-sm"
+                    placeholder="Search announcements..."
+                    value={announcementSearch}
+                    onChange={(e) => setAnnouncementSearch(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Announcements List/Cards */}
+            {announcementsLoading ? (
+              <div style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--text-muted)' }}>
+                Loading announcements...
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {announcementsList
+                  .filter(a => {
+                    if (announcementCategoryFilter !== 'all' && a.category !== announcementCategoryFilter) return false;
+                    if (announcementSearch) {
+                      const s = announcementSearch.toLowerCase();
+                      const match = (a.title && a.title.toLowerCase().includes(s)) ||
+                                    (a.content && a.content.toLowerCase().includes(s)) ||
+                                    (a.venue && a.venue.toLowerCase().includes(s)) ||
+                                    (a.coordinator && a.coordinator.toLowerCase().includes(s));
+                      if (!match) return false;
+                    }
+                    return true;
+                  })
+                  .map(a => (
+                    <div
+                      key={a._id || a.id}
+                      style={{
+                        background: '#FFFFFF',
+                        border: '1px solid var(--border-light)',
+                        borderLeft: a.pinned ? '4px solid var(--accent-cultural)' : '1px solid var(--border-light)',
+                        borderRadius: '10px',
+                        padding: '1.25rem 1.5rem',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.75rem'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                          {a.pinned && (
+                            <span style={{ fontSize: '0.72rem', fontWeight: 700, background: '#FEF3C7', color: '#92400E', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                              📌 Pinned
+                            </span>
+                          )}
+                          <span style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 700,
+                            padding: '0.15rem 0.5rem',
+                            borderRadius: '4px',
+                            background: a.priority === 'Urgent' ? '#FEE2E2' : a.priority === 'High' ? '#FFEDD5' : '#E0E7FF',
+                            color: a.priority === 'Urgent' ? '#991B1B' : a.priority === 'High' ? '#C2410C' : '#3730A3'
+                          }}>
+                            {a.priority || 'Normal'} Priority
+                          </span>
+                          <span style={{ fontSize: '0.72rem', fontWeight: 600, background: '#F3F4F6', color: '#374151', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                            {a.category || 'General'}
+                          </span>
+                          <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                            {a.date ? new Date(a.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ''}
+                          </span>
+                        </div>
+
+                        <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                          <button
+                            className="btn btn-secondary btn-sm"
+                            style={{ padding: '0.25rem 0.6rem', fontSize: '0.75rem' }}
+                            onClick={() => handleTogglePinAnnouncement(a)}
+                            title={a.pinned ? 'Unpin Announcement' : 'Pin to Top'}
+                          >
+                            {a.pinned ? 'Unpin' : '📌 Pin'}
+                          </button>
+                          <button
+                            className="btn btn-secondary btn-sm"
+                            style={{ padding: '0.25rem 0.6rem', fontSize: '0.75rem' }}
+                            onClick={() => handleOpenEditAnnouncement(a)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="btn btn-sm"
+                            style={{ padding: '0.25rem 0.6rem', fontSize: '0.75rem', background: '#FEE2E2', color: '#991B1B', border: '1px solid #FECACA' }}
+                            onClick={() => setDeleteCustomCandidate({ type: 'announcement', item: a })}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 style={{ fontSize: '1.125rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
+                          {a.title}
+                        </h4>
+                        <p style={{ fontSize: '0.875rem', color: '#4B5563', lineHeight: 1.5, whiteSpace: 'pre-line' }}>
+                          {a.content}
+                        </p>
+                      </div>
+
+                      <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', fontSize: '0.78125rem', color: 'var(--text-muted)', borderTop: '1px solid var(--border-light)', paddingTop: '0.6rem' }}>
+                        {a.venue && (
+                          <span>📍 <strong>Venue:</strong> {a.venue}</span>
+                        )}
+                        {a.coordinator && (
+                          <span>👤 <strong>Coordinator:</strong> {a.coordinator}</span>
+                        )}
+                        {a.imageUrl && (
+                          <span>🖼️ <strong>Image Attached</strong></span>
+                        )}
+                        {Array.isArray(a.instructions) && a.instructions.length > 0 && (
+                          <span>📋 <strong>{a.instructions.length} Guidelines</strong></span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                {announcementsList.length === 0 && (
+                  <div style={{ textAlign: 'center', padding: '3rem 0', background: '#FFFFFF', borderRadius: '10px', border: '1px dashed var(--border-light)' }}>
+                    <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📢</div>
+                    <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>No Announcements Found</div>
+                    <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
+                      Click "Post Announcement" to create the first bulletin.
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* 3. TOURNAMENT RESULTS PUBLISHER TAB */}
+        {adminTab === 'results' && (
+          <div className="admin-results-section">
+            <div className="admin-sub-header">
+              <div>
+                <h2 className="heading-subsection" style={{ marginBottom: '0.25rem' }}>
+                  Tournament Laurels &amp; Certificate Publisher
+                </h2>
+                <p className="text-body" style={{ fontSize: '0.875rem' }}>
+                  Authorize official winners, runners-up, rosters, and enable instant PDF merit certificates.
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                <button
+                  className="btn btn-primary btn-sm"
+                  onClick={handleOpenCreateResult}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                  <span>Publish Result</span>
+                </button>
+
+                <button
+                  className="btn btn-secondary btn-sm"
+                  onClick={() => onNavigate('results')}
+                  title="View Public Results Page"
+                >
+                  View Public Page ↗
+                </button>
+              </div>
+            </div>
+
+            {/* Filter and Search Bar */}
+            <div className="admin-controls-card" style={{ marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <label className="form-label" style={{ margin: 0, fontSize: '0.8125rem' }}>Category:</label>
+                  <select
+                    className="form-select form-select-sm"
+                    value={resultCategoryFilter}
+                    onChange={(e) => setResultCategoryFilter(e.target.value)}
+                    style={{ minWidth: '150px' }}
+                  >
+                    <option value="all">All Disciplines</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Literary">Literary</option>
+                  </select>
+                </div>
+
+                <div className="search-input-wrapper" style={{ minWidth: '280px' }}>
+                  <svg className="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  <input
+                    type="text"
+                    className="form-input form-input-sm"
+                    placeholder="Search winner, team, college, or cert ID..."
+                    value={resultSearch}
+                    onChange={(e) => setResultSearch(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Results Table */}
+            {resultsLoading ? (
+              <div style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--text-muted)' }}>
+                Loading tournament laurels...
+              </div>
+            ) : (
+              <div className="admin-table-card" style={{ overflowX: 'auto' }}>
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Placement</th>
+                      <th>Event &amp; Category</th>
+                      <th>Winner / Team</th>
+                      <th>Institution</th>
+                      <th>Score / Details</th>
+                      <th>Certificate ID</th>
+                      <th style={{ textAlign: 'right' }}>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {resultsList
+                      .filter(r => {
+                        if (resultCategoryFilter !== 'all' && r.category !== resultCategoryFilter) return false;
+                        if (resultSearch) {
+                          const s = resultSearch.toLowerCase();
+                          const match = (r.participantName && r.participantName.toLowerCase().includes(s)) ||
+                                        (r.teamName && r.teamName.toLowerCase().includes(s)) ||
+                                        (r.college && r.college.toLowerCase().includes(s)) ||
+                                        (r.event && r.event.toLowerCase().includes(s)) ||
+                                        (r.certificateId && r.certificateId.toLowerCase().includes(s));
+                          if (!match) return false;
+                        }
+                        return true;
+                      })
+                      .map(r => {
+                        const isGold = r.position === 'Winner';
+                        const isSilver = r.position === 'Runner-Up';
+                        const isBronze = r.position === 'Second Runner-Up';
+
+                        return (
+                          <tr key={r._id || r.id}>
+                            <td>
+                              <span style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.35rem',
+                                padding: '0.2rem 0.6rem',
+                                borderRadius: '4px',
+                                fontSize: '0.78125rem',
+                                fontWeight: 700,
+                                background: isGold ? '#FEF3C7' : isSilver ? '#F1F5F9' : '#FFEDD5',
+                                color: isGold ? '#92400E' : isSilver ? '#334155' : '#9A3412'
+                              }}>
+                                {isGold ? '🥇 Winner' : isSilver ? '🥈 Runner-Up' : isBronze ? '🥉 2nd Runner-Up' : '🎖️ ' + r.position}
+                              </span>
+                            </td>
+
+                            <td>
+                              <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{r.event}</div>
+                              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                                {r.category} • {r.division}
+                              </div>
+                            </td>
+
+                            <td>
+                              <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+                                {r.participantName}
+                              </div>
+                              {r.teamName && (
+                                <div style={{ fontSize: '0.78125rem', color: 'var(--accent-cultural)' }}>
+                                  Team: {r.teamName}
+                                </div>
+                              )}
+                              {Array.isArray(r.teammates) && r.teammates.length > 0 && (
+                                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                                  +{r.teammates.length} teammates
+                                </div>
+                              )}
+                            </td>
+
+                            <td>
+                              <div style={{ fontSize: '0.84rem', color: 'var(--text-primary)' }}>{r.college}</div>
+                              {r.department && (
+                                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{r.department}</div>
+                              )}
+                            </td>
+
+                            <td>
+                              <div style={{ fontSize: '0.84rem', fontWeight: 600, color: '#059669' }}>
+                                {r.scoreOrRound || 'Official Decision'}
+                              </div>
+                              <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                                {r.dateAnnounced ? new Date(r.dateAnnounced).toLocaleDateString() : ''}
+                              </div>
+                            </td>
+
+                            <td>
+                              <code style={{ fontSize: '0.75rem', background: '#F3F4F6', padding: '0.15rem 0.4rem', borderRadius: '4px' }}>
+                                {r.certificateId}
+                              </code>
+                            </td>
+
+                            <td style={{ textAlign: 'right' }}>
+                              <div className="action-buttons" style={{ justifyContent: 'flex-end', gap: '0.35rem' }}>
+                                <button
+                                  className="icon-btn"
+                                  title="Download Merit Certificate PDF"
+                                  onClick={() => generateCertificatePDF(r)}
+                                  style={{ color: '#D97706' }}
+                                >
+                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <circle cx="12" cy="8" r="7" />
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                                  </svg>
+                                </button>
+
+                                <button
+                                  className="icon-btn"
+                                  title="Edit Laurel Record"
+                                  onClick={() => handleOpenEditResult(r)}
+                                >
+                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                  </svg>
+                                </button>
+
+                                <button
+                                  className="icon-btn icon-btn-danger"
+                                  title="Delete Laurel Record"
+                                  onClick={() => setDeleteCustomCandidate({ type: 'result', item: r })}
+                                >
+                                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <polyline points="3 6 5 6 21 6" />
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                  </svg>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* 4. ON-SPOT REGISTRATION MODAL */}
         {showOnSpotModal && (
           <div className="modal-backdrop" onClick={() => setShowOnSpotModal(false)}>
             <div className="modal-card" style={{ maxWidth: '680px' }} onClick={(e) => e.stopPropagation()}>
@@ -1227,6 +1947,432 @@ export function AdminDashboard({ onNavigate }) {
                   className="btn btn-sm"
                   style={{ backgroundColor: '#C53030', color: '#FFFFFF', borderColor: '#C53030' }}
                   onClick={handleDeleteConfirm}
+                >
+                  Confirm Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 6. ANNOUNCEMENT FORM MODAL (CREATE / EDIT) */}
+        {showAnnouncementModal && (
+          <div className="modal-backdrop" onClick={() => setShowAnnouncementModal(false)}>
+            <div className="modal-card" style={{ maxWidth: '680px' }} onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <div>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-cultural)', textTransform: 'uppercase' }}>
+                    Institutional Bulletin Publisher
+                  </div>
+                  <h3 className="heading-subsection">
+                    {editingAnnouncement ? 'Edit Official Announcement' : 'Post New Official Announcement'}
+                  </h3>
+                </div>
+                <button className="icon-btn" onClick={() => setShowAnnouncementModal(false)}>✕</button>
+              </div>
+
+              <form onSubmit={handleSaveAnnouncement}>
+                <div className="modal-body" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
+                  <div className="form-group">
+                    <label className="form-label">Announcement Title *</label>
+                    <input
+                      type="text"
+                      className="form-input"
+                      placeholder="e.g. Basketball Championship Finals Relocation & Timing"
+                      value={announcementFormData.title}
+                      onChange={(e) => setAnnouncementFormData(prev => ({ ...prev, title: e.target.value }))}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">Category</label>
+                      <select
+                        className="form-select"
+                        value={announcementFormData.category}
+                        onChange={(e) => setAnnouncementFormData(prev => ({ ...prev, category: e.target.value }))}
+                      >
+                        <option value="General">General Notice</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Cultural">Cultural</option>
+                        <option value="Literary">Literary</option>
+                        <option value="Schedule">Schedule Update</option>
+                        <option value="Venue">Venue Allocation</option>
+                        <option value="Emergency">Urgent / Emergency</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Priority Level</label>
+                      <select
+                        className="form-select"
+                        value={announcementFormData.priority}
+                        onChange={(e) => setAnnouncementFormData(prev => ({ ...prev, priority: e.target.value }))}
+                      >
+                        <option value="Normal">Normal</option>
+                        <option value="High">High</option>
+                        <option value="Urgent">Urgent / Flash</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">Date</label>
+                      <input
+                        type="date"
+                        className="form-input"
+                        value={announcementFormData.date}
+                        onChange={(e) => setAnnouncementFormData(prev => ({ ...prev, date: e.target.value }))}
+                      />
+                    </div>
+
+                    <div className="form-group" style={{ display: 'flex', alignItems: 'center', paddingTop: '1.75rem' }}>
+                      <label style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.875rem', fontWeight: 600 }}>
+                        <input
+                          type="checkbox"
+                          checked={announcementFormData.pinned}
+                          onChange={(e) => setAnnouncementFormData(prev => ({ ...prev, pinned: e.target.checked }))}
+                          style={{ width: '18px', height: '18px', accentColor: 'var(--accent-cultural)' }}
+                        />
+                        <span>Pin to top of public feed 📌</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">Venue / Location Allocation</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        placeholder="e.g. Main Wooden Indoor Court (Silver Jubilee)"
+                        value={announcementFormData.venue}
+                        onChange={(e) => setAnnouncementFormData(prev => ({ ...prev, venue: e.target.value }))}
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Faculty Coordinator &amp; Contact</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        placeholder="e.g. Dr. P. Sudhakar • 98480 12345"
+                        value={announcementFormData.coordinator}
+                        onChange={(e) => setAnnouncementFormData(prev => ({ ...prev, coordinator: e.target.value }))}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">Banner / Image URL (Optional)</label>
+                    <input
+                      type="text"
+                      className="form-input"
+                      placeholder="e.g. /gallery/campus-center.jpg or external https:// link"
+                      value={announcementFormData.imageUrl}
+                      onChange={(e) => setAnnouncementFormData(prev => ({ ...prev, imageUrl: e.target.value }))}
+                    />
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                      Tip: You can use local gallery images like <code>/gallery/basketball.jpg</code> or <code>/gallery/campus-center.jpg</code>
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">Key Guidelines &amp; Protocols (One per line)</label>
+                    <textarea
+                      className="form-input"
+                      rows="3"
+                      placeholder="Valid College ID Mandatory&#10;Report 30 mins before match whistle&#10;Non-marking court shoes compulsory"
+                      value={announcementFormData.instructions}
+                      onChange={(e) => setAnnouncementFormData(prev => ({ ...prev, instructions: e.target.value }))}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">Announcement Content / Full Bulletin *</label>
+                    <textarea
+                      className="form-input"
+                      rows="4"
+                      placeholder="Enter the complete detailed notice for student and faculty attendees..."
+                      value={announcementFormData.content}
+                      onChange={(e) => setAnnouncementFormData(prev => ({ ...prev, content: e.target.value }))}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary btn-sm" onClick={() => setShowAnnouncementModal(false)}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn btn-primary btn-sm">
+                    {editingAnnouncement ? 'Save & Update Announcement' : 'Publish Announcement'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* 7. TOURNAMENT RESULT MODAL (CREATE / EDIT) */}
+        {showResultModal && (
+          <div className="modal-backdrop" onClick={() => setShowResultModal(false)}>
+            <div className="modal-card" style={{ maxWidth: '680px' }} onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <div>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-cultural)', textTransform: 'uppercase' }}>
+                    Merit &amp; Certificate Authority
+                  </div>
+                  <h3 className="heading-subsection">
+                    {editingResult ? 'Edit Tournament Laurel' : 'Publish Tournament Result & Certificate'}
+                  </h3>
+                </div>
+                <button className="icon-btn" onClick={() => setShowResultModal(false)}>✕</button>
+              </div>
+
+              <form onSubmit={handleSaveResult}>
+                <div className="modal-body" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">Event Name *</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        placeholder="e.g. Basketball, Cricket, Classical Dance"
+                        value={resultFormData.event}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, event: e.target.value }))}
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Category</label>
+                      <select
+                        className="form-select"
+                        value={resultFormData.category}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, category: e.target.value }))}
+                      >
+                        <option value="Sports">Sports</option>
+                        <option value="Cultural">Cultural</option>
+                        <option value="Literary">Literary</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">Division</label>
+                      <select
+                        className="form-select"
+                        value={resultFormData.division}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, division: e.target.value }))}
+                      >
+                        <option value="Boys">Boys Division</option>
+                        <option value="Girls">Girls Division</option>
+                        <option value="Open">Open / Mixed</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Placement / Award *</label>
+                      <select
+                        className="form-select"
+                        value={resultFormData.position}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, position: e.target.value }))}
+                      >
+                        <option value="Winner">Winner (First Place 🥇)</option>
+                        <option value="Runner-Up">Runner-Up (Second Place 🥈)</option>
+                        <option value="Second Runner-Up">Second Runner-Up (Third Place 🥉)</option>
+                        <option value="Special Mention">Special Mention / Jury Award 🎖️</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">Winner Type</label>
+                      <select
+                        className="form-select"
+                        value={resultFormData.winnerType}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, winnerType: e.target.value }))}
+                      >
+                        <option value="Team">Team Entry</option>
+                        <option value="Individual">Individual Participant</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Participant / Captain Name *</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        placeholder="e.g. Rohan Varma (Captain)"
+                        value={resultFormData.participantName}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, participantName: e.target.value }))}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {resultFormData.winnerType === 'Team' && (
+                    <div className="form-group">
+                      <label className="form-label">Team Name</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        placeholder="e.g. VRSEC Titans or RVR Thunder"
+                        value={resultFormData.teamName}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, teamName: e.target.value }))}
+                      />
+                    </div>
+                  )}
+
+                  <div className="form-group">
+                    <label className="form-label">Teammates Roster (Comma-separated)</label>
+                    <input
+                      type="text"
+                      className="form-input"
+                      placeholder="e.g. Nikhil Reddy, K. Sai Teja, M. Akhil, D. Dinesh"
+                      value={resultFormData.teammates}
+                      onChange={(e) => setResultFormData(prev => ({ ...prev, teammates: e.target.value }))}
+                    />
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">College / Institution *</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        placeholder="e.g. Velagapudi Ramakrishna Siddhartha Engineering College"
+                        value={resultFormData.college}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, college: e.target.value }))}
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Department</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        placeholder="e.g. Computer Science & Engineering"
+                        value={resultFormData.department}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, department: e.target.value }))}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">Score / Margin / Round Summary</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        placeholder="e.g. Finals: 68 - 54 or Unanimous 1st Place"
+                        value={resultFormData.scoreOrRound}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, scoreOrRound: e.target.value }))}
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Date Announced</label>
+                      <input
+                        type="date"
+                        className="form-input"
+                        value={resultFormData.dateAnnounced}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, dateAnnounced: e.target.value }))}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label className="form-label">Certificate Unique Verification ID</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        placeholder="e.g. RVR-CLR26-88219"
+                        value={resultFormData.certificateId}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, certificateId: e.target.value }))}
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Verification Status</label>
+                      <select
+                        className="form-select"
+                        value={resultFormData.status}
+                        onChange={(e) => setResultFormData(prev => ({ ...prev, status: e.target.value }))}
+                      >
+                        <option value="Official">Official &amp; Verified</option>
+                        <option value="Provisional">Provisional</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary btn-sm" onClick={() => setShowResultModal(false)}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn btn-primary btn-sm">
+                    {editingResult ? 'Save & Update Result' : 'Publish Result & Certificate'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* 8. CUSTOM ITEM DELETE CONFIRMATION MODAL */}
+        {deleteCustomCandidate && (
+          <div className="modal-backdrop" onClick={() => setDeleteCustomCandidate(null)}>
+            <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <h3 className="heading-subsection" style={{ color: '#C53030' }}>
+                  Confirm Deletion
+                </h3>
+                <button className="icon-btn" onClick={() => setDeleteCustomCandidate(null)}>✕</button>
+              </div>
+              <div className="modal-body">
+                <p className="text-body">
+                  Are you sure you want to permanently delete this {deleteCustomCandidate.type === 'announcement' ? 'Announcement' : 'Tournament Laurel'}?
+                </p>
+                <div style={{
+                  background: '#FDF2F2',
+                  border: '1px solid #FECACA',
+                  padding: '0.75rem',
+                  borderRadius: '6px',
+                  marginTop: '0.75rem',
+                  fontSize: '0.875rem',
+                  color: '#991B1B'
+                }}>
+                  <strong>
+                    {deleteCustomCandidate.item.title ||
+                     deleteCustomCandidate.item.participantName ||
+                     deleteCustomCandidate.item.event}
+                  </strong>
+                  {deleteCustomCandidate.item.certificateId && (
+                    <div style={{ fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                      Certificate ID: {deleteCustomCandidate.item.certificateId}
+                    </div>
+                  )}
+                </div>
+                <p className="text-caption" style={{ marginTop: '0.5rem', color: '#C53030' }}>
+                  This action will permanently delete the entry from the database and remove it from the public portal.
+                </p>
+              </div>
+              <div className="modal-footer">
+                <button className="btn btn-secondary btn-sm" onClick={() => setDeleteCustomCandidate(null)}>
+                  Cancel
+                </button>
+                <button
+                  className="btn btn-sm"
+                  style={{ backgroundColor: '#C53030', color: '#FFFFFF', borderColor: '#C53030' }}
+                  onClick={handleDeleteCustomItem}
                 >
                   Confirm Delete
                 </button>

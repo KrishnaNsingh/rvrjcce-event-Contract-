@@ -20,12 +20,16 @@ export function Navbar({ currentRoute, onNavigate }) {
 
   // Scroll-responsive synchronization for middle spotlight navbar
   useEffect(() => {
-    if (currentRoute === 'register') {
+    if (currentRoute === 'results') {
       setActiveNavIndex(5);
       return;
     }
-    if (currentRoute === 'admin') {
+    if (currentRoute === 'register') {
       setActiveNavIndex(6);
+      return;
+    }
+    if (currentRoute === 'admin') {
+      setActiveNavIndex(7);
       return;
     }
 
@@ -87,6 +91,7 @@ export function Navbar({ currentRoute, onNavigate }) {
     { label: "Sports", href: "#sports-section", route: "home", sectionId: "sports-section" },
     { label: "Literary & Cultural", href: "#cultural-section", route: "home", sectionId: "cultural-section" },
     { label: "Gallery", href: "#gallery-section", route: "home", sectionId: "gallery-section" },
+    { label: "Results & Notices", href: "/results", route: "results", sectionId: null },
     { label: "Register", href: "/register", route: "register", sectionId: null },
     { label: "Admin Portal", href: "/admin", route: "admin", sectionId: null }
   ];
@@ -161,6 +166,9 @@ export function Navbar({ currentRoute, onNavigate }) {
         </a>
         <a className="mobile-nav-link" onClick={() => handleNavClick('home', 'gallery-section')}>
           Campus Gallery
+        </a>
+        <a className="mobile-nav-link" onClick={() => handleNavClick('results')}>
+          Results &amp; Announcements
         </a>
         <a className="mobile-nav-link" onClick={() => handleNavClick('register')}>
           Event Registration

@@ -57402,12 +57402,16 @@ function Navbar({ currentRoute, onNavigate }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [currentRoute]);
   (0, import_react.useEffect)(() => {
-    if (currentRoute === "register") {
+    if (currentRoute === "results") {
       setActiveNavIndex(5);
       return;
     }
-    if (currentRoute === "admin") {
+    if (currentRoute === "register") {
       setActiveNavIndex(6);
+      return;
+    }
+    if (currentRoute === "admin") {
+      setActiveNavIndex(7);
       return;
     }
     const handleScrollSpy = () => {
@@ -57461,6 +57465,7 @@ function Navbar({ currentRoute, onNavigate }) {
     { label: "Sports", href: "#sports-section", route: "home", sectionId: "sports-section" },
     { label: "Literary & Cultural", href: "#cultural-section", route: "home", sectionId: "cultural-section" },
     { label: "Gallery", href: "#gallery-section", route: "home", sectionId: "gallery-section" },
+    { label: "Results & Notices", href: "/results", route: "results", sectionId: null },
     { label: "Register", href: "/register", route: "register", sectionId: null },
     { label: "Admin Portal", href: "/admin", route: "admin", sectionId: null }
   ];
@@ -57506,7 +57511,7 @@ function Navbar({ currentRoute, onNavigate }) {
       "aria-label": "Toggle navigation menu"
     },
     /* @__PURE__ */ react_default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, mobileMenuOpen ? /* @__PURE__ */ react_default.createElement("path", { d: "M18 6L6 18M6 6l12 12" }) : /* @__PURE__ */ react_default.createElement("path", { d: "M4 6h16M4 12h16M4 18h16" }))
-  )))), /* @__PURE__ */ react_default.createElement("div", { className: `mobile-nav-drawer ${mobileMenuOpen ? "open" : ""}` }, /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home") }, "Home"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "discovery-section") }, "Events Overview"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "sports-section") }, "Sports (Boys & Girls)"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "cultural-section") }, "Literary & Cultural"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "gallery-section") }, "Campus Gallery"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("register") }, "Event Registration"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("admin") }, "Admin Portal"), /* @__PURE__ */ react_default.createElement("div", { style: { marginTop: "1.25rem" } }, /* @__PURE__ */ react_default.createElement(
+  )))), /* @__PURE__ */ react_default.createElement("div", { className: `mobile-nav-drawer ${mobileMenuOpen ? "open" : ""}` }, /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home") }, "Home"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "discovery-section") }, "Events Overview"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "sports-section") }, "Sports (Boys & Girls)"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "cultural-section") }, "Literary & Cultural"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "gallery-section") }, "Campus Gallery"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("results") }, "Results & Announcements"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("register") }, "Event Registration"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("admin") }, "Admin Portal"), /* @__PURE__ */ react_default.createElement("div", { style: { marginTop: "1.25rem" } }, /* @__PURE__ */ react_default.createElement(
     animated_button_default,
     {
       className: "btn-animated-navy",
@@ -58089,7 +58094,7 @@ function GallerySection() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedImage, selectedIndex, filteredImages]);
-  return /* @__PURE__ */ react_default.createElement("section", { className: "section-wrapper gallery-section", id: "gallery-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "section-header-editorial" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow eyebrow-cultural" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "CAMPUS & EVENT ARCHIVES \u2022 03"), /* @__PURE__ */ react_default.createElement("h2", { className: "heading-section" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.1 }, "COLORIDO GALLERY")), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-section-sub" }, "Memories forged in competition and celebrated on stage.")), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-header-meta" }, /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-outline" }, "3D REVOLVING EXHIBIT"), /* @__PURE__ */ react_default.createElement("span", { className: "gallery-count-lbl" }, filteredImages.length, " High-Resolution Captures"))), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-controls-bar" }, /* @__PURE__ */ react_default.createElement("div", { className: "gallery-filter-chips" }, /* @__PURE__ */ react_default.createElement(
+  return /* @__PURE__ */ react_default.createElement("section", { className: "section-wrapper gallery-section", id: "gallery-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "section-header-editorial" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow eyebrow-cultural" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "CAMPUS & EVENT ARCHIVES \u2022 03"), /* @__PURE__ */ react_default.createElement("h2", { className: "heading-section" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.1 }, "COLORIDO GALLERY")), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-section-sub" }, "Memories forged in competition and celebrated on stage."))), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-controls-bar" }, /* @__PURE__ */ react_default.createElement("div", { className: "gallery-filter-chips" }, /* @__PURE__ */ react_default.createElement(
     "button",
     {
       className: `filter-chip ${activeFilter === "all" ? "active" : ""}`,
@@ -87807,6 +87812,130 @@ function adminLogout() {
   localStorage.removeItem("rvrjcce_admin_token");
   localStorage.removeItem("rvrjcce_admin_user");
 }
+async function fetchAnnouncements(params = {}) {
+  try {
+    const query = new URLSearchParams();
+    if (params.category && params.category !== "all") query.append("category", params.category);
+    if (params.priority && params.priority !== "all") query.append("priority", params.priority);
+    if (params.pinned !== void 0 && params.pinned !== "all") query.append("pinned", params.pinned);
+    const q2 = query.toString();
+    const data = await safeFetchJson(`${BASE_URL}/api/announcements${q2 ? "?" + q2 : ""}`);
+    return data && data.announcements || [];
+  } catch (err2) {
+    console.warn("API fetchAnnouncements error:", err2);
+    return [];
+  }
+}
+async function createAnnouncement(payload) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/announcements`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch (err2) {
+    console.error("API createAnnouncement error:", err2);
+    throw err2;
+  }
+}
+async function updateAnnouncement(id3, payload) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/announcements/${id3}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch (err2) {
+    console.error("API updateAnnouncement error:", err2);
+    throw err2;
+  }
+}
+async function deleteAnnouncement(id3) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/announcements/${id3}`, {
+      method: "DELETE",
+      headers: {
+        ...getAuthHeader()
+      }
+    });
+  } catch (err2) {
+    console.error("API deleteAnnouncement error:", err2);
+    throw err2;
+  }
+}
+async function fetchResults(params = {}) {
+  try {
+    const query = new URLSearchParams();
+    if (params.category && params.category !== "all") query.append("category", params.category);
+    if (params.division && params.division !== "all") query.append("division", params.division);
+    if (params.event && params.event !== "all") query.append("event", params.event);
+    if (params.search) query.append("search", params.search);
+    const q2 = query.toString();
+    const data = await safeFetchJson(`${BASE_URL}/api/results${q2 ? "?" + q2 : ""}`);
+    return data && data.results || [];
+  } catch (err2) {
+    console.warn("API fetchResults error:", err2);
+    return [];
+  }
+}
+async function createResult(payload) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/results`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch (err2) {
+    console.error("API createResult error:", err2);
+    throw err2;
+  }
+}
+async function updateResult(id3, payload) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/results/${id3}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch (err2) {
+    console.error("API updateResult error:", err2);
+    throw err2;
+  }
+}
+async function deleteResult(id3) {
+  try {
+    return await safeFetchJson(`${BASE_URL}/api/results/${id3}`, {
+      method: "DELETE",
+      headers: {
+        ...getAuthHeader()
+      }
+    });
+  } catch (err2) {
+    console.error("API deleteResult error:", err2);
+    throw err2;
+  }
+}
+async function fetchFaculty() {
+  try {
+    const data = await safeFetchJson(`${BASE_URL}/api/results/faculty`);
+    return data && data.faculty || [];
+  } catch (err2) {
+    console.warn("API fetchFaculty error:", err2);
+    return [];
+  }
+}
 
 // node_modules/jspdf/dist/jspdf.es.min.js
 init_typeof();
@@ -103999,6 +104128,153 @@ function RegistrationForm({ initialCategory, initialDivision, initialEvent, onSu
   )))))));
 }
 
+// src/utils/pdfCertificateGenerator.js
+function generateCertificatePDF(result) {
+  const doc = new E({
+    orientation: "landscape",
+    unit: "mm",
+    format: "a4"
+  });
+  const pageWidth = 297;
+  const pageHeight = 210;
+  doc.setFillColor(254, 253, 250);
+  doc.rect(0, 0, pageWidth, pageHeight, "F");
+  doc.setDrawColor(14, 34, 61);
+  doc.setLineWidth(1.8);
+  doc.rect(8, 8, pageWidth - 16, pageHeight - 16, "S");
+  doc.setDrawColor(189, 138, 48);
+  doc.setLineWidth(0.7);
+  doc.rect(12, 12, pageWidth - 24, pageHeight - 24, "S");
+  const drawCornerFlourish = (x3, y3, dx, dy) => {
+    doc.setDrawColor(158, 71, 42);
+    doc.setLineWidth(0.5);
+    doc.line(x3, y3, x3 + dx * 12, y3);
+    doc.line(x3, y3, x3, y3 + dy * 12);
+    doc.circle(x3 + dx * 3, y3 + dy * 3, 1, "FD");
+  };
+  drawCornerFlourish(14, 14, 1, 1);
+  drawCornerFlourish(pageWidth - 14, 14, -1, 1);
+  drawCornerFlourish(14, pageHeight - 14, 1, -1);
+  drawCornerFlourish(pageWidth - 14, pageHeight - 14, -1, -1);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(16);
+  doc.setTextColor(14, 34, 61);
+  doc.text("R.V.R. & J.C. COLLEGE OF ENGINEERING", pageWidth / 2, 26, { align: "center" });
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(8.5);
+  doc.setTextColor(90, 95, 105);
+  doc.text('(AUTONOMOUS) \u2022 ACCREDITED BY NAAC WITH "A+" GRADE \u2022 AFFILIATED TO ACHARYA NAGARJUNA UNIVERSITY', pageWidth / 2, 31.5, { align: "center" });
+  doc.text("Chandramoulipuram, Chowdavaram, Guntur, Andhra Pradesh - 522019", pageWidth / 2, 36, { align: "center" });
+  doc.setFillColor(158, 71, 42);
+  doc.rect(pageWidth / 2 - 80, 41, 160, 7.5, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(255, 255, 255);
+  doc.text("40TH INTER-COLLEGIATE SPORTS & CULTURAL MEET \u2022 COLORIDO 2K26", pageWidth / 2, 46, { align: "center" });
+  doc.setFont("times", "bold");
+  doc.setFontSize(26);
+  doc.setTextColor(14, 34, 61);
+  doc.text("Certificate of Merit & Excellence", pageWidth / 2, 63, { align: "center" });
+  doc.setDrawColor(189, 138, 48);
+  doc.setLineWidth(0.6);
+  doc.line(pageWidth / 2 - 50, 68, pageWidth / 2 + 50, 68);
+  doc.setFillColor(189, 138, 48);
+  doc.circle(pageWidth / 2, 68, 1.2, "F");
+  doc.setFont("times", "italic");
+  doc.setFontSize(12.5);
+  doc.setTextColor(60, 65, 75);
+  doc.text("This is to proudly certify that", pageWidth / 2, 78, { align: "center" });
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor(158, 71, 42);
+  const winnerName = result.participantName || result.name || "Participant";
+  doc.text(winnerName.toUpperCase(), pageWidth / 2, 87, { align: "center" });
+  const nameWidth = doc.getTextWidth(winnerName.toUpperCase());
+  doc.setDrawColor(158, 71, 42);
+  doc.setLineWidth(0.4);
+  doc.line(pageWidth / 2 - nameWidth / 2 - 4, 89, pageWidth / 2 + nameWidth / 2 + 4, 89);
+  doc.setFont("times", "normal");
+  doc.setFontSize(12);
+  doc.setTextColor(40, 45, 55);
+  const collegeText = `representing ${result.college || "R.V.R. & J.C. College of Engineering"}${result.teamName ? ` (${result.teamName})` : ""}`;
+  doc.text(collegeText, pageWidth / 2, 97, { align: "center" });
+  doc.setFont("times", "normal");
+  doc.setFontSize(12);
+  doc.text("has demonstrated exemplary skill, sportsmanship, and distinction by securing", pageWidth / 2, 105, { align: "center" });
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(16);
+  doc.setTextColor(14, 34, 61);
+  const positionText = (result.position || "1st Place - Winner").toUpperCase();
+  doc.text(positionText, pageWidth / 2, 115, { align: "center" });
+  doc.setFont("times", "bold");
+  doc.setFontSize(13);
+  doc.setTextColor(158, 71, 42);
+  const eventDetails = `in ${result.event || "Tournament Championship"} (${result.division || "All Divisions"})`;
+  doc.text(eventDetails, pageWidth / 2, 122, { align: "center" });
+  if (result.scoreOrRound) {
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9.5);
+    doc.setTextColor(90, 95, 105);
+    doc.text(`Official Match Record: ${result.scoreOrRound}`, pageWidth / 2, 128, { align: "center" });
+  }
+  if (Array.isArray(result.teammates) && result.teammates.length > 0) {
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(80, 85, 95);
+    const squad = `Winning Squad: ${result.teammates.join(" \u2022 ")}`;
+    doc.text(squad, pageWidth / 2, 134, { align: "center", maxWidth: 220 });
+  }
+  doc.setFont("courier", "bold");
+  doc.setFontSize(8.5);
+  doc.setTextColor(100, 105, 115);
+  doc.text(`Certificate ID: ${result.certificateId || "CERT-CD26-OFFICIAL"}`, 24, 156);
+  doc.text(`Conferred on: ${result.dateAnnounced || "February 25, 2026"}`, 24, 161);
+  doc.text(`Venue: RVRJCCE Campus, Guntur`, 24, 166);
+  doc.setFillColor(250, 242, 237);
+  doc.setDrawColor(189, 138, 48);
+  doc.setLineWidth(0.8);
+  doc.circle(pageWidth / 2, 158, 14, "FD");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(6.5);
+  doc.setTextColor(158, 71, 42);
+  doc.text("OFFICIAL VERIFIED", pageWidth / 2, 155.5, { align: "center" });
+  doc.text("\u2605 COLORIDO 2K26 \u2605", pageWidth / 2, 159.5, { align: "center" });
+  doc.text("MERIT LAUREL", pageWidth / 2, 163.5, { align: "center" });
+  const sigY = 178;
+  doc.setDrawColor(120, 125, 135);
+  doc.setLineWidth(0.3);
+  doc.line(30, sigY, 90, sigY);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.5);
+  doc.setTextColor(14, 34, 61);
+  doc.text("Dr. P. Gopi Krishna / Dr. Ch. Suneetha", 60, sigY + 5, { align: "center" });
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(7.5);
+  doc.setTextColor(90, 95, 105);
+  doc.text("Tournament & Cultural Directors", 60, sigY + 9, { align: "center" });
+  doc.line(118, sigY, 178, sigY);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.5);
+  doc.setTextColor(14, 34, 61);
+  doc.text("Dr. G. Kishore Babu", 148, sigY + 5, { align: "center" });
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(7.5);
+  doc.setTextColor(90, 95, 105);
+  doc.text("Dean of Student Affairs & Convener", 148, sigY + 9, { align: "center" });
+  doc.line(206, sigY, 266, sigY);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.5);
+  doc.setTextColor(14, 34, 61);
+  doc.text("Dr. K. Ravindra", 236, sigY + 5, { align: "center" });
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(7.5);
+  doc.setTextColor(90, 95, 105);
+  doc.text("Principal & Chief Patron", 236, sigY + 9, { align: "center" });
+  const cleanId = (result.certificateId || "CERT-CD26").replace(/[^a-zA-Z0-9-]/g, "_");
+  const filename = `Certificate_COLORIDO2K26_${cleanId}.pdf`;
+  doc.save(filename);
+}
+
 // src/components/AdminDashboard.jsx
 function AdminDashboard({ onNavigate }) {
   const [isAuthenticated, setIsAuthenticated] = (0, import_react.useState)(false);
@@ -104084,14 +104360,236 @@ function AdminDashboard({ onNavigate }) {
       setLoading(false);
     }
   };
+  const [adminTab, setAdminTab] = (0, import_react.useState)("registrations");
+  const [announcementsList, setAnnouncementsList] = (0, import_react.useState)([]);
+  const [announcementsLoading, setAnnouncementsLoading] = (0, import_react.useState)(false);
+  const [announcementCategoryFilter, setAnnouncementCategoryFilter] = (0, import_react.useState)("all");
+  const [announcementSearch, setAnnouncementSearch] = (0, import_react.useState)("");
+  const [showAnnouncementModal, setShowAnnouncementModal] = (0, import_react.useState)(false);
+  const [editingAnnouncement, setEditingAnnouncement] = (0, import_react.useState)(null);
+  const [announcementFormData, setAnnouncementFormData] = (0, import_react.useState)({
+    title: "",
+    category: "General",
+    priority: "Normal",
+    pinned: false,
+    date: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+    content: "",
+    imageUrl: "",
+    venue: "",
+    instructions: "",
+    coordinator: ""
+  });
+  const [resultsList, setResultsList] = (0, import_react.useState)([]);
+  const [resultsLoading, setResultsLoading] = (0, import_react.useState)(false);
+  const [resultCategoryFilter, setResultCategoryFilter] = (0, import_react.useState)("all");
+  const [resultSearch, setResultSearch] = (0, import_react.useState)("");
+  const [showResultModal, setShowResultModal] = (0, import_react.useState)(false);
+  const [editingResult, setEditingResult] = (0, import_react.useState)(null);
+  const [resultFormData, setResultFormData] = (0, import_react.useState)({
+    event: "Basketball",
+    category: "Sports",
+    division: "Boys",
+    position: "Winner",
+    winnerType: "Team",
+    teamName: "",
+    participantName: "",
+    teammates: "",
+    college: "",
+    department: "",
+    scoreOrRound: "",
+    dateAnnounced: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+    certificateId: "",
+    status: "Official"
+  });
+  const [deleteCustomCandidate, setDeleteCustomCandidate] = (0, import_react.useState)(null);
+  const loadAnnouncements = async () => {
+    setAnnouncementsLoading(true);
+    try {
+      const data = await fetchAnnouncements();
+      setAnnouncementsList(data || []);
+    } catch (err2) {
+      console.error("Failed to load announcements in admin:", err2);
+    } finally {
+      setAnnouncementsLoading(false);
+    }
+  };
+  const loadResults = async () => {
+    setResultsLoading(true);
+    try {
+      const data = await fetchResults();
+      setResultsList(data || []);
+    } catch (err2) {
+      console.error("Failed to load results in admin:", err2);
+    } finally {
+      setResultsLoading(false);
+    }
+  };
   (0, import_react.useEffect)(() => {
     if (isAuthenticated) {
       loadData();
+      loadAnnouncements();
+      loadResults();
     }
   }, [isAuthenticated, categoryFilter, divisionFilter, eventFilter, attendanceFilter]);
   const showNotification = (msg, type = "info") => {
     setNotification({ msg, type });
     setTimeout(() => setNotification(null), 4e3);
+  };
+  const handleOpenCreateAnnouncement = () => {
+    setEditingAnnouncement(null);
+    setAnnouncementFormData({
+      title: "",
+      category: "General",
+      priority: "Normal",
+      pinned: false,
+      date: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+      content: "",
+      imageUrl: "",
+      venue: "",
+      instructions: "",
+      coordinator: ""
+    });
+    setShowAnnouncementModal(true);
+  };
+  const handleOpenEditAnnouncement = (ann) => {
+    setEditingAnnouncement(ann);
+    setAnnouncementFormData({
+      title: ann.title || "",
+      category: ann.category || "General",
+      priority: ann.priority || "Normal",
+      pinned: Boolean(ann.pinned),
+      date: ann.date ? ann.date.split("T")[0] : (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+      content: ann.content || "",
+      imageUrl: ann.imageUrl || "",
+      venue: ann.venue || "",
+      instructions: Array.isArray(ann.instructions) ? ann.instructions.join("\n") : ann.instructions || "",
+      coordinator: ann.coordinator || ""
+    });
+    setShowAnnouncementModal(true);
+  };
+  const handleSaveAnnouncement = async (e2) => {
+    if (e2 && e2.preventDefault) e2.preventDefault();
+    if (!announcementFormData.title.trim()) {
+      showNotification("Announcement title is required.", "error");
+      return;
+    }
+    if (!announcementFormData.content.trim()) {
+      showNotification("Announcement content is required.", "error");
+      return;
+    }
+    const payload = {
+      ...announcementFormData,
+      instructions: typeof announcementFormData.instructions === "string" ? announcementFormData.instructions.split("\n").map((s3) => s3.trim()).filter(Boolean) : []
+    };
+    try {
+      if (editingAnnouncement) {
+        await updateAnnouncement(editingAnnouncement._id || editingAnnouncement.id, payload);
+        showNotification("Announcement updated successfully!", "success");
+      } else {
+        await createAnnouncement(payload);
+        showNotification("New announcement published successfully!", "success");
+      }
+      setShowAnnouncementModal(false);
+      loadAnnouncements();
+    } catch (err2) {
+      showNotification(`Failed to save announcement: ${err2.message}`, "error");
+    }
+  };
+  const handleTogglePinAnnouncement = async (ann) => {
+    try {
+      const newPinned = !Boolean(ann.pinned);
+      await updateAnnouncement(ann._id || ann.id, { pinned: newPinned });
+      showNotification(`Announcement ${newPinned ? "pinned to top \u{1F4CC}" : "unpinned"}`, "success");
+      loadAnnouncements();
+    } catch (err2) {
+      showNotification(`Pin toggle failed: ${err2.message}`, "error");
+    }
+  };
+  const handleOpenCreateResult = () => {
+    setEditingResult(null);
+    setResultFormData({
+      event: "Basketball",
+      category: "Sports",
+      division: "Boys",
+      position: "Winner",
+      winnerType: "Team",
+      teamName: "",
+      participantName: "",
+      teammates: "",
+      college: "",
+      department: "",
+      scoreOrRound: "",
+      dateAnnounced: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+      certificateId: `RVR-CLR26-${Math.floor(1e4 + Math.random() * 9e4)}`,
+      status: "Official"
+    });
+    setShowResultModal(true);
+  };
+  const handleOpenEditResult = (res) => {
+    setEditingResult(res);
+    setResultFormData({
+      event: res.event || "Basketball",
+      category: res.category || "Sports",
+      division: res.division || "Boys",
+      position: res.position || "Winner",
+      winnerType: res.winnerType || "Team",
+      teamName: res.teamName || "",
+      participantName: res.participantName || "",
+      teammates: Array.isArray(res.teammates) ? res.teammates.join(", ") : res.teammates || "",
+      college: res.college || "",
+      department: res.department || "",
+      scoreOrRound: res.scoreOrRound || "",
+      dateAnnounced: res.dateAnnounced ? res.dateAnnounced.split("T")[0] : (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+      certificateId: res.certificateId || "",
+      status: res.status || "Official"
+    });
+    setShowResultModal(true);
+  };
+  const handleSaveResult = async (e2) => {
+    if (e2 && e2.preventDefault) e2.preventDefault();
+    if (!resultFormData.participantName.trim() && !resultFormData.teamName.trim()) {
+      showNotification("Participant or Team Name is required.", "error");
+      return;
+    }
+    if (!resultFormData.college.trim()) {
+      showNotification("College Name is required.", "error");
+      return;
+    }
+    const payload = {
+      ...resultFormData,
+      teammates: typeof resultFormData.teammates === "string" ? resultFormData.teammates.split(",").map((s3) => s3.trim()).filter(Boolean) : []
+    };
+    try {
+      if (editingResult) {
+        await updateResult(editingResult._id || editingResult.id, payload);
+        showNotification("Tournament result updated successfully!", "success");
+      } else {
+        await createResult(payload);
+        showNotification("Tournament laurel and certificate published!", "success");
+      }
+      setShowResultModal(false);
+      loadResults();
+    } catch (err2) {
+      showNotification(`Failed to save result: ${err2.message}`, "error");
+    }
+  };
+  const handleDeleteCustomItem = async () => {
+    if (!deleteCustomCandidate) return;
+    const { type, item: item2 } = deleteCustomCandidate;
+    try {
+      if (type === "announcement") {
+        await deleteAnnouncement(item2._id || item2.id);
+        showNotification("Announcement deleted successfully.", "success");
+        loadAnnouncements();
+      } else if (type === "result") {
+        await deleteResult(item2._id || item2.id);
+        showNotification("Tournament result removed.", "success");
+        loadResults();
+      }
+      setDeleteCustomCandidate(null);
+    } catch (err2) {
+      showNotification(`Failed to delete item: ${err2.message}`, "error");
+    }
   };
   const handleLoginSubmit = async (e2) => {
     if (e2 && e2.preventDefault) e2.preventDefault();
@@ -104331,7 +104829,34 @@ function AdminDashboard({ onNavigate }) {
       style: { background: "none", border: "none", cursor: "pointer", color: "inherit" }
     },
     "\u2715"
-  )), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metrics-grid", style: { gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))" } }, /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid var(--text-primary)" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number" }, stats.total), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Total Registrations")), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid #059669" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number", style: { color: "#059669" } }, stats.attended, /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.875rem", fontWeight: 500, color: "var(--text-secondary)", marginLeft: "0.25rem" } }, "(", stats.total > 0 ? Math.round(stats.attended / stats.total * 100) : 0, "%)")), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Attended Check-ins")), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid #D97706" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number", style: { color: "#D97706" } }, stats.pendingAttendance), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Pending Arrival")), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid var(--accent-institution)" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number", style: { color: "var(--accent-institution)" } }, stats.sports), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Sports Entries")), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid var(--accent-cultural)" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number", style: { color: "var(--accent-cultural)" } }, stats.cultural), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Cultural Entries")), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid #4F46E5" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number", style: { color: "#4F46E5" } }, stats.colleges), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Participating Colleges"))), /* @__PURE__ */ react_default.createElement("div", { style: {
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "admin-primary-tabs" }, /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `admin-nav-tab ${adminTab === "registrations" ? "active" : ""}`,
+      onClick: () => setAdminTab("registrations")
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "9", cy: "7", r: "4" }), /* @__PURE__ */ react_default.createElement("path", { d: "M23 21v-2a4 4 0 0 0-3-3.87" }), /* @__PURE__ */ react_default.createElement("path", { d: "M16 3.13a4 4 0 0 1 0 7.75" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Registrations & Attendance"),
+    /* @__PURE__ */ react_default.createElement("span", { className: "admin-badge" }, registrations.length)
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `admin-nav-tab ${adminTab === "announcements" ? "active" : ""}`,
+      onClick: () => setAdminTab("announcements")
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" }), /* @__PURE__ */ react_default.createElement("path", { d: "M13.73 21a2 2 0 0 1-3.46 0" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Announcements Manager"),
+    /* @__PURE__ */ react_default.createElement("span", { className: "admin-badge" }, announcementsList.length)
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `admin-nav-tab ${adminTab === "results" ? "active" : ""}`,
+      onClick: () => setAdminTab("results")
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "8", r: "7" }), /* @__PURE__ */ react_default.createElement("polyline", { points: "8.21 13.89 7 23 12 20 17 23 15.79 13.88" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Results & Certificate Publisher"),
+    /* @__PURE__ */ react_default.createElement("span", { className: "admin-badge" }, resultsList.length)
+  )), adminTab === "registrations" && /* @__PURE__ */ react_default.createElement(react_default.Fragment, null, /* @__PURE__ */ react_default.createElement("div", { className: "admin-metrics-grid", style: { gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))" } }, /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid var(--text-primary)" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number" }, stats.total), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Total Registrations")), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid #059669" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number", style: { color: "#059669" } }, stats.attended, /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.875rem", fontWeight: 500, color: "var(--text-secondary)", marginLeft: "0.25rem" } }, "(", stats.total > 0 ? Math.round(stats.attended / stats.total * 100) : 0, "%)")), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Attended Check-ins")), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid #D97706" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number", style: { color: "#D97706" } }, stats.pendingAttendance), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Pending Arrival")), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid var(--accent-institution)" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number", style: { color: "var(--accent-institution)" } }, stats.sports), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Sports Entries")), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid var(--accent-cultural)" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number", style: { color: "var(--accent-cultural)" } }, stats.cultural), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Cultural Entries")), /* @__PURE__ */ react_default.createElement("div", { className: "admin-metric-card", style: { borderTop: "3px solid #4F46E5" } }, /* @__PURE__ */ react_default.createElement("span", { className: "metric-number", style: { color: "#4F46E5" } }, stats.colleges), /* @__PURE__ */ react_default.createElement("span", { className: "metric-label" }, "Participating Colleges"))), /* @__PURE__ */ react_default.createElement("div", { style: {
     display: "flex",
     gap: "0.5rem",
     borderBottom: "1px solid var(--border-light)",
@@ -104511,7 +105036,194 @@ function AdminDashboard({ onNavigate }) {
       onClick: () => setCurrentPage((prev) => Math.min(prev + 1, totalPages))
     },
     "Next"
-  )))), showOnSpotModal && /* @__PURE__ */ react_default.createElement("div", { className: "modal-backdrop", onClick: () => setShowOnSpotModal(false) }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-card", style: { maxWidth: "680px" }, onClick: (e2) => e2.stopPropagation() }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-header" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.75rem", fontWeight: 700, color: "var(--accent-cultural)", textTransform: "uppercase" } }, "Desk Registration Desk"), /* @__PURE__ */ react_default.createElement("h3", { className: "heading-subsection" }, "On-Spot Participant Registration")), /* @__PURE__ */ react_default.createElement("button", { className: "icon-btn", onClick: () => setShowOnSpotModal(false) }, "\u2715")), /* @__PURE__ */ react_default.createElement("div", { className: "modal-body" }, onSpotSuccess ? /* @__PURE__ */ react_default.createElement("div", { style: { textAlign: "center", padding: "1rem 0" } }, /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "2.5rem", marginBottom: "0.5rem" } }, "\u{1F389}"), /* @__PURE__ */ react_default.createElement("h4", { style: { fontSize: "1.25rem", marginBottom: "0.5rem" } }, "On-Spot Registration Complete!"), /* @__PURE__ */ react_default.createElement("div", { style: {
+  ))))), adminTab === "announcements" && /* @__PURE__ */ react_default.createElement("div", { className: "admin-announcements-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "admin-sub-header" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("h2", { className: "heading-subsection", style: { marginBottom: "0.25rem" } }, "Institutional Announcements & Bulletins"), /* @__PURE__ */ react_default.createElement("p", { className: "text-body", style: { fontSize: "0.875rem" } }, "Create and manage official notices, schedule changes, and venue allocations visible on the public portal.")), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.75rem", alignItems: "center" } }, /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: "btn btn-primary btn-sm",
+      onClick: handleOpenCreateAnnouncement,
+      style: { display: "inline-flex", alignItems: "center", gap: "0.4rem" }
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "5", x2: "12", y2: "19" }), /* @__PURE__ */ react_default.createElement("line", { x1: "5", y1: "12", x2: "19", y2: "12" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Post Announcement")
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: "btn btn-secondary btn-sm",
+      onClick: () => onNavigate("results"),
+      title: "View Public Announcements Page"
+    },
+    "View Public Page \u2197"
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "admin-controls-card", style: { marginBottom: "1.5rem" } }, /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" } }, /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" } }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label", style: { margin: 0, fontSize: "0.8125rem" } }, "Category:"), /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      className: "form-select form-select-sm",
+      value: announcementCategoryFilter,
+      onChange: (e2) => setAnnouncementCategoryFilter(e2.target.value),
+      style: { minWidth: "150px" }
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "all" }, "All Categories"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "General" }, "General"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Sports" }, "Sports"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Cultural" }, "Cultural"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Literary" }, "Literary"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Schedule" }, "Schedule"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Venue" }, "Venue"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Emergency" }, "Emergency")
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "search-input-wrapper", style: { minWidth: "280px" } }, /* @__PURE__ */ react_default.createElement("svg", { className: "search-icon", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ react_default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" })), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input form-input-sm",
+      placeholder: "Search announcements...",
+      value: announcementSearch,
+      onChange: (e2) => setAnnouncementSearch(e2.target.value)
+    }
+  )))), announcementsLoading ? /* @__PURE__ */ react_default.createElement("div", { style: { textAlign: "center", padding: "3rem 0", color: "var(--text-muted)" } }, "Loading announcements...") : /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "1rem" } }, announcementsList.filter((a3) => {
+    if (announcementCategoryFilter !== "all" && a3.category !== announcementCategoryFilter) return false;
+    if (announcementSearch) {
+      const s3 = announcementSearch.toLowerCase();
+      const match = a3.title && a3.title.toLowerCase().includes(s3) || a3.content && a3.content.toLowerCase().includes(s3) || a3.venue && a3.venue.toLowerCase().includes(s3) || a3.coordinator && a3.coordinator.toLowerCase().includes(s3);
+      if (!match) return false;
+    }
+    return true;
+  }).map((a3) => /* @__PURE__ */ react_default.createElement(
+    "div",
+    {
+      key: a3._id || a3.id,
+      style: {
+        background: "#FFFFFF",
+        border: "1px solid var(--border-light)",
+        borderLeft: a3.pinned ? "4px solid var(--accent-cultural)" : "1px solid var(--border-light)",
+        borderRadius: "10px",
+        padding: "1.25rem 1.5rem",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.75rem"
+      }
+    },
+    /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "0.5rem" } }, /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" } }, a3.pinned && /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.72rem", fontWeight: 700, background: "#FEF3C7", color: "#92400E", padding: "0.15rem 0.5rem", borderRadius: "4px" } }, "\u{1F4CC} Pinned"), /* @__PURE__ */ react_default.createElement("span", { style: {
+      fontSize: "0.72rem",
+      fontWeight: 700,
+      padding: "0.15rem 0.5rem",
+      borderRadius: "4px",
+      background: a3.priority === "Urgent" ? "#FEE2E2" : a3.priority === "High" ? "#FFEDD5" : "#E0E7FF",
+      color: a3.priority === "Urgent" ? "#991B1B" : a3.priority === "High" ? "#C2410C" : "#3730A3"
+    } }, a3.priority || "Normal", " Priority"), /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.72rem", fontWeight: 600, background: "#F3F4F6", color: "#374151", padding: "0.15rem 0.5rem", borderRadius: "4px" } }, a3.category || "General"), /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.78rem", color: "var(--text-muted)" } }, a3.date ? new Date(a3.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "")), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.4rem", alignItems: "center" } }, /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        className: "btn btn-secondary btn-sm",
+        style: { padding: "0.25rem 0.6rem", fontSize: "0.75rem" },
+        onClick: () => handleTogglePinAnnouncement(a3),
+        title: a3.pinned ? "Unpin Announcement" : "Pin to Top"
+      },
+      a3.pinned ? "Unpin" : "\u{1F4CC} Pin"
+    ), /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        className: "btn btn-secondary btn-sm",
+        style: { padding: "0.25rem 0.6rem", fontSize: "0.75rem" },
+        onClick: () => handleOpenEditAnnouncement(a3)
+      },
+      "Edit"
+    ), /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        className: "btn btn-sm",
+        style: { padding: "0.25rem 0.6rem", fontSize: "0.75rem", background: "#FEE2E2", color: "#991B1B", border: "1px solid #FECACA" },
+        onClick: () => setDeleteCustomCandidate({ type: "announcement", item: a3 })
+      },
+      "Delete"
+    ))),
+    /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("h4", { style: { fontSize: "1.125rem", fontWeight: 700, color: "var(--text-primary)", marginBottom: "0.35rem" } }, a3.title), /* @__PURE__ */ react_default.createElement("p", { style: { fontSize: "0.875rem", color: "#4B5563", lineHeight: 1.5, whiteSpace: "pre-line" } }, a3.content)),
+    /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "1.25rem", flexWrap: "wrap", fontSize: "0.78125rem", color: "var(--text-muted)", borderTop: "1px solid var(--border-light)", paddingTop: "0.6rem" } }, a3.venue && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F4CD} ", /* @__PURE__ */ react_default.createElement("strong", null, "Venue:"), " ", a3.venue), a3.coordinator && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F464} ", /* @__PURE__ */ react_default.createElement("strong", null, "Coordinator:"), " ", a3.coordinator), a3.imageUrl && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F5BC}\uFE0F ", /* @__PURE__ */ react_default.createElement("strong", null, "Image Attached")), Array.isArray(a3.instructions) && a3.instructions.length > 0 && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F4CB} ", /* @__PURE__ */ react_default.createElement("strong", null, a3.instructions.length, " Guidelines")))
+  )), announcementsList.length === 0 && /* @__PURE__ */ react_default.createElement("div", { style: { textAlign: "center", padding: "3rem 0", background: "#FFFFFF", borderRadius: "10px", border: "1px dashed var(--border-light)" } }, /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "2rem", marginBottom: "0.5rem" } }, "\u{1F4E2}"), /* @__PURE__ */ react_default.createElement("div", { style: { fontWeight: 600, color: "var(--text-primary)" } }, "No Announcements Found"), /* @__PURE__ */ react_default.createElement("p", { style: { fontSize: "0.875rem", color: "var(--text-secondary)", marginTop: "0.25rem" } }, 'Click "Post Announcement" to create the first bulletin.')))), adminTab === "results" && /* @__PURE__ */ react_default.createElement("div", { className: "admin-results-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "admin-sub-header" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("h2", { className: "heading-subsection", style: { marginBottom: "0.25rem" } }, "Tournament Laurels & Certificate Publisher"), /* @__PURE__ */ react_default.createElement("p", { className: "text-body", style: { fontSize: "0.875rem" } }, "Authorize official winners, runners-up, rosters, and enable instant PDF merit certificates.")), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.75rem", alignItems: "center" } }, /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: "btn btn-primary btn-sm",
+      onClick: handleOpenCreateResult,
+      style: { display: "inline-flex", alignItems: "center", gap: "0.4rem" }
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "5", x2: "12", y2: "19" }), /* @__PURE__ */ react_default.createElement("line", { x1: "5", y1: "12", x2: "19", y2: "12" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Publish Result")
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: "btn btn-secondary btn-sm",
+      onClick: () => onNavigate("results"),
+      title: "View Public Results Page"
+    },
+    "View Public Page \u2197"
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "admin-controls-card", style: { marginBottom: "1.5rem" } }, /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" } }, /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" } }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label", style: { margin: 0, fontSize: "0.8125rem" } }, "Category:"), /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      className: "form-select form-select-sm",
+      value: resultCategoryFilter,
+      onChange: (e2) => setResultCategoryFilter(e2.target.value),
+      style: { minWidth: "150px" }
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "all" }, "All Disciplines"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Sports" }, "Sports"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Cultural" }, "Cultural"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Literary" }, "Literary")
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "search-input-wrapper", style: { minWidth: "280px" } }, /* @__PURE__ */ react_default.createElement("svg", { className: "search-icon", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ react_default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" })), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input form-input-sm",
+      placeholder: "Search winner, team, college, or cert ID...",
+      value: resultSearch,
+      onChange: (e2) => setResultSearch(e2.target.value)
+    }
+  )))), resultsLoading ? /* @__PURE__ */ react_default.createElement("div", { style: { textAlign: "center", padding: "3rem 0", color: "var(--text-muted)" } }, "Loading tournament laurels...") : /* @__PURE__ */ react_default.createElement("div", { className: "admin-table-card", style: { overflowX: "auto" } }, /* @__PURE__ */ react_default.createElement("table", { className: "admin-table" }, /* @__PURE__ */ react_default.createElement("thead", null, /* @__PURE__ */ react_default.createElement("tr", null, /* @__PURE__ */ react_default.createElement("th", null, "Placement"), /* @__PURE__ */ react_default.createElement("th", null, "Event & Category"), /* @__PURE__ */ react_default.createElement("th", null, "Winner / Team"), /* @__PURE__ */ react_default.createElement("th", null, "Institution"), /* @__PURE__ */ react_default.createElement("th", null, "Score / Details"), /* @__PURE__ */ react_default.createElement("th", null, "Certificate ID"), /* @__PURE__ */ react_default.createElement("th", { style: { textAlign: "right" } }, "Actions"))), /* @__PURE__ */ react_default.createElement("tbody", null, resultsList.filter((r3) => {
+    if (resultCategoryFilter !== "all" && r3.category !== resultCategoryFilter) return false;
+    if (resultSearch) {
+      const s3 = resultSearch.toLowerCase();
+      const match = r3.participantName && r3.participantName.toLowerCase().includes(s3) || r3.teamName && r3.teamName.toLowerCase().includes(s3) || r3.college && r3.college.toLowerCase().includes(s3) || r3.event && r3.event.toLowerCase().includes(s3) || r3.certificateId && r3.certificateId.toLowerCase().includes(s3);
+      if (!match) return false;
+    }
+    return true;
+  }).map((r3) => {
+    const isGold = r3.position === "Winner";
+    const isSilver = r3.position === "Runner-Up";
+    const isBronze = r3.position === "Second Runner-Up";
+    return /* @__PURE__ */ react_default.createElement("tr", { key: r3._id || r3.id }, /* @__PURE__ */ react_default.createElement("td", null, /* @__PURE__ */ react_default.createElement("span", { style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "0.35rem",
+      padding: "0.2rem 0.6rem",
+      borderRadius: "4px",
+      fontSize: "0.78125rem",
+      fontWeight: 700,
+      background: isGold ? "#FEF3C7" : isSilver ? "#F1F5F9" : "#FFEDD5",
+      color: isGold ? "#92400E" : isSilver ? "#334155" : "#9A3412"
+    } }, isGold ? "\u{1F947} Winner" : isSilver ? "\u{1F948} Runner-Up" : isBronze ? "\u{1F949} 2nd Runner-Up" : "\u{1F396}\uFE0F " + r3.position)), /* @__PURE__ */ react_default.createElement("td", null, /* @__PURE__ */ react_default.createElement("div", { style: { fontWeight: 600, color: "var(--text-primary)" } }, r3.event), /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.75rem", color: "var(--text-muted)" } }, r3.category, " \u2022 ", r3.division)), /* @__PURE__ */ react_default.createElement("td", null, /* @__PURE__ */ react_default.createElement("div", { style: { fontWeight: 600, color: "var(--text-primary)" } }, r3.participantName), r3.teamName && /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.78125rem", color: "var(--accent-cultural)" } }, "Team: ", r3.teamName), Array.isArray(r3.teammates) && r3.teammates.length > 0 && /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.72rem", color: "var(--text-muted)" } }, "+", r3.teammates.length, " teammates")), /* @__PURE__ */ react_default.createElement("td", null, /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.84rem", color: "var(--text-primary)" } }, r3.college), r3.department && /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.75rem", color: "var(--text-muted)" } }, r3.department)), /* @__PURE__ */ react_default.createElement("td", null, /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.84rem", fontWeight: 600, color: "#059669" } }, r3.scoreOrRound || "Official Decision"), /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.72rem", color: "var(--text-muted)" } }, r3.dateAnnounced ? new Date(r3.dateAnnounced).toLocaleDateString() : "")), /* @__PURE__ */ react_default.createElement("td", null, /* @__PURE__ */ react_default.createElement("code", { style: { fontSize: "0.75rem", background: "#F3F4F6", padding: "0.15rem 0.4rem", borderRadius: "4px" } }, r3.certificateId)), /* @__PURE__ */ react_default.createElement("td", { style: { textAlign: "right" } }, /* @__PURE__ */ react_default.createElement("div", { className: "action-buttons", style: { justifyContent: "flex-end", gap: "0.35rem" } }, /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        className: "icon-btn",
+        title: "Download Merit Certificate PDF",
+        onClick: () => generateCertificatePDF(r3),
+        style: { color: "#D97706" }
+      },
+      /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "8", r: "7" }), /* @__PURE__ */ react_default.createElement("polyline", { points: "8.21 13.89 7 23 12 20 17 23 15.79 13.88" }))
+    ), /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        className: "icon-btn",
+        title: "Edit Laurel Record",
+        onClick: () => handleOpenEditResult(r3)
+      },
+      /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" }), /* @__PURE__ */ react_default.createElement("path", { d: "M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" }))
+    ), /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        className: "icon-btn icon-btn-danger",
+        title: "Delete Laurel Record",
+        onClick: () => setDeleteCustomCandidate({ type: "result", item: r3 })
+      },
+      /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("polyline", { points: "3 6 5 6 21 6" }), /* @__PURE__ */ react_default.createElement("path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" }))
+    ))));
+  }))))), showOnSpotModal && /* @__PURE__ */ react_default.createElement("div", { className: "modal-backdrop", onClick: () => setShowOnSpotModal(false) }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-card", style: { maxWidth: "680px" }, onClick: (e2) => e2.stopPropagation() }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-header" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.75rem", fontWeight: 700, color: "var(--accent-cultural)", textTransform: "uppercase" } }, "Desk Registration Desk"), /* @__PURE__ */ react_default.createElement("h3", { className: "heading-subsection" }, "On-Spot Participant Registration")), /* @__PURE__ */ react_default.createElement("button", { className: "icon-btn", onClick: () => setShowOnSpotModal(false) }, "\u2715")), /* @__PURE__ */ react_default.createElement("div", { className: "modal-body" }, onSpotSuccess ? /* @__PURE__ */ react_default.createElement("div", { style: { textAlign: "center", padding: "1rem 0" } }, /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "2.5rem", marginBottom: "0.5rem" } }, "\u{1F389}"), /* @__PURE__ */ react_default.createElement("h4", { style: { fontSize: "1.25rem", marginBottom: "0.5rem" } }, "On-Spot Registration Complete!"), /* @__PURE__ */ react_default.createElement("div", { style: {
     background: "#0B162C",
     color: "#FFF",
     padding: "1rem",
@@ -104761,7 +105473,473 @@ function AdminDashboard({ onNavigate }) {
       onClick: handleDeleteConfirm
     },
     "Confirm Delete"
+  )))), showAnnouncementModal && /* @__PURE__ */ react_default.createElement("div", { className: "modal-backdrop", onClick: () => setShowAnnouncementModal(false) }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-card", style: { maxWidth: "680px" }, onClick: (e2) => e2.stopPropagation() }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-header" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.75rem", fontWeight: 700, color: "var(--accent-cultural)", textTransform: "uppercase" } }, "Institutional Bulletin Publisher"), /* @__PURE__ */ react_default.createElement("h3", { className: "heading-subsection" }, editingAnnouncement ? "Edit Official Announcement" : "Post New Official Announcement")), /* @__PURE__ */ react_default.createElement("button", { className: "icon-btn", onClick: () => setShowAnnouncementModal(false) }, "\u2715")), /* @__PURE__ */ react_default.createElement("form", { onSubmit: handleSaveAnnouncement }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-body", style: { maxHeight: "70vh", overflowY: "auto" } }, /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Announcement Title *"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. Basketball Championship Finals Relocation & Timing",
+      value: announcementFormData.title,
+      onChange: (e2) => setAnnouncementFormData((prev) => ({ ...prev, title: e2.target.value })),
+      required: true
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Category"), /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      className: "form-select",
+      value: announcementFormData.category,
+      onChange: (e2) => setAnnouncementFormData((prev) => ({ ...prev, category: e2.target.value }))
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "General" }, "General Notice"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Sports" }, "Sports"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Cultural" }, "Cultural"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Literary" }, "Literary"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Schedule" }, "Schedule Update"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Venue" }, "Venue Allocation"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Emergency" }, "Urgent / Emergency")
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Priority Level"), /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      className: "form-select",
+      value: announcementFormData.priority,
+      onChange: (e2) => setAnnouncementFormData((prev) => ({ ...prev, priority: e2.target.value }))
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "Normal" }, "Normal"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "High" }, "High"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Urgent" }, "Urgent / Flash")
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "form-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Date"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "date",
+      className: "form-input",
+      value: announcementFormData.date,
+      onChange: (e2) => setAnnouncementFormData((prev) => ({ ...prev, date: e2.target.value }))
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group", style: { display: "flex", alignItems: "center", paddingTop: "1.75rem" } }, /* @__PURE__ */ react_default.createElement("label", { style: { display: "inline-flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.875rem", fontWeight: 600 } }, /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "checkbox",
+      checked: announcementFormData.pinned,
+      onChange: (e2) => setAnnouncementFormData((prev) => ({ ...prev, pinned: e2.target.checked })),
+      style: { width: "18px", height: "18px", accentColor: "var(--accent-cultural)" }
+    }
+  ), /* @__PURE__ */ react_default.createElement("span", null, "Pin to top of public feed \u{1F4CC}")))), /* @__PURE__ */ react_default.createElement("div", { className: "form-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Venue / Location Allocation"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. Main Wooden Indoor Court (Silver Jubilee)",
+      value: announcementFormData.venue,
+      onChange: (e2) => setAnnouncementFormData((prev) => ({ ...prev, venue: e2.target.value }))
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Faculty Coordinator & Contact"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. Dr. P. Sudhakar \u2022 98480 12345",
+      value: announcementFormData.coordinator,
+      onChange: (e2) => setAnnouncementFormData((prev) => ({ ...prev, coordinator: e2.target.value }))
+    }
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Banner / Image URL (Optional)"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. /gallery/campus-center.jpg or external https:// link",
+      value: announcementFormData.imageUrl,
+      onChange: (e2) => setAnnouncementFormData((prev) => ({ ...prev, imageUrl: e2.target.value }))
+    }
+  ), /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "0.25rem" } }, "Tip: You can use local gallery images like ", /* @__PURE__ */ react_default.createElement("code", null, "/gallery/basketball.jpg"), " or ", /* @__PURE__ */ react_default.createElement("code", null, "/gallery/campus-center.jpg"))), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Key Guidelines & Protocols (One per line)"), /* @__PURE__ */ react_default.createElement(
+    "textarea",
+    {
+      className: "form-input",
+      rows: "3",
+      placeholder: "Valid College ID Mandatory\nReport 30 mins before match whistle\nNon-marking court shoes compulsory",
+      value: announcementFormData.instructions,
+      onChange: (e2) => setAnnouncementFormData((prev) => ({ ...prev, instructions: e2.target.value }))
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Announcement Content / Full Bulletin *"), /* @__PURE__ */ react_default.createElement(
+    "textarea",
+    {
+      className: "form-input",
+      rows: "4",
+      placeholder: "Enter the complete detailed notice for student and faculty attendees...",
+      value: announcementFormData.content,
+      onChange: (e2) => setAnnouncementFormData((prev) => ({ ...prev, content: e2.target.value })),
+      required: true
+    }
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "modal-footer" }, /* @__PURE__ */ react_default.createElement("button", { type: "button", className: "btn btn-secondary btn-sm", onClick: () => setShowAnnouncementModal(false) }, "Cancel"), /* @__PURE__ */ react_default.createElement("button", { type: "submit", className: "btn btn-primary btn-sm" }, editingAnnouncement ? "Save & Update Announcement" : "Publish Announcement"))))), showResultModal && /* @__PURE__ */ react_default.createElement("div", { className: "modal-backdrop", onClick: () => setShowResultModal(false) }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-card", style: { maxWidth: "680px" }, onClick: (e2) => e2.stopPropagation() }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-header" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.75rem", fontWeight: 700, color: "var(--accent-cultural)", textTransform: "uppercase" } }, "Merit & Certificate Authority"), /* @__PURE__ */ react_default.createElement("h3", { className: "heading-subsection" }, editingResult ? "Edit Tournament Laurel" : "Publish Tournament Result & Certificate")), /* @__PURE__ */ react_default.createElement("button", { className: "icon-btn", onClick: () => setShowResultModal(false) }, "\u2715")), /* @__PURE__ */ react_default.createElement("form", { onSubmit: handleSaveResult }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-body", style: { maxHeight: "70vh", overflowY: "auto" } }, /* @__PURE__ */ react_default.createElement("div", { className: "form-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Event Name *"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. Basketball, Cricket, Classical Dance",
+      value: resultFormData.event,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, event: e2.target.value })),
+      required: true
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Category"), /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      className: "form-select",
+      value: resultFormData.category,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, category: e2.target.value }))
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "Sports" }, "Sports"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Cultural" }, "Cultural"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Literary" }, "Literary")
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "form-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Division"), /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      className: "form-select",
+      value: resultFormData.division,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, division: e2.target.value }))
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "Boys" }, "Boys Division"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Girls" }, "Girls Division"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Open" }, "Open / Mixed")
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Placement / Award *"), /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      className: "form-select",
+      value: resultFormData.position,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, position: e2.target.value }))
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "Winner" }, "Winner (First Place \u{1F947})"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Runner-Up" }, "Runner-Up (Second Place \u{1F948})"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Second Runner-Up" }, "Second Runner-Up (Third Place \u{1F949})"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Special Mention" }, "Special Mention / Jury Award \u{1F396}\uFE0F")
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "form-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Winner Type"), /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      className: "form-select",
+      value: resultFormData.winnerType,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, winnerType: e2.target.value }))
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "Team" }, "Team Entry"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Individual" }, "Individual Participant")
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Participant / Captain Name *"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. Rohan Varma (Captain)",
+      value: resultFormData.participantName,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, participantName: e2.target.value })),
+      required: true
+    }
+  ))), resultFormData.winnerType === "Team" && /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Team Name"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. VRSEC Titans or RVR Thunder",
+      value: resultFormData.teamName,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, teamName: e2.target.value }))
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Teammates Roster (Comma-separated)"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. Nikhil Reddy, K. Sai Teja, M. Akhil, D. Dinesh",
+      value: resultFormData.teammates,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, teammates: e2.target.value }))
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "College / Institution *"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. Velagapudi Ramakrishna Siddhartha Engineering College",
+      value: resultFormData.college,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, college: e2.target.value })),
+      required: true
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Department"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. Computer Science & Engineering",
+      value: resultFormData.department,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, department: e2.target.value }))
+    }
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "form-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Score / Margin / Round Summary"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. Finals: 68 - 54 or Unanimous 1st Place",
+      value: resultFormData.scoreOrRound,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, scoreOrRound: e2.target.value }))
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Date Announced"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "date",
+      className: "form-input",
+      value: resultFormData.dateAnnounced,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, dateAnnounced: e2.target.value }))
+    }
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "form-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Certificate Unique Verification ID"), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "form-input",
+      placeholder: "e.g. RVR-CLR26-88219",
+      value: resultFormData.certificateId,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, certificateId: e2.target.value }))
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "form-group" }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label" }, "Verification Status"), /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      className: "form-select",
+      value: resultFormData.status,
+      onChange: (e2) => setResultFormData((prev) => ({ ...prev, status: e2.target.value }))
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "Official" }, "Official & Verified"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Provisional" }, "Provisional")
+  )))), /* @__PURE__ */ react_default.createElement("div", { className: "modal-footer" }, /* @__PURE__ */ react_default.createElement("button", { type: "button", className: "btn btn-secondary btn-sm", onClick: () => setShowResultModal(false) }, "Cancel"), /* @__PURE__ */ react_default.createElement("button", { type: "submit", className: "btn btn-primary btn-sm" }, editingResult ? "Save & Update Result" : "Publish Result & Certificate"))))), deleteCustomCandidate && /* @__PURE__ */ react_default.createElement("div", { className: "modal-backdrop", onClick: () => setDeleteCustomCandidate(null) }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-card", onClick: (e2) => e2.stopPropagation() }, /* @__PURE__ */ react_default.createElement("div", { className: "modal-header" }, /* @__PURE__ */ react_default.createElement("h3", { className: "heading-subsection", style: { color: "#C53030" } }, "Confirm Deletion"), /* @__PURE__ */ react_default.createElement("button", { className: "icon-btn", onClick: () => setDeleteCustomCandidate(null) }, "\u2715")), /* @__PURE__ */ react_default.createElement("div", { className: "modal-body" }, /* @__PURE__ */ react_default.createElement("p", { className: "text-body" }, "Are you sure you want to permanently delete this ", deleteCustomCandidate.type === "announcement" ? "Announcement" : "Tournament Laurel", "?"), /* @__PURE__ */ react_default.createElement("div", { style: {
+    background: "#FDF2F2",
+    border: "1px solid #FECACA",
+    padding: "0.75rem",
+    borderRadius: "6px",
+    marginTop: "0.75rem",
+    fontSize: "0.875rem",
+    color: "#991B1B"
+  } }, /* @__PURE__ */ react_default.createElement("strong", null, deleteCustomCandidate.item.title || deleteCustomCandidate.item.participantName || deleteCustomCandidate.item.event), deleteCustomCandidate.item.certificateId && /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "0.75rem", marginTop: "0.25rem" } }, "Certificate ID: ", deleteCustomCandidate.item.certificateId)), /* @__PURE__ */ react_default.createElement("p", { className: "text-caption", style: { marginTop: "0.5rem", color: "#C53030" } }, "This action will permanently delete the entry from the database and remove it from the public portal.")), /* @__PURE__ */ react_default.createElement("div", { className: "modal-footer" }, /* @__PURE__ */ react_default.createElement("button", { className: "btn btn-secondary btn-sm", onClick: () => setDeleteCustomCandidate(null) }, "Cancel"), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: "btn btn-sm",
+      style: { backgroundColor: "#C53030", color: "#FFFFFF", borderColor: "#C53030" },
+      onClick: handleDeleteCustomItem
+    },
+    "Confirm Delete"
   ))))));
+}
+
+// src/components/AnnouncementsResultsPage.jsx
+function AnnouncementsResultsPage({ onNavigate }) {
+  const [activeTab, setActiveTab] = (0, import_react.useState)("results");
+  const [results, setResults] = (0, import_react.useState)([]);
+  const [announcements, setAnnouncements] = (0, import_react.useState)([]);
+  const [faculty, setFaculty] = (0, import_react.useState)([]);
+  const [loading, setLoading] = (0, import_react.useState)(true);
+  const [resultCategory, setResultCategory] = (0, import_react.useState)("all");
+  const [resultDivision, setResultDivision] = (0, import_react.useState)("all");
+  const [resultSearch, setResultSearch] = (0, import_react.useState)("");
+  const [announcementCategory, setAnnouncementCategory] = (0, import_react.useState)("all");
+  const [downloadingId, setDownloadingId] = (0, import_react.useState)(null);
+  const loadData = async () => {
+    setLoading(true);
+    try {
+      const [resData, annData, facData] = await Promise.all([
+        fetchResults(),
+        fetchAnnouncements(),
+        fetchFaculty()
+      ]);
+      setResults(resData || []);
+      setAnnouncements(annData || []);
+      setFaculty(facData || []);
+    } catch (err2) {
+      console.error("Failed to load announcements & results:", err2);
+    } finally {
+      setLoading(false);
+    }
+  };
+  (0, import_react.useEffect)(() => {
+    loadData();
+  }, []);
+  const filteredResults = results.filter((r3) => {
+    if (resultCategory !== "all" && r3.category !== resultCategory) return false;
+    if (resultDivision !== "all" && r3.division !== resultDivision) return false;
+    if (resultSearch) {
+      const s3 = resultSearch.toLowerCase();
+      const match = r3.participantName && r3.participantName.toLowerCase().includes(s3) || r3.teamName && r3.teamName.toLowerCase().includes(s3) || r3.college && r3.college.toLowerCase().includes(s3) || r3.event && r3.event.toLowerCase().includes(s3) || r3.certificateId && r3.certificateId.toLowerCase().includes(s3);
+      if (!match) return false;
+    }
+    return true;
+  });
+  const filteredAnnouncements = announcements.filter((a3) => {
+    if (announcementCategory !== "all" && a3.category !== announcementCategory) return false;
+    return true;
+  });
+  const handleDownloadCertificate = async (resItem) => {
+    try {
+      setDownloadingId(resItem.certificateId || resItem._id);
+      generateCertificatePDF(resItem);
+    } catch (err2) {
+      console.error("Certificate generation error:", err2);
+      alert("Failed to generate certificate PDF. Please try again.");
+    } finally {
+      setTimeout(() => setDownloadingId(null), 800);
+    }
+  };
+  return /* @__PURE__ */ react_default.createElement("div", { className: "announcements-results-page" }, /* @__PURE__ */ react_default.createElement("div", { className: "page-wave-ribbon-bg", "aria-hidden": "true" }, /* @__PURE__ */ react_default.createElement(
+    "div",
+    {
+      className: "wave-ribbon-layer",
+      style: { backgroundImage: "url('/wave-ribbon.png')" }
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "container relative z-10" }, /* @__PURE__ */ react_default.createElement("div", { className: "page-editorial-header" }, /* @__PURE__ */ react_default.createElement("div", { className: "page-header-tag" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-dot" }), /* @__PURE__ */ react_default.createElement("span", null, "OFFICIAL BULLETIN & HONORS \u2022 COLORIDO 2K26")), /* @__PURE__ */ react_default.createElement("h1", { className: "page-main-heading" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.1 }, "Results & Announcements")), /* @__PURE__ */ react_default.createElement("p", { className: "page-main-sub" }, "Verified tournament verdicts, downloadable merit certificates, and real-time scheduling circulars from the university organizing committee."), /* @__PURE__ */ react_default.createElement("div", { className: "ar-tab-bar" }, /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `ar-tab-btn ${activeTab === "results" ? "active" : ""}`,
+      onClick: () => setActiveTab("results")
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "8", r: "7" }), /* @__PURE__ */ react_default.createElement("polyline", { points: "8.21 13.89 7 23 12 20 17 23 15.79 13.88" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Tournament Laurels (", results.length, ")")
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `ar-tab-btn ${activeTab === "announcements" ? "active" : ""}`,
+      onClick: () => setActiveTab("announcements")
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" }), /* @__PURE__ */ react_default.createElement("path", { d: "M13.73 21a2 2 0 0 1-3.46 0" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Official Notices (", announcements.length, ")")
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `ar-tab-btn ${activeTab === "faculty" ? "active" : ""}`,
+      onClick: () => setActiveTab("faculty")
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "9", cy: "7", r: "4" }), /* @__PURE__ */ react_default.createElement("path", { d: "M23 21v-2a4 4 0 0 0-3-3.87" }), /* @__PURE__ */ react_default.createElement("path", { d: "M16 3.13a4 4 0 0 1 0 7.75" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Faculty Panel (", faculty.length || 4, ")")
+  ))), activeTab === "results" && /* @__PURE__ */ react_default.createElement("div", { className: "ar-content-area" }, /* @__PURE__ */ react_default.createElement("div", { className: "ar-filter-box" }, /* @__PURE__ */ react_default.createElement("div", { className: "ar-search-wrapper" }, /* @__PURE__ */ react_default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ react_default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" })), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      placeholder: "Search by winner name, team, college, or certificate ID...",
+      value: resultSearch,
+      onChange: (e2) => setResultSearch(e2.target.value),
+      className: "ar-search-input"
+    }
+  ), resultSearch && /* @__PURE__ */ react_default.createElement("button", { className: "ar-clear-btn", onClick: () => setResultSearch("") }, "\xD7")), /* @__PURE__ */ react_default.createElement("div", { className: "ar-dropdown-group" }, /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      value: resultCategory,
+      onChange: (e2) => setResultCategory(e2.target.value),
+      className: "ar-select"
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "all" }, "All Categories"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Sports" }, "Sports Disciplines"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Literary & Cultural" }, "Literary & Cultural")
+  ), /* @__PURE__ */ react_default.createElement(
+    "select",
+    {
+      value: resultDivision,
+      onChange: (e2) => setResultDivision(e2.target.value),
+      className: "ar-select"
+    },
+    /* @__PURE__ */ react_default.createElement("option", { value: "all" }, "All Divisions"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Boys" }, "Boys / Men"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Girls" }, "Girls / Women"),
+    /* @__PURE__ */ react_default.createElement("option", { value: "Open" }, "Open Category")
+  ))), loading ? /* @__PURE__ */ react_default.createElement("div", { className: "ar-loading-state" }, /* @__PURE__ */ react_default.createElement("div", { className: "ar-spinner" }), /* @__PURE__ */ react_default.createElement("p", null, "Loading tournament results from official database...")) : filteredResults.length === 0 ? /* @__PURE__ */ react_default.createElement("div", { className: "ar-empty-state" }, /* @__PURE__ */ react_default.createElement("svg", { width: "48", height: "48", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" })), /* @__PURE__ */ react_default.createElement("h3", null, "No Tournament Results Found"), /* @__PURE__ */ react_default.createElement("p", null, "Try adjusting your search query or discipline filter options.")) : /* @__PURE__ */ react_default.createElement("div", { className: "results-cards-grid" }, filteredResults.map((r3, i4) => {
+    const isGold = r3.position && r3.position.includes("1st");
+    const isSilver = r3.position && r3.position.includes("2nd");
+    const isBronze = r3.position && r3.position.includes("3rd");
+    return /* @__PURE__ */ react_default.createElement(
+      "div",
+      {
+        key: r3._id || r3.id || r3.certificateId || i4,
+        className: `result-laurel-card ${isGold ? "gold-tier" : isSilver ? "silver-tier" : isBronze ? "bronze-tier" : ""}`
+      },
+      /* @__PURE__ */ react_default.createElement("div", { className: "result-card-header" }, /* @__PURE__ */ react_default.createElement("div", { className: "result-event-tag" }, /* @__PURE__ */ react_default.createElement("span", { className: "result-cat-lbl" }, r3.category), /* @__PURE__ */ react_default.createElement("span", { className: "result-dot-sep" }, "\u2022"), /* @__PURE__ */ react_default.createElement("span", { className: "result-div-lbl" }, r3.division)), /* @__PURE__ */ react_default.createElement("div", { className: `result-position-badge ${isGold ? "pos-gold" : isSilver ? "pos-silver" : "pos-bronze"}` }, isGold && "\u{1F947} ", isSilver && "\u{1F948} ", isBronze && "\u{1F949} ", r3.position)),
+      /* @__PURE__ */ react_default.createElement("h3", { className: "result-event-title" }, r3.event),
+      /* @__PURE__ */ react_default.createElement("div", { className: "result-winner-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "winner-lead-row" }, /* @__PURE__ */ react_default.createElement("span", { className: "winner-crown-icon" }, "\u{1F3C6}"), /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("div", { className: "winner-name-highlight" }, r3.participantName), r3.teamName && /* @__PURE__ */ react_default.createElement("div", { className: "winner-team-subtitle" }, "Squad: ", /* @__PURE__ */ react_default.createElement("strong", null, r3.teamName)))), /* @__PURE__ */ react_default.createElement("div", { className: "winner-institution" }, /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M3 21h18M3 7l9-4 9 4v14H3zM9 10h6" })), /* @__PURE__ */ react_default.createElement("span", null, r3.college)), r3.scoreOrRound && /* @__PURE__ */ react_default.createElement("div", { className: "winner-score-pill" }, /* @__PURE__ */ react_default.createElement("span", null, "Score: ", r3.scoreOrRound)), Array.isArray(r3.teammates) && r3.teammates.length > 0 && /* @__PURE__ */ react_default.createElement("div", { className: "winner-squad-block" }, /* @__PURE__ */ react_default.createElement("span", { className: "squad-title" }, "Team Roster:"), /* @__PURE__ */ react_default.createElement("div", { className: "squad-chips" }, r3.teammates.map((mate, mIdx) => /* @__PURE__ */ react_default.createElement("span", { key: mIdx, className: "squad-chip" }, mate))))),
+      /* @__PURE__ */ react_default.createElement("div", { className: "result-card-footer" }, /* @__PURE__ */ react_default.createElement("div", { className: "result-cert-id", title: "Official Verification ID" }, /* @__PURE__ */ react_default.createElement("span", { className: "cert-id-lbl" }, "ID:"), /* @__PURE__ */ react_default.createElement("code", null, r3.certificateId || "CERT-VERIFIED")), /* @__PURE__ */ react_default.createElement(
+        "button",
+        {
+          className: "btn-download-cert",
+          onClick: () => handleDownloadCertificate(r3),
+          disabled: downloadingId === (r3.certificateId || r3._id),
+          title: "Download Official Certificate of Merit in PDF format"
+        },
+        downloadingId === (r3.certificateId || r3._id) ? /* @__PURE__ */ react_default.createElement(react_default.Fragment, null, /* @__PURE__ */ react_default.createElement("span", { className: "btn-spinner" }), /* @__PURE__ */ react_default.createElement("span", null, "Generating...")) : /* @__PURE__ */ react_default.createElement(react_default.Fragment, null, /* @__PURE__ */ react_default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" }), /* @__PURE__ */ react_default.createElement("polyline", { points: "7 10 12 15 17 10" }), /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "15", x2: "12", y2: "3" })), /* @__PURE__ */ react_default.createElement("span", null, "Certificate (PDF)"))
+      ))
+    );
+  }))), activeTab === "announcements" && /* @__PURE__ */ react_default.createElement("div", { className: "ar-content-area" }, /* @__PURE__ */ react_default.createElement("div", { className: "announcement-filter-chips" }, /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `filter-chip ${announcementCategory === "all" ? "active" : ""}`,
+      onClick: () => setAnnouncementCategory("all")
+    },
+    "All Bulletins (",
+    announcements.length,
+    ")"
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `filter-chip ${announcementCategory === "Schedule Update" ? "active" : ""}`,
+      onClick: () => setAnnouncementCategory("Schedule Update")
+    },
+    "Schedule Updates"
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `filter-chip ${announcementCategory === "Venue Alert" ? "active" : ""}`,
+      onClick: () => setAnnouncementCategory("Venue Alert")
+    },
+    "Venue Alerts"
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `filter-chip ${announcementCategory === "Prize Ceremony" ? "active" : ""}`,
+      onClick: () => setAnnouncementCategory("Prize Ceremony")
+    },
+    "Prize Ceremonies"
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `filter-chip ${announcementCategory === "General" ? "active" : ""}`,
+      onClick: () => setAnnouncementCategory("General")
+    },
+    "General Notices"
+  )), loading ? /* @__PURE__ */ react_default.createElement("div", { className: "ar-loading-state" }, /* @__PURE__ */ react_default.createElement("div", { className: "ar-spinner" }), /* @__PURE__ */ react_default.createElement("p", null, "Loading university circulars...")) : filteredAnnouncements.length === 0 ? /* @__PURE__ */ react_default.createElement("div", { className: "ar-empty-state" }, /* @__PURE__ */ react_default.createElement("h3", null, "No Announcements in this Category"), /* @__PURE__ */ react_default.createElement("p", null, "Check back later or choose another bulletin category.")) : /* @__PURE__ */ react_default.createElement("div", { className: "announcements-cards-list" }, filteredAnnouncements.map((a3, i4) => /* @__PURE__ */ react_default.createElement("article", { key: a3._id || a3.id || i4, className: `announcement-card ${a3.pinned ? "is-pinned" : ""}` }, /* @__PURE__ */ react_default.createElement("div", { className: "announcement-top-bar" }, /* @__PURE__ */ react_default.createElement("div", { className: "announcement-badges" }, /* @__PURE__ */ react_default.createElement("span", { className: "ann-category-pill" }, a3.category), /* @__PURE__ */ react_default.createElement("span", { className: `ann-priority-pill priority-${(a3.priority || "Normal").toLowerCase()}` }, a3.priority || "Normal"), a3.pinned && /* @__PURE__ */ react_default.createElement("span", { className: "ann-pinned-pill" }, "\u2605 Pinned Notice")), /* @__PURE__ */ react_default.createElement("time", { className: "announcement-date" }, /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("rect", { x: "3", y: "4", width: "18", height: "18", rx: "2", ry: "2" }), /* @__PURE__ */ react_default.createElement("line", { x1: "16", y1: "2", x2: "16", y2: "6" }), /* @__PURE__ */ react_default.createElement("line", { x1: "8", y1: "2", x2: "8", y2: "6" }), /* @__PURE__ */ react_default.createElement("line", { x1: "3", y1: "10", x2: "21", y2: "10" })), /* @__PURE__ */ react_default.createElement("span", null, a3.date))), /* @__PURE__ */ react_default.createElement("h2", { className: "announcement-card-title" }, a3.title), a3.imageUrl && /* @__PURE__ */ react_default.createElement("div", { className: "announcement-media-frame" }, /* @__PURE__ */ react_default.createElement("img", { src: a3.imageUrl, alt: a3.title, className: "announcement-img", loading: "lazy" })), /* @__PURE__ */ react_default.createElement("p", { className: "announcement-body-text" }, a3.content), a3.venue && /* @__PURE__ */ react_default.createElement("div", { className: "announcement-section-venue" }, /* @__PURE__ */ react_default.createElement("div", { className: "section-label" }, /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "10", r: "3" })), /* @__PURE__ */ react_default.createElement("span", null, "VENUE & COURT ALLOCATION")), /* @__PURE__ */ react_default.createElement("div", { className: "section-value-box" }, a3.venue)), Array.isArray(a3.instructions) && a3.instructions.length > 0 && /* @__PURE__ */ react_default.createElement("div", { className: "announcement-section-instructions" }, /* @__PURE__ */ react_default.createElement("div", { className: "section-label" }, /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("polyline", { points: "9 11 12 14 22 4" }), /* @__PURE__ */ react_default.createElement("path", { d: "M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" })), /* @__PURE__ */ react_default.createElement("span", null, "KEY INSTRUCTIONS & PROTOCOLS")), /* @__PURE__ */ react_default.createElement("ul", { className: "instructions-list" }, a3.instructions.map((inst, instIdx) => /* @__PURE__ */ react_default.createElement("li", { key: instIdx }, inst)))), a3.coordinator && (a3.coordinator.name || a3.coordinator.contact) && /* @__PURE__ */ react_default.createElement("div", { className: "announcement-section-contact" }, /* @__PURE__ */ react_default.createElement("div", { className: "section-label" }, /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "7", r: "4" })), /* @__PURE__ */ react_default.createElement("span", null, "OFFICIAL CONVENER CONTACT")), /* @__PURE__ */ react_default.createElement("div", { className: "coordinator-info" }, a3.coordinator.name && /* @__PURE__ */ react_default.createElement("strong", null, a3.coordinator.name), a3.coordinator.contact && /* @__PURE__ */ react_default.createElement("span", null, " \u2022 ", a3.coordinator.contact))))))), activeTab === "faculty" && /* @__PURE__ */ react_default.createElement("div", { className: "ar-content-area" }, /* @__PURE__ */ react_default.createElement("div", { className: "faculty-editorial-intro" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "ACADEMIC & TOURNAMENT LEADERSHIP"), /* @__PURE__ */ react_default.createElement("h2", { className: "heading-section" }, "Organizing Faculty Council"), /* @__PURE__ */ react_default.createElement("p", { className: "text-body", style: { maxWidth: "780px" } }, "Under the guidance of the Governing Body and Department of Physical Education & Cultural Affairs, the organizing committee ensures accredited fair play, student hospitality, and seamless championship coordination.")), /* @__PURE__ */ react_default.createElement("div", { className: "faculty-cards-grid" }, (faculty.length > 0 ? faculty : [
+    {
+      id: "FAC-01",
+      name: "Dr. K. Ravindra",
+      designation: "Principal & Chief Patron",
+      department: "Administration & Mechanical Engineering",
+      role: "Chief Patron \u2014 COLORIDO 2K26",
+      bio: "Guiding academic and athletic development at RVRJCCE with over 30 years of educational leadership and national accreditation oversight.",
+      email: "principal@rvrjcce.ac.in",
+      office: "Administrative Block, Level 1"
+    },
+    {
+      id: "FAC-02",
+      name: "Dr. G. Kishore Babu",
+      designation: "Dean of Student Affairs & Overall Convener",
+      department: "Electronics & Communication Engineering",
+      role: "Organizing Committee Convener",
+      bio: "Steering student council activities, inter-university collaborations, and collegiate fest management for over two decades.",
+      email: "dean_sa@rvrjcce.ac.in",
+      office: "Student Welfare Center, Block III"
+    },
+    {
+      id: "FAC-03",
+      name: "Dr. P. Gopi Krishna",
+      designation: "Director of Physical Education",
+      department: "Department of Physical Education & Sports",
+      role: "Sports Tournament Director",
+      bio: "National collegiate referee commissioner, managing stadium fixtures, court allocations, and state university championship squads.",
+      email: "sports@rvrjcce.ac.in",
+      office: "Sports Pavilion & Indoor Stadium"
+    },
+    {
+      id: "FAC-04",
+      name: "Dr. Ch. Suneetha",
+      designation: "Professor & Head of Cultural Council",
+      department: "Computer Science & Engineering",
+      role: "Literary & Cultural Coordinator",
+      bio: "Pioneering creative arts, debate moderation, and fine arts symposiums across Andhra Pradesh collegiate platforms.",
+      email: "cultural@rvrjcce.ac.in",
+      office: "Silver Jubilee Auditorium, Media Suite"
+    }
+  ]).map((fac) => /* @__PURE__ */ react_default.createElement("div", { key: fac.id, className: "faculty-profile-card" }, /* @__PURE__ */ react_default.createElement("div", { className: "faculty-avatar-box" }, /* @__PURE__ */ react_default.createElement("div", { className: "faculty-monogram" }, fac.name.split(" ").map((n2) => n2[0]).filter((_3, idx) => idx < 3).join("")), /* @__PURE__ */ react_default.createElement("div", { className: "faculty-role-pill" }, fac.role)), /* @__PURE__ */ react_default.createElement("h3", { className: "faculty-name" }, fac.name), /* @__PURE__ */ react_default.createElement("div", { className: "faculty-designation" }, fac.designation), /* @__PURE__ */ react_default.createElement("div", { className: "faculty-dept" }, fac.department), /* @__PURE__ */ react_default.createElement("p", { className: "faculty-bio" }, fac.bio), /* @__PURE__ */ react_default.createElement("div", { className: "faculty-footer-meta" }, /* @__PURE__ */ react_default.createElement("div", { className: "faculty-meta-item" }, /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" }), /* @__PURE__ */ react_default.createElement("polyline", { points: "22,6 12,13 2,6" })), /* @__PURE__ */ react_default.createElement("a", { href: `mailto:${fac.email}` }, fac.email)), /* @__PURE__ */ react_default.createElement("div", { className: "faculty-meta-item" }, /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "10", r: "3" })), /* @__PURE__ */ react_default.createElement("span", null, fac.office)))))))));
 }
 
 // src/components/Footer.jsx
@@ -104787,6 +105965,7 @@ function App() {
       const path = window.location.pathname.replace(/^\//, "");
       if (path === "register") return "register";
       if (path === "admin") return "admin";
+      if (path === "results") return "results";
     }
     return "home";
   };
@@ -104802,6 +105981,7 @@ function App() {
       const path = window.location.pathname.replace(/^\//, "");
       if (path === "register") setCurrentRoute("register");
       else if (path === "admin") setCurrentRoute("admin");
+      else if (path === "results") setCurrentRoute("results");
       else setCurrentRoute("home");
     };
     window.addEventListener("popstate", handlePopState);
@@ -104898,6 +106078,11 @@ function App() {
     }
   ), currentRoute === "admin" && /* @__PURE__ */ react_default.createElement(
     AdminDashboard,
+    {
+      onNavigate: navigateTo
+    }
+  ), currentRoute === "results" && /* @__PURE__ */ react_default.createElement(
+    AnnouncementsResultsPage,
     {
       onNavigate: navigateTo
     }

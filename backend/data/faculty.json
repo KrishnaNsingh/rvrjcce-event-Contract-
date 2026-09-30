@@ -1,0 +1,42 @@
+[
+  {
+    "id": "FAC-01",
+    "name": "Dr. K. Ravindra",
+    "designation": "Principal & Chief Patron",
+    "department": "Mechanical Engineering & Administration",
+    "role": "Chief Patron — COLORIDO 2K26",
+    "bio": "Guiding academic and athletic development at RVRJCCE with over 30 years of educational leadership and national accreditation oversight.",
+    "email": "principal@rvrjcce.ac.in",
+    "office": "Administrative Block, Level 1"
+  },
+  {
+    "id": "FAC-02",
+    "name": "Dr. G. Kishore Babu",
+    "designation": "Dean of Student Affairs & Overall Convener",
+    "department": "Electronics & Communication Engineering",
+    "role": "Organizing Committee Convener",
+    "bio": "Steering student council activities, inter-university collaborations, and collegiate fest management for over two decades.",
+    "email": "dean_sa@rvrjcce.ac.in",
+    "office": "Student Welfare Center, Block III"
+  },
+  {
+    "id": "FAC-03",
+    "name": "Dr. P. Gopi Krishna",
+    "designation": "Director of Physical Education",
+    "department": "Department of Physical Education & Sports",
+    "role": "Sports Tournament Director",
+    "bio": "National collegiate referee commissioner, managing stadium fixtures, court allocations, and state university championship squads.",
+    "email": "sports@rvrjcce.ac.in",
+    "office": "Sports Pavilion & Indoor Stadium"
+  },
+  {
+    "id": "FAC-04",
+    "name": "Dr. Ch. Suneetha",
+    "designation": "Professor & Head of Cultural Council",
+    "department": "Computer Science & Engineering",
+    "role": "Literary & Cultural Coordinator",
+    "bio": "Pioneering creative arts, debate moderation, and fine arts symposiums across Andhra Pradesh collegiate platforms.",
+    "email": "cultural@rvrjcce.ac.in",
+    "office": "Silver Jubilee Auditorium, Media Suite"
+  }
+]
