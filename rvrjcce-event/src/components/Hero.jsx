@@ -93,7 +93,7 @@ export function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
           </div>
 
           {/* Bottom Right: Statement + Underlined Link */}
-          <div className="bottom-statement-right">
+          {/* <div className="bottom-statement-right">
             <div className="bottom-statement-title">
               <TextAnimation divideBy="word" delay={0.35}>
                 WE UNITE ATHLETIC GRIT &amp; STAGE BRILLIANCE
@@ -105,7 +105,7 @@ export function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
