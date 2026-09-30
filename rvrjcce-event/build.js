@@ -1,4 +1,4 @@
-import { execSync } from 'node:child_process';
+import esbuild from 'esbuild';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -9,13 +9,20 @@ if (!fs.existsSync(DIST_DIR)) {
 
 console.log('Bundling React client with esbuild...');
 
-const esbuildBin = process.env.ESBUILD_BIN || (fs.existsSync('/usr/share/npm-global/lib/node_modules/vercel/node_modules/esbuild/bin/esbuild') 
-  ? '/usr/share/npm-global/lib/node_modules/vercel/node_modules/esbuild/bin/esbuild' 
-  : 'npx esbuild');
-const apiUrl = (process.env.PUBLIC_API_URL || process.env.VITE_API_URL || '').replace(/\/+$/, '');
-const defineFlag = `--define:process.env.PUBLIC_API_URL=${JSON.stringify(JSON.stringify(apiUrl))}`;
-const cmd = `${esbuildBin} src/index.jsx --bundle --outfile=dist/bundle.js --format=esm --jsx-factory=React.createElement --jsx-fragment=React.Fragment ${defineFlag}`;
-execSync(cmd, { stdio: 'inherit', shell: true });
+const apiUrl = (process.env.PUBLIC_API_URL || process.env.VITE_API_URL || 'https://rvrjcce-backend.onrender.com').replace(/\/+$/, '');
+console.log('API Target URL:', apiUrl);
+
+await esbuild.build({
+  entryPoints: ['src/index.jsx'],
+  bundle: true,
+  outfile: 'dist/bundle.js',
+  format: 'esm',
+  jsxFactory: 'React.createElement',
+  jsxFragment: 'React.Fragment',
+  define: {
+    'process.env.PUBLIC_API_URL': JSON.stringify(apiUrl)
+  }
+});
 
 fs.copyFileSync(
   path.join(process.cwd(), 'src/styles/main.css'),

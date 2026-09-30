@@ -87163,28 +87163,47 @@ function getEventDetails(eventName) {
 
 // src/api/client.js
 var resolveBaseUrl = () => {
-  if (typeof process !== "undefined" && process.env && "") {
-    return "".replace(/\/+$/, "");
-  }
   if (typeof window !== "undefined" && window.__API_URL__) {
     return window.__API_URL__.replace(/\/+$/, "");
   }
-  if (typeof window !== "undefined" && window.location && window.location.origin.includes("http")) {
-    return window.location.origin;
+  if (typeof process !== "undefined" && process.env && "https://rvrjcce-backend.onrender.com") {
+    return "https://rvrjcce-backend.onrender.com".replace(/\/+$/, "");
   }
-  return "";
+  if (typeof window !== "undefined" && window.location) {
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      return "http://localhost:3000";
+    }
+  }
+  return "https://rvrjcce-backend.onrender.com";
 };
 var BASE_URL = resolveBaseUrl();
 function getAuthHeader() {
   const token = typeof localStorage !== "undefined" ? localStorage.getItem("rvrjcce_admin_token") : null;
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
+async function safeFetchJson(url, options = {}) {
+  const res = await fetch(url, options);
+  let data = null;
+  const text2 = await res.text();
+  if (text2) {
+    try {
+      data = JSON.parse(text2);
+    } catch {
+    }
+  }
+  if (!res.ok) {
+    const errorMsg = data && (data.error || data.message) || `Server request failed with status ${res.status} (${res.statusText || "Error"})`;
+    const err2 = new Error(errorMsg);
+    err2.status = res.status;
+    err2.data = data;
+    throw err2;
+  }
+  return data;
+}
 async function fetchStats() {
   try {
-    const res = await fetch(`${BASE_URL}/api/stats`);
-    if (!res.ok) throw new Error("Failed to fetch statistics");
-    const data = await res.json();
-    return data.stats;
+    const data = await safeFetchJson(`${BASE_URL}/api/stats`);
+    return data ? data.stats : null;
   } catch (err2) {
     console.warn("API fetchStats fallback:", err2);
     return null;
@@ -87200,10 +87219,8 @@ async function fetchRegistrations(params = {}) {
     if (params.search) query.append("search", params.search);
     const queryString = query.toString();
     const url = `${BASE_URL}/api/registrations${queryString ? "?" + queryString : ""}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error("Failed to fetch registrations");
-    const data = await res.json();
-    return data.registrations || [];
+    const data = await safeFetchJson(url);
+    return data && data.registrations || [];
   } catch (err2) {
     console.error("API fetchRegistrations error:", err2);
     throw err2;
@@ -87211,18 +87228,13 @@ async function fetchRegistrations(params = {}) {
 }
 async function submitRegistration(payload) {
   try {
-    const res = await fetch(`${BASE_URL}/api/registrations`, {
+    return await safeFetchJson(`${BASE_URL}/api/registrations`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(payload)
     });
-    const result = await res.json();
-    if (!res.ok) {
-      throw new Error(result.error || "Failed to submit registration");
-    }
-    return result;
   } catch (err2) {
     console.error("API submitRegistration error:", err2);
     throw err2;
@@ -87230,7 +87242,7 @@ async function submitRegistration(payload) {
 }
 async function updateRegistration(id3, payload) {
   try {
-    const res = await fetch(`${BASE_URL}/api/registrations/${id3}`, {
+    return await safeFetchJson(`${BASE_URL}/api/registrations/${id3}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -87238,11 +87250,6 @@ async function updateRegistration(id3, payload) {
       },
       body: JSON.stringify(payload)
     });
-    const result = await res.json();
-    if (!res.ok) {
-      throw new Error(result.error || "Failed to update registration");
-    }
-    return result;
   } catch (err2) {
     console.error("API updateRegistration error:", err2);
     throw err2;
@@ -87250,7 +87257,7 @@ async function updateRegistration(id3, payload) {
 }
 async function toggleAttendance(id3, attended) {
   try {
-    const res = await fetch(`${BASE_URL}/api/registrations/${id3}/attendance`, {
+    return await safeFetchJson(`${BASE_URL}/api/registrations/${id3}/attendance`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -87258,11 +87265,6 @@ async function toggleAttendance(id3, attended) {
       },
       body: JSON.stringify({ attended })
     });
-    const result = await res.json();
-    if (!res.ok) {
-      throw new Error(result.error || "Failed to update attendance");
-    }
-    return result;
   } catch (err2) {
     console.error("API toggleAttendance error:", err2);
     throw err2;
@@ -87270,17 +87272,12 @@ async function toggleAttendance(id3, attended) {
 }
 async function deleteRegistration(id3) {
   try {
-    const res = await fetch(`${BASE_URL}/api/registrations/${id3}`, {
+    return await safeFetchJson(`${BASE_URL}/api/registrations/${id3}`, {
       method: "DELETE",
       headers: {
         ...getAuthHeader()
       }
     });
-    const result = await res.json();
-    if (!res.ok) {
-      throw new Error(result.error || "Failed to delete registration");
-    }
-    return result;
   } catch (err2) {
     console.error("API deleteRegistration error:", err2);
     throw err2;
@@ -87298,18 +87295,14 @@ function getCsvExportUrl(params = {}) {
 }
 async function adminLogin(username, password) {
   try {
-    const res = await fetch(`${BASE_URL}/api/admin/login`, {
+    const result = await safeFetchJson(`${BASE_URL}/api/admin/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ username, password })
     });
-    const result = await res.json();
-    if (!res.ok) {
-      throw new Error(result.error || "Invalid credentials");
-    }
-    if (result.token) {
+    if (result && result.token) {
       localStorage.setItem("rvrjcce_admin_token", result.token);
       localStorage.setItem("rvrjcce_admin_user", JSON.stringify(result.admin));
     }
@@ -87323,17 +87316,13 @@ async function verifyAdminSession() {
   try {
     const token = localStorage.getItem("rvrjcce_admin_token");
     if (!token) return { authenticated: false };
-    const res = await fetch(`${BASE_URL}/api/admin/verify`, {
+    const data = await safeFetchJson(`${BASE_URL}/api/admin/verify`, {
       headers: getAuthHeader()
     });
-    if (!res.ok) {
-      localStorage.removeItem("rvrjcce_admin_token");
-      localStorage.removeItem("rvrjcce_admin_user");
-      return { authenticated: false };
-    }
-    const data = await res.json();
-    return { authenticated: true, admin: data.admin };
+    return { authenticated: true, admin: data ? data.admin : null };
   } catch (err2) {
+    localStorage.removeItem("rvrjcce_admin_token");
+    localStorage.removeItem("rvrjcce_admin_user");
     return { authenticated: false };
   }
 }

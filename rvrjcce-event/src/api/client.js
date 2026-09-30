@@ -3,19 +3,22 @@
  */
 
 const resolveBaseUrl = () => {
-  // 1. Injected at build time via esbuild (e.g. on Vercel)
-  if (typeof process !== 'undefined' && process.env && process.env.PUBLIC_API_URL) {
-    return process.env.PUBLIC_API_URL.replace(/\/+$/, '');
-  }
-  // 2. Injected at runtime via window.__API_URL__
+  // 1. Injected at runtime via window.__API_URL__ (for dynamic override)
   if (typeof window !== 'undefined' && window.__API_URL__) {
     return window.__API_URL__.replace(/\/+$/, '');
   }
-  // 3. Fallback to current browser origin
-  if (typeof window !== 'undefined' && window.location && window.location.origin.includes('http')) {
-    return window.location.origin;
+  // 2. Injected at build time via esbuild define or env
+  if (typeof process !== 'undefined' && process.env && process.env.PUBLIC_API_URL) {
+    return process.env.PUBLIC_API_URL.replace(/\/+$/, '');
   }
-  return '';
+  // 3. Fallback when testing locally on localhost
+  if (typeof window !== 'undefined' && window.location) {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return 'http://localhost:3000';
+    }
+  }
+  // 4. Default production Render backend URL
+  return 'https://rvrjcce-backend.onrender.com';
 };
 
 const BASE_URL = resolveBaseUrl();
@@ -25,12 +28,32 @@ function getAuthHeader() {
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
+async function safeFetchJson(url, options = {}) {
+  const res = await fetch(url, options);
+  let data = null;
+  const text = await res.text();
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch {
+      // Body is not valid JSON (e.g. HTML error page or empty response)
+    }
+  }
+  if (!res.ok) {
+    const errorMsg = (data && (data.error || data.message))
+      || `Server request failed with status ${res.status} (${res.statusText || 'Error'})`;
+    const err = new Error(errorMsg);
+    err.status = res.status;
+    err.data = data;
+    throw err;
+  }
+  return data;
+}
+
 export async function fetchStats() {
   try {
-    const res = await fetch(`${BASE_URL}/api/stats`);
-    if (!res.ok) throw new Error('Failed to fetch statistics');
-    const data = await res.json();
-    return data.stats;
+    const data = await safeFetchJson(`${BASE_URL}/api/stats`);
+    return data ? data.stats : null;
   } catch (err) {
     console.warn('API fetchStats fallback:', err);
     return null;
@@ -39,9 +62,7 @@ export async function fetchStats() {
 
 export async function fetchEvents() {
   try {
-    const res = await fetch(`${BASE_URL}/api/events`);
-    if (!res.ok) throw new Error('Failed to fetch event definitions');
-    return await res.json();
+    return await safeFetchJson(`${BASE_URL}/api/events`);
   } catch (err) {
     console.warn('API fetchEvents fallback:', err);
     return null;
@@ -59,10 +80,8 @@ export async function fetchRegistrations(params = {}) {
 
     const queryString = query.toString();
     const url = `${BASE_URL}/api/registrations${queryString ? '?' + queryString : ''}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error('Failed to fetch registrations');
-    const data = await res.json();
-    return data.registrations || [];
+    const data = await safeFetchJson(url);
+    return (data && data.registrations) || [];
   } catch (err) {
     console.error('API fetchRegistrations error:', err);
     throw err;
@@ -71,10 +90,8 @@ export async function fetchRegistrations(params = {}) {
 
 export async function fetchRegistrationById(id) {
   try {
-    const res = await fetch(`${BASE_URL}/api/registrations/${id}`);
-    if (!res.ok) throw new Error('Failed to fetch registration details');
-    const data = await res.json();
-    return data.registration;
+    const data = await safeFetchJson(`${BASE_URL}/api/registrations/${id}`);
+    return data ? data.registration : null;
   } catch (err) {
     console.error('API fetchRegistrationById error:', err);
     throw err;
@@ -83,18 +100,13 @@ export async function fetchRegistrationById(id) {
 
 export async function submitRegistration(payload) {
   try {
-    const res = await fetch(`${BASE_URL}/api/registrations`, {
+    return await safeFetchJson(`${BASE_URL}/api/registrations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
     });
-    const result = await res.json();
-    if (!res.ok) {
-      throw new Error(result.error || 'Failed to submit registration');
-    }
-    return result;
   } catch (err) {
     console.error('API submitRegistration error:', err);
     throw err;
@@ -103,7 +115,7 @@ export async function submitRegistration(payload) {
 
 export async function updateRegistration(id, payload) {
   try {
-    const res = await fetch(`${BASE_URL}/api/registrations/${id}`, {
+    return await safeFetchJson(`${BASE_URL}/api/registrations/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -111,11 +123,6 @@ export async function updateRegistration(id, payload) {
       },
       body: JSON.stringify(payload)
     });
-    const result = await res.json();
-    if (!res.ok) {
-      throw new Error(result.error || 'Failed to update registration');
-    }
-    return result;
   } catch (err) {
     console.error('API updateRegistration error:', err);
     throw err;
@@ -124,7 +131,7 @@ export async function updateRegistration(id, payload) {
 
 export async function toggleAttendance(id, attended) {
   try {
-    const res = await fetch(`${BASE_URL}/api/registrations/${id}/attendance`, {
+    return await safeFetchJson(`${BASE_URL}/api/registrations/${id}/attendance`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -132,11 +139,6 @@ export async function toggleAttendance(id, attended) {
       },
       body: JSON.stringify({ attended })
     });
-    const result = await res.json();
-    if (!res.ok) {
-      throw new Error(result.error || 'Failed to update attendance');
-    }
-    return result;
   } catch (err) {
     console.error('API toggleAttendance error:', err);
     throw err;
@@ -145,17 +147,12 @@ export async function toggleAttendance(id, attended) {
 
 export async function deleteRegistration(id) {
   try {
-    const res = await fetch(`${BASE_URL}/api/registrations/${id}`, {
+    return await safeFetchJson(`${BASE_URL}/api/registrations/${id}`, {
       method: 'DELETE',
       headers: {
         ...getAuthHeader()
       }
     });
-    const result = await res.json();
-    if (!res.ok) {
-      throw new Error(result.error || 'Failed to delete registration');
-    }
-    return result;
   } catch (err) {
     console.error('API deleteRegistration error:', err);
     throw err;
@@ -179,18 +176,14 @@ export function getPdfDownloadUrl(id) {
 
 export async function adminLogin(username, password) {
   try {
-    const res = await fetch(`${BASE_URL}/api/admin/login`, {
+    const result = await safeFetchJson(`${BASE_URL}/api/admin/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ username, password })
     });
-    const result = await res.json();
-    if (!res.ok) {
-      throw new Error(result.error || 'Invalid credentials');
-    }
-    if (result.token) {
+    if (result && result.token) {
       localStorage.setItem('rvrjcce_admin_token', result.token);
       localStorage.setItem('rvrjcce_admin_user', JSON.stringify(result.admin));
     }
@@ -206,17 +199,13 @@ export async function verifyAdminSession() {
     const token = localStorage.getItem('rvrjcce_admin_token');
     if (!token) return { authenticated: false };
 
-    const res = await fetch(`${BASE_URL}/api/admin/verify`, {
+    const data = await safeFetchJson(`${BASE_URL}/api/admin/verify`, {
       headers: getAuthHeader()
     });
-    if (!res.ok) {
-      localStorage.removeItem('rvrjcce_admin_token');
-      localStorage.removeItem('rvrjcce_admin_user');
-      return { authenticated: false };
-    }
-    const data = await res.json();
-    return { authenticated: true, admin: data.admin };
+    return { authenticated: true, admin: data ? data.admin : null };
   } catch (err) {
+    localStorage.removeItem('rvrjcce_admin_token');
+    localStorage.removeItem('rvrjcce_admin_user');
     return { authenticated: false };
   }
 }
