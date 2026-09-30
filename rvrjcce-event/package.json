@@ -4,9 +4,7 @@
   "description": "Premium, modern, production-quality university event website for RVRJCCE, Andhra Pradesh",
   "type": "module",
   "scripts": {
-    "dev": "node server.js",
-    "build": "node build.js",
-    "start": "node server.js"
+    "build": "node build.js"
   },
   "keywords": [
     "rvrjcce",
