@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from '../core/react.js';
+import React, { useState, useEffect, useRef } from '../core/react.js';
 import { fetchAnnouncements, fetchResults, fetchFaculty } from '../api/client.js';
 import { generateCertificatePDF } from '../utils/pdfCertificateGenerator.js';
 import TextAnimation from './ui/staggerText.js';
@@ -14,12 +14,27 @@ export function AnnouncementsResultsPage({ onNavigate }) {
   const [resultCategory, setResultCategory] = useState('all');
   const [resultDivision, setResultDivision] = useState('all');
   const [resultSearch, setResultSearch] = useState('');
+  const [onlyWinners, setOnlyWinners] = useState(false);
+  const [showFilterOptions, setShowFilterOptions] = useState(false);
+  const searchInputRef = useRef(null);
 
   // Filters for Announcements
   const [announcementCategory, setAnnouncementCategory] = useState('all');
 
   // Certificate Download State
   const [downloadingId, setDownloadingId] = useState(null);
+
+  // ⌘K / Ctrl+K shortcut listener
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && (e.key.toLowerCase() === 'k' || e.key.toLowerCase() === 'f')) {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Load initial data
   const loadData = async () => {
@@ -46,14 +61,27 @@ export function AnnouncementsResultsPage({ onNavigate }) {
 
   // Filtered Results
   const filteredResults = results.filter(r => {
-    if (resultCategory !== 'all' && r.category !== resultCategory) return false;
+    if (resultCategory !== 'all') {
+      if (resultCategory === 'Cultural' || resultCategory === 'Literary & Cultural') {
+        const isCultural = (r.category === 'Cultural' || r.category === 'Literary' || r.category === 'Literary & Cultural');
+        if (!isCultural) return false;
+      } else if (r.category !== resultCategory) {
+        return false;
+      }
+    }
     if (resultDivision !== 'all' && r.division !== resultDivision) return false;
+    if (onlyWinners) {
+      const isWinner = (r.position && (r.position.toLowerCase().includes('winner') || r.position.includes('1st')));
+      if (!isWinner) return false;
+    }
     if (resultSearch) {
       const s = resultSearch.toLowerCase();
       const match = (r.participantName && r.participantName.toLowerCase().includes(s)) ||
                     (r.teamName && r.teamName.toLowerCase().includes(s)) ||
                     (r.college && r.college.toLowerCase().includes(s)) ||
                     (r.event && r.event.toLowerCase().includes(s)) ||
+                    (r.category && r.category.toLowerCase().includes(s)) ||
+                    (r.division && r.division.toLowerCase().includes(s)) ||
                     (r.certificateId && r.certificateId.toLowerCase().includes(s));
       if (!match) return false;
     }
@@ -150,46 +178,263 @@ export function AnnouncementsResultsPage({ onNavigate }) {
            ========================================================================= */}
         {activeTab === 'results' && (
           <div className="ar-content-area">
-            {/* Filter Bar */}
-            <div className="ar-filter-box">
-              <div className="ar-search-wrapper">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            {/* Search Palette Container (inspired by modern command-palette UI) */}
+            <div className="search-palette-card">
+              {/* Search Bar Row */}
+              <div className="search-palette-bar">
+                <svg className="search-palette-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="11" cy="11" r="8" />
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
                 <input
+                  ref={searchInputRef}
                   type="text"
-                  placeholder="Search by winner name, team, college, or certificate ID..."
                   value={resultSearch}
                   onChange={(e) => setResultSearch(e.target.value)}
-                  className="ar-search-input"
+                  placeholder="Search by winner name, team, college, or certificate ID..."
+                  aria-label="Search tournament results"
+                  className="search-palette-input"
                 />
-                {resultSearch && (
-                  <button className="ar-clear-btn" onClick={() => setResultSearch('')}>×</button>
-                )}
+                <div className="search-palette-actions">
+                  {resultSearch && (
+                    <button
+                      type="button"
+                      aria-label="Clear search query"
+                      onClick={() => setResultSearch('')}
+                      className="search-palette-btn"
+                      title="Clear search"
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                      </svg>
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    aria-label="Filters"
+                    onClick={() => setShowFilterOptions(!showFilterOptions)}
+                    className={`search-palette-btn ${showFilterOptions ? 'active' : ''}`}
+                    title="Toggle filter dropdowns"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <line x1="4" y1="21" x2="4" y2="14" />
+                      <line x1="4" y1="10" x2="4" y2="3" />
+                      <line x1="12" y1="21" x2="12" y2="12" />
+                      <line x1="12" y1="8" x2="12" y2="3" />
+                      <line x1="20" y1="21" x2="20" y2="16" />
+                      <line x1="20" y1="12" x2="20" y2="3" />
+                      <line x1="1" y1="14" x2="7" y2="14" />
+                      <line x1="9" y1="8" x2="15" y2="8" />
+                      <line x1="17" y1="16" x2="23" y2="16" />
+                    </svg>
+                  </button>
+                  <kbd className="search-palette-kbd" title="Press ⌘K or Ctrl+K to search">
+                    <span className="kbd-symbol">⌘</span>K
+                  </kbd>
+                </div>
               </div>
 
-              <div className="ar-dropdown-group">
-                <select
-                  value={resultCategory}
-                  onChange={(e) => setResultCategory(e.target.value)}
-                  className="ar-select"
-                >
-                  <option value="all">All Categories</option>
-                  <option value="Sports">Sports Disciplines</option>
-                  <option value="Literary & Cultural">Literary &amp; Cultural</option>
-                </select>
+              {/* Tags Section: "I'm looking for..." */}
+              <div className="search-palette-tags-section">
+                <span className="search-palette-tags-label">I&apos;m looking for...</span>
+                <div className="search-palette-tags-list">
+                  {/* Sports Tag */}
+                  <span
+                    className={`search-palette-tag ${resultCategory === 'Sports' ? 'active' : ''}`}
+                    onClick={() => setResultCategory(resultCategory === 'Sports' ? 'all' : 'Sports')}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                      <path d="M2 12h20" />
+                    </svg>
+                    <span>Sports</span>
+                    {resultCategory === 'Sports' && (
+                      <button
+                        type="button"
+                        className="tag-close-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setResultCategory('all');
+                        }}
+                        aria-label="Remove Sports filter"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </span>
 
-                <select
-                  value={resultDivision}
-                  onChange={(e) => setResultDivision(e.target.value)}
-                  className="ar-select"
-                >
-                  <option value="all">All Divisions</option>
-                  <option value="Boys">Boys / Men</option>
-                  <option value="Girls">Girls / Women</option>
-                  <option value="Open">Open Category</option>
-                </select>
+                  {/* Literary & Cultural Tag */}
+                  <span
+                    className={`search-palette-tag ${resultCategory === 'Literary & Cultural' ? 'active' : ''}`}
+                    onClick={() => setResultCategory(resultCategory === 'Literary & Cultural' ? 'all' : 'Literary & Cultural')}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                    <span>Literary &amp; Cultural</span>
+                    {resultCategory === 'Literary & Cultural' && (
+                      <button
+                        type="button"
+                        className="tag-close-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setResultCategory('all');
+                        }}
+                        aria-label="Remove Literary & Cultural filter"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </span>
+
+                  {/* Boys Division Tag */}
+                  <span
+                    className={`search-palette-tag ${resultDivision === 'Boys' ? 'active' : ''}`}
+                    onClick={() => setResultDivision(resultDivision === 'Boys' ? 'all' : 'Boys')}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <span>Boys</span>
+                    {resultDivision === 'Boys' && (
+                      <button
+                        type="button"
+                        className="tag-close-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setResultDivision('all');
+                        }}
+                        aria-label="Remove Boys filter"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </span>
+
+                  {/* Girls Division Tag */}
+                  <span
+                    className={`search-palette-tag ${resultDivision === 'Girls' ? 'active' : ''}`}
+                    onClick={() => setResultDivision(resultDivision === 'Girls' ? 'all' : 'Girls')}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                    <span>Girls</span>
+                    {resultDivision === 'Girls' && (
+                      <button
+                        type="button"
+                        className="tag-close-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setResultDivision('all');
+                        }}
+                        aria-label="Remove Girls filter"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </span>
+
+                  {/* 1st Place / Winners Tag */}
+                  <span
+                    className={`search-palette-tag ${onlyWinners ? 'active' : ''}`}
+                    onClick={() => setOnlyWinners(!onlyWinners)}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <span>🥇</span>
+                    <span>1st Place Winners</span>
+                    {onlyWinners && (
+                      <button
+                        type="button"
+                        className="tag-close-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setOnlyWinners(false);
+                        }}
+                        aria-label="Remove 1st Place filter"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </span>
+
+                  {/* Reset All Filters button if any filter is active */}
+                  {(resultCategory !== 'all' || resultDivision !== 'all' || onlyWinners || resultSearch) && (
+                    <button
+                      type="button"
+                      className="search-palette-reset-btn"
+                      onClick={() => {
+                        setResultCategory('all');
+                        setResultDivision('all');
+                        setOnlyWinners(false);
+                        setResultSearch('');
+                      }}
+                    >
+                      Reset filters
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Optional Collapsible Filter Selects */}
+              {showFilterOptions && (
+                <div className="search-palette-dropdowns-row">
+                  <div className="palette-select-wrapper">
+                    <label className="palette-select-label">Discipline / Category</label>
+                    <select
+                      value={resultCategory}
+                      onChange={(e) => setResultCategory(e.target.value)}
+                      className="palette-select"
+                    >
+                      <option value="all">All Categories</option>
+                      <option value="Sports">Sports Disciplines</option>
+                      <option value="Literary & Cultural">Literary &amp; Cultural</option>
+                    </select>
+                  </div>
+
+                  <div className="palette-select-wrapper">
+                    <label className="palette-select-label">Division / Bracket</label>
+                    <select
+                      value={resultDivision}
+                      onChange={(e) => setResultDivision(e.target.value)}
+                      className="palette-select"
+                    >
+                      <option value="all">All Divisions</option>
+                      <option value="Boys">Boys / Men</option>
+                      <option value="Girls">Girls / Women</option>
+                      <option value="Open">Open Category</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {/* Palette Footer: Results Count & Verification Indicator */}
+              <div className="search-palette-footer">
+                <div className="search-palette-count">
+                  <span>Last search</span>
+                  <span className="search-count-pill">{filteredResults.length}</span>
+                </div>
+                <div className="search-palette-verified">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span>Official Verified Laurels</span>
+                </div>
               </div>
             </div>
 

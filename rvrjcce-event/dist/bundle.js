@@ -105730,8 +105730,21 @@ function AnnouncementsResultsPage({ onNavigate }) {
   const [resultCategory, setResultCategory] = (0, import_react.useState)("all");
   const [resultDivision, setResultDivision] = (0, import_react.useState)("all");
   const [resultSearch, setResultSearch] = (0, import_react.useState)("");
+  const [onlyWinners, setOnlyWinners] = (0, import_react.useState)(false);
+  const [showFilterOptions, setShowFilterOptions] = (0, import_react.useState)(false);
+  const searchInputRef = (0, import_react.useRef)(null);
   const [announcementCategory, setAnnouncementCategory] = (0, import_react.useState)("all");
   const [downloadingId, setDownloadingId] = (0, import_react.useState)(null);
+  (0, import_react.useEffect)(() => {
+    const handleKeyDown = (e2) => {
+      if ((e2.metaKey || e2.ctrlKey) && (e2.key.toLowerCase() === "k" || e2.key.toLowerCase() === "f")) {
+        e2.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
   const loadData = async () => {
     setLoading(true);
     try {
@@ -105753,11 +105766,22 @@ function AnnouncementsResultsPage({ onNavigate }) {
     loadData();
   }, []);
   const filteredResults = results.filter((r3) => {
-    if (resultCategory !== "all" && r3.category !== resultCategory) return false;
+    if (resultCategory !== "all") {
+      if (resultCategory === "Cultural" || resultCategory === "Literary & Cultural") {
+        const isCultural = r3.category === "Cultural" || r3.category === "Literary" || r3.category === "Literary & Cultural";
+        if (!isCultural) return false;
+      } else if (r3.category !== resultCategory) {
+        return false;
+      }
+    }
     if (resultDivision !== "all" && r3.division !== resultDivision) return false;
+    if (onlyWinners) {
+      const isWinner = r3.position && (r3.position.toLowerCase().includes("winner") || r3.position.includes("1st"));
+      if (!isWinner) return false;
+    }
     if (resultSearch) {
       const s3 = resultSearch.toLowerCase();
-      const match = r3.participantName && r3.participantName.toLowerCase().includes(s3) || r3.teamName && r3.teamName.toLowerCase().includes(s3) || r3.college && r3.college.toLowerCase().includes(s3) || r3.event && r3.event.toLowerCase().includes(s3) || r3.certificateId && r3.certificateId.toLowerCase().includes(s3);
+      const match = r3.participantName && r3.participantName.toLowerCase().includes(s3) || r3.teamName && r3.teamName.toLowerCase().includes(s3) || r3.college && r3.college.toLowerCase().includes(s3) || r3.event && r3.event.toLowerCase().includes(s3) || r3.category && r3.category.toLowerCase().includes(s3) || r3.division && r3.division.toLowerCase().includes(s3) || r3.certificateId && r3.certificateId.toLowerCase().includes(s3);
       if (!match) return false;
     }
     return true;
@@ -105807,37 +105831,187 @@ function AnnouncementsResultsPage({ onNavigate }) {
     },
     /* @__PURE__ */ react_default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "9", cy: "7", r: "4" }), /* @__PURE__ */ react_default.createElement("path", { d: "M23 21v-2a4 4 0 0 0-3-3.87" }), /* @__PURE__ */ react_default.createElement("path", { d: "M16 3.13a4 4 0 0 1 0 7.75" })),
     /* @__PURE__ */ react_default.createElement("span", null, "Faculty Panel (", faculty.length || 4, ")")
-  ))), activeTab === "results" && /* @__PURE__ */ react_default.createElement("div", { className: "ar-content-area" }, /* @__PURE__ */ react_default.createElement("div", { className: "ar-filter-box" }, /* @__PURE__ */ react_default.createElement("div", { className: "ar-search-wrapper" }, /* @__PURE__ */ react_default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ react_default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" })), /* @__PURE__ */ react_default.createElement(
+  ))), activeTab === "results" && /* @__PURE__ */ react_default.createElement("div", { className: "ar-content-area" }, /* @__PURE__ */ react_default.createElement("div", { className: "search-palette-card" }, /* @__PURE__ */ react_default.createElement("div", { className: "search-palette-bar" }, /* @__PURE__ */ react_default.createElement("svg", { className: "search-palette-icon", width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ react_default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" })), /* @__PURE__ */ react_default.createElement(
     "input",
     {
+      ref: searchInputRef,
       type: "text",
-      placeholder: "Search by winner name, team, college, or certificate ID...",
       value: resultSearch,
       onChange: (e2) => setResultSearch(e2.target.value),
-      className: "ar-search-input"
+      placeholder: "Search by winner name, team, college, or certificate ID...",
+      "aria-label": "Search tournament results",
+      className: "search-palette-input"
     }
-  ), resultSearch && /* @__PURE__ */ react_default.createElement("button", { className: "ar-clear-btn", onClick: () => setResultSearch("") }, "\xD7")), /* @__PURE__ */ react_default.createElement("div", { className: "ar-dropdown-group" }, /* @__PURE__ */ react_default.createElement(
+  ), /* @__PURE__ */ react_default.createElement("div", { className: "search-palette-actions" }, resultSearch && /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      type: "button",
+      "aria-label": "Clear search query",
+      onClick: () => setResultSearch(""),
+      className: "search-palette-btn",
+      title: "Clear search"
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), /* @__PURE__ */ react_default.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" }))
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      type: "button",
+      "aria-label": "Filters",
+      onClick: () => setShowFilterOptions(!showFilterOptions),
+      className: `search-palette-btn ${showFilterOptions ? "active" : ""}`,
+      title: "Toggle filter dropdowns"
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("line", { x1: "4", y1: "21", x2: "4", y2: "14" }), /* @__PURE__ */ react_default.createElement("line", { x1: "4", y1: "10", x2: "4", y2: "3" }), /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "21", x2: "12", y2: "12" }), /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "3" }), /* @__PURE__ */ react_default.createElement("line", { x1: "20", y1: "21", x2: "20", y2: "16" }), /* @__PURE__ */ react_default.createElement("line", { x1: "20", y1: "12", x2: "20", y2: "3" }), /* @__PURE__ */ react_default.createElement("line", { x1: "1", y1: "14", x2: "7", y2: "14" }), /* @__PURE__ */ react_default.createElement("line", { x1: "9", y1: "8", x2: "15", y2: "8" }), /* @__PURE__ */ react_default.createElement("line", { x1: "17", y1: "16", x2: "23", y2: "16" }))
+  ), /* @__PURE__ */ react_default.createElement("kbd", { className: "search-palette-kbd", title: "Press \u2318K or Ctrl+K to search" }, /* @__PURE__ */ react_default.createElement("span", { className: "kbd-symbol" }, "\u2318"), "K"))), /* @__PURE__ */ react_default.createElement("div", { className: "search-palette-tags-section" }, /* @__PURE__ */ react_default.createElement("span", { className: "search-palette-tags-label" }, "I'm looking for..."), /* @__PURE__ */ react_default.createElement("div", { className: "search-palette-tags-list" }, /* @__PURE__ */ react_default.createElement(
+    "span",
+    {
+      className: `search-palette-tag ${resultCategory === "Sports" ? "active" : ""}`,
+      onClick: () => setResultCategory(resultCategory === "Sports" ? "all" : "Sports"),
+      role: "button",
+      tabIndex: 0
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ react_default.createElement("path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" }), /* @__PURE__ */ react_default.createElement("path", { d: "M2 12h20" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Sports"),
+    resultCategory === "Sports" && /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "tag-close-btn",
+        onClick: (e2) => {
+          e2.stopPropagation();
+          setResultCategory("all");
+        },
+        "aria-label": "Remove Sports filter"
+      },
+      "\xD7"
+    )
+  ), /* @__PURE__ */ react_default.createElement(
+    "span",
+    {
+      className: `search-palette-tag ${resultCategory === "Literary & Cultural" ? "active" : ""}`,
+      onClick: () => setResultCategory(resultCategory === "Literary & Cultural" ? "all" : "Literary & Cultural"),
+      role: "button",
+      tabIndex: 0
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Literary & Cultural"),
+    resultCategory === "Literary & Cultural" && /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "tag-close-btn",
+        onClick: (e2) => {
+          e2.stopPropagation();
+          setResultCategory("all");
+        },
+        "aria-label": "Remove Literary & Cultural filter"
+      },
+      "\xD7"
+    )
+  ), /* @__PURE__ */ react_default.createElement(
+    "span",
+    {
+      className: `search-palette-tag ${resultDivision === "Boys" ? "active" : ""}`,
+      onClick: () => setResultDivision(resultDivision === "Boys" ? "all" : "Boys"),
+      role: "button",
+      tabIndex: 0
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "7", r: "4" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Boys"),
+    resultDivision === "Boys" && /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "tag-close-btn",
+        onClick: (e2) => {
+          e2.stopPropagation();
+          setResultDivision("all");
+        },
+        "aria-label": "Remove Boys filter"
+      },
+      "\xD7"
+    )
+  ), /* @__PURE__ */ react_default.createElement(
+    "span",
+    {
+      className: `search-palette-tag ${resultDivision === "Girls" ? "active" : ""}`,
+      onClick: () => setResultDivision(resultDivision === "Girls" ? "all" : "Girls"),
+      role: "button",
+      tabIndex: 0
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "9", cy: "7", r: "4" }), /* @__PURE__ */ react_default.createElement("path", { d: "M23 21v-2a4 4 0 0 0-3-3.87" }), /* @__PURE__ */ react_default.createElement("path", { d: "M16 3.13a4 4 0 0 1 0 7.75" })),
+    /* @__PURE__ */ react_default.createElement("span", null, "Girls"),
+    resultDivision === "Girls" && /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "tag-close-btn",
+        onClick: (e2) => {
+          e2.stopPropagation();
+          setResultDivision("all");
+        },
+        "aria-label": "Remove Girls filter"
+      },
+      "\xD7"
+    )
+  ), /* @__PURE__ */ react_default.createElement(
+    "span",
+    {
+      className: `search-palette-tag ${onlyWinners ? "active" : ""}`,
+      onClick: () => setOnlyWinners(!onlyWinners),
+      role: "button",
+      tabIndex: 0
+    },
+    /* @__PURE__ */ react_default.createElement("span", null, "\u{1F947}"),
+    /* @__PURE__ */ react_default.createElement("span", null, "1st Place Winners"),
+    onlyWinners && /* @__PURE__ */ react_default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "tag-close-btn",
+        onClick: (e2) => {
+          e2.stopPropagation();
+          setOnlyWinners(false);
+        },
+        "aria-label": "Remove 1st Place filter"
+      },
+      "\xD7"
+    )
+  ), (resultCategory !== "all" || resultDivision !== "all" || onlyWinners || resultSearch) && /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      type: "button",
+      className: "search-palette-reset-btn",
+      onClick: () => {
+        setResultCategory("all");
+        setResultDivision("all");
+        setOnlyWinners(false);
+        setResultSearch("");
+      }
+    },
+    "Reset filters"
+  ))), showFilterOptions && /* @__PURE__ */ react_default.createElement("div", { className: "search-palette-dropdowns-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "palette-select-wrapper" }, /* @__PURE__ */ react_default.createElement("label", { className: "palette-select-label" }, "Discipline / Category"), /* @__PURE__ */ react_default.createElement(
     "select",
     {
       value: resultCategory,
       onChange: (e2) => setResultCategory(e2.target.value),
-      className: "ar-select"
+      className: "palette-select"
     },
     /* @__PURE__ */ react_default.createElement("option", { value: "all" }, "All Categories"),
     /* @__PURE__ */ react_default.createElement("option", { value: "Sports" }, "Sports Disciplines"),
     /* @__PURE__ */ react_default.createElement("option", { value: "Literary & Cultural" }, "Literary & Cultural")
-  ), /* @__PURE__ */ react_default.createElement(
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "palette-select-wrapper" }, /* @__PURE__ */ react_default.createElement("label", { className: "palette-select-label" }, "Division / Bracket"), /* @__PURE__ */ react_default.createElement(
     "select",
     {
       value: resultDivision,
       onChange: (e2) => setResultDivision(e2.target.value),
-      className: "ar-select"
+      className: "palette-select"
     },
     /* @__PURE__ */ react_default.createElement("option", { value: "all" }, "All Divisions"),
     /* @__PURE__ */ react_default.createElement("option", { value: "Boys" }, "Boys / Men"),
     /* @__PURE__ */ react_default.createElement("option", { value: "Girls" }, "Girls / Women"),
     /* @__PURE__ */ react_default.createElement("option", { value: "Open" }, "Open Category")
-  ))), loading ? /* @__PURE__ */ react_default.createElement("div", { className: "ar-loading-state" }, /* @__PURE__ */ react_default.createElement("div", { className: "ar-spinner" }), /* @__PURE__ */ react_default.createElement("p", null, "Loading tournament results from official database...")) : filteredResults.length === 0 ? /* @__PURE__ */ react_default.createElement("div", { className: "ar-empty-state" }, /* @__PURE__ */ react_default.createElement("svg", { width: "48", height: "48", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" })), /* @__PURE__ */ react_default.createElement("h3", null, "No Tournament Results Found"), /* @__PURE__ */ react_default.createElement("p", null, "Try adjusting your search query or discipline filter options.")) : /* @__PURE__ */ react_default.createElement("div", { className: "results-cards-grid" }, filteredResults.map((r3, i4) => {
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "search-palette-footer" }, /* @__PURE__ */ react_default.createElement("div", { className: "search-palette-count" }, /* @__PURE__ */ react_default.createElement("span", null, "Last search"), /* @__PURE__ */ react_default.createElement("span", { className: "search-count-pill" }, filteredResults.length)), /* @__PURE__ */ react_default.createElement("div", { className: "search-palette-verified" }, /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "#10B981", strokeWidth: "2.5" }, /* @__PURE__ */ react_default.createElement("polyline", { points: "20 6 9 17 4 12" })), /* @__PURE__ */ react_default.createElement("span", null, "Official Verified Laurels")))), loading ? /* @__PURE__ */ react_default.createElement("div", { className: "ar-loading-state" }, /* @__PURE__ */ react_default.createElement("div", { className: "ar-spinner" }), /* @__PURE__ */ react_default.createElement("p", null, "Loading tournament results from official database...")) : filteredResults.length === 0 ? /* @__PURE__ */ react_default.createElement("div", { className: "ar-empty-state" }, /* @__PURE__ */ react_default.createElement("svg", { width: "48", height: "48", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ react_default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" })), /* @__PURE__ */ react_default.createElement("h3", null, "No Tournament Results Found"), /* @__PURE__ */ react_default.createElement("p", null, "Try adjusting your search query or discipline filter options.")) : /* @__PURE__ */ react_default.createElement("div", { className: "results-cards-grid" }, filteredResults.map((r3, i4) => {
     const isGold = r3.position && r3.position.includes("1st");
     const isSilver = r3.position && r3.position.includes("2nd");
     const isBronze = r3.position && r3.position.includes("3rd");
