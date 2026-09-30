@@ -8,6 +8,7 @@ import { LiteraryCulturalSection } from './components/LiteraryCulturalSection.js
 import { GallerySection } from './components/GallerySection.jsx';
 import { FeaturedArena } from './components/FeaturedArena.jsx';
 import { RegistrationCTA } from './components/RegistrationCTA.jsx';
+import { VideoSection } from './components/VideoSection.jsx';
 import { RegistrationForm } from './components/RegistrationForm.jsx';
 import { AdminDashboard } from './components/AdminDashboard.jsx';
 import { AnnouncementsResultsPage } from './components/AnnouncementsResultsPage.jsx';
@@ -139,6 +140,9 @@ export function App() {
             <RegistrationCTA
               onRegisterClick={() => navigateTo('register')}
             />
+
+            {/* 8. Custom SVG Video Section (Campus Immersion) */}
+            <VideoSection />
           </>
         )}
 

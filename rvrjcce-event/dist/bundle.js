@@ -87398,6 +87398,715 @@ function RegistrationCTA({ onRegisterClick }) {
   )))));
 }
 
+// src/components/VideoSection.jsx
+function VideoSection({
+  localVideoSrc = "/video/Rvrjc.mp4"
+}) {
+  const [isMuted, setIsMuted] = (0, import_react.useState)(true);
+  const [isPlaying, setIsPlaying] = (0, import_react.useState)(false);
+  const [videoLoaded, setVideoLoaded] = (0, import_react.useState)(false);
+  const videoRef = (0, import_react.useRef)(null);
+  const wrapperRef = (0, import_react.useRef)(null);
+  const cardRef = (0, import_react.useRef)(null);
+  const clipPathRef = (0, import_react.useRef)(null);
+  const borderPathRef = (0, import_react.useRef)(null);
+  const borderSvgRef = (0, import_react.useRef)(null);
+  const titleRef = (0, import_react.useRef)(null);
+  const PATH_FLAG = "M 0.57148 0.0 C 0.28571 0.0, 0.28571 0.28043, 0.0 0.28043 V 1.0 C 0.22794 1.0, 0.27404 0.82154, 0.4285 0.74941 V 1.0 C 0.71427 1.0, 0.71427 0.71958, 1.0 0.71958 V 0.0 C 0.77204 0.0, 0.72594 0.17846, 0.57148 0.25059 V 0.0 Z";
+  const FLAG_NUMS = [
+    0.57148,
+    0,
+    0.28571,
+    0,
+    0.28571,
+    0.28043,
+    0,
+    0.28043,
+    1,
+    0.22794,
+    1,
+    0.27404,
+    0.82154,
+    0.4285,
+    0.74941,
+    1,
+    0.71427,
+    1,
+    0.71427,
+    0.71958,
+    1,
+    0.71958,
+    0,
+    0.77204,
+    0,
+    0.72594,
+    0.17846,
+    0.57148,
+    0.25059,
+    0
+  ];
+  const RECT_NUMS = [
+    0.57148,
+    0,
+    0.28571,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0.22794,
+    1,
+    0.4285,
+    1,
+    0.4285,
+    1,
+    1,
+    0.71427,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0.77204,
+    0,
+    0.57148,
+    0,
+    0.57148,
+    0,
+    0
+  ];
+  const interpolatePath = (0, import_react.useCallback)((p3) => {
+    const n2 = FLAG_NUMS.map((f3, i4) => (f3 + (RECT_NUMS[i4] - f3) * p3).toFixed(5));
+    return `M ${n2[0]} ${n2[1]} C ${n2[2]} ${n2[3]}, ${n2[4]} ${n2[5]}, ${n2[6]} ${n2[7]} V ${n2[8]} C ${n2[9]} ${n2[10]}, ${n2[11]} ${n2[12]}, ${n2[13]} ${n2[14]} V ${n2[15]} C ${n2[16]} ${n2[17]}, ${n2[18]} ${n2[19]}, ${n2[20]} ${n2[21]} V ${n2[22]} C ${n2[23]} ${n2[24]}, ${n2[25]} ${n2[26]}, ${n2[27]} ${n2[28]} V ${n2[29]} Z`;
+  }, []);
+  (0, import_react.useEffect)(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+    }
+  }, []);
+  (0, import_react.useEffect)(() => {
+    const video = videoRef.current;
+    const wrapper = wrapperRef.current;
+    if (!video || !wrapper) return;
+    const playVideo = () => {
+      video.muted = isMuted;
+      const promise = video.play();
+      if (promise !== void 0) {
+        promise.then(() => setIsPlaying(true)).catch(() => {
+          video.muted = true;
+          setIsMuted(true);
+          video.play().then(() => setIsPlaying(true)).catch(() => {
+          });
+        });
+      }
+    };
+    const observer2 = new IntersectionObserver(
+      (entries2) => {
+        entries2.forEach((entry) => {
+          if (entry.isIntersecting) {
+            playVideo();
+          } else {
+            if (!video.paused) {
+              video.pause();
+              setIsPlaying(false);
+            }
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    observer2.observe(wrapper);
+    const rect = wrapper.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      playVideo();
+    }
+    return () => {
+      observer2.disconnect();
+    };
+  }, [isMuted]);
+  const handleLoadedData = () => {
+    setVideoLoaded(true);
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+      });
+    }
+  };
+  const handleEnded = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {
+      });
+    }
+  };
+  const toggleSound = (e2) => {
+    e2.stopPropagation();
+    if (videoRef.current) {
+      const nextMuted = !videoRef.current.muted;
+      videoRef.current.muted = nextMuted;
+      setIsMuted(nextMuted);
+      if (!isPlaying) {
+        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {
+        });
+      }
+    }
+  };
+  const togglePlayback = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {
+        });
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
+  const handleVideoError = (e2) => {
+    console.warn("Primary video src fallback check...", e2);
+    const video = videoRef.current;
+    if (video && video.src !== localVideoSrc) {
+      video.src = localVideoSrc;
+      video.load();
+      video.play().catch(() => {
+      });
+    }
+  };
+  (0, import_react.useEffect)(() => {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const wrapper = wrapperRef.current;
+      const card = cardRef.current;
+      const clipPath = clipPathRef.current;
+      const borderPath = borderPathRef.current;
+      const borderSvg = borderSvgRef.current;
+      const title = titleRef.current;
+      if (!wrapper || !card) return;
+      const rect = wrapper.getBoundingClientRect();
+      const totalDist = wrapper.offsetHeight - window.innerHeight;
+      if (totalDist <= 0) return;
+      const scrolled = -rect.top;
+      const rawProgress = scrolled / totalDist;
+      const progress2 = Math.max(0, Math.min(1, rawProgress));
+      const p3 = progress2 < 0.5 ? 2 * progress2 * progress2 : -1 + (4 - 2 * progress2) * progress2;
+      const isMobile = window.innerWidth < 768;
+      const startWidthVw = isMobile ? 88 : 70;
+      const maxContainerPx = isMobile ? 600 : 1160;
+      if (progress2 <= 1e-3) {
+        card.style.width = `${startWidthVw}vw`;
+        card.style.maxWidth = `${maxContainerPx}px`;
+        card.style.height = "auto";
+        card.style.aspectRatio = "24.57 / 13.85";
+        card.style.clipPath = "url(#video-flag-clip)";
+        card.style.setProperty("-webkit-clip-path", "url(#video-flag-clip)");
+        if (clipPath) clipPath.setAttribute("d", PATH_FLAG);
+        if (borderPath) borderPath.setAttribute("d", PATH_FLAG);
+        if (borderSvg) borderSvg.style.opacity = "1";
+        if (title) title.style.opacity = "0";
+      } else if (progress2 >= 0.99) {
+        card.style.width = "100vw";
+        card.style.maxWidth = "100vw";
+        card.style.height = "100vh";
+        card.style.aspectRatio = "unset";
+        card.style.clipPath = "none";
+        card.style.setProperty("-webkit-clip-path", "none");
+        const pathRect = interpolatePath(1);
+        if (clipPath) clipPath.setAttribute("d", pathRect);
+        if (borderPath) borderPath.setAttribute("d", pathRect);
+        if (borderSvg) borderSvg.style.opacity = "0";
+        if (title) title.style.opacity = "1";
+      } else {
+        const pClamped = Math.min(1, Math.max(0, p3));
+        const wVw = (startWidthVw + (100 - startWidthVw) * pClamped).toFixed(3);
+        const maxPx = (maxContainerPx * (1 - pClamped)).toFixed(1);
+        const maxVw = (100 * pClamped).toFixed(3);
+        const hVw = (startWidthVw * 13.85 / 24.57 * (1 - pClamped)).toFixed(3);
+        const hVh = (100 * pClamped).toFixed(3);
+        card.style.width = `${wVw}vw`;
+        card.style.maxWidth = `calc(${maxPx}px + ${maxVw}vw)`;
+        card.style.height = `calc(${hVw}vw + ${hVh}vh)`;
+        card.style.aspectRatio = "unset";
+        card.style.clipPath = "url(#video-flag-clip)";
+        card.style.setProperty("-webkit-clip-path", "url(#video-flag-clip)");
+        const currentD = interpolatePath(pClamped);
+        if (clipPath) clipPath.setAttribute("d", currentD);
+        if (borderPath) borderPath.setAttribute("d", currentD);
+        if (borderSvg) borderSvg.style.opacity = String(Math.max(0, 1 - pClamped * 1.5));
+        if (title) {
+          title.style.opacity = String(Math.min(1, Math.max(0, (pClamped - 0.15) * 1.8)));
+        }
+      }
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+    const interval = setInterval(update, 250);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      clearInterval(interval);
+    };
+  }, [interpolatePath]);
+  return /* @__PURE__ */ react_default.createElement(
+    "section",
+    {
+      ref: wrapperRef,
+      id: "campus-video-section",
+      className: "video-reveal-wrapper",
+      style: {
+        position: "relative",
+        width: "100%",
+        height: "230vh",
+        // Provides scroll space for morphing GSAP-like scrub reveal
+        backgroundColor: "#07080b",
+        zIndex: 20
+      }
+    },
+    /* @__PURE__ */ react_default.createElement(
+      "svg",
+      {
+        width: "0",
+        height: "0",
+        style: { position: "absolute", pointerEvents: "none", opacity: 0 },
+        "aria-hidden": "true"
+      },
+      /* @__PURE__ */ react_default.createElement("defs", null, /* @__PURE__ */ react_default.createElement("clipPath", { id: "video-flag-clip", clipPathUnits: "objectBoundingBox" }, /* @__PURE__ */ react_default.createElement("path", { ref: clipPathRef, id: "video-flag-path", d: PATH_FLAG })))
+    ),
+    /* @__PURE__ */ react_default.createElement(
+      "div",
+      {
+        className: "video-reveal-sticky",
+        style: {
+          position: "sticky",
+          top: 0,
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+          backgroundColor: "#07080b"
+        }
+      },
+      /* @__PURE__ */ react_default.createElement(
+        "div",
+        {
+          style: {
+            position: "absolute",
+            inset: 0,
+            background: "radial-gradient(ellipse 75% 65% at 50% 50%, rgba(14, 34, 61, 0.45) 0%, rgba(7, 8, 11, 0.95) 75%, #07080b 100%)",
+            pointerEvents: "none",
+            zIndex: 0
+          }
+        }
+      ),
+      /* @__PURE__ */ react_default.createElement(
+        "div",
+        {
+          className: "video-stepped-accent-right",
+          style: {
+            position: "absolute",
+            right: 0,
+            bottom: "8%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",
+            pointerEvents: "none",
+            zIndex: 1,
+            opacity: 0.9
+          }
+        },
+        /* @__PURE__ */ react_default.createElement(
+          "div",
+          {
+            style: {
+              width: "clamp(80px, 9vw, 120px)",
+              height: "clamp(24px, 2.5vw, 36px)",
+              background: "linear-gradient(90deg, #9333ea, #db2777)",
+              boxShadow: "0 0 25px rgba(219, 39, 119, 0.35)"
+            }
+          }
+        ),
+        /* @__PURE__ */ react_default.createElement(
+          "div",
+          {
+            style: {
+              width: "clamp(130px, 14vw, 190px)",
+              height: "clamp(28px, 3vw, 42px)",
+              background: "linear-gradient(90deg, #7e22ce, #c026d3)"
+            }
+          }
+        ),
+        /* @__PURE__ */ react_default.createElement(
+          "div",
+          {
+            style: {
+              width: "clamp(190px, 20vw, 270px)",
+              height: "clamp(34px, 3.5vw, 50px)",
+              background: "linear-gradient(90deg, #6b21a8, #9333ea)"
+            }
+          }
+        ),
+        /* @__PURE__ */ react_default.createElement(
+          "div",
+          {
+            style: {
+              width: "clamp(260px, 27vw, 370px)",
+              height: "clamp(42px, 4.5vw, 68px)",
+              background: "linear-gradient(90deg, #4c1d95, #6b21a8)"
+            }
+          }
+        )
+      ),
+      /* @__PURE__ */ react_default.createElement(
+        "div",
+        {
+          className: "video-stepped-accent-left",
+          style: {
+            position: "absolute",
+            left: 0,
+            bottom: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            pointerEvents: "none",
+            zIndex: 1,
+            opacity: 0.85
+          }
+        },
+        /* @__PURE__ */ react_default.createElement(
+          "div",
+          {
+            style: {
+              width: "clamp(120px, 15vw, 220px)",
+              height: "clamp(28px, 3.5vw, 45px)",
+              background: "#0c1017"
+            }
+          }
+        ),
+        /* @__PURE__ */ react_default.createElement(
+          "div",
+          {
+            style: {
+              width: "clamp(200px, 24vw, 340px)",
+              height: "clamp(40px, 5vw, 70px)",
+              background: "#07080b"
+            }
+          }
+        )
+      ),
+      /* @__PURE__ */ react_default.createElement(
+        "div",
+        {
+          className: "video-reveal-anchor",
+          style: {
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 5,
+            cursor: "pointer"
+          },
+          onClick: togglePlayback,
+          title: "Click to play / pause video"
+        },
+        /* @__PURE__ */ react_default.createElement(
+          "div",
+          {
+            ref: cardRef,
+            className: "video-reveal-card",
+            style: {
+              position: "relative",
+              width: "64vw",
+              maxWidth: "1080px",
+              aspectRatio: "24.57 / 13.85",
+              clipPath: "url(#video-flag-clip)",
+              WebkitClipPath: "url(#video-flag-clip)",
+              overflow: "hidden",
+              backgroundColor: "#050505",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              filter: "drop-shadow(0 30px 70px rgba(0, 0, 0, 0.8)) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5))",
+              willChange: "transform, width, height",
+              transition: "none"
+            }
+          },
+          /* @__PURE__ */ react_default.createElement(
+            "video",
+            {
+              ref: videoRef,
+              autoPlay: true,
+              loop: true,
+              muted: true,
+              playsInline: true,
+              preload: "auto",
+              onLoadedData: handleLoadedData,
+              onEnded: handleEnded,
+              onError: handleVideoError,
+              style: {
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+                backgroundColor: "#07080b"
+              }
+            },
+            /* @__PURE__ */ react_default.createElement("source", { src: "/video/Rvrjc.mp4", type: "video/mp4" }),
+            /* @__PURE__ */ react_default.createElement("source", { src: "./video/Rvrjc.mp4", type: "video/mp4" }),
+            /* @__PURE__ */ react_default.createElement("source", { src: "video/Rvrjc.mp4", type: "video/mp4" }),
+            "Your browser does not support high-definition video playback."
+          ),
+          /* @__PURE__ */ react_default.createElement(
+            "div",
+            {
+              ref: titleRef,
+              className: "video-expanded-title",
+              style: {
+                position: "absolute",
+                top: "clamp(1.5rem, 5vh, 4rem)",
+                left: "50%",
+                transform: "translateX(-50%)",
+                textAlign: "center",
+                pointerEvents: "none",
+                zIndex: 8,
+                whiteSpace: "nowrap",
+                opacity: 0,
+                transition: "opacity 0.25s ease-out",
+                width: "90%",
+                maxWidth: "1200px"
+              }
+            },
+            /* @__PURE__ */ react_default.createElement(
+              "h2",
+              {
+                style: {
+                  fontSize: "clamp(2.2rem, 5.5vw, 5rem)",
+                  fontWeight: 900,
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1,
+                  textTransform: "uppercase",
+                  color: "#FFFFFF",
+                  textShadow: "0 4px 30px rgba(0, 0, 0, 0.95), 0 2px 10px rgba(0, 0, 0, 0.85)",
+                  fontFamily: '"Plus Jakarta Sans", sans-serif',
+                  margin: 0
+                }
+              },
+              "RVR & JC ",
+              /* @__PURE__ */ react_default.createElement("span", { style: { color: "#FACC15" } }, "CAMPUS")
+            ),
+            /* @__PURE__ */ react_default.createElement(
+              "p",
+              {
+                style: {
+                  fontSize: "clamp(0.72rem, 1.1vw, 1.05rem)",
+                  fontWeight: 700,
+                  letterSpacing: "0.28em",
+                  textTransform: "uppercase",
+                  color: "rgba(255, 255, 255, 0.9)",
+                  margin: "0.5rem 0 0 0",
+                  textShadow: "0 2px 12px rgba(0, 0, 0, 0.95)"
+                }
+              },
+              "R.V.R. & J.C. College of Engineering \u2022 Guntur, AP"
+            )
+          ),
+          /* @__PURE__ */ react_default.createElement(
+            "div",
+            {
+              style: {
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: "140px",
+                background: "linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, transparent 100%)",
+                pointerEvents: "none",
+                zIndex: 3
+              }
+            }
+          ),
+          /* @__PURE__ */ react_default.createElement(
+            "div",
+            {
+              style: {
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: "140px",
+                background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)",
+                pointerEvents: "none",
+                zIndex: 3
+              }
+            }
+          ),
+          /* @__PURE__ */ react_default.createElement(
+            "div",
+            {
+              style: {
+                position: "absolute",
+                bottom: "clamp(1rem, 2.5vw, 2rem)",
+                right: "clamp(1rem, 2.5vw, 2.5rem)",
+                zIndex: 12
+              }
+            },
+            /* @__PURE__ */ react_default.createElement(
+              "button",
+              {
+                type: "button",
+                onClick: toggleSound,
+                "aria-label": isMuted ? "Unmute audio" : "Mute audio",
+                style: {
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.55rem 1rem",
+                  borderRadius: "9999px",
+                  background: "rgba(7, 8, 11, 0.65)",
+                  color: "#FFFFFF",
+                  border: "1px solid rgba(255, 255, 255, 0.22)",
+                  backdropFilter: "blur(12px)",
+                  fontSize: "0.8125rem",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.4)",
+                  transition: "all 0.2s ease"
+                },
+                onMouseEnter: (e2) => {
+                  e2.currentTarget.style.background = "rgba(7, 8, 11, 0.85)";
+                  e2.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.45)";
+                },
+                onMouseLeave: (e2) => {
+                  e2.currentTarget.style.background = "rgba(7, 8, 11, 0.65)";
+                  e2.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.22)";
+                }
+              },
+              isMuted ? /* @__PURE__ */ react_default.createElement(react_default.Fragment, null, /* @__PURE__ */ react_default.createElement(
+                "svg",
+                {
+                  width: "16",
+                  height: "16",
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: "2"
+                },
+                /* @__PURE__ */ react_default.createElement("path", { d: "M11 5L6 9H2v6h4l5 4V5z" }),
+                /* @__PURE__ */ react_default.createElement("line", { x1: "23", y1: "9", x2: "17", y2: "15" }),
+                /* @__PURE__ */ react_default.createElement("line", { x1: "17", y1: "9", x2: "23", y2: "15" })
+              ), /* @__PURE__ */ react_default.createElement("span", null, "Unmute")) : /* @__PURE__ */ react_default.createElement(react_default.Fragment, null, /* @__PURE__ */ react_default.createElement(
+                "svg",
+                {
+                  width: "16",
+                  height: "16",
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: "2"
+                },
+                /* @__PURE__ */ react_default.createElement("polygon", { points: "11 5 6 9 2 9 2 15 6 15 11 19 11 5" }),
+                /* @__PURE__ */ react_default.createElement("path", { d: "M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" })
+              ), /* @__PURE__ */ react_default.createElement("span", null, "Sound On"))
+            )
+          ),
+          /* @__PURE__ */ react_default.createElement(
+            "div",
+            {
+              style: {
+                position: "absolute",
+                bottom: "clamp(1rem, 2.5vw, 2rem)",
+                left: "clamp(1rem, 2.5vw, 2.5rem)",
+                zIndex: 12,
+                pointerEvents: "none"
+              }
+            },
+            /* @__PURE__ */ react_default.createElement(
+              "div",
+              {
+                style: {
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.4rem 0.85rem",
+                  borderRadius: "9999px",
+                  background: "rgba(0, 0, 0, 0.55)",
+                  border: "1px solid rgba(255, 255, 255, 0.15)",
+                  backdropFilter: "blur(8px)",
+                  fontSize: "0.75rem",
+                  color: "rgba(255, 255, 255, 0.8)",
+                  fontWeight: 500
+                }
+              },
+              /* @__PURE__ */ react_default.createElement(
+                "span",
+                {
+                  style: {
+                    width: "6px",
+                    height: "6px",
+                    borderRadius: "50%",
+                    backgroundColor: isPlaying ? "#22c55e" : "#eab308",
+                    boxShadow: isPlaying ? "0 0 8px #22c55e" : "0 0 8px #eab308"
+                  }
+                }
+              ),
+              /* @__PURE__ */ react_default.createElement("span", null, isPlaying ? "Live Campus Footage" : "Paused")
+            )
+          ),
+          /* @__PURE__ */ react_default.createElement(
+            "svg",
+            {
+              ref: borderSvgRef,
+              className: "video-reveal-border",
+              viewBox: "0 0 1 1",
+              preserveAspectRatio: "none",
+              style: {
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                pointerEvents: "none",
+                zIndex: 6,
+                transition: "opacity 0.2s ease-out"
+              }
+            },
+            /* @__PURE__ */ react_default.createElement(
+              "path",
+              {
+                ref: borderPathRef,
+                id: "video-flag-border-path",
+                d: PATH_FLAG,
+                fill: "none",
+                stroke: "rgba(255, 255, 255, 0.28)",
+                strokeWidth: "0.0025",
+                vectorEffect: "non-scaling-stroke"
+              }
+            )
+          )
+        )
+      )
+    )
+  );
+}
+
 // config/eventSchedule.js
 var EVENT_DETAILS = {
   // Sports - Boys
@@ -106239,7 +106948,7 @@ function App() {
     {
       onRegisterClick: () => navigateTo("register")
     }
-  )), currentRoute === "register" && /* @__PURE__ */ react_default.createElement(
+  ), /* @__PURE__ */ react_default.createElement(VideoSection, null)), currentRoute === "register" && /* @__PURE__ */ react_default.createElement(
     RegistrationForm,
     {
       initialCategory: prefilledEvent.category,
