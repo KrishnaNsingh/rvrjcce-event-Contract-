@@ -81,11 +81,11 @@ export function GallerySection() {
   const filteredImages = activeFilter === 'all'
     ? GALLERY_ITEMS
     : GALLERY_ITEMS.filter(item => {
-        if (activeFilter === 'sports') return item.category.toLowerCase().includes('sport') || item.category.toLowerCase().includes('athletic');
-        if (activeFilter === 'cultural') return item.category.toLowerCase().includes('stage') || item.category.toLowerCase().includes('cultural') || item.category.toLowerCase().includes('ceremony');
-        if (activeFilter === 'campus') return item.category.toLowerCase().includes('campus') || item.category.toLowerCase().includes('venue');
-        return true;
-      });
+      if (activeFilter === 'sports') return item.category.toLowerCase().includes('sport') || item.category.toLowerCase().includes('athletic');
+      if (activeFilter === 'cultural') return item.category.toLowerCase().includes('stage') || item.category.toLowerCase().includes('cultural') || item.category.toLowerCase().includes('ceremony');
+      if (activeFilter === 'campus') return item.category.toLowerCase().includes('campus') || item.category.toLowerCase().includes('venue');
+      return true;
+    });
 
   const handleOpenLightbox = (image, index) => {
     setSelectedImage(image);
@@ -141,12 +141,12 @@ export function GallerySection() {
               Memories forged in competition and celebrated on stage.
             </div>
           </div>
-          <div className="gallery-header-meta">
+          {/* <div className="gallery-header-meta">
             <span className="badge badge-outline">3D REVOLVING EXHIBIT</span>
             <span className="gallery-count-lbl">
               {filteredImages.length} High-Resolution Captures
             </span>
-          </div>
+          </div> */}
         </div>
 
         {/* Dynamic Controls Bar */}
@@ -207,7 +207,7 @@ export function GallerySection() {
         {/* 3D Cylinder Carousel Wrapper */}
         <div className="gallery-carousel-stage">
           <div className="gallery-ambient-glow" aria-hidden="true" />
-          
+
           <CylinderCarousel
             key={`${activeFilter}-${duration}`}
             images={filteredImages}
@@ -220,11 +220,11 @@ export function GallerySection() {
           {/* Interactive Hint */}
           <div className="gallery-interaction-hint">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M15 18l-6-6 6-6"/>
+              <path d="M15 18l-6-6 6-6" />
             </svg>
             <span>Hover to pause • Click card for full-resolution view</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 18l6-6-6-6"/>
+              <path d="M9 18l6-6-6-6" />
             </svg>
           </div>
         </div>
