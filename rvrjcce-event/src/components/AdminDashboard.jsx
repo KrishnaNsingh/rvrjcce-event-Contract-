@@ -226,6 +226,9 @@ export function AdminDashboard({ onNavigate }) {
 
   const handleOpenEditAnnouncement = (ann) => {
     setEditingAnnouncement(ann);
+    const coordStr = typeof ann.coordinator === 'object' && ann.coordinator
+      ? [ann.coordinator.name, ann.coordinator.contact].filter(Boolean).join(' • ')
+      : (ann.coordinator || '');
     setAnnouncementFormData({
       title: ann.title || '',
       category: ann.category || 'General',
@@ -236,7 +239,7 @@ export function AdminDashboard({ onNavigate }) {
       imageUrl: ann.imageUrl || '',
       venue: ann.venue || '',
       instructions: Array.isArray(ann.instructions) ? ann.instructions.join('\n') : (ann.instructions || ''),
-      coordinator: ann.coordinator || ''
+      coordinator: coordStr
     });
     setShowAnnouncementModal(true);
   };
@@ -1161,40 +1164,38 @@ export function AdminDashboard({ onNavigate }) {
             </div>
 
             {/* Filter and Search Bar */}
-            <div className="admin-controls-card" style={{ marginBottom: '1.5rem' }}>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                  <label className="form-label" style={{ margin: 0, fontSize: '0.8125rem' }}>Category:</label>
-                  <select
-                    className="form-select form-select-sm"
-                    value={announcementCategoryFilter}
-                    onChange={(e) => setAnnouncementCategoryFilter(e.target.value)}
-                    style={{ minWidth: '150px' }}
-                  >
-                    <option value="all">All Categories</option>
-                    <option value="General">General</option>
-                    <option value="Sports">Sports</option>
-                    <option value="Cultural">Cultural</option>
-                    <option value="Literary">Literary</option>
-                    <option value="Schedule">Schedule</option>
-                    <option value="Venue">Venue</option>
-                    <option value="Emergency">Emergency</option>
-                  </select>
-                </div>
-
-                <div className="search-input-wrapper" style={{ minWidth: '280px' }}>
-                  <svg className="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="admin-controls-card">
+              <div className="search-input-wrap">
+                <span className="search-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="8" />
                     <line x1="21" y1="21" x2="16.65" y2="16.65" />
                   </svg>
-                  <input
-                    type="text"
-                    className="form-input form-input-sm"
-                    placeholder="Search announcements..."
-                    value={announcementSearch}
-                    onChange={(e) => setAnnouncementSearch(e.target.value)}
-                  />
-                </div>
+                </span>
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Search announcements by title, content, venue, or coordinator..."
+                  value={announcementSearch}
+                  onChange={(e) => setAnnouncementSearch(e.target.value)}
+                />
+              </div>
+
+              <div className="filters-group" style={{ flexWrap: 'wrap' }}>
+                <select
+                  className="filter-select"
+                  value={announcementCategoryFilter}
+                  onChange={(e) => setAnnouncementCategoryFilter(e.target.value)}
+                >
+                  <option value="all">All Categories</option>
+                  <option value="General">General</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Cultural">Cultural</option>
+                  <option value="Literary">Literary</option>
+                  <option value="Schedule">Schedule</option>
+                  <option value="Venue">Venue</option>
+                  <option value="Emergency">Emergency</option>
+                </select>
               </div>
             </div>
 
@@ -1210,10 +1211,13 @@ export function AdminDashboard({ onNavigate }) {
                     if (announcementCategoryFilter !== 'all' && a.category !== announcementCategoryFilter) return false;
                     if (announcementSearch) {
                       const s = announcementSearch.toLowerCase();
+                      const coordStr = typeof a.coordinator === 'object' && a.coordinator
+                        ? `${a.coordinator.name || ''} ${a.coordinator.contact || ''}`
+                        : String(a.coordinator || '');
                       const match = (a.title && a.title.toLowerCase().includes(s)) ||
                                     (a.content && a.content.toLowerCase().includes(s)) ||
                                     (a.venue && a.venue.toLowerCase().includes(s)) ||
-                                    (a.coordinator && a.coordinator.toLowerCase().includes(s));
+                                    (coordStr && coordStr.toLowerCase().includes(s));
                       if (!match) return false;
                     }
                     return true;
@@ -1254,7 +1258,7 @@ export function AdminDashboard({ onNavigate }) {
                             {a.category || 'General'}
                           </span>
                           <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                            {a.date ? new Date(a.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ''}
+                            {a.date ? (isNaN(new Date(a.date).getTime()) ? a.date : new Date(a.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })) : ''}
                           </span>
                         </div>
 
@@ -1298,7 +1302,7 @@ export function AdminDashboard({ onNavigate }) {
                           <span>📍 <strong>Venue:</strong> {a.venue}</span>
                         )}
                         {a.coordinator && (
-                          <span>👤 <strong>Coordinator:</strong> {a.coordinator}</span>
+                          <span>👤 <strong>Coordinator:</strong> {typeof a.coordinator === 'object' ? `${a.coordinator.name || ''}${a.coordinator.contact ? ` • ${a.coordinator.contact}` : ''}` : String(a.coordinator)}</span>
                         )}
                         {a.imageUrl && (
                           <span>🖼️ <strong>Image Attached</strong></span>
@@ -1361,36 +1365,34 @@ export function AdminDashboard({ onNavigate }) {
             </div>
 
             {/* Filter and Search Bar */}
-            <div className="admin-controls-card" style={{ marginBottom: '1.5rem' }}>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                  <label className="form-label" style={{ margin: 0, fontSize: '0.8125rem' }}>Category:</label>
-                  <select
-                    className="form-select form-select-sm"
-                    value={resultCategoryFilter}
-                    onChange={(e) => setResultCategoryFilter(e.target.value)}
-                    style={{ minWidth: '150px' }}
-                  >
-                    <option value="all">All Disciplines</option>
-                    <option value="Sports">Sports</option>
-                    <option value="Cultural">Cultural</option>
-                    <option value="Literary">Literary</option>
-                  </select>
-                </div>
-
-                <div className="search-input-wrapper" style={{ minWidth: '280px' }}>
-                  <svg className="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="admin-controls-card">
+              <div className="search-input-wrap">
+                <span className="search-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="8" />
                     <line x1="21" y1="21" x2="16.65" y2="16.65" />
                   </svg>
-                  <input
-                    type="text"
-                    className="form-input form-input-sm"
-                    placeholder="Search winner, team, college, or cert ID..."
-                    value={resultSearch}
-                    onChange={(e) => setResultSearch(e.target.value)}
-                  />
-                </div>
+                </span>
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Search winner, team, college, or cert ID..."
+                  value={resultSearch}
+                  onChange={(e) => setResultSearch(e.target.value)}
+                />
+              </div>
+
+              <div className="filters-group" style={{ flexWrap: 'wrap' }}>
+                <select
+                  className="filter-select"
+                  value={resultCategoryFilter}
+                  onChange={(e) => setResultCategoryFilter(e.target.value)}
+                >
+                  <option value="all">All Disciplines</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Cultural">Cultural</option>
+                  <option value="Literary">Literary</option>
+                </select>
               </div>
             </div>
 

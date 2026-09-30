@@ -104453,6 +104453,7 @@ function AdminDashboard({ onNavigate }) {
   };
   const handleOpenEditAnnouncement = (ann) => {
     setEditingAnnouncement(ann);
+    const coordStr = typeof ann.coordinator === "object" && ann.coordinator ? [ann.coordinator.name, ann.coordinator.contact].filter(Boolean).join(" \u2022 ") : ann.coordinator || "";
     setAnnouncementFormData({
       title: ann.title || "",
       category: ann.category || "General",
@@ -104463,7 +104464,7 @@ function AdminDashboard({ onNavigate }) {
       imageUrl: ann.imageUrl || "",
       venue: ann.venue || "",
       instructions: Array.isArray(ann.instructions) ? ann.instructions.join("\n") : ann.instructions || "",
-      coordinator: ann.coordinator || ""
+      coordinator: coordStr
     });
     setShowAnnouncementModal(true);
   };
@@ -105053,13 +105054,21 @@ function AdminDashboard({ onNavigate }) {
       title: "View Public Announcements Page"
     },
     "View Public Page \u2197"
-  ))), /* @__PURE__ */ react_default.createElement("div", { className: "admin-controls-card", style: { marginBottom: "1.5rem" } }, /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" } }, /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" } }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label", style: { margin: 0, fontSize: "0.8125rem" } }, "Category:"), /* @__PURE__ */ react_default.createElement(
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "admin-controls-card" }, /* @__PURE__ */ react_default.createElement("div", { className: "search-input-wrap" }, /* @__PURE__ */ react_default.createElement("span", { className: "search-icon" }, /* @__PURE__ */ react_default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ react_default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" }))), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "search-input",
+      placeholder: "Search announcements by title, content, venue, or coordinator...",
+      value: announcementSearch,
+      onChange: (e2) => setAnnouncementSearch(e2.target.value)
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "filters-group", style: { flexWrap: "wrap" } }, /* @__PURE__ */ react_default.createElement(
     "select",
     {
-      className: "form-select form-select-sm",
+      className: "filter-select",
       value: announcementCategoryFilter,
-      onChange: (e2) => setAnnouncementCategoryFilter(e2.target.value),
-      style: { minWidth: "150px" }
+      onChange: (e2) => setAnnouncementCategoryFilter(e2.target.value)
     },
     /* @__PURE__ */ react_default.createElement("option", { value: "all" }, "All Categories"),
     /* @__PURE__ */ react_default.createElement("option", { value: "General" }, "General"),
@@ -105069,20 +105078,12 @@ function AdminDashboard({ onNavigate }) {
     /* @__PURE__ */ react_default.createElement("option", { value: "Schedule" }, "Schedule"),
     /* @__PURE__ */ react_default.createElement("option", { value: "Venue" }, "Venue"),
     /* @__PURE__ */ react_default.createElement("option", { value: "Emergency" }, "Emergency")
-  )), /* @__PURE__ */ react_default.createElement("div", { className: "search-input-wrapper", style: { minWidth: "280px" } }, /* @__PURE__ */ react_default.createElement("svg", { className: "search-icon", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ react_default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" })), /* @__PURE__ */ react_default.createElement(
-    "input",
-    {
-      type: "text",
-      className: "form-input form-input-sm",
-      placeholder: "Search announcements...",
-      value: announcementSearch,
-      onChange: (e2) => setAnnouncementSearch(e2.target.value)
-    }
-  )))), announcementsLoading ? /* @__PURE__ */ react_default.createElement("div", { style: { textAlign: "center", padding: "3rem 0", color: "var(--text-muted)" } }, "Loading announcements...") : /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "1rem" } }, announcementsList.filter((a3) => {
+  ))), announcementsLoading ? /* @__PURE__ */ react_default.createElement("div", { style: { textAlign: "center", padding: "3rem 0", color: "var(--text-muted)" } }, "Loading announcements...") : /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "1rem" } }, announcementsList.filter((a3) => {
     if (announcementCategoryFilter !== "all" && a3.category !== announcementCategoryFilter) return false;
     if (announcementSearch) {
       const s3 = announcementSearch.toLowerCase();
-      const match = a3.title && a3.title.toLowerCase().includes(s3) || a3.content && a3.content.toLowerCase().includes(s3) || a3.venue && a3.venue.toLowerCase().includes(s3) || a3.coordinator && a3.coordinator.toLowerCase().includes(s3);
+      const coordStr = typeof a3.coordinator === "object" && a3.coordinator ? `${a3.coordinator.name || ""} ${a3.coordinator.contact || ""}` : String(a3.coordinator || "");
+      const match = a3.title && a3.title.toLowerCase().includes(s3) || a3.content && a3.content.toLowerCase().includes(s3) || a3.venue && a3.venue.toLowerCase().includes(s3) || coordStr && coordStr.toLowerCase().includes(s3);
       if (!match) return false;
     }
     return true;
@@ -105109,7 +105110,7 @@ function AdminDashboard({ onNavigate }) {
       borderRadius: "4px",
       background: a3.priority === "Urgent" ? "#FEE2E2" : a3.priority === "High" ? "#FFEDD5" : "#E0E7FF",
       color: a3.priority === "Urgent" ? "#991B1B" : a3.priority === "High" ? "#C2410C" : "#3730A3"
-    } }, a3.priority || "Normal", " Priority"), /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.72rem", fontWeight: 600, background: "#F3F4F6", color: "#374151", padding: "0.15rem 0.5rem", borderRadius: "4px" } }, a3.category || "General"), /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.78rem", color: "var(--text-muted)" } }, a3.date ? new Date(a3.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "")), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.4rem", alignItems: "center" } }, /* @__PURE__ */ react_default.createElement(
+    } }, a3.priority || "Normal", " Priority"), /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.72rem", fontWeight: 600, background: "#F3F4F6", color: "#374151", padding: "0.15rem 0.5rem", borderRadius: "4px" } }, a3.category || "General"), /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.78rem", color: "var(--text-muted)" } }, a3.date ? isNaN(new Date(a3.date).getTime()) ? a3.date : new Date(a3.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "")), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.4rem", alignItems: "center" } }, /* @__PURE__ */ react_default.createElement(
       "button",
       {
         className: "btn btn-secondary btn-sm",
@@ -105136,7 +105137,7 @@ function AdminDashboard({ onNavigate }) {
       "Delete"
     ))),
     /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("h4", { style: { fontSize: "1.125rem", fontWeight: 700, color: "var(--text-primary)", marginBottom: "0.35rem" } }, a3.title), /* @__PURE__ */ react_default.createElement("p", { style: { fontSize: "0.875rem", color: "#4B5563", lineHeight: 1.5, whiteSpace: "pre-line" } }, a3.content)),
-    /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "1.25rem", flexWrap: "wrap", fontSize: "0.78125rem", color: "var(--text-muted)", borderTop: "1px solid var(--border-light)", paddingTop: "0.6rem" } }, a3.venue && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F4CD} ", /* @__PURE__ */ react_default.createElement("strong", null, "Venue:"), " ", a3.venue), a3.coordinator && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F464} ", /* @__PURE__ */ react_default.createElement("strong", null, "Coordinator:"), " ", a3.coordinator), a3.imageUrl && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F5BC}\uFE0F ", /* @__PURE__ */ react_default.createElement("strong", null, "Image Attached")), Array.isArray(a3.instructions) && a3.instructions.length > 0 && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F4CB} ", /* @__PURE__ */ react_default.createElement("strong", null, a3.instructions.length, " Guidelines")))
+    /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "1.25rem", flexWrap: "wrap", fontSize: "0.78125rem", color: "var(--text-muted)", borderTop: "1px solid var(--border-light)", paddingTop: "0.6rem" } }, a3.venue && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F4CD} ", /* @__PURE__ */ react_default.createElement("strong", null, "Venue:"), " ", a3.venue), a3.coordinator && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F464} ", /* @__PURE__ */ react_default.createElement("strong", null, "Coordinator:"), " ", typeof a3.coordinator === "object" ? `${a3.coordinator.name || ""}${a3.coordinator.contact ? ` \u2022 ${a3.coordinator.contact}` : ""}` : String(a3.coordinator)), a3.imageUrl && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F5BC}\uFE0F ", /* @__PURE__ */ react_default.createElement("strong", null, "Image Attached")), Array.isArray(a3.instructions) && a3.instructions.length > 0 && /* @__PURE__ */ react_default.createElement("span", null, "\u{1F4CB} ", /* @__PURE__ */ react_default.createElement("strong", null, a3.instructions.length, " Guidelines")))
   )), announcementsList.length === 0 && /* @__PURE__ */ react_default.createElement("div", { style: { textAlign: "center", padding: "3rem 0", background: "#FFFFFF", borderRadius: "10px", border: "1px dashed var(--border-light)" } }, /* @__PURE__ */ react_default.createElement("div", { style: { fontSize: "2rem", marginBottom: "0.5rem" } }, "\u{1F4E2}"), /* @__PURE__ */ react_default.createElement("div", { style: { fontWeight: 600, color: "var(--text-primary)" } }, "No Announcements Found"), /* @__PURE__ */ react_default.createElement("p", { style: { fontSize: "0.875rem", color: "var(--text-secondary)", marginTop: "0.25rem" } }, 'Click "Post Announcement" to create the first bulletin.')))), adminTab === "results" && /* @__PURE__ */ react_default.createElement("div", { className: "admin-results-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "admin-sub-header" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("h2", { className: "heading-subsection", style: { marginBottom: "0.25rem" } }, "Tournament Laurels & Certificate Publisher"), /* @__PURE__ */ react_default.createElement("p", { className: "text-body", style: { fontSize: "0.875rem" } }, "Authorize official winners, runners-up, rosters, and enable instant PDF merit certificates.")), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.75rem", alignItems: "center" } }, /* @__PURE__ */ react_default.createElement(
     "button",
     {
@@ -105154,28 +105155,27 @@ function AdminDashboard({ onNavigate }) {
       title: "View Public Results Page"
     },
     "View Public Page \u2197"
-  ))), /* @__PURE__ */ react_default.createElement("div", { className: "admin-controls-card", style: { marginBottom: "1.5rem" } }, /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" } }, /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" } }, /* @__PURE__ */ react_default.createElement("label", { className: "form-label", style: { margin: 0, fontSize: "0.8125rem" } }, "Category:"), /* @__PURE__ */ react_default.createElement(
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "admin-controls-card" }, /* @__PURE__ */ react_default.createElement("div", { className: "search-input-wrap" }, /* @__PURE__ */ react_default.createElement("span", { className: "search-icon" }, /* @__PURE__ */ react_default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ react_default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" }))), /* @__PURE__ */ react_default.createElement(
+    "input",
+    {
+      type: "text",
+      className: "search-input",
+      placeholder: "Search winner, team, college, or cert ID...",
+      value: resultSearch,
+      onChange: (e2) => setResultSearch(e2.target.value)
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "filters-group", style: { flexWrap: "wrap" } }, /* @__PURE__ */ react_default.createElement(
     "select",
     {
-      className: "form-select form-select-sm",
+      className: "filter-select",
       value: resultCategoryFilter,
-      onChange: (e2) => setResultCategoryFilter(e2.target.value),
-      style: { minWidth: "150px" }
+      onChange: (e2) => setResultCategoryFilter(e2.target.value)
     },
     /* @__PURE__ */ react_default.createElement("option", { value: "all" }, "All Disciplines"),
     /* @__PURE__ */ react_default.createElement("option", { value: "Sports" }, "Sports"),
     /* @__PURE__ */ react_default.createElement("option", { value: "Cultural" }, "Cultural"),
     /* @__PURE__ */ react_default.createElement("option", { value: "Literary" }, "Literary")
-  )), /* @__PURE__ */ react_default.createElement("div", { className: "search-input-wrapper", style: { minWidth: "280px" } }, /* @__PURE__ */ react_default.createElement("svg", { className: "search-icon", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ react_default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" })), /* @__PURE__ */ react_default.createElement(
-    "input",
-    {
-      type: "text",
-      className: "form-input form-input-sm",
-      placeholder: "Search winner, team, college, or cert ID...",
-      value: resultSearch,
-      onChange: (e2) => setResultSearch(e2.target.value)
-    }
-  )))), resultsLoading ? /* @__PURE__ */ react_default.createElement("div", { style: { textAlign: "center", padding: "3rem 0", color: "var(--text-muted)" } }, "Loading tournament laurels...") : /* @__PURE__ */ react_default.createElement("div", { className: "admin-table-card", style: { overflowX: "auto" } }, /* @__PURE__ */ react_default.createElement("table", { className: "admin-table" }, /* @__PURE__ */ react_default.createElement("thead", null, /* @__PURE__ */ react_default.createElement("tr", null, /* @__PURE__ */ react_default.createElement("th", null, "Placement"), /* @__PURE__ */ react_default.createElement("th", null, "Event & Category"), /* @__PURE__ */ react_default.createElement("th", null, "Winner / Team"), /* @__PURE__ */ react_default.createElement("th", null, "Institution"), /* @__PURE__ */ react_default.createElement("th", null, "Score / Details"), /* @__PURE__ */ react_default.createElement("th", null, "Certificate ID"), /* @__PURE__ */ react_default.createElement("th", { style: { textAlign: "right" } }, "Actions"))), /* @__PURE__ */ react_default.createElement("tbody", null, resultsList.filter((r3) => {
+  ))), resultsLoading ? /* @__PURE__ */ react_default.createElement("div", { style: { textAlign: "center", padding: "3rem 0", color: "var(--text-muted)" } }, "Loading tournament laurels...") : /* @__PURE__ */ react_default.createElement("div", { className: "admin-table-card", style: { overflowX: "auto" } }, /* @__PURE__ */ react_default.createElement("table", { className: "admin-table" }, /* @__PURE__ */ react_default.createElement("thead", null, /* @__PURE__ */ react_default.createElement("tr", null, /* @__PURE__ */ react_default.createElement("th", null, "Placement"), /* @__PURE__ */ react_default.createElement("th", null, "Event & Category"), /* @__PURE__ */ react_default.createElement("th", null, "Winner / Team"), /* @__PURE__ */ react_default.createElement("th", null, "Institution"), /* @__PURE__ */ react_default.createElement("th", null, "Score / Details"), /* @__PURE__ */ react_default.createElement("th", null, "Certificate ID"), /* @__PURE__ */ react_default.createElement("th", { style: { textAlign: "right" } }, "Actions"))), /* @__PURE__ */ react_default.createElement("tbody", null, resultsList.filter((r3) => {
     if (resultCategoryFilter !== "all" && r3.category !== resultCategoryFilter) return false;
     if (resultSearch) {
       const s3 = resultSearch.toLowerCase();
