@@ -1,5 +1,6 @@
 import React from '../core/react.js';
 import { INSTITUTION } from '../../config/eventConfig.js';
+import TextAnimation from './ui/staggerText.js';
 
 export function IntroSection({ liveStats }) {
   // Use dynamic count if available from API/database, otherwise display clean dynamic placeholder
@@ -18,7 +19,9 @@ export function IntroSection({ liveStats }) {
               INSTITUTIONAL ETHOS
             </span>
             <h2 className="intro-statement">
-              An event built for participation.
+              <TextAnimation divideBy="word" delay={0.15}>
+                An event built for participation.
+              </TextAnimation>
             </h2>
           </div>
 
@@ -60,6 +63,27 @@ export function IntroSection({ liveStats }) {
             <span className="stat-label">Dedicated Grounds</span>
             <span className="stat-footnote">* Courts & auditorium facilities</span>
           </div>
+        </div>
+
+        {/* Relevant Event Manifesto & Animated Highlight */}
+        <div className="intro-manifesto-card">
+          <div className="manifesto-header">
+            <span className="manifesto-pill">
+              <span className="eyebrow-dot"></span>
+              COLORIDO 2K26 MANIFESTO
+            </span>
+            <span className="manifesto-edition">40TH EDITION • RVRJCCE</span>
+          </div>
+          <h3 className="manifesto-text">
+            <TextAnimation divideBy="word" delay={0.15}>
+              Where talent meets tenacity. Forty years of collegiate excellence across sports and arts.
+            </TextAnimation>
+          </h3>
+          <p className="manifesto-subtext">
+            <TextAnimation divideBy="word" delay={0.35}>
+              From buzzer-beating basketball showdowns to spellbinding classical dance spectacles, COLORIDO 2K26 unites student champions from across Andhra Pradesh on one legendary campus.
+            </TextAnimation>
+          </p>
         </div>
       </div>
     </section>

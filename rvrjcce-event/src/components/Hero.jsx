@@ -1,6 +1,7 @@
 import React from '../core/react.js';
 import { INSTITUTION } from '../../config/eventConfig.js';
 import AnimatedButton from './ui/animated-button.js';
+import TextAnimation from './ui/staggerText.js';
 
 export function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
   const participantCount = liveStats && liveStats.total ? `${liveStats.total}+` : '1,200+';
@@ -33,7 +34,9 @@ export function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
             </h1>
 
             <p className="hero-editorial-sub">
-              / Where Athletic Grit Meets Creative Expression • Annual Meet 2026 /
+              <TextAnimation divideBy="word" delay={0.25}>
+                / Where Athletic Grit Meets Creative Expression • Annual Meet 2026 /
+              </TextAnimation>
             </p>
 
             <div className="hero-editorial-actions">
@@ -90,9 +93,11 @@ export function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
           </div>
 
           {/* Bottom Right: Statement + Underlined Link */}
-          {/* <div className="bottom-statement-right">
+          <div className="bottom-statement-right">
             <div className="bottom-statement-title">
-              WE UNITE ATHLETIC GRIT &amp; STAGE BRILLIANCE
+              <TextAnimation divideBy="word" delay={0.35}>
+                WE UNITE ATHLETIC GRIT &amp; STAGE BRILLIANCE
+              </TextAnimation>
             </div>
             <button className="bottom-statement-link" onClick={onExploreEvents}>
               <span>EXPLORE FIXTURES</span>
@@ -100,7 +105,7 @@ export function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </button>
-          </div> */}
+          </div>
         </div>
       </div>
     </section>

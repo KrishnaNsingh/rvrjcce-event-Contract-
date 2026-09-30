@@ -1374,7 +1374,7 @@ var require_react_dom_development = __commonJS({
         return dispatcher;
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React5 = require_react(), Internals = {
+      var React6 = require_react(), Internals = {
         d: {
           f: noop3,
           r: function() {
@@ -1392,7 +1392,7 @@ var require_react_dom_development = __commonJS({
         },
         p: 0,
         findDOMNode: null
-      }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = /* @__PURE__ */ Symbol.for("react.optimistic_key"), ReactSharedInternals = React5.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+      }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = /* @__PURE__ */ Symbol.for("react.optimistic_key"), ReactSharedInternals = React6.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
       "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
         "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
       );
@@ -1400,11 +1400,11 @@ var require_react_dom_development = __commonJS({
       exports.browser = function(reason) {
         return { $$typeof: REACT_RECOVERABLE_TYPE, _reason: reason };
       };
-      exports.createPortal = function(children, container2) {
+      exports.createPortal = function(children, container3) {
         var key = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
-        if (!container2 || 1 !== container2.nodeType && 9 !== container2.nodeType && 11 !== container2.nodeType)
+        if (!container3 || 1 !== container3.nodeType && 9 !== container3.nodeType && 11 !== container3.nodeType)
           throw Error("Target container is not a DOM element.");
-        return createPortal$1(children, container2, null, key);
+        return createPortal$1(children, container3, null, key);
       };
       exports.flushSync = function(fn) {
         var previousTransition = ReactSharedInternals.T, previousUpdatePriority = Internals.p;
@@ -3078,7 +3078,7 @@ var require_react_dom_client_development = __commonJS({
         node2.defaultValue !== "" + value && (node2.defaultValue = "" + value);
       }
       function validateOptionProps(element, props) {
-        null == props.value && ("object" === typeof props.children && null !== props.children ? React5.Children.forEach(props.children, function(child) {
+        null == props.value && ("object" === typeof props.children && null !== props.children ? React6.Children.forEach(props.children, function(child) {
           null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = true, console.error(
             "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
           ));
@@ -16165,8 +16165,8 @@ var require_react_dom_client_development = __commonJS({
             if (null === targetInst$jscomp$0) return;
             var nodeTag = targetInst$jscomp$0.tag;
             if (3 === nodeTag || 4 === nodeTag) {
-              var container2 = targetInst$jscomp$0.stateNode.containerInfo;
-              if (container2 === targetContainer) break;
+              var container3 = targetInst$jscomp$0.stateNode.containerInfo;
+              if (container3 === targetContainer) break;
               if (4 === nodeTag)
                 for (nodeTag = targetInst$jscomp$0.return; null !== nodeTag; ) {
                   var grandTag = nodeTag.tag;
@@ -16174,15 +16174,15 @@ var require_react_dom_client_development = __commonJS({
                     return;
                   nodeTag = nodeTag.return;
                 }
-              for (; null !== container2; ) {
-                nodeTag = getClosestInstanceFromNode(container2);
+              for (; null !== container3; ) {
+                nodeTag = getClosestInstanceFromNode(container3);
                 if (null === nodeTag) return;
                 grandTag = nodeTag.tag;
                 if (5 === grandTag || 6 === grandTag || 26 === grandTag || 27 === grandTag) {
                   targetInst$jscomp$0 = ancestorInst = nodeTag;
                   continue a;
                 }
-                container2 = container2.parentNode;
+                container3 = container3.parentNode;
               }
             }
             targetInst$jscomp$0 = targetInst$jscomp$0.return;
@@ -18380,16 +18380,16 @@ var require_react_dom_client_development = __commonJS({
       function commitTextUpdate(textInstance, oldText, newText) {
         textInstance.nodeValue = newText;
       }
-      function warnForReactChildrenConflict(container2) {
-        if (!container2.__reactWarnedAboutChildrenConflict) {
-          var props = container2[internalPropsKey] || null;
+      function warnForReactChildrenConflict(container3) {
+        if (!container3.__reactWarnedAboutChildrenConflict) {
+          var props = container3[internalPropsKey] || null;
           if (null !== props) {
-            var fiber = getInstanceFromNode(container2);
-            null !== fiber && ("string" === typeof props.children || "number" === typeof props.children ? (container2.__reactWarnedAboutChildrenConflict = true, runWithFiberInDEV(fiber, function() {
+            var fiber = getInstanceFromNode(container3);
+            null !== fiber && ("string" === typeof props.children || "number" === typeof props.children ? (container3.__reactWarnedAboutChildrenConflict = true, runWithFiberInDEV(fiber, function() {
               console.error(
                 'Cannot use a ref on a React element as a container to `createRoot` or `createPortal` if that element also sets "children" text content using React. It should be a leaf with no children. Otherwise it\'s ambiguous which children should be used.'
               );
-            })) : null != props.dangerouslySetInnerHTML && (container2.__reactWarnedAboutChildrenConflict = true, runWithFiberInDEV(fiber, function() {
+            })) : null != props.dangerouslySetInnerHTML && (container3.__reactWarnedAboutChildrenConflict = true, runWithFiberInDEV(fiber, function() {
               console.error(
                 'Cannot use a ref on a React element as a container to `createRoot` or `createPortal` if that element also sets "dangerouslySetInnerHTML" using React. It should be a leaf with no children. Otherwise it\'s ambiguous which children should be used.'
               );
@@ -18403,8 +18403,8 @@ var require_react_dom_client_development = __commonJS({
       function removeChild(parentInstance, child) {
         parentInstance.removeChild(child);
       }
-      function removeChildFromContainer(container2, child) {
-        (9 === container2.nodeType ? container2.body : "HTML" === container2.nodeName ? container2.ownerDocument.body : container2).removeChild(child);
+      function removeChildFromContainer(container3, child) {
+        (9 === container3.nodeType ? container3.body : "HTML" === container3.nodeName ? container3.ownerDocument.body : container3).removeChild(child);
       }
       function clearHydrationBoundary(parentInstance, hydrationInstance) {
         var node2 = hydrationInstance, depth = 0;
@@ -18732,8 +18732,8 @@ var require_react_dom_client_development = __commonJS({
         if (0 === eventListeners.length) return -1;
         optionsOrUseCapture = normalizeListenerOptions(optionsOrUseCapture);
         for (var i4 = 0; i4 < eventListeners.length; i4++) {
-          var item = eventListeners[i4];
-          if (item.type === type && item.listener === listener && normalizeListenerOptions(item.optionsOrUseCapture) === optionsOrUseCapture)
+          var item2 = eventListeners[i4];
+          if (item2.type === type && item2.listener === listener && normalizeListenerOptions(item2.optionsOrUseCapture) === optionsOrUseCapture)
             return i4;
         }
         return -1;
@@ -18775,8 +18775,8 @@ var require_react_dom_client_development = __commonJS({
           var pending = pendingIntersectionUnobserves;
           pendingIntersectionUnobserves = [];
           for (var i4 = 0; i4 < pending.length; i4++) {
-            var item = pending[i4];
-            item.observer.unobserve(item.instance);
+            var item2 = pending[i4];
+            item2.observer.unobserve(item2.instance);
           }
         }));
       }
@@ -18902,8 +18902,8 @@ var require_react_dom_client_development = __commonJS({
           ) : observer2.unobserve(childInstance);
         }), null != childInstance.reactFragments && childInstance.reactFragments.delete(fragmentInstance));
       }
-      function clearContainerSparingly(container2) {
-        var nextNode = container2.firstChild;
+      function clearContainerSparingly(container3) {
+        var nextNode = container3.firstChild;
         nextNode && 10 === nextNode.nodeType && (nextNode = nextNode.nextSibling);
         for (; nextNode; ) {
           var node2 = nextNode;
@@ -18921,7 +18921,7 @@ var require_react_dom_client_development = __commonJS({
             case "LINK":
               if ("stylesheet" === node2.rel.toLowerCase()) continue;
           }
-          container2.removeChild(node2);
+          container3.removeChild(node2);
         }
       }
       function canHydrateInstance(instance, type, props, inRootOrSingleton) {
@@ -19063,8 +19063,8 @@ var require_react_dom_client_development = __commonJS({
         }
         return null;
       }
-      function commitHydratedContainer(container2) {
-        retryIfBlockedOn(container2);
+      function commitHydratedContainer(container3) {
+        retryIfBlockedOn(container3);
       }
       function commitHydratedActivityInstance(activityInstance) {
         retryIfBlockedOn(activityInstance);
@@ -19163,13 +19163,13 @@ var require_react_dom_client_development = __commonJS({
           instance.removeAttributeNode(attributes[0]);
         detachDeletedInstance(instance);
       }
-      function getHoistableRoot(container2) {
-        if ("function" === typeof container2.getRootNode) {
-          var rootNode = container2.getRootNode();
+      function getHoistableRoot(container3) {
+        if ("function" === typeof container3.getRootNode) {
+          var rootNode = container3.getRootNode();
           if (9 === rootNode.nodeType || 11 === rootNode.nodeType)
             return rootNode;
         }
-        return 9 === container2.nodeType ? container2 : container2.ownerDocument;
+        return 9 === container3.nodeType ? container3 : container3.ownerDocument;
       }
       function preconnectAs(rel, href, crossOrigin) {
         var ownerDocument = globalDocument;
@@ -19670,10 +19670,10 @@ var require_react_dom_client_development = __commonJS({
         parentComponent = emptyContextObject;
         return parentComponent;
       }
-      function updateContainerImpl(rootFiber, lane, element, container2, parentComponent, callback) {
+      function updateContainerImpl(rootFiber, lane, element, container3, parentComponent, callback) {
         if (injectedHook && "function" === typeof injectedHook.onScheduleFiberRoot)
           try {
-            injectedHook.onScheduleFiberRoot(rendererID, container2, element);
+            injectedHook.onScheduleFiberRoot(rendererID, container3, element);
           } catch (err2) {
             hasLoggedError || (hasLoggedError = true, console.error(
               "React instrumentation encountered an error: %o",
@@ -19681,19 +19681,19 @@ var require_react_dom_client_development = __commonJS({
             ));
           }
         parentComponent = getContextForSubtree(parentComponent);
-        null === container2.context ? container2.context = parentComponent : container2.pendingContext = parentComponent;
+        null === container3.context ? container3.context = parentComponent : container3.pendingContext = parentComponent;
         isRendering && null !== current && !didWarnAboutNestedUpdates && (didWarnAboutNestedUpdates = true, console.error(
           "Render methods should be a pure function of props and state; triggering nested component updates from render is not allowed. If necessary, trigger nested updates in componentDidUpdate.\n\nCheck the render method of %s.",
           getComponentNameFromFiber(current) || "Unknown"
         ));
-        container2 = createUpdate(lane);
-        container2.payload = { element };
+        container3 = createUpdate(lane);
+        container3.payload = { element };
         callback = void 0 === callback ? null : callback;
         null !== callback && ("function" !== typeof callback && console.error(
           "Expected the last optional `callback` argument to be a function. Instead received: %s.",
           callback
-        ), container2.callback = callback);
-        element = enqueueUpdate(rootFiber, container2, lane);
+        ), container3.callback = callback);
+        element = enqueueUpdate(rootFiber, container3, lane);
         null !== element && (startUpdateTimerByLane(lane, "root.render()", null), scheduleUpdateOnFiber(element, rootFiber, lane), entangleTransitions(element, rootFiber, lane));
       }
       function markRetryLaneImpl(fiber, retryLane) {
@@ -19726,22 +19726,22 @@ var require_react_dom_client_development = __commonJS({
       function getCurrentFiberForDevTools() {
         return current;
       }
-      function dispatchDiscreteEvent(domEventName, eventSystemFlags, container2, nativeEvent) {
+      function dispatchDiscreteEvent(domEventName, eventSystemFlags, container3, nativeEvent) {
         var prevTransition = ReactSharedInternals.T;
         ReactSharedInternals.T = null;
         var previousPriority = ReactDOMSharedInternals.p;
         try {
-          ReactDOMSharedInternals.p = DiscreteEventPriority, dispatchEvent(domEventName, eventSystemFlags, container2, nativeEvent);
+          ReactDOMSharedInternals.p = DiscreteEventPriority, dispatchEvent(domEventName, eventSystemFlags, container3, nativeEvent);
         } finally {
           ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = prevTransition;
         }
       }
-      function dispatchContinuousEvent(domEventName, eventSystemFlags, container2, nativeEvent) {
+      function dispatchContinuousEvent(domEventName, eventSystemFlags, container3, nativeEvent) {
         var prevTransition = ReactSharedInternals.T;
         ReactSharedInternals.T = null;
         var previousPriority = ReactDOMSharedInternals.p;
         try {
-          ReactDOMSharedInternals.p = ContinuousEventPriority, dispatchEvent(domEventName, eventSystemFlags, container2, nativeEvent);
+          ReactDOMSharedInternals.p = ContinuousEventPriority, dispatchEvent(domEventName, eventSystemFlags, container3, nativeEvent);
         } finally {
           ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = prevTransition;
         }
@@ -20218,19 +20218,19 @@ var require_react_dom_client_development = __commonJS({
       function ReactDOMHydrationRoot(internalRoot) {
         this._internalRoot = internalRoot;
       }
-      function warnIfReactDOMContainerInDEV(container2) {
-        container2[internalContainerInstanceKey] && (container2._reactRootContainer ? console.error(
+      function warnIfReactDOMContainerInDEV(container3) {
+        container3[internalContainerInstanceKey] && (container3._reactRootContainer ? console.error(
           "You are calling ReactDOMClient.createRoot() on a container that was previously passed to ReactDOM.render(). This is not supported."
         ) : console.error(
           "You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it."
         ));
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var Scheduler = require_scheduler(), React5 = require_react(), ReactDOM2 = require_react_dom(), searchTarget = null, searchBoundary = null, assign3 = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
+      var Scheduler = require_scheduler(), React6 = require_react(), ReactDOM2 = require_react_dom(), searchTarget = null, searchBoundary = null, assign3 = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
       /* @__PURE__ */ Symbol.for("react.scope");
       var REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = /* @__PURE__ */ Symbol.for("react.legacy_hidden");
       /* @__PURE__ */ Symbol.for("react.tracing_marker");
-      var REACT_MEMO_CACHE_SENTINEL = /* @__PURE__ */ Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React5.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+      var REACT_MEMO_CACHE_SENTINEL = /* @__PURE__ */ Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React6.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
         pending: false,
         data: null,
         method: null,
@@ -23403,13 +23403,13 @@ var require_react_dom_client_development = __commonJS({
         args = this._internalRoot;
         if (null !== args) {
           this._internalRoot = null;
-          var container2 = args.containerInfo;
+          var container3 = args.containerInfo;
           (executionContext & (RenderContext | CommitContext)) !== NoContext && console.error(
             "Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition."
           );
           updateContainerImpl(args.current, 2, null, args, null, null);
           flushSyncWork$1();
-          container2[internalContainerInstanceKey] = null;
+          container3[internalContainerInstanceKey] = null;
         }
       };
       ReactDOMHydrationRoot.prototype.unstable_scheduleHydration = function(target) {
@@ -23422,7 +23422,7 @@ var require_react_dom_client_development = __commonJS({
         }
       };
       (function() {
-        var isomorphicReactPackageVersion = React5.version;
+        var isomorphicReactPackageVersion = React6.version;
         if ("19.3.0" !== isomorphicReactPackageVersion)
           throw Error(
             'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.3.0\nLearn more: https://react.dev/warnings/version-mismatch")
@@ -23476,10 +23476,10 @@ var require_react_dom_client_development = __commonJS({
           "font-weight:bold"
         );
       }
-      exports.createRoot = function(container2, options) {
-        if (!isValidContainer(container2))
+      exports.createRoot = function(container3, options) {
+        if (!isValidContainer(container3))
           throw Error("Target container is not a DOM element.");
-        warnIfReactDOMContainerInDEV(container2);
+        warnIfReactDOMContainerInDEV(container3);
         var isStrictMode = false, identifierPrefix = "", onUncaughtError = defaultOnUncaughtError, onCaughtError = defaultOnCaughtError, onRecoverableError = defaultOnRecoverableError;
         null !== options && void 0 !== options && (options.hydrate ? console.warn(
           "hydrate through createRoot is deprecated. Use ReactDOMClient.hydrateRoot(container, <App />) instead."
@@ -23487,7 +23487,7 @@ var require_react_dom_client_development = __commonJS({
           "You passed a JSX element to createRoot. You probably meant to call root.render instead. Example usage:\n\n  let root = createRoot(domContainer);\n  root.render(<App />);"
         ), true === options.unstable_strictMode && (isStrictMode = true), void 0 !== options.identifierPrefix && (identifierPrefix = options.identifierPrefix), void 0 !== options.onUncaughtError && (onUncaughtError = options.onUncaughtError), void 0 !== options.onCaughtError && (onCaughtError = options.onCaughtError), void 0 !== options.onRecoverableError && (onRecoverableError = options.onRecoverableError));
         options = createFiberRoot(
-          container2,
+          container3,
           1,
           false,
           null,
@@ -23500,21 +23500,21 @@ var require_react_dom_client_development = __commonJS({
           onRecoverableError,
           defaultOnDefaultTransitionIndicator
         );
-        container2[internalContainerInstanceKey] = options.current;
-        listenToAllSupportedEvents(container2);
+        container3[internalContainerInstanceKey] = options.current;
+        listenToAllSupportedEvents(container3);
         return new ReactDOMRoot(options);
       };
-      exports.hydrateRoot = function(container2, initialChildren, options) {
-        if (!isValidContainer(container2))
+      exports.hydrateRoot = function(container3, initialChildren, options) {
+        if (!isValidContainer(container3))
           throw Error("Target container is not a DOM element.");
-        warnIfReactDOMContainerInDEV(container2);
+        warnIfReactDOMContainerInDEV(container3);
         void 0 === initialChildren && console.error(
           "Must provide initial children as second argument to hydrateRoot. Example usage: hydrateRoot(domContainer, <App />)"
         );
         var isStrictMode = false, identifierPrefix = "", onUncaughtError = defaultOnUncaughtError, onCaughtError = defaultOnCaughtError, onRecoverableError = defaultOnRecoverableError, formState = null;
         null !== options && void 0 !== options && (true === options.unstable_strictMode && (isStrictMode = true), void 0 !== options.identifierPrefix && (identifierPrefix = options.identifierPrefix), void 0 !== options.onUncaughtError && (onUncaughtError = options.onUncaughtError), void 0 !== options.onCaughtError && (onCaughtError = options.onCaughtError), void 0 !== options.onRecoverableError && (onRecoverableError = options.onRecoverableError), void 0 !== options.formState && (formState = options.formState));
         initialChildren = createFiberRoot(
-          container2,
+          container3,
           1,
           true,
           initialChildren,
@@ -23539,8 +23539,8 @@ var require_react_dom_client_development = __commonJS({
         initialChildren.current.lanes = options;
         markRootUpdated$1(initialChildren, options);
         ensureRootIsScheduled(initialChildren);
-        container2[internalContainerInstanceKey] = initialChildren.current;
-        listenToAllSupportedEvents(container2);
+        container3[internalContainerInstanceKey] = initialChildren.current;
+        listenToAllSupportedEvents(container3);
         return new ReactDOMHydrationRoot(initialChildren);
       };
       exports.version = "19.3.0";
@@ -23778,18 +23778,18 @@ var require_react_jsx_runtime_development = __commonJS({
       function isValidElement(object) {
         return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
       }
-      var React5 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React5.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+      var React6 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React6.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
         return null;
       };
-      React5 = {
+      React6 = {
         react_stack_bottom_frame: function(callStackForError) {
           return callStackForError();
         }
       };
       var specialPropKeyWarningShown;
       var didWarnAboutElementRef = {};
-      var unknownOwnerDebugStack = React5.react_stack_bottom_frame.bind(
-        React5,
+      var unknownOwnerDebugStack = React6.react_stack_bottom_frame.bind(
+        React6,
         UnknownOwner
       )();
       var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
@@ -28450,22 +28450,22 @@ var require_html2canvas = __commonJS({
                 return parseNodeTree(context, childNode2, parent, root);
               });
             } else {
-              var container2 = createContainer(context, childNode);
-              if (container2.styles.isVisible()) {
-                if (createsRealStackingContext(childNode, container2, root)) {
-                  container2.flags |= 4;
-                } else if (createsStackingContext(container2.styles)) {
-                  container2.flags |= 2;
+              var container3 = createContainer(context, childNode);
+              if (container3.styles.isVisible()) {
+                if (createsRealStackingContext(childNode, container3, root)) {
+                  container3.flags |= 4;
+                } else if (createsStackingContext(container3.styles)) {
+                  container3.flags |= 2;
                 }
                 if (LIST_OWNERS.indexOf(childNode.tagName) !== -1) {
-                  container2.flags |= 8;
+                  container3.flags |= 8;
                 }
-                parent.elements.push(container2);
+                parent.elements.push(container3);
                 childNode.slot;
                 if (childNode.shadowRoot) {
-                  parseNodeTree(context, childNode.shadowRoot, container2, root);
+                  parseNodeTree(context, childNode.shadowRoot, container3, root);
                 } else if (!isTextareaElement(childNode) && !isSVGElement2(childNode) && !isSelectElement(childNode)) {
-                  parseNodeTree(context, childNode, container2, root);
+                  parseNodeTree(context, childNode, container3, root);
                 }
               }
             }
@@ -28503,13 +28503,13 @@ var require_html2canvas = __commonJS({
         return new ElementContainer(context, element);
       };
       var parseTree = function(context, element) {
-        var container2 = createContainer(context, element);
-        container2.flags |= 4;
-        parseNodeTree(context, element, container2, container2);
-        return container2;
+        var container3 = createContainer(context, element);
+        container3.flags |= 4;
+        parseNodeTree(context, element, container3, container3);
+        return container3;
       };
-      var createsRealStackingContext = function(node2, container2, root) {
-        return container2.styles.isPositionedWithZIndex() || container2.styles.opacity < 1 || container2.styles.isTransformed() || isBodyElement(node2) && root.styles.isTransparent();
+      var createsRealStackingContext = function(node2, container3, root) {
+        return container3.styles.isPositionedWithZIndex() || container3.styles.opacity < 1 || container3.styles.isTransformed() || isBodyElement(node2) && root.styles.isTransparent();
       };
       var createsStackingContext = function(styles) {
         return styles.isPositioned() || styles.isFloating();
@@ -29378,9 +29378,9 @@ var require_html2canvas = __commonJS({
             }
             return anonymousReplacedElement;
           };
-          DocumentCloner2.destroy = function(container2) {
-            if (container2.parentNode) {
-              container2.parentNode.removeChild(container2);
+          DocumentCloner2.destroy = function(container3) {
+            if (container3.parentNode) {
+              container3.parentNode.removeChild(container3);
               return true;
             }
             return false;
@@ -29902,8 +29902,8 @@ var require_html2canvas = __commonJS({
       var StackingContext = (
         /** @class */
         /* @__PURE__ */ (function() {
-          function StackingContext2(container2) {
-            this.element = container2;
+          function StackingContext2(container3) {
+            this.element = container3;
             this.inlineLevel = [];
             this.nonInlineLevel = [];
             this.negativeZIndex = [];
@@ -29918,8 +29918,8 @@ var require_html2canvas = __commonJS({
       var ElementPaint = (
         /** @class */
         (function() {
-          function ElementPaint2(container2, parent) {
-            this.container = container2;
+          function ElementPaint2(container3, parent) {
+            this.container = container3;
             this.parent = parent;
             this.effects = [];
             this.curves = new BoundCurves(this.container);
@@ -30083,16 +30083,16 @@ var require_html2canvas = __commonJS({
         var numbering = owner instanceof OLElementContainer ? owner.start : 1;
         var reversed = owner instanceof OLElementContainer ? owner.reversed : false;
         for (var i5 = 0; i5 < elements2.length; i5++) {
-          var item = elements2[i5];
-          if (item.container instanceof LIElementContainer && typeof item.container.value === "number" && item.container.value !== 0) {
-            numbering = item.container.value;
+          var item2 = elements2[i5];
+          if (item2.container instanceof LIElementContainer && typeof item2.container.value === "number" && item2.container.value !== 0) {
+            numbering = item2.container.value;
           }
-          item.listValue = createCounterText(numbering, item.container.styles.listStyleType, true);
+          item2.listValue = createCounterText(numbering, item2.container.styles.listStyleType, true);
           numbering += reversed ? -1 : 1;
         }
       };
-      var parseStackingContexts = function(container2) {
-        var paintContainer = new ElementPaint(container2, null);
+      var parseStackingContexts = function(container3) {
+        var paintContainer = new ElementPaint(container3, null);
         var root = new StackingContext(paintContainer);
         var listItems = [];
         parseStackTree(paintContainer, root, root, listItems);
@@ -30221,13 +30221,13 @@ var require_html2canvas = __commonJS({
         }
         return paddingBox(element);
       };
-      var calculateBackgroundRendering = function(container2, index2, intrinsicSize) {
-        var backgroundPositioningArea = calculateBackgroundPositioningArea(getBackgroundValueForIndex(container2.styles.backgroundOrigin, index2), container2);
-        var backgroundPaintingArea = calculateBackgroundPaintingArea(getBackgroundValueForIndex(container2.styles.backgroundClip, index2), container2);
-        var backgroundImageSize = calculateBackgroundSize(getBackgroundValueForIndex(container2.styles.backgroundSize, index2), intrinsicSize, backgroundPositioningArea);
+      var calculateBackgroundRendering = function(container3, index2, intrinsicSize) {
+        var backgroundPositioningArea = calculateBackgroundPositioningArea(getBackgroundValueForIndex(container3.styles.backgroundOrigin, index2), container3);
+        var backgroundPaintingArea = calculateBackgroundPaintingArea(getBackgroundValueForIndex(container3.styles.backgroundClip, index2), container3);
+        var backgroundImageSize = calculateBackgroundSize(getBackgroundValueForIndex(container3.styles.backgroundSize, index2), intrinsicSize, backgroundPositioningArea);
         var sizeWidth = backgroundImageSize[0], sizeHeight = backgroundImageSize[1];
-        var position2 = getAbsoluteValueForTuple(getBackgroundValueForIndex(container2.styles.backgroundPosition, index2), backgroundPositioningArea.width - sizeWidth, backgroundPositioningArea.height - sizeHeight);
-        var path = calculateBackgroundRepeatPath(getBackgroundValueForIndex(container2.styles.backgroundRepeat, index2), position2, backgroundImageSize, backgroundPositioningArea, backgroundPaintingArea);
+        var position2 = getAbsoluteValueForTuple(getBackgroundValueForIndex(container3.styles.backgroundPosition, index2), backgroundPositioningArea.width - sizeWidth, backgroundPositioningArea.height - sizeHeight);
+        var path = calculateBackgroundRepeatPath(getBackgroundValueForIndex(container3.styles.backgroundRepeat, index2), position2, backgroundImageSize, backgroundPositioningArea, backgroundPaintingArea);
         var offsetX = Math.round(backgroundPositioningArea.left + position2[0]);
         var offsetY = Math.round(backgroundPositioningArea.top + position2[1]);
         return [path, offsetX, offsetY, sizeWidth, sizeHeight];
@@ -30358,17 +30358,17 @@ var require_html2canvas = __commonJS({
             this._document = document2;
           }
           FontMetrics2.prototype.parseMetrics = function(fontFamily2, fontSize2) {
-            var container2 = this._document.createElement("div");
+            var container3 = this._document.createElement("div");
             var img = this._document.createElement("img");
             var span = this._document.createElement("span");
             var body = this._document.body;
-            container2.style.visibility = "hidden";
-            container2.style.fontFamily = fontFamily2;
-            container2.style.fontSize = fontSize2;
-            container2.style.margin = "0";
-            container2.style.padding = "0";
-            container2.style.whiteSpace = "nowrap";
-            body.appendChild(container2);
+            container3.style.visibility = "hidden";
+            container3.style.fontFamily = fontFamily2;
+            container3.style.fontSize = fontSize2;
+            container3.style.margin = "0";
+            container3.style.padding = "0";
+            container3.style.whiteSpace = "nowrap";
+            body.appendChild(container3);
             img.src = SMALL_IMAGE;
             img.width = 1;
             img.height = 1;
@@ -30380,15 +30380,15 @@ var require_html2canvas = __commonJS({
             span.style.margin = "0";
             span.style.padding = "0";
             span.appendChild(this._document.createTextNode(SAMPLE_TEXT));
-            container2.appendChild(span);
-            container2.appendChild(img);
+            container3.appendChild(span);
+            container3.appendChild(img);
             var baseline = img.offsetTop - span.offsetTop + 2;
-            container2.removeChild(span);
-            container2.appendChild(this._document.createTextNode(SAMPLE_TEXT));
-            container2.style.lineHeight = "normal";
+            container3.removeChild(span);
+            container3.appendChild(this._document.createTextNode(SAMPLE_TEXT));
+            container3.style.lineHeight = "normal";
             img.style.verticalAlign = "super";
-            var middle = img.offsetTop - container2.offsetTop + 2;
-            body.removeChild(container2);
+            var middle = img.offsetTop - container3.offsetTop + 2;
+            body.removeChild(container3);
             return { baseline, middle };
           };
           FontMetrics2.prototype.getMetrics = function(fontFamily2, fontSize2) {
@@ -30608,20 +30608,20 @@ var require_html2canvas = __commonJS({
               });
             });
           };
-          CanvasRenderer2.prototype.renderReplacedElement = function(container2, curves, image2) {
-            if (image2 && container2.intrinsicWidth > 0 && container2.intrinsicHeight > 0) {
-              var box = contentBox(container2);
+          CanvasRenderer2.prototype.renderReplacedElement = function(container3, curves, image2) {
+            if (image2 && container3.intrinsicWidth > 0 && container3.intrinsicHeight > 0) {
+              var box = contentBox(container3);
               var path = calculatePaddingBoxPath(curves);
               this.path(path);
               this.ctx.save();
               this.ctx.clip();
-              this.ctx.drawImage(image2, 0, 0, container2.intrinsicWidth, container2.intrinsicHeight, box.left, box.top, box.width, box.height);
+              this.ctx.drawImage(image2, 0, 0, container3.intrinsicWidth, container3.intrinsicHeight, box.left, box.top, box.width, box.height);
               this.ctx.restore();
             }
           };
           CanvasRenderer2.prototype.renderNodeContent = function(paint) {
             return __awaiter(this, void 0, void 0, function() {
-              var container2, curves, styles, _i, _a3, child, image2, image2, iframeRenderer, canvas, size, _b2, fontFamily2, fontSize2, baseline, bounds, x3, textBounds, img, image2, url, fontFamily2, bounds;
+              var container3, curves, styles, _i, _a3, child, image2, image2, iframeRenderer, canvas, size, _b2, fontFamily2, fontSize2, baseline, bounds, x3, textBounds, img, image2, url, fontFamily2, bounds;
               return __generator(this, function(_c) {
                 switch (_c.label) {
                   case 0:
@@ -30629,10 +30629,10 @@ var require_html2canvas = __commonJS({
                       4
                       /* CONTENT */
                     ));
-                    container2 = paint.container;
+                    container3 = paint.container;
                     curves = paint.curves;
-                    styles = container2.styles;
-                    _i = 0, _a3 = container2.textNodes;
+                    styles = container3.styles;
+                    _i = 0, _a3 = container3.textNodes;
                     _c.label = 1;
                   case 1:
                     if (!(_i < _a3.length)) return [3, 4];
@@ -30645,93 +30645,93 @@ var require_html2canvas = __commonJS({
                     _i++;
                     return [3, 1];
                   case 4:
-                    if (!(container2 instanceof ImageElementContainer)) return [3, 8];
+                    if (!(container3 instanceof ImageElementContainer)) return [3, 8];
                     _c.label = 5;
                   case 5:
                     _c.trys.push([5, 7, , 8]);
-                    return [4, this.context.cache.match(container2.src)];
+                    return [4, this.context.cache.match(container3.src)];
                   case 6:
                     image2 = _c.sent();
-                    this.renderReplacedElement(container2, curves, image2);
+                    this.renderReplacedElement(container3, curves, image2);
                     return [3, 8];
                   case 7:
                     _c.sent();
-                    this.context.logger.error("Error loading image " + container2.src);
+                    this.context.logger.error("Error loading image " + container3.src);
                     return [3, 8];
                   case 8:
-                    if (container2 instanceof CanvasElementContainer) {
-                      this.renderReplacedElement(container2, curves, container2.canvas);
+                    if (container3 instanceof CanvasElementContainer) {
+                      this.renderReplacedElement(container3, curves, container3.canvas);
                     }
-                    if (!(container2 instanceof SVGElementContainer)) return [3, 12];
+                    if (!(container3 instanceof SVGElementContainer)) return [3, 12];
                     _c.label = 9;
                   case 9:
                     _c.trys.push([9, 11, , 12]);
-                    return [4, this.context.cache.match(container2.svg)];
+                    return [4, this.context.cache.match(container3.svg)];
                   case 10:
                     image2 = _c.sent();
-                    this.renderReplacedElement(container2, curves, image2);
+                    this.renderReplacedElement(container3, curves, image2);
                     return [3, 12];
                   case 11:
                     _c.sent();
-                    this.context.logger.error("Error loading svg " + container2.svg.substring(0, 255));
+                    this.context.logger.error("Error loading svg " + container3.svg.substring(0, 255));
                     return [3, 12];
                   case 12:
-                    if (!(container2 instanceof IFrameElementContainer && container2.tree)) return [3, 14];
+                    if (!(container3 instanceof IFrameElementContainer && container3.tree)) return [3, 14];
                     iframeRenderer = new CanvasRenderer2(this.context, {
                       scale: this.options.scale,
-                      backgroundColor: container2.backgroundColor,
+                      backgroundColor: container3.backgroundColor,
                       x: 0,
                       y: 0,
-                      width: container2.width,
-                      height: container2.height
+                      width: container3.width,
+                      height: container3.height
                     });
-                    return [4, iframeRenderer.render(container2.tree)];
+                    return [4, iframeRenderer.render(container3.tree)];
                   case 13:
                     canvas = _c.sent();
-                    if (container2.width && container2.height) {
-                      this.ctx.drawImage(canvas, 0, 0, container2.width, container2.height, container2.bounds.left, container2.bounds.top, container2.bounds.width, container2.bounds.height);
+                    if (container3.width && container3.height) {
+                      this.ctx.drawImage(canvas, 0, 0, container3.width, container3.height, container3.bounds.left, container3.bounds.top, container3.bounds.width, container3.bounds.height);
                     }
                     _c.label = 14;
                   case 14:
-                    if (container2 instanceof InputElementContainer) {
-                      size = Math.min(container2.bounds.width, container2.bounds.height);
-                      if (container2.type === CHECKBOX) {
-                        if (container2.checked) {
+                    if (container3 instanceof InputElementContainer) {
+                      size = Math.min(container3.bounds.width, container3.bounds.height);
+                      if (container3.type === CHECKBOX) {
+                        if (container3.checked) {
                           this.ctx.save();
                           this.path([
-                            new Vector(container2.bounds.left + size * 0.39363, container2.bounds.top + size * 0.79),
-                            new Vector(container2.bounds.left + size * 0.16, container2.bounds.top + size * 0.5549),
-                            new Vector(container2.bounds.left + size * 0.27347, container2.bounds.top + size * 0.44071),
-                            new Vector(container2.bounds.left + size * 0.39694, container2.bounds.top + size * 0.5649),
-                            new Vector(container2.bounds.left + size * 0.72983, container2.bounds.top + size * 0.23),
-                            new Vector(container2.bounds.left + size * 0.84, container2.bounds.top + size * 0.34085),
-                            new Vector(container2.bounds.left + size * 0.39363, container2.bounds.top + size * 0.79)
+                            new Vector(container3.bounds.left + size * 0.39363, container3.bounds.top + size * 0.79),
+                            new Vector(container3.bounds.left + size * 0.16, container3.bounds.top + size * 0.5549),
+                            new Vector(container3.bounds.left + size * 0.27347, container3.bounds.top + size * 0.44071),
+                            new Vector(container3.bounds.left + size * 0.39694, container3.bounds.top + size * 0.5649),
+                            new Vector(container3.bounds.left + size * 0.72983, container3.bounds.top + size * 0.23),
+                            new Vector(container3.bounds.left + size * 0.84, container3.bounds.top + size * 0.34085),
+                            new Vector(container3.bounds.left + size * 0.39363, container3.bounds.top + size * 0.79)
                           ]);
                           this.ctx.fillStyle = asString(INPUT_COLOR);
                           this.ctx.fill();
                           this.ctx.restore();
                         }
-                      } else if (container2.type === RADIO) {
-                        if (container2.checked) {
+                      } else if (container3.type === RADIO) {
+                        if (container3.checked) {
                           this.ctx.save();
                           this.ctx.beginPath();
-                          this.ctx.arc(container2.bounds.left + size / 2, container2.bounds.top + size / 2, size / 4, 0, Math.PI * 2, true);
+                          this.ctx.arc(container3.bounds.left + size / 2, container3.bounds.top + size / 2, size / 4, 0, Math.PI * 2, true);
                           this.ctx.fillStyle = asString(INPUT_COLOR);
                           this.ctx.fill();
                           this.ctx.restore();
                         }
                       }
                     }
-                    if (isTextInputElement(container2) && container2.value.length) {
+                    if (isTextInputElement(container3) && container3.value.length) {
                       _b2 = this.createFontStyle(styles), fontFamily2 = _b2[0], fontSize2 = _b2[1];
                       baseline = this.fontMetrics.getMetrics(fontFamily2, fontSize2).baseline;
                       this.ctx.font = fontFamily2;
                       this.ctx.fillStyle = asString(styles.color);
                       this.ctx.textBaseline = "alphabetic";
-                      this.ctx.textAlign = canvasTextAlign(container2.styles.textAlign);
-                      bounds = contentBox(container2);
+                      this.ctx.textAlign = canvasTextAlign(container3.styles.textAlign);
+                      bounds = contentBox(container3);
                       x3 = 0;
-                      switch (container2.styles.textAlign) {
+                      switch (container3.styles.textAlign) {
                         case 1:
                           x3 += bounds.width / 2;
                           break;
@@ -30748,18 +30748,18 @@ var require_html2canvas = __commonJS({
                         new Vector(bounds.left, bounds.top + bounds.height)
                       ]);
                       this.ctx.clip();
-                      this.renderTextWithLetterSpacing(new TextBounds(container2.value, textBounds), styles.letterSpacing, baseline);
+                      this.renderTextWithLetterSpacing(new TextBounds(container3.value, textBounds), styles.letterSpacing, baseline);
                       this.ctx.restore();
                       this.ctx.textBaseline = "alphabetic";
                       this.ctx.textAlign = "left";
                     }
                     if (!contains(
-                      container2.styles.display,
+                      container3.styles.display,
                       2048
                       /* LIST_ITEM */
                     )) return [3, 20];
-                    if (!(container2.styles.listStyleImage !== null)) return [3, 19];
-                    img = container2.styles.listStyleImage;
+                    if (!(container3.styles.listStyleImage !== null)) return [3, 19];
+                    img = container3.styles.listStyleImage;
                     if (!(img.type === 0)) return [3, 18];
                     image2 = void 0;
                     url = img.url;
@@ -30769,7 +30769,7 @@ var require_html2canvas = __commonJS({
                     return [4, this.context.cache.match(url)];
                   case 16:
                     image2 = _c.sent();
-                    this.ctx.drawImage(image2, container2.bounds.left - (image2.width + 10), container2.bounds.top);
+                    this.ctx.drawImage(image2, container3.bounds.left - (image2.width + 10), container3.bounds.top);
                     return [3, 18];
                   case 17:
                     _c.sent();
@@ -30778,13 +30778,13 @@ var require_html2canvas = __commonJS({
                   case 18:
                     return [3, 20];
                   case 19:
-                    if (paint.listValue && container2.styles.listStyleType !== -1) {
+                    if (paint.listValue && container3.styles.listStyleType !== -1) {
                       fontFamily2 = this.createFontStyle(styles)[0];
                       this.ctx.font = fontFamily2;
                       this.ctx.fillStyle = asString(styles.color);
                       this.ctx.textBaseline = "middle";
                       this.ctx.textAlign = "right";
-                      bounds = new Bounds(container2.bounds.left, container2.bounds.top + getAbsoluteValue(container2.styles.paddingTop, container2.bounds.width), container2.bounds.width, computeLineHeight(styles.lineHeight, styles.fontSize.number) / 2 + 1);
+                      bounds = new Bounds(container3.bounds.left, container3.bounds.top + getAbsoluteValue(container3.styles.paddingTop, container3.bounds.width), container3.bounds.width, computeLineHeight(styles.lineHeight, styles.fontSize.number) / 2 + 1);
                       this.renderTextWithLetterSpacing(new TextBounds(paint.listValue, bounds), styles.letterSpacing, computeLineHeight(styles.lineHeight, styles.fontSize.number) / 2 + 2);
                       this.ctx.textBaseline = "bottom";
                       this.ctx.textAlign = "left";
@@ -30966,13 +30966,13 @@ var require_html2canvas = __commonJS({
             ctx.drawImage(image2, 0, 0, image2.width, image2.height, 0, 0, width, height);
             return canvas;
           };
-          CanvasRenderer2.prototype.renderBackgroundImage = function(container2) {
+          CanvasRenderer2.prototype.renderBackgroundImage = function(container3) {
             return __awaiter(this, void 0, void 0, function() {
               var index2, _loop_1, this_1, _i, _a3, backgroundImage2;
               return __generator(this, function(_b2) {
                 switch (_b2.label) {
                   case 0:
-                    index2 = container2.styles.backgroundImage.length - 1;
+                    index2 = container3.styles.backgroundImage.length - 1;
                     _loop_1 = function(backgroundImage3) {
                       var image2, url, _c, path, x3, y3, width, height, pattern, _d, path, x3, y3, width, height, _e2, lineLength, x0, x1, y0, y1, canvas, ctx, gradient_1, pattern, _f, path, left, top_1, width, height, position2, x3, y3, _g, rx, ry, radialGradient_1, midX, midY, f4, invF;
                       return __generator(this, function(_h) {
@@ -30994,7 +30994,7 @@ var require_html2canvas = __commonJS({
                             return [3, 4];
                           case 4:
                             if (image2) {
-                              _c = calculateBackgroundRendering(container2, index2, [
+                              _c = calculateBackgroundRendering(container3, index2, [
                                 image2.width,
                                 image2.height,
                                 image2.width / image2.height
@@ -31005,7 +31005,7 @@ var require_html2canvas = __commonJS({
                             return [3, 6];
                           case 5:
                             if (isLinearGradient(backgroundImage3)) {
-                              _d = calculateBackgroundRendering(container2, index2, [null, null, null]), path = _d[0], x3 = _d[1], y3 = _d[2], width = _d[3], height = _d[4];
+                              _d = calculateBackgroundRendering(container3, index2, [null, null, null]), path = _d[0], x3 = _d[1], y3 = _d[2], width = _d[3], height = _d[4];
                               _e2 = calculateGradientDirection(backgroundImage3.angle, width, height), lineLength = _e2[0], x0 = _e2[1], x1 = _e2[2], y0 = _e2[3], y1 = _e2[4];
                               canvas = document.createElement("canvas");
                               canvas.width = width;
@@ -31022,7 +31022,7 @@ var require_html2canvas = __commonJS({
                                 this_1.renderRepeat(path, pattern, x3, y3);
                               }
                             } else if (isRadialGradient(backgroundImage3)) {
-                              _f = calculateBackgroundRendering(container2, index2, [
+                              _f = calculateBackgroundRendering(container3, index2, [
                                 null,
                                 null,
                                 null
@@ -31039,8 +31039,8 @@ var require_html2canvas = __commonJS({
                                 this_1.path(path);
                                 this_1.ctx.fillStyle = radialGradient_1;
                                 if (rx !== ry) {
-                                  midX = container2.bounds.left + 0.5 * container2.bounds.width;
-                                  midY = container2.bounds.top + 0.5 * container2.bounds.height;
+                                  midX = container3.bounds.left + 0.5 * container3.bounds.width;
+                                  midY = container3.bounds.top + 0.5 * container3.bounds.height;
                                   f4 = ry / rx;
                                   invF = 1 / f4;
                                   this_1.ctx.save();
@@ -31065,7 +31065,7 @@ var require_html2canvas = __commonJS({
                       });
                     };
                     this_1 = this;
-                    _i = 0, _a3 = container2.styles.backgroundImage.slice(0).reverse();
+                    _i = 0, _a3 = container3.styles.backgroundImage.slice(0).reverse();
                     _b2.label = 1;
                   case 1:
                     if (!(_i < _a3.length)) return [3, 4];
@@ -31361,12 +31361,12 @@ var require_html2canvas = __commonJS({
           return CanvasRenderer2;
         })(Renderer)
       );
-      var isTextInputElement = function(container2) {
-        if (container2 instanceof TextareaElementContainer) {
+      var isTextInputElement = function(container3) {
+        if (container3 instanceof TextareaElementContainer) {
           return true;
-        } else if (container2 instanceof SelectElementContainer) {
+        } else if (container3 instanceof SelectElementContainer) {
           return true;
-        } else if (container2 instanceof InputElementContainer && container2.type !== RADIO && container2.type !== CHECKBOX) {
+        } else if (container3 instanceof InputElementContainer && container3.type !== RADIO && container3.type !== CHECKBOX) {
           return true;
         }
         return false;
@@ -31541,7 +31541,7 @@ var require_html2canvas = __commonJS({
       }
       var renderElement = function(element, opts) {
         return __awaiter(void 0, void 0, void 0, function() {
-          var ownerDocument, defaultView, resourceOptions, contextOptions, windowOptions, windowBounds, context, foreignObjectRendering, cloneOptions, documentCloner, clonedElement, container2, _a3, width, height, left, top, backgroundColor2, renderOptions, canvas, renderer, root, renderer;
+          var ownerDocument, defaultView, resourceOptions, contextOptions, windowOptions, windowBounds, context, foreignObjectRendering, cloneOptions, documentCloner, clonedElement, container3, _a3, width, height, left, top, backgroundColor2, renderOptions, canvas, renderer, root, renderer;
           var _b2, _c, _d, _e2, _f, _g, _h, _j, _k, _l, _m2, _o, _p, _q, _r, _s, _t2;
           return __generator(this, function(_u) {
             switch (_u.label) {
@@ -31588,7 +31588,7 @@ var require_html2canvas = __commonJS({
                 }
                 return [4, documentCloner.toIFrame(ownerDocument, windowBounds)];
               case 1:
-                container2 = _u.sent();
+                container3 = _u.sent();
                 _a3 = isBodyElement(clonedElement) || isHTMLElement2(clonedElement) ? parseDocumentSize(clonedElement.ownerDocument) : parseBounds(context, clonedElement), width = _a3.width, height = _a3.height, left = _a3.left, top = _a3.top;
                 backgroundColor2 = parseBackgroundColor(context, clonedElement, opts.backgroundColor);
                 renderOptions = {
@@ -31622,7 +31622,7 @@ var require_html2canvas = __commonJS({
                 _u.label = 5;
               case 5:
                 if ((_t2 = opts.removeContainer) !== null && _t2 !== void 0 ? _t2 : true) {
-                  if (!DocumentCloner.destroy(container2)) {
+                  if (!DocumentCloner.destroy(container3)) {
                     context.logger.error("Cannot detach cloned iframe as it is not in the DOM anymore");
                   }
                 }
@@ -32654,12 +32654,12 @@ function createDOMPurify() {
       shadow: null
     }];
     while (stack.length > 0) {
-      const item = stack.pop();
-      if (item.shadow) {
-        _sanitizeShadowDOM2(item.shadow);
+      const item2 = stack.pop();
+      if (item2.shadow) {
+        _sanitizeShadowDOM2(item2.shadow);
         continue;
       }
-      const node2 = item.node;
+      const node2 = item2.node;
       const isElement = _readNodeType(node2) === NODE_TYPE.element;
       const childNodes = getChildNodes(node2);
       if (childNodes) for (let i4 = childNodes.length - 1; i4 >= 0; --i4) stack.push({
@@ -35302,8 +35302,8 @@ var require_queue = __commonJS({
       this.tail = null;
     };
     Queue.prototype = {
-      add: function(item) {
-        var entry = { item, next: null };
+      add: function(item2) {
+        var entry = { item: item2, next: null };
         var tail = this.tail;
         if (tail) tail.next = entry;
         else this.head = entry;
@@ -44436,12 +44436,12 @@ var import_react5 = __toESM(require_react(), 1);
 var PresenceContext = /* @__PURE__ */ (0, import_react5.createContext)(null);
 
 // node_modules/motion-utils/dist/es/array.mjs
-function addUniqueItem(arr, item) {
-  if (arr.indexOf(item) === -1)
-    arr.push(item);
+function addUniqueItem(arr, item2) {
+  if (arr.indexOf(item2) === -1)
+    arr.push(item2);
 }
-function removeItem(arr, item) {
-  const index2 = arr.indexOf(item);
+function removeItem(arr, item2) {
+  const index2 = arr.indexOf(item2);
   if (index2 > -1)
     arr.splice(index2, 1);
 }
@@ -57319,9 +57319,9 @@ function SpotlightNavbar({
       });
     }
   }, [activeIndex]);
-  const handleItemClick = (item, index2) => {
+  const handleItemClick = (item2, index2) => {
     setInternalActiveIndex(index2);
-    onItemClick?.(item, index2);
+    onItemClick?.(item2, index2);
   };
   return /* @__PURE__ */ import_react22.default.createElement("div", { className: cn("spotlight-navbar-wrapper relative flex justify-center", className) }, /* @__PURE__ */ import_react22.default.createElement(
     "nav",
@@ -57333,23 +57333,23 @@ function SpotlightNavbar({
         "flex items-center"
       )
     },
-    /* @__PURE__ */ import_react22.default.createElement("ul", { className: "relative flex items-center h-full px-1.5 gap-0.5 z-[10] list-none m-0 p-0" }, items.map((item, idx) => {
+    /* @__PURE__ */ import_react22.default.createElement("ul", { className: "relative flex items-center h-full px-1.5 gap-0.5 z-[10] list-none m-0 p-0" }, items.map((item2, idx) => {
       const isActive = activeIndex === idx;
       return /* @__PURE__ */ import_react22.default.createElement("li", { key: idx, className: "relative h-full flex items-center justify-center" }, /* @__PURE__ */ import_react22.default.createElement(
         "a",
         {
-          href: item.href,
+          href: item2.href,
           "data-index": idx,
           onClick: (e2) => {
             e2.preventDefault();
-            handleItemClick(item, idx);
+            handleItemClick(item2, idx);
           },
           className: cn(
             "spotlight-nav-link",
             isActive ? "spotlight-nav-link-active" : "spotlight-nav-link-inactive"
           )
         },
-        item.label
+        item2.label
       ));
     })),
     /* @__PURE__ */ import_react22.default.createElement(
@@ -57480,9 +57480,9 @@ function Navbar({ currentRoute, onNavigate }) {
       className: "desktop-spotlight-nav",
       items: NAV_ITEMS,
       activeIndex: activeNavIndex,
-      onItemClick: (item, idx) => {
+      onItemClick: (item2, idx) => {
         setActiveNavIndex(idx);
-        handleNavClick(item.route, item.sectionId);
+        handleNavClick(item2.route, item2.sectionId);
       }
     }
   ), /* @__PURE__ */ react_default.createElement("div", { className: "nav-actions" }, /* @__PURE__ */ react_default.createElement(
@@ -57511,6 +57511,82 @@ function Navbar({ currentRoute, onNavigate }) {
   ))));
 }
 
+// src/components/ui/staggerText.tsx
+var import_react24 = __toESM(require_react(), 1);
+var EASE = [0.22, 1, 0.36, 1];
+var container = (stagger, delay2) => ({
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: stagger,
+      delayChildren: delay2
+    }
+  }
+});
+var item = {
+  hidden: { y: "110%" },
+  show: {
+    y: "0%",
+    transition: { duration: 0.6, ease: EASE }
+  }
+};
+var TextAnimation = ({
+  children,
+  delay: delay2 = 0,
+  divideBy = "word",
+  className = "",
+  style = {}
+}) => {
+  if (typeof children !== "string") {
+    if (typeof children === "number" || typeof children === "boolean") {
+      children = String(children);
+    } else {
+      console.warn("TextAnimation only supports plain text/string children.");
+      return /* @__PURE__ */ import_react24.default.createElement(import_react24.default.Fragment, null, children);
+    }
+  }
+  const text2 = children;
+  const parts = divideBy === "letter" ? text2.split("") : text2.split(" ");
+  const stagger = divideBy === "letter" ? 0.02 : 0.05;
+  return /* @__PURE__ */ import_react24.default.createElement(
+    motion.span,
+    {
+      variants: container(stagger, delay2),
+      initial: "hidden",
+      whileInView: "show",
+      viewport: { once: true },
+      className,
+      style: { display: "inline-block", ...style }
+    },
+    parts.map((part, i4) => /* @__PURE__ */ import_react24.default.createElement(
+      "span",
+      {
+        key: i4,
+        className: "inline-block overflow-hidden relative",
+        style: {
+          verticalAlign: "top",
+          display: "inline-block",
+          overflow: "hidden",
+          position: "relative"
+        }
+      },
+      /* @__PURE__ */ import_react24.default.createElement(
+        motion.span,
+        {
+          variants: item,
+          className: "inline-block will-change-transform",
+          style: {
+            display: "inline-block",
+            willChange: "transform"
+          }
+        },
+        divideBy === "letter" ? part === " " ? "\xA0" : part : part + "\xA0"
+      )
+    ))
+  );
+};
+var staggerText_default = TextAnimation;
+
 // src/components/Hero.jsx
 function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
   const participantCount = liveStats && liveStats.total ? `${liveStats.total}+` : "1,200+";
@@ -57520,7 +57596,7 @@ function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
       className: "hero-panoramic-image",
       style: { backgroundImage: "url('/campus-hero-web.jpg')" }
     }
-  )), /* @__PURE__ */ react_default.createElement("div", { className: "container relative z-10" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-reference-grid" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-col" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-tag" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-dot" }), /* @__PURE__ */ react_default.createElement("span", null, INSTITUTION.name, " \u2022 40TH INTER-COLLEGIATE FESTIVAL")), /* @__PURE__ */ react_default.createElement("h1", { className: "hero-editorial-heading" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-1" }, "WHERE"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-2" }, "COMPETITION"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-3" }, "MEETS ART", /* @__PURE__ */ react_default.createElement("span", { className: "editorial-reg" }, "\xAE"))), /* @__PURE__ */ react_default.createElement("p", { className: "hero-editorial-sub" }, "/ Where Athletic Grit Meets Creative Expression \u2022 Annual Meet 2026 /"), /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-actions" }, /* @__PURE__ */ react_default.createElement(
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "container relative z-10" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-reference-grid" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-col" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-tag" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-dot" }), /* @__PURE__ */ react_default.createElement("span", null, INSTITUTION.name, " \u2022 40TH INTER-COLLEGIATE FESTIVAL")), /* @__PURE__ */ react_default.createElement("h1", { className: "hero-editorial-heading" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-1" }, "WHERE"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-2" }, "COMPETITION"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-3" }, "MEETS ART", /* @__PURE__ */ react_default.createElement("span", { className: "editorial-reg" }, "\xAE"))), /* @__PURE__ */ react_default.createElement("p", { className: "hero-editorial-sub" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.25 }, "/ Where Athletic Grit Meets Creative Expression \u2022 Annual Meet 2026 /")), /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-actions" }, /* @__PURE__ */ react_default.createElement(
     "button",
     {
       className: "btn-editorial-start",
@@ -57538,7 +57614,7 @@ function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
       id: "hero-register-btn"
     },
     "Register Now"
-  )))), /* @__PURE__ */ react_default.createElement("div", { className: "hero-bottom-strip" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-terracotta" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-text" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-headline" }, "24 Hours of Pure Grit!"), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-caption" }, "02 Flagship Disciplines \u2022 OAT Venues")), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-icon-area" }, /* @__PURE__ */ react_default.createElement("svg", { width: "42", height: "42", viewBox: "0 0 48 48", fill: "none" }, /* @__PURE__ */ react_default.createElement("path", { d: "M24 4L42 14V34L24 44L6 34V14L24 4Z", fill: "rgba(255,255,255,0.20)", stroke: "#FFFFFF", strokeWidth: "1.5" }), /* @__PURE__ */ react_default.createElement("path", { d: "M24 4V44M6 14L24 24L42 14M6 34L24 24", stroke: "#FFFFFF", strokeWidth: "1.5", strokeOpacity: "0.8" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "24", cy: "24", r: "5", fill: "#FFFFFF" })))), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stats-center" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatars" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatar", style: { backgroundImage: "url('/sports-web.jpg')" }, title: "Athletics" }), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatar", style: { backgroundImage: "url('/cultural-web.jpg')" }, title: "Cultural Arts" })), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-details" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-num" }, participantCount), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-lbl" }, "Registered Participants"))))));
+  )))), /* @__PURE__ */ react_default.createElement("div", { className: "hero-bottom-strip" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-terracotta" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-text" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-headline" }, "24 Hours of Pure Grit!"), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-caption" }, "02 Flagship Disciplines \u2022 OAT Venues")), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-icon-area" }, /* @__PURE__ */ react_default.createElement("svg", { width: "42", height: "42", viewBox: "0 0 48 48", fill: "none" }, /* @__PURE__ */ react_default.createElement("path", { d: "M24 4L42 14V34L24 44L6 34V14L24 4Z", fill: "rgba(255,255,255,0.20)", stroke: "#FFFFFF", strokeWidth: "1.5" }), /* @__PURE__ */ react_default.createElement("path", { d: "M24 4V44M6 14L24 24L42 14M6 34L24 24", stroke: "#FFFFFF", strokeWidth: "1.5", strokeOpacity: "0.8" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "24", cy: "24", r: "5", fill: "#FFFFFF" })))), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stats-center" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatars" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatar", style: { backgroundImage: "url('/sports-web.jpg')" }, title: "Athletics" }), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatar", style: { backgroundImage: "url('/cultural-web.jpg')" }, title: "Cultural Arts" })), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-details" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-num" }, participantCount), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-lbl" }, "Registered Participants"))), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-statement-right" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-statement-title" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.35 }, "WE UNITE ATHLETIC GRIT & STAGE BRILLIANCE")), /* @__PURE__ */ react_default.createElement("button", { className: "bottom-statement-link", onClick: onExploreEvents }, /* @__PURE__ */ react_default.createElement("span", null, "EXPLORE FIXTURES"), /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M5 12h14M12 5l7 7-7 7" })))))));
 }
 
 // src/components/IntroSection.jsx
@@ -57547,7 +57623,7 @@ function IntroSection({ liveStats }) {
   const participantsCount = liveStats && liveStats.total ? `${liveStats.total}+ Registered` : "00+ Participants";
   const daysCount = "24 Hours";
   const venuesCount = "OAT Venues";
-  return /* @__PURE__ */ react_default.createElement("section", { className: "section-wrapper intro-section", id: "intro-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "intro-grid" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "INSTITUTIONAL ETHOS"), /* @__PURE__ */ react_default.createElement("h2", { className: "intro-statement" }, "An event built for participation.")), /* @__PURE__ */ react_default.createElement("div", { className: "intro-paragraphs" }, /* @__PURE__ */ react_default.createElement("p", { className: "text-body", style: { fontSize: "1.0625rem" } }, "At ", INSTITUTION.fullName, ", athletic rigor and cultural inquiry stand as complementary pillars of student formation. This annual inter-college championship unites collegiate teams from across the state in a shared arena of sportsmanship, creative expression, and intellectual vitality."), /* @__PURE__ */ react_default.createElement("p", { className: "text-caption" }, "Competitions are structured with accredited refereeing, jury-moderated cultural stages, and verified inter-collegiate eligibility protocols."))), /* @__PURE__ */ react_default.createElement("div", { className: "stats-strip" }, /* @__PURE__ */ react_default.createElement("div", { className: "stat-item" }, /* @__PURE__ */ react_default.createElement("span", { className: "stat-value" }, eventsCount), /* @__PURE__ */ react_default.createElement("span", { className: "stat-label" }, "Competitions"), /* @__PURE__ */ react_default.createElement("span", { className: "stat-footnote" }, "* Dynamic database placeholder")), /* @__PURE__ */ react_default.createElement("div", { className: "stat-item" }, /* @__PURE__ */ react_default.createElement("span", { className: "stat-value" }, participantsCount), /* @__PURE__ */ react_default.createElement("span", { className: "stat-label" }, "Student Entries"), /* @__PURE__ */ react_default.createElement("span", { className: "stat-footnote" }, "* Live sync with MongoDB registrations")), /* @__PURE__ */ react_default.createElement("div", { className: "stat-item stat-item-cultural" }, /* @__PURE__ */ react_default.createElement("span", { className: "stat-value" }, daysCount), /* @__PURE__ */ react_default.createElement("span", { className: "stat-label" }, "Championship Duration"), /* @__PURE__ */ react_default.createElement("span", { className: "stat-footnote" }, "* Schedule placeholder pending university notification")), /* @__PURE__ */ react_default.createElement("div", { className: "stat-item stat-item-cultural" }, /* @__PURE__ */ react_default.createElement("span", { className: "stat-value" }, venuesCount), /* @__PURE__ */ react_default.createElement("span", { className: "stat-label" }, "Dedicated Grounds"), /* @__PURE__ */ react_default.createElement("span", { className: "stat-footnote" }, "* Courts & auditorium facilities")))));
+  return /* @__PURE__ */ react_default.createElement("section", { className: "section-wrapper intro-section", id: "intro-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "intro-grid" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "INSTITUTIONAL ETHOS"), /* @__PURE__ */ react_default.createElement("h2", { className: "intro-statement" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.15 }, "An event built for participation."))), /* @__PURE__ */ react_default.createElement("div", { className: "intro-paragraphs" }, /* @__PURE__ */ react_default.createElement("p", { className: "text-body", style: { fontSize: "1.0625rem" } }, "At ", INSTITUTION.fullName, ", athletic rigor and cultural inquiry stand as complementary pillars of student formation. This annual inter-college championship unites collegiate teams from across the state in a shared arena of sportsmanship, creative expression, and intellectual vitality."), /* @__PURE__ */ react_default.createElement("p", { className: "text-caption" }, "Competitions are structured with accredited refereeing, jury-moderated cultural stages, and verified inter-collegiate eligibility protocols."))), /* @__PURE__ */ react_default.createElement("div", { className: "stats-strip" }, /* @__PURE__ */ react_default.createElement("div", { className: "stat-item" }, /* @__PURE__ */ react_default.createElement("span", { className: "stat-value" }, eventsCount), /* @__PURE__ */ react_default.createElement("span", { className: "stat-label" }, "Competitions"), /* @__PURE__ */ react_default.createElement("span", { className: "stat-footnote" }, "* Dynamic database placeholder")), /* @__PURE__ */ react_default.createElement("div", { className: "stat-item" }, /* @__PURE__ */ react_default.createElement("span", { className: "stat-value" }, participantsCount), /* @__PURE__ */ react_default.createElement("span", { className: "stat-label" }, "Student Entries"), /* @__PURE__ */ react_default.createElement("span", { className: "stat-footnote" }, "* Live sync with MongoDB registrations")), /* @__PURE__ */ react_default.createElement("div", { className: "stat-item stat-item-cultural" }, /* @__PURE__ */ react_default.createElement("span", { className: "stat-value" }, daysCount), /* @__PURE__ */ react_default.createElement("span", { className: "stat-label" }, "Championship Duration"), /* @__PURE__ */ react_default.createElement("span", { className: "stat-footnote" }, "* Schedule placeholder pending university notification")), /* @__PURE__ */ react_default.createElement("div", { className: "stat-item stat-item-cultural" }, /* @__PURE__ */ react_default.createElement("span", { className: "stat-value" }, venuesCount), /* @__PURE__ */ react_default.createElement("span", { className: "stat-label" }, "Dedicated Grounds"), /* @__PURE__ */ react_default.createElement("span", { className: "stat-footnote" }, "* Courts & auditorium facilities"))), /* @__PURE__ */ react_default.createElement("div", { className: "intro-manifesto-card" }, /* @__PURE__ */ react_default.createElement("div", { className: "manifesto-header" }, /* @__PURE__ */ react_default.createElement("span", { className: "manifesto-pill" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "COLORIDO 2K26 MANIFESTO"), /* @__PURE__ */ react_default.createElement("span", { className: "manifesto-edition" }, "40TH EDITION \u2022 RVRJCCE")), /* @__PURE__ */ react_default.createElement("h3", { className: "manifesto-text" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.15 }, "Where talent meets tenacity. Forty years of collegiate excellence across sports and arts.")), /* @__PURE__ */ react_default.createElement("p", { className: "manifesto-subtext" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.35 }, "From buzzer-beating basketball showdowns to spellbinding classical dance spectacles, COLORIDO 2K26 unites student champions from across Andhra Pradesh on one legendary campus.")))));
 }
 
 // src/components/EventDiscovery.jsx
@@ -57652,9 +57728,9 @@ function LiteraryCulturalSection({ onRegisterEvent }) {
   const toggleExpand = (id3) => {
     setExpandedId(expandedId === id3 ? null : id3);
   };
-  return /* @__PURE__ */ react_default.createElement(react_default.Fragment, null, /* @__PURE__ */ react_default.createElement("section", { className: "transition-strip" }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "transition-inner" }, /* @__PURE__ */ react_default.createElement("div", { className: "transition-quote" }, '"From court discipline to the boundless possibilities of the stage \u2014 inter-collegiate brilliance defined through athletic precision and creative audacity."'), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.75rem", alignItems: "center" } }, /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-outline" }, "TRANSITION"), /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.8125rem", fontWeight: 600, color: "var(--text-muted)" } }, "SPORTS \u2192 CULTURAL"))))), /* @__PURE__ */ react_default.createElement("section", { className: "section-wrapper cultural-section", id: "cultural-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "section-header-editorial" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow eyebrow-cultural" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "CREATIVE EXPRESSION \u2022 02"), /* @__PURE__ */ react_default.createElement("h2", { className: "heading-section" }, "LITERARY & CULTURAL"), /* @__PURE__ */ react_default.createElement("div", { style: { fontFamily: "var(--font-serif)", fontSize: "1.25rem", fontStyle: "italic", color: "var(--accent-cultural)", marginTop: "0.25rem" } }, "Expression takes many forms.")), /* @__PURE__ */ react_default.createElement("p", { className: "text-body", style: { maxWidth: "440px" } }, "Eight distinct disciplines celebrating Indian classical heritage, contemporary theatre, experimental dance choreography, runway styling, digital craft, and forensic debate.")), /* @__PURE__ */ react_default.createElement("div", { className: "cultural-magazine-layout" }, CULTURAL_EVENTS.map((item) => {
-    const isExpanded = expandedId === item.id;
-    return /* @__PURE__ */ react_default.createElement("div", { key: item.id, className: "cultural-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "cultural-row-num" }, item.number), /* @__PURE__ */ react_default.createElement("div", { className: "cultural-row-title-area" }, /* @__PURE__ */ react_default.createElement("h3", { className: "cultural-row-name" }, item.name), /* @__PURE__ */ react_default.createElement("span", { className: "cultural-row-sub" }, item.subCategory), item.subEvents && /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.375rem", marginTop: "0.375rem" } }, item.subEvents.map((sub, sIdx) => /* @__PURE__ */ react_default.createElement(
+  return /* @__PURE__ */ react_default.createElement(react_default.Fragment, null, /* @__PURE__ */ react_default.createElement("section", { className: "transition-strip" }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "transition-inner" }, /* @__PURE__ */ react_default.createElement("div", { className: "transition-quote" }, '"From court discipline to the boundless possibilities of the stage \u2014 inter-collegiate brilliance defined through athletic precision and creative audacity."'), /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.75rem", alignItems: "center" } }, /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-outline" }, "TRANSITION"), /* @__PURE__ */ react_default.createElement("span", { style: { fontSize: "0.8125rem", fontWeight: 600, color: "var(--text-muted)" } }, "SPORTS \u2192 CULTURAL"))))), /* @__PURE__ */ react_default.createElement("section", { className: "section-wrapper cultural-section", id: "cultural-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "section-header-editorial" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow eyebrow-cultural" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "CREATIVE EXPRESSION \u2022 02"), /* @__PURE__ */ react_default.createElement("h2", { className: "heading-section" }, "LITERARY & CULTURAL"), /* @__PURE__ */ react_default.createElement("div", { style: { fontFamily: "var(--font-serif)", fontSize: "1.25rem", fontStyle: "italic", color: "var(--accent-cultural)", marginTop: "0.25rem" } }, "Expression takes many forms.")), /* @__PURE__ */ react_default.createElement("p", { className: "text-body", style: { maxWidth: "440px" } }, "Eight distinct disciplines celebrating Indian classical heritage, contemporary theatre, experimental dance choreography, runway styling, digital craft, and forensic debate.")), /* @__PURE__ */ react_default.createElement("div", { className: "cultural-magazine-layout" }, CULTURAL_EVENTS.map((item2) => {
+    const isExpanded = expandedId === item2.id;
+    return /* @__PURE__ */ react_default.createElement("div", { key: item2.id, className: "cultural-row" }, /* @__PURE__ */ react_default.createElement("div", { className: "cultural-row-num" }, item2.number), /* @__PURE__ */ react_default.createElement("div", { className: "cultural-row-title-area" }, /* @__PURE__ */ react_default.createElement("h3", { className: "cultural-row-name" }, item2.name), /* @__PURE__ */ react_default.createElement("span", { className: "cultural-row-sub" }, item2.subCategory), item2.subEvents && /* @__PURE__ */ react_default.createElement("div", { style: { display: "flex", gap: "0.375rem", marginTop: "0.375rem" } }, item2.subEvents.map((sub, sIdx) => /* @__PURE__ */ react_default.createElement(
       "span",
       {
         key: sIdx,
@@ -57662,20 +57738,20 @@ function LiteraryCulturalSection({ onRegisterEvent }) {
         style: { fontSize: "0.625rem", padding: "0.125rem 0.375rem" }
       },
       sub.toUpperCase()
-    )))), /* @__PURE__ */ react_default.createElement("div", { className: "cultural-row-details" }, /* @__PURE__ */ react_default.createElement("p", { className: "cultural-row-desc" }, item.shortDescription), /* @__PURE__ */ react_default.createElement("div", { className: "cultural-disciplines" }, item.disciplines.map((d2, dIdx) => /* @__PURE__ */ react_default.createElement("span", { key: dIdx, className: "discipline-pill" }, d2))), isExpanded && /* @__PURE__ */ react_default.createElement("div", { style: {
+    )))), /* @__PURE__ */ react_default.createElement("div", { className: "cultural-row-details" }, /* @__PURE__ */ react_default.createElement("p", { className: "cultural-row-desc" }, item2.shortDescription), /* @__PURE__ */ react_default.createElement("div", { className: "cultural-disciplines" }, item2.disciplines.map((d2, dIdx) => /* @__PURE__ */ react_default.createElement("span", { key: dIdx, className: "discipline-pill" }, d2))), isExpanded && /* @__PURE__ */ react_default.createElement("div", { style: {
       marginTop: "0.875rem",
       padding: "0.875rem",
       backgroundColor: "var(--bg-subtle)",
       borderRadius: "var(--radius-sm)",
       fontSize: "0.8125rem"
-    } }, /* @__PURE__ */ react_default.createElement("div", { style: { fontWeight: 600, color: "var(--text-primary)", marginBottom: "0.25rem" } }, "Guidelines & Stage Technicals:"), /* @__PURE__ */ react_default.createElement("div", { style: { color: "var(--text-secondary)", lineHeight: 1.5 } }, item.guidelines), /* @__PURE__ */ react_default.createElement("div", { style: { marginTop: "0.375rem", color: "var(--text-muted)", fontSize: "0.75rem" } }, "Format: ", item.format, " \u2022 Allocation: ", item.duration))), /* @__PURE__ */ react_default.createElement("div", { className: "cultural-row-actions" }, /* @__PURE__ */ react_default.createElement(
+    } }, /* @__PURE__ */ react_default.createElement("div", { style: { fontWeight: 600, color: "var(--text-primary)", marginBottom: "0.25rem" } }, "Guidelines & Stage Technicals:"), /* @__PURE__ */ react_default.createElement("div", { style: { color: "var(--text-secondary)", lineHeight: 1.5 } }, item2.guidelines), /* @__PURE__ */ react_default.createElement("div", { style: { marginTop: "0.375rem", color: "var(--text-muted)", fontSize: "0.75rem" } }, "Format: ", item2.format, " \u2022 Allocation: ", item2.duration))), /* @__PURE__ */ react_default.createElement("div", { className: "cultural-row-actions" }, /* @__PURE__ */ react_default.createElement(
       "button",
       {
         className: "btn btn-cultural btn-sm",
         style: { width: "100%" },
-        onClick: () => onRegisterEvent("Literary & Cultural", "Cultural / Open", item.name)
+        onClick: () => onRegisterEvent("Literary & Cultural", "Cultural / Open", item2.name)
       },
-      /* @__PURE__ */ react_default.createElement("span", null, "Register for ", item.name)
+      /* @__PURE__ */ react_default.createElement("span", null, "Register for ", item2.name)
     ), /* @__PURE__ */ react_default.createElement(
       "button",
       {
@@ -57690,7 +57766,7 @@ function LiteraryCulturalSection({ onRegisterEvent }) {
           gap: "0.25rem",
           padding: "0.25rem 0"
         },
-        onClick: () => toggleExpand(item.id)
+        onClick: () => toggleExpand(item2.id)
       },
       /* @__PURE__ */ react_default.createElement("span", null, isExpanded ? "Hide Guidelines" : "Rules & Guidelines"),
       /* @__PURE__ */ react_default.createElement(
@@ -57711,7 +57787,7 @@ function LiteraryCulturalSection({ onRegisterEvent }) {
 }
 
 // src/components/ui/wave-grid-background.tsx
-var import_react29 = __toESM(require_react(), 1);
+var import_react30 = __toESM(require_react(), 1);
 
 // node_modules/three/build/three.core.js
 var REVISION = "186";
@@ -77969,11 +78045,11 @@ var StructuredUniform = class {
   }
 };
 var RePathPart = /(\w+)(\])?(\[|\.)?/g;
-function addUniform(container2, uniformObject) {
-  container2.seq.push(uniformObject);
-  container2.map[uniformObject.id] = uniformObject;
+function addUniform(container3, uniformObject) {
+  container3.seq.push(uniformObject);
+  container3.map[uniformObject.id] = uniformObject;
 }
-function parseUniform(activeInfo, addr, container2) {
+function parseUniform(activeInfo, addr, container3) {
   const path = activeInfo.name, pathLength = path.length;
   RePathPart.lastIndex = 0;
   while (true) {
@@ -77982,16 +78058,16 @@ function parseUniform(activeInfo, addr, container2) {
     const idIsIndex = match[2] === "]", subscript = match[3];
     if (idIsIndex) id3 = id3 | 0;
     if (subscript === void 0 || subscript === "[" && matchEnd + 2 === pathLength) {
-      addUniform(container2, subscript === void 0 ? new SingleUniform(id3, activeInfo, addr) : new PureArrayUniform(id3, activeInfo, addr));
+      addUniform(container3, subscript === void 0 ? new SingleUniform(id3, activeInfo, addr) : new PureArrayUniform(id3, activeInfo, addr));
       break;
     } else {
-      const map = container2.map;
+      const map = container3.map;
       let next = map[id3];
       if (next === void 0) {
         next = new StructuredUniform(id3);
-        addUniform(container2, next);
+        addUniform(container3, next);
       }
-      container2 = next;
+      container3 = next;
     }
   }
 }
@@ -86540,9 +86616,9 @@ function WaveGridBackground({
   autoAnimate = true,
   vignette = true
 }) {
-  const containerRef = (0, import_react29.useRef)(null);
-  const canvasRef = (0, import_react29.useRef)(null);
-  const propsRef = (0, import_react29.useRef)({
+  const containerRef = (0, import_react30.useRef)(null);
+  const canvasRef = (0, import_react30.useRef)(null);
+  const propsRef = (0, import_react30.useRef)({
     colorBase,
     colorHigh,
     waveAmplitude,
@@ -86553,7 +86629,7 @@ function WaveGridBackground({
     waveJitter,
     autoAnimate
   });
-  (0, import_react29.useEffect)(() => {
+  (0, import_react30.useEffect)(() => {
     propsRef.current = {
       colorBase,
       colorHigh,
@@ -86566,17 +86642,17 @@ function WaveGridBackground({
       autoAnimate
     };
   });
-  (0, import_react29.useEffect)(() => {
-    const container2 = containerRef.current;
+  (0, import_react30.useEffect)(() => {
+    const container3 = containerRef.current;
     const canvas = canvasRef.current;
-    if (!container2 || !canvas) return;
+    if (!container3 || !canvas) return;
     const cubeWidth = 0.8;
     const cubeHeight = 3;
     const gap = 0.01;
     const bounds = gridSize * (cubeWidth + gap);
     const getSize2 = () => ({
-      width: container2.clientWidth || 1,
-      height: container2.clientHeight || 1,
+      width: container3.clientWidth || 1,
+      height: container3.clientHeight || 1,
       pixelRatio: Math.min(window.devicePixelRatio, 2)
     });
     let size = getSize2();
@@ -86698,13 +86774,13 @@ function WaveGridBackground({
       randomPointTimer = 0;
     };
     window.addEventListener("pointermove", onPointerMove);
-    container2.addEventListener("pointermove", onPointerMove);
+    container3.addEventListener("pointermove", onPointerMove);
     canvas.addEventListener("pointermove", onPointerMove);
     const onPointerLeave = () => {
       mouse.set(0, 0);
       lastPoint = null;
     };
-    container2.addEventListener("pointerleave", onPointerLeave);
+    container3.addEventListener("pointerleave", onPointerLeave);
     canvas.addEventListener("pointerleave", onPointerLeave);
     const addRandomPoint = () => {
       const x3 = (Math.random() * 0.5 - 0.25) * bounds;
@@ -86819,7 +86895,7 @@ diffuseColor.rgb = mix( uColorBase, uColorHigh, t );`
       composer.setPixelRatio(size.pixelRatio);
     };
     const resizeObserver = new ResizeObserver(applySize);
-    resizeObserver.observe(container2);
+    resizeObserver.observe(container3);
     window.addEventListener("resize", applySize);
     const clock = new Clock();
     renderer.setAnimationLoop(() => {
@@ -86844,9 +86920,9 @@ diffuseColor.rgb = mix( uColorBase, uColorHigh, t );`
       renderer.setAnimationLoop(null);
       window.removeEventListener("resize", applySize);
       window.removeEventListener("pointermove", onPointerMove);
-      container2.removeEventListener("pointermove", onPointerMove);
+      container3.removeEventListener("pointermove", onPointerMove);
       canvas.removeEventListener("pointermove", onPointerMove);
-      container2.removeEventListener("pointerleave", onPointerLeave);
+      container3.removeEventListener("pointerleave", onPointerLeave);
       canvas.removeEventListener("pointerleave", onPointerLeave);
       resizeObserver.disconnect();
       geometry.dispose();
@@ -86859,7 +86935,7 @@ diffuseColor.rgb = mix( uColorBase, uColorHigh, t );`
       renderer.dispose();
     };
   }, [gridSize, vignette]);
-  return /* @__PURE__ */ import_react29.default.createElement("div", { ref: containerRef, className: cn("relative h-full w-full overflow-hidden", className) }, /* @__PURE__ */ import_react29.default.createElement("canvas", { ref: canvasRef, className: "block h-full w-full" }), children != null && /* @__PURE__ */ import_react29.default.createElement("div", { className: "pointer-events-none absolute inset-0" }, children));
+  return /* @__PURE__ */ import_react30.default.createElement("div", { ref: containerRef, className: cn("relative h-full w-full overflow-hidden", className) }, /* @__PURE__ */ import_react30.default.createElement("canvas", { ref: canvasRef, className: "block h-full w-full" }), children != null && /* @__PURE__ */ import_react30.default.createElement("div", { className: "pointer-events-none absolute inset-0" }, children));
 }
 var wave_grid_background_default = WaveGridBackground;
 
@@ -102215,8 +102291,8 @@ function getColumnsCanFitInPage(doc, table, config) {
     horizontalPageBreakRepeat = [table.settings.horizontalPageBreakRepeat];
   }
   horizontalPageBreakRepeat.forEach(function(field) {
-    var col = table.columns.find(function(item) {
-      return item.dataKey === field || item.index === field;
+    var col = table.columns.find(function(item2) {
+      return item2.dataKey === field || item2.index === field;
     });
     if (col && !repeatColumnsMap.has(col.index)) {
       repeatColumnsMap.set(col.index, true);
@@ -104429,13 +104505,13 @@ function App() {
 
 // src/index.jsx
 console.log("[RVRJCCE] Initializing App mounting...");
-var container = document.getElementById("root");
-if (container) {
+var container2 = document.getElementById("root");
+if (container2) {
   try {
-    react_default.render(react_default.createElement(App, null), container);
-    console.log("[RVRJCCE] App mounted! Root child nodes:", container.childNodes.length);
-    console.log("[RVRJCCE] Root innerHTML length:", container.innerHTML.length);
-    const headings = Array.from(container.querySelectorAll("h1, h2, h3")).map((h3) => h3.textContent.trim());
+    react_default.render(react_default.createElement(App, null), container2);
+    console.log("[RVRJCCE] App mounted! Root child nodes:", container2.childNodes.length);
+    console.log("[RVRJCCE] Root innerHTML length:", container2.innerHTML.length);
+    const headings = Array.from(container2.querySelectorAll("h1, h2, h3")).map((h3) => h3.textContent.trim());
     console.log("[RVRJCCE] Rendered Headings:", JSON.stringify(headings));
   } catch (err2) {
     console.error("[RVRJCCE] Error during render:", err2);
