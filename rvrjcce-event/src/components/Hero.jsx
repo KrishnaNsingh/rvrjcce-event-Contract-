@@ -35,7 +35,7 @@ export function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
 
             <p className="hero-editorial-sub">
               <TextAnimation divideBy="word" delay={0.25}>
-                / Where Athletic Grit Meets Creative Expression • Annual Meet 2026 /
+                COLORIDO 2K26  • Annual Meet 2026
               </TextAnimation>
             </p>
 
