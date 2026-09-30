@@ -66,7 +66,7 @@ export function VideoSection({
             setIsMuted(true);
             video.play()
               .then(() => setIsPlaying(true))
-              .catch(() => {});
+              .catch(() => { });
           });
       }
     };
@@ -104,14 +104,14 @@ export function VideoSection({
   const handleLoadedData = () => {
     setVideoLoaded(true);
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch(() => { });
     }
   };
 
   const handleEnded = () => {
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch(() => { });
     }
   };
 
@@ -123,7 +123,7 @@ export function VideoSection({
       videoRef.current.muted = nextMuted;
       setIsMuted(nextMuted);
       if (!isPlaying) {
-        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => { });
       }
     }
   };
@@ -132,7 +132,7 @@ export function VideoSection({
   const togglePlayback = () => {
     if (videoRef.current) {
       if (videoRef.current.paused) {
-        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => { });
       } else {
         videoRef.current.pause();
         setIsPlaying(false);
@@ -147,7 +147,7 @@ export function VideoSection({
     if (video && video.src !== localVideoSrc) {
       video.src = localVideoSrc;
       video.load();
-      video.play().catch(() => {});
+      video.play().catch(() => { });
     }
   };
 
@@ -226,7 +226,7 @@ export function VideoSection({
         if (clipPath) clipPath.setAttribute("d", currentD);
         if (borderPath) borderPath.setAttribute("d", currentD);
         if (borderSvg) borderSvg.style.opacity = String(Math.max(0, 1 - pClamped * 1.5));
-        
+
         // Title overlay gracefully fades in during card expansion
         if (title) {
           title.style.opacity = String(Math.min(1, Math.max(0, (pClamped - 0.15) * 1.8)));
@@ -263,7 +263,7 @@ export function VideoSection({
         position: "relative",
         width: "100%",
         height: "230vh", // Provides scroll space for morphing GSAP-like scrub reveal
-        backgroundColor: "#07080b",
+        backgroundColor: "var(--bg-page, #ffffeeff)",
         zIndex: 20,
       }}
     >
@@ -294,23 +294,23 @@ export function VideoSection({
           alignItems: "center",
           justifyContent: "center",
           overflow: "hidden",
-          backgroundColor: "#07080b",
+          backgroundColor: "var(--bg-page, #FBFBFA)",
         }}
       >
-        {/* Ambient Dark Navy/Graphite Radial Depth Glow */}
+        {/* Subtle Ambient Illumination */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse 75% 65% at 50% 50%, rgba(14, 34, 61, 0.45) 0%, rgba(7, 8, 11, 0.95) 75%, #07080b 100%)",
+              "radial-gradient(ellipse 75% 65% at 50% 50%, rgba(238, 243, 250, 0.7) 0%, transparent 75%)",
             pointerEvents: "none",
             zIndex: 0,
           }}
         />
 
         {/* Decorative Stepped Accent Motif Right (Directly matching reference image 1) */}
-        <div
+        {/* <div
           className="video-stepped-accent-right"
           style={{
             position: "absolute",
@@ -353,10 +353,10 @@ export function VideoSection({
               background: "linear-gradient(90deg, #4c1d95, #6b21a8)",
             }}
           />
-        </div>
+        </div> */}
 
         {/* Decorative Stepped Silhouette Left (Directly matching reference image 1) */}
-        <div
+        {/* <div
           className="video-stepped-accent-left"
           style={{
             position: "absolute",
@@ -384,7 +384,7 @@ export function VideoSection({
               background: "#07080b",
             }}
           />
-        </div>
+        </div> */}
 
         {/* Video Card Anchor */}
         <div
@@ -529,7 +529,7 @@ export function VideoSection({
             />
 
             {/* Audio Mute / Unmute Control Button */}
-            <div
+            {/* <div
               style={{
                 position: "absolute",
                 bottom: "clamp(1rem, 2.5vw, 2rem)",
@@ -599,10 +599,10 @@ export function VideoSection({
                   </>
                 )}
               </button>
-            </div>
+            </div> */}
 
             {/* Live Playback Indicator */}
-            <div
+            {/* <div
               style={{
                 position: "absolute",
                 bottom: "clamp(1rem, 2.5vw, 2rem)",
@@ -637,7 +637,7 @@ export function VideoSection({
                 />
                 <span>{isPlaying ? "Live Campus Footage" : "Paused"}</span>
               </div>
-            </div>
+            </div> */}
 
             {/* Outer SVG Border Contour (Morphs smoothly along with SVG clipPath) */}
             <svg

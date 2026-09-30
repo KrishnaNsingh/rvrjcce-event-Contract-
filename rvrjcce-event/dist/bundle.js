@@ -87671,7 +87671,7 @@ function VideoSection({
         width: "100%",
         height: "230vh",
         // Provides scroll space for morphing GSAP-like scrub reveal
-        backgroundColor: "#07080b",
+        backgroundColor: "var(--bg-page, #FBFBFA)",
         zIndex: 20
       }
     },
@@ -87699,7 +87699,7 @@ function VideoSection({
           alignItems: "center",
           justifyContent: "center",
           overflow: "hidden",
-          backgroundColor: "#07080b"
+          backgroundColor: "var(--bg-page, #FBFBFA)"
         }
       },
       /* @__PURE__ */ react_default.createElement(
@@ -87708,7 +87708,7 @@ function VideoSection({
           style: {
             position: "absolute",
             inset: 0,
-            background: "radial-gradient(ellipse 75% 65% at 50% 50%, rgba(14, 34, 61, 0.45) 0%, rgba(7, 8, 11, 0.95) 75%, #07080b 100%)",
+            background: "radial-gradient(ellipse 75% 65% at 50% 50%, rgba(238, 243, 250, 0.7) 0%, transparent 75%)",
             pointerEvents: "none",
             zIndex: 0
           }
