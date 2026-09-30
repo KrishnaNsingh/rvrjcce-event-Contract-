@@ -52,14 +52,24 @@ if (fs.existsSync(path.join(PROJECT_ROOT, 'public'))) {
   app.use(express.static(path.join(PROJECT_ROOT, 'public')));
 }
 
-// SPA Fallback: send index.html for client-side routing
+// Fallback: send index.html if frontend is co-located, or return API welcome info
 app.use((req, res) => {
   const indexPath = path.join(PUBLIC_DIR, 'index.html');
   if (fs.existsSync(indexPath)) {
-    res.sendFile(indexPath);
-  } else {
-    res.status(404).send('Resource not found. Please run "npm run build" first.');
+    return res.sendFile(indexPath);
   }
+  return res.status(200).json({
+    service: 'COLORIDO 2K26 REST API',
+    institution: 'R.V.R. & J.C. College of Engineering',
+    status: 'online',
+    endpoints: {
+      health: '/api/health',
+      events: '/api/events',
+      registrations: '/api/registrations',
+      stats: '/api/stats',
+      adminLogin: '/api/admin/login'
+    }
+  });
 });
 
 export function startServer(port = Number(PORT)) {

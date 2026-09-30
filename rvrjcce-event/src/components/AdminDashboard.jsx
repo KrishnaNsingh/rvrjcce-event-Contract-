@@ -13,7 +13,7 @@ import {
   adminLogout
 } from '../api/client.js';
 import { generateRegistrationPDF } from '../utils/pdfPassGenerator.js';
-import { EVENT_DETAILS, getEventDetails } from '../../backend/config/eventSchedule.js';
+import { EVENT_DETAILS, getEventDetails } from '../../config/eventSchedule.js';
 
 export function AdminDashboard({ onNavigate }) {
   // Authentication State

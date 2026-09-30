@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from '../core/react.js';
 import { INSTITUTION, SPORTS_DIVISIONS } from '../../config/eventConfig.js';
-import { EVENT_DETAILS, getEventDetails } from '../../backend/config/eventSchedule.js';
+import { EVENT_DETAILS, getEventDetails } from '../../config/eventSchedule.js';
 import { submitRegistration, getPdfDownloadUrl } from '../api/client.js';
 import { generateRegistrationPDF } from '../utils/pdfPassGenerator.js';
 

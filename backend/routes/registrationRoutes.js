@@ -10,7 +10,7 @@ import {
   exportCsv,
   downloadPdf
 } from '../controllers/registrationController.js';
-import { INSTITUTION, CATEGORIES, SPORTS_DIVISIONS, CULTURAL_EVENTS } from '../../config/eventConfig.js';
+import { INSTITUTION, CATEGORIES, SPORTS_DIVISIONS, CULTURAL_EVENTS } from '../config/eventConfig.js';
 import { EVENT_DETAILS } from '../config/eventSchedule.js';
 
 const router = Router();

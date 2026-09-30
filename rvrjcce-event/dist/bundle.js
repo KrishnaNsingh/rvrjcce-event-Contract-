@@ -86915,7 +86915,7 @@ function RegistrationCTA({ onRegisterClick }) {
   )))));
 }
 
-// backend/config/eventSchedule.js
+// config/eventSchedule.js
 var EVENT_DETAILS = {
   // Sports - Boys
   "Basketball": {

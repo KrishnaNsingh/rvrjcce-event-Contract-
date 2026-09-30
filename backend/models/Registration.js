@@ -8,8 +8,9 @@ import { getNextSequence } from './Counter.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const PROJECT_ROOT = path.resolve(__dirname, '../..');
-const DATA_FILE = path.join(PROJECT_ROOT, 'data', 'registrations.json');
+const localDataFile = path.resolve(__dirname, '../data/registrations.json');
+const rootDataFile = path.resolve(__dirname, '../../data/registrations.json');
+const DATA_FILE = fs.existsSync(localDataFile) ? localDataFile : rootDataFile;
 
 const teammateSchema = new mongoose.Schema({
   memberNumber: { type: Number, default: 1 },
