@@ -112,6 +112,10 @@ export function Navbar({ currentRoute, onNavigate }) {
               alt={`${INSTITUTION.name} University Logo`}
               className="brand-logo"
             />
+            <div className="brand-text">
+              <span className="brand-title">RVRJCCE</span>
+              <span className="brand-subtitle">COLORIDO 2K26  • Annual Meet 2026</span>
+            </div>
           </div>
 
           {/* Middle Section: Award-Winning Spotlight Navbar */}
