@@ -21,11 +21,11 @@ export function Navbar({ currentRoute, onNavigate }) {
   // Scroll-responsive synchronization for middle spotlight navbar
   useEffect(() => {
     if (currentRoute === 'register') {
-      setActiveNavIndex(4);
+      setActiveNavIndex(5);
       return;
     }
     if (currentRoute === 'admin') {
-      setActiveNavIndex(5);
+      setActiveNavIndex(6);
       return;
     }
 
@@ -36,12 +36,17 @@ export function Navbar({ currentRoute, onNavigate }) {
         return;
       }
 
-      const discoveryEl = document.getElementById('discovery-section');
-      const sportsEl = document.getElementById('sports-section');
+      const galleryEl = document.getElementById('gallery-section');
       const culturalEl = document.getElementById('cultural-section');
+      const sportsEl = document.getElementById('sports-section');
+      const discoveryEl = document.getElementById('discovery-section');
 
       const triggerLine = window.innerHeight * 0.45;
 
+      if (galleryEl && galleryEl.getBoundingClientRect().top <= triggerLine) {
+        setActiveNavIndex(4); // Gallery
+        return;
+      }
       if (culturalEl && culturalEl.getBoundingClientRect().top <= triggerLine) {
         setActiveNavIndex(3); // Literary & Cultural
         return;
@@ -81,6 +86,7 @@ export function Navbar({ currentRoute, onNavigate }) {
     { label: "Events", href: "#discovery-section", route: "home", sectionId: "discovery-section" },
     { label: "Sports", href: "#sports-section", route: "home", sectionId: "sports-section" },
     { label: "Literary & Cultural", href: "#cultural-section", route: "home", sectionId: "cultural-section" },
+    { label: "Gallery", href: "#gallery-section", route: "home", sectionId: "gallery-section" },
     { label: "Register", href: "/register", route: "register", sectionId: null },
     { label: "Admin Portal", href: "/admin", route: "admin", sectionId: null }
   ];
@@ -152,6 +158,9 @@ export function Navbar({ currentRoute, onNavigate }) {
         </a>
         <a className="mobile-nav-link" onClick={() => handleNavClick('home', 'cultural-section')}>
           Literary & Cultural
+        </a>
+        <a className="mobile-nav-link" onClick={() => handleNavClick('home', 'gallery-section')}>
+          Campus Gallery
         </a>
         <a className="mobile-nav-link" onClick={() => handleNavClick('register')}>
           Event Registration

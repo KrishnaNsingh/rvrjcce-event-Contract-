@@ -5,6 +5,7 @@ import { IntroSection } from './components/IntroSection.jsx';
 import { EventDiscovery } from './components/EventDiscovery.jsx';
 import { SportsSection } from './components/SportsSection.jsx';
 import { LiteraryCulturalSection } from './components/LiteraryCulturalSection.jsx';
+import { GallerySection } from './components/GallerySection.jsx';
 import { FeaturedArena } from './components/FeaturedArena.jsx';
 import { RegistrationCTA } from './components/RegistrationCTA.jsx';
 import { RegistrationForm } from './components/RegistrationForm.jsx';
@@ -115,6 +116,9 @@ export function App() {
             <LiteraryCulturalSection
               onRegisterEvent={handleRegisterSpecificEvent}
             />
+
+            {/* 5b. Dynamic 3D Cylinder Campus & Event Gallery */}
+            <GallerySection />
 
             {/* 6. Featured "Choose Your Arena" Experience */}
             <FeaturedArena

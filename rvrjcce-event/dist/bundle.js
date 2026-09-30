@@ -1374,7 +1374,7 @@ var require_react_dom_development = __commonJS({
         return dispatcher;
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React6 = require_react(), Internals = {
+      var React7 = require_react(), Internals = {
         d: {
           f: noop3,
           r: function() {
@@ -1392,7 +1392,7 @@ var require_react_dom_development = __commonJS({
         },
         p: 0,
         findDOMNode: null
-      }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = /* @__PURE__ */ Symbol.for("react.optimistic_key"), ReactSharedInternals = React6.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+      }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = /* @__PURE__ */ Symbol.for("react.optimistic_key"), ReactSharedInternals = React7.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
       "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
         "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
       );
@@ -3078,7 +3078,7 @@ var require_react_dom_client_development = __commonJS({
         node2.defaultValue !== "" + value && (node2.defaultValue = "" + value);
       }
       function validateOptionProps(element, props) {
-        null == props.value && ("object" === typeof props.children && null !== props.children ? React6.Children.forEach(props.children, function(child) {
+        null == props.value && ("object" === typeof props.children && null !== props.children ? React7.Children.forEach(props.children, function(child) {
           null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = true, console.error(
             "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
           ));
@@ -20226,11 +20226,11 @@ var require_react_dom_client_development = __commonJS({
         ));
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var Scheduler = require_scheduler(), React6 = require_react(), ReactDOM2 = require_react_dom(), searchTarget = null, searchBoundary = null, assign3 = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
+      var Scheduler = require_scheduler(), React7 = require_react(), ReactDOM2 = require_react_dom(), searchTarget = null, searchBoundary = null, assign3 = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
       /* @__PURE__ */ Symbol.for("react.scope");
       var REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = /* @__PURE__ */ Symbol.for("react.legacy_hidden");
       /* @__PURE__ */ Symbol.for("react.tracing_marker");
-      var REACT_MEMO_CACHE_SENTINEL = /* @__PURE__ */ Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React6.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+      var REACT_MEMO_CACHE_SENTINEL = /* @__PURE__ */ Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React7.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
         pending: false,
         data: null,
         method: null,
@@ -23422,7 +23422,7 @@ var require_react_dom_client_development = __commonJS({
         }
       };
       (function() {
-        var isomorphicReactPackageVersion = React6.version;
+        var isomorphicReactPackageVersion = React7.version;
         if ("19.3.0" !== isomorphicReactPackageVersion)
           throw Error(
             'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.3.0\nLearn more: https://react.dev/warnings/version-mismatch")
@@ -23778,18 +23778,18 @@ var require_react_jsx_runtime_development = __commonJS({
       function isValidElement(object) {
         return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
       }
-      var React6 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React6.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+      var React7 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React7.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
         return null;
       };
-      React6 = {
+      React7 = {
         react_stack_bottom_frame: function(callStackForError) {
           return callStackForError();
         }
       };
       var specialPropKeyWarningShown;
       var didWarnAboutElementRef = {};
-      var unknownOwnerDebugStack = React6.react_stack_bottom_frame.bind(
-        React6,
+      var unknownOwnerDebugStack = React7.react_stack_bottom_frame.bind(
+        React7,
         UnknownOwner
       )();
       var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
@@ -57403,11 +57403,11 @@ function Navbar({ currentRoute, onNavigate }) {
   }, [currentRoute]);
   (0, import_react.useEffect)(() => {
     if (currentRoute === "register") {
-      setActiveNavIndex(4);
+      setActiveNavIndex(5);
       return;
     }
     if (currentRoute === "admin") {
-      setActiveNavIndex(5);
+      setActiveNavIndex(6);
       return;
     }
     const handleScrollSpy = () => {
@@ -57416,10 +57416,15 @@ function Navbar({ currentRoute, onNavigate }) {
         setActiveNavIndex(0);
         return;
       }
-      const discoveryEl = document.getElementById("discovery-section");
-      const sportsEl = document.getElementById("sports-section");
+      const galleryEl = document.getElementById("gallery-section");
       const culturalEl = document.getElementById("cultural-section");
+      const sportsEl = document.getElementById("sports-section");
+      const discoveryEl = document.getElementById("discovery-section");
       const triggerLine = window.innerHeight * 0.45;
+      if (galleryEl && galleryEl.getBoundingClientRect().top <= triggerLine) {
+        setActiveNavIndex(4);
+        return;
+      }
       if (culturalEl && culturalEl.getBoundingClientRect().top <= triggerLine) {
         setActiveNavIndex(3);
         return;
@@ -57455,6 +57460,7 @@ function Navbar({ currentRoute, onNavigate }) {
     { label: "Events", href: "#discovery-section", route: "home", sectionId: "discovery-section" },
     { label: "Sports", href: "#sports-section", route: "home", sectionId: "sports-section" },
     { label: "Literary & Cultural", href: "#cultural-section", route: "home", sectionId: "cultural-section" },
+    { label: "Gallery", href: "#gallery-section", route: "home", sectionId: "gallery-section" },
     { label: "Register", href: "/register", route: "register", sectionId: null },
     { label: "Admin Portal", href: "/admin", route: "admin", sectionId: null }
   ];
@@ -57500,7 +57506,7 @@ function Navbar({ currentRoute, onNavigate }) {
       "aria-label": "Toggle navigation menu"
     },
     /* @__PURE__ */ react_default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, mobileMenuOpen ? /* @__PURE__ */ react_default.createElement("path", { d: "M18 6L6 18M6 6l12 12" }) : /* @__PURE__ */ react_default.createElement("path", { d: "M4 6h16M4 12h16M4 18h16" }))
-  )))), /* @__PURE__ */ react_default.createElement("div", { className: `mobile-nav-drawer ${mobileMenuOpen ? "open" : ""}` }, /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home") }, "Home"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "discovery-section") }, "Events Overview"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "sports-section") }, "Sports (Boys & Girls)"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "cultural-section") }, "Literary & Cultural"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("register") }, "Event Registration"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("admin") }, "Admin Portal"), /* @__PURE__ */ react_default.createElement("div", { style: { marginTop: "1.25rem" } }, /* @__PURE__ */ react_default.createElement(
+  )))), /* @__PURE__ */ react_default.createElement("div", { className: `mobile-nav-drawer ${mobileMenuOpen ? "open" : ""}` }, /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home") }, "Home"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "discovery-section") }, "Events Overview"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "sports-section") }, "Sports (Boys & Girls)"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "cultural-section") }, "Literary & Cultural"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("home", "gallery-section") }, "Campus Gallery"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("register") }, "Event Registration"), /* @__PURE__ */ react_default.createElement("a", { className: "mobile-nav-link", onClick: () => handleNavClick("admin") }, "Admin Portal"), /* @__PURE__ */ react_default.createElement("div", { style: { marginTop: "1.25rem" } }, /* @__PURE__ */ react_default.createElement(
     animated_button_default,
     {
       className: "btn-animated-navy",
@@ -57786,8 +57792,403 @@ function LiteraryCulturalSection({ onRegisterEvent }) {
   })))));
 }
 
-// src/components/ui/wave-grid-background.tsx
+// src/components/ui/cylinder-carousel.tsx
 var import_react30 = __toESM(require_react(), 1);
+var CylinderCarousel = import_react30.default.forwardRef(
+  ({
+    images,
+    className,
+    containerClassName,
+    cardClassName,
+    animationDuration = 32,
+    cardWidth = 240,
+    onImageClick,
+    ...props
+  }, ref) => {
+    const N3 = images.length;
+    const [currentWidth, setCurrentWidth] = (0, import_react30.useState)(cardWidth);
+    (0, import_react30.useEffect)(() => {
+      const handleResize = () => {
+        if (typeof window !== "undefined") {
+          if (window.innerWidth < 480) {
+            setCurrentWidth(140);
+          } else if (window.innerWidth < 768) {
+            setCurrentWidth(170);
+          } else if (window.innerWidth < 1024) {
+            setCurrentWidth(200);
+          } else {
+            setCurrentWidth(cardWidth);
+          }
+        }
+      };
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, [cardWidth]);
+    const radius = (0, import_react30.useMemo)(() => {
+      if (N3 <= 1) return currentWidth;
+      const halfAngleRad = Math.PI / N3;
+      return (currentWidth / 2 + 8) / Math.tan(halfAngleRad);
+    }, [currentWidth, N3]);
+    const customStyle = {
+      "--n": N3,
+      "--w": `${currentWidth}px`,
+      "--ba": `calc(1turn / var(--n))`,
+      "--radius": `${radius.toFixed(2)}px`,
+      "--anim-dur": `${animationDuration}s`
+    };
+    return /* @__PURE__ */ import_react30.default.createElement(
+      "div",
+      {
+        ref,
+        className: cn(
+          "cylinder-carousel-viewport w-full h-full min-h-[460px] md:min-h-[540px] grid place-items-center overflow-hidden",
+          className
+        ),
+        style: {
+          perspective: "38em",
+          maskImage: "linear-gradient(90deg, transparent 0%, #000 16% 84%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(90deg, transparent 0%, #000 16% 84%, transparent 100%)",
+          display: "grid",
+          placeItems: "center",
+          width: "100%",
+          minHeight: "480px",
+          overflow: "hidden",
+          position: "relative"
+        },
+        ...props
+      },
+      /* @__PURE__ */ import_react30.default.createElement(
+        "div",
+        {
+          className: cn(
+            "cylinder-carousel-ring grid place-items-center [transform-style:preserve-3d]",
+            containerClassName
+          ),
+          style: {
+            ...customStyle,
+            display: "grid",
+            placeItems: "center",
+            transformStyle: "preserve-3d",
+            WebkitTransformStyle: "preserve-3d",
+            animation: "ry var(--anim-dur) linear infinite",
+            position: "relative"
+          }
+        },
+        /* @__PURE__ */ import_react30.default.createElement("style", null, `
+              @keyframes ry {
+                to { transform: rotateY(1turn); }
+              }
+              .cylinder-carousel-ring:hover {
+                animation-play-state: paused !important;
+              }
+              .cylinder-carousel-card:hover {
+                transform: rotateY(calc(var(--i) * var(--ba))) translateZ(calc(-1 * var(--radius))) scale(1.04) !important;
+              }
+            `),
+        images.map((img, i4) => /* @__PURE__ */ import_react30.default.createElement(
+          "div",
+          {
+            key: i4,
+            onClick: () => onImageClick?.(img, i4),
+            className: cn(
+              "cylinder-carousel-card [grid-area:1/1] rounded-2xl [backface-visibility:hidden]",
+              cardClassName
+            ),
+            title: img.title || img.alt || `Photo ${i4 + 1}`,
+            style: {
+              gridArea: "1 / 1",
+              width: "var(--w)",
+              aspectRatio: "7/10",
+              borderRadius: "1rem",
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+              "--i": i4,
+              // Direct translateZ using JavaScript computed radius with CSS tan fallback
+              transform: "rotateY(calc(var(--i) * var(--ba))) translateZ(calc(-1 * var(--radius, calc((0.5 * var(--w) + 0.5em) / tan(0.5 * var(--ba))))))",
+              position: "relative",
+              overflow: "hidden",
+              boxShadow: "0 18px 40px -10px rgba(14, 34, 61, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.5)",
+              cursor: "pointer",
+              transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease"
+            }
+          },
+          /* @__PURE__ */ import_react30.default.createElement(
+            "img",
+            {
+              src: img.src,
+              alt: img.alt || `Carousel image ${i4 + 1}`,
+              loading: "lazy",
+              style: {
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+                pointerEvents: "none"
+              }
+            }
+          ),
+          /* @__PURE__ */ import_react30.default.createElement(
+            "div",
+            {
+              className: "cylinder-card-overlay",
+              style: {
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(to top, rgba(14, 34, 61, 0.88) 0%, rgba(14, 34, 61, 0.15) 50%, transparent 100%)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                padding: "0.875rem",
+                color: "#FFFFFF",
+                pointerEvents: "none"
+              }
+            },
+            img.category && /* @__PURE__ */ import_react30.default.createElement(
+              "span",
+              {
+                style: {
+                  fontSize: "0.625rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                  color: "#FFB399",
+                  fontWeight: 700,
+                  marginBottom: "2px"
+                }
+              },
+              img.category
+            ),
+            img.title && /* @__PURE__ */ import_react30.default.createElement(
+              "span",
+              {
+                style: {
+                  fontSize: "0.8125rem",
+                  fontWeight: 600,
+                  color: "#FFFFFF",
+                  lineHeight: 1.25,
+                  textShadow: "0 1px 4px rgba(0, 0, 0, 0.6)"
+                }
+              },
+              img.title
+            )
+          )
+        ))
+      )
+    );
+  }
+);
+CylinderCarousel.displayName = "CylinderCarousel";
+var cylinder_carousel_default = CylinderCarousel;
+
+// src/components/GallerySection.jsx
+var GALLERY_ITEMS = [
+  {
+    src: "/gallery/dance.jpeg",
+    alt: "Classical & Folk Dance Arena",
+    title: "Classical & Folk Dance",
+    category: "Stage Arts"
+  },
+  {
+    src: "/gallery/hall.jpeg",
+    alt: "Silver Jubilee Auditorium",
+    title: "Silver Jubilee Auditorium",
+    category: "Venue"
+  },
+  {
+    src: "/gallery/welcome.jpeg",
+    alt: "Grand Inaugural Ceremony",
+    title: "Inaugural Ceremony",
+    category: "Ceremony"
+  },
+  {
+    src: "/gallery/1.jpg",
+    alt: "Athletic Track & Sports Grounds",
+    title: "Championship Track",
+    category: "Sports Arena"
+  },
+  {
+    src: "/gallery/2.jpg",
+    alt: "Campus Stadium Highlights",
+    title: "Stadium Spectacle",
+    category: "Athletics"
+  },
+  {
+    src: "/gallery/6.jpg.jpeg",
+    alt: "College Festival Celebrations",
+    title: "Festive Spirit",
+    category: "Campus Life"
+  },
+  {
+    src: "/gallery/7.jpg.jpeg",
+    alt: "Student Tournament Laurels",
+    title: "Tournament Laurels",
+    category: "Competitions"
+  },
+  {
+    src: "/gallery/8.jpg.jpeg",
+    alt: "University Sports Grounds",
+    title: "Championship Courts",
+    category: "Sports"
+  },
+  {
+    src: "/gallery/9.jpg.jpeg",
+    alt: "Open Air Theatre Showcase",
+    title: "Open Air Showcase",
+    category: "Cultural Meet"
+  },
+  {
+    src: "/gallery/12.jpg.jpeg",
+    alt: "Campus Gathering & Competitions",
+    title: "Campus Gathering",
+    category: "Campus Events"
+  },
+  {
+    src: "/gallery/38.JPG.jpeg",
+    alt: "COLORIDO Championship Highlights",
+    title: "COLORIDO Championship",
+    category: "Highlights"
+  }
+];
+function GallerySection() {
+  const [selectedImage, setSelectedImage] = (0, import_react.useState)(null);
+  const [selectedIndex, setSelectedIndex] = (0, import_react.useState)(0);
+  const [duration, setDuration] = (0, import_react.useState)(32);
+  const [activeFilter, setActiveFilter] = (0, import_react.useState)("all");
+  const filteredImages = activeFilter === "all" ? GALLERY_ITEMS : GALLERY_ITEMS.filter((item2) => {
+    if (activeFilter === "sports") return item2.category.toLowerCase().includes("sport") || item2.category.toLowerCase().includes("athletic");
+    if (activeFilter === "cultural") return item2.category.toLowerCase().includes("stage") || item2.category.toLowerCase().includes("cultural") || item2.category.toLowerCase().includes("ceremony");
+    if (activeFilter === "campus") return item2.category.toLowerCase().includes("campus") || item2.category.toLowerCase().includes("venue");
+    return true;
+  });
+  const handleOpenLightbox = (image, index2) => {
+    setSelectedImage(image);
+    setSelectedIndex(index2);
+  };
+  const handleCloseLightbox = () => {
+    setSelectedImage(null);
+  };
+  const handleNext = (e2) => {
+    if (e2) e2.stopPropagation();
+    const nextIdx = (selectedIndex + 1) % filteredImages.length;
+    setSelectedIndex(nextIdx);
+    setSelectedImage(filteredImages[nextIdx]);
+  };
+  const handlePrev = (e2) => {
+    if (e2) e2.stopPropagation();
+    const prevIdx = (selectedIndex - 1 + filteredImages.length) % filteredImages.length;
+    setSelectedIndex(prevIdx);
+    setSelectedImage(filteredImages[prevIdx]);
+  };
+  (0, import_react.useEffect)(() => {
+    const handleKeyDown = (e2) => {
+      if (!selectedImage) return;
+      if (e2.key === "Escape") handleCloseLightbox();
+      if (e2.key === "ArrowRight") handleNext();
+      if (e2.key === "ArrowLeft") handlePrev();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage, selectedIndex, filteredImages]);
+  return /* @__PURE__ */ react_default.createElement("section", { className: "section-wrapper gallery-section", id: "gallery-section" }, /* @__PURE__ */ react_default.createElement("div", { className: "container" }, /* @__PURE__ */ react_default.createElement("div", { className: "section-header-editorial" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow eyebrow-cultural" }, /* @__PURE__ */ react_default.createElement("span", { className: "eyebrow-dot" }), "CAMPUS & EVENT ARCHIVES \u2022 03"), /* @__PURE__ */ react_default.createElement("h2", { className: "heading-section" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.1 }, "COLORIDO GALLERY")), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-section-sub" }, "Memories forged in competition and celebrated on stage.")), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-header-meta" }, /* @__PURE__ */ react_default.createElement("span", { className: "badge badge-outline" }, "3D REVOLVING EXHIBIT"), /* @__PURE__ */ react_default.createElement("span", { className: "gallery-count-lbl" }, filteredImages.length, " High-Resolution Captures"))), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-controls-bar" }, /* @__PURE__ */ react_default.createElement("div", { className: "gallery-filter-chips" }, /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `filter-chip ${activeFilter === "all" ? "active" : ""}`,
+      onClick: () => setActiveFilter("all")
+    },
+    "All Glimpses (",
+    GALLERY_ITEMS.length,
+    ")"
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `filter-chip ${activeFilter === "sports" ? "active" : ""}`,
+      onClick: () => setActiveFilter("sports")
+    },
+    "Sports Grounds"
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `filter-chip ${activeFilter === "cultural" ? "active" : ""}`,
+      onClick: () => setActiveFilter("cultural")
+    },
+    "Cultural & Stages"
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `filter-chip ${activeFilter === "campus" ? "active" : ""}`,
+      onClick: () => setActiveFilter("campus")
+    },
+    "Campus & Venues"
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-speed-toggles" }, /* @__PURE__ */ react_default.createElement("span", { className: "speed-lbl" }, "Rotation Speed:"), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `speed-btn ${duration === 48 ? "active" : ""}`,
+      onClick: () => setDuration(48),
+      title: "Slow rotation"
+    },
+    "Gentle"
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `speed-btn ${duration === 32 ? "active" : ""}`,
+      onClick: () => setDuration(32),
+      title: "Standard rotation"
+    },
+    "Normal"
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: `speed-btn ${duration === 18 ? "active" : ""}`,
+      onClick: () => setDuration(18),
+      title: "Brisk rotation"
+    },
+    "Dynamic"
+  ))), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-carousel-stage" }, /* @__PURE__ */ react_default.createElement("div", { className: "gallery-ambient-glow", "aria-hidden": "true" }), /* @__PURE__ */ react_default.createElement(
+    cylinder_carousel_default,
+    {
+      key: `${activeFilter}-${duration}`,
+      images: filteredImages,
+      animationDuration: duration,
+      cardWidth: 240,
+      onImageClick: handleOpenLightbox,
+      className: "gallery-cylinder-inner"
+    }
+  ), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-interaction-hint" }, /* @__PURE__ */ react_default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M15 18l-6-6 6-6" })), /* @__PURE__ */ react_default.createElement("span", null, "Hover to pause \u2022 Click card for full-resolution view"), /* @__PURE__ */ react_default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M9 18l6-6-6-6" }))))), selectedImage && /* @__PURE__ */ react_default.createElement("div", { className: "gallery-lightbox-backdrop", onClick: handleCloseLightbox }, /* @__PURE__ */ react_default.createElement("div", { className: "gallery-lightbox-dialog", onClick: (e2) => e2.stopPropagation() }, /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: "gallery-lightbox-close",
+      onClick: handleCloseLightbox,
+      "aria-label": "Close photo preview"
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "22", height: "22", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ react_default.createElement("path", { d: "M18 6L6 18M6 6l12 12" }))
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: "gallery-lightbox-nav prev",
+      onClick: handlePrev,
+      "aria-label": "Previous photo"
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "26", height: "26", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ react_default.createElement("path", { d: "M15 19l-7-7 7-7" }))
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: "gallery-lightbox-nav next",
+      onClick: handleNext,
+      "aria-label": "Next photo"
+    },
+    /* @__PURE__ */ react_default.createElement("svg", { width: "26", height: "26", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ react_default.createElement("path", { d: "M9 5l7 7-7 7" }))
+  ), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-lightbox-media-wrapper" }, /* @__PURE__ */ react_default.createElement(
+    "img",
+    {
+      src: selectedImage.src,
+      alt: selectedImage.alt || selectedImage.title,
+      className: "gallery-lightbox-img"
+    }
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "gallery-lightbox-footer" }, /* @__PURE__ */ react_default.createElement("div", null, /* @__PURE__ */ react_default.createElement("span", { className: "lightbox-cat-badge" }, selectedImage.category || "COLORIDO 2K26"), /* @__PURE__ */ react_default.createElement("h4", { className: "lightbox-title" }, selectedImage.title), /* @__PURE__ */ react_default.createElement("p", { className: "lightbox-alt" }, selectedImage.alt)), /* @__PURE__ */ react_default.createElement("div", { className: "lightbox-index-badge" }, selectedIndex + 1, " / ", filteredImages.length)))));
+}
+
+// src/components/ui/wave-grid-background.tsx
+var import_react32 = __toESM(require_react(), 1);
 
 // node_modules/three/build/three.core.js
 var REVISION = "186";
@@ -86616,9 +87017,9 @@ function WaveGridBackground({
   autoAnimate = true,
   vignette = true
 }) {
-  const containerRef = (0, import_react30.useRef)(null);
-  const canvasRef = (0, import_react30.useRef)(null);
-  const propsRef = (0, import_react30.useRef)({
+  const containerRef = (0, import_react32.useRef)(null);
+  const canvasRef = (0, import_react32.useRef)(null);
+  const propsRef = (0, import_react32.useRef)({
     colorBase,
     colorHigh,
     waveAmplitude,
@@ -86629,7 +87030,7 @@ function WaveGridBackground({
     waveJitter,
     autoAnimate
   });
-  (0, import_react30.useEffect)(() => {
+  (0, import_react32.useEffect)(() => {
     propsRef.current = {
       colorBase,
       colorHigh,
@@ -86642,7 +87043,7 @@ function WaveGridBackground({
       autoAnimate
     };
   });
-  (0, import_react30.useEffect)(() => {
+  (0, import_react32.useEffect)(() => {
     const container3 = containerRef.current;
     const canvas = canvasRef.current;
     if (!container3 || !canvas) return;
@@ -86935,7 +87336,7 @@ diffuseColor.rgb = mix( uColorBase, uColorHigh, t );`
       renderer.dispose();
     };
   }, [gridSize, vignette]);
-  return /* @__PURE__ */ import_react30.default.createElement("div", { ref: containerRef, className: cn("relative h-full w-full overflow-hidden", className) }, /* @__PURE__ */ import_react30.default.createElement("canvas", { ref: canvasRef, className: "block h-full w-full" }), children != null && /* @__PURE__ */ import_react30.default.createElement("div", { className: "pointer-events-none absolute inset-0" }, children));
+  return /* @__PURE__ */ import_react32.default.createElement("div", { ref: containerRef, className: cn("relative h-full w-full overflow-hidden", className) }, /* @__PURE__ */ import_react32.default.createElement("canvas", { ref: canvasRef, className: "block h-full w-full" }), children != null && /* @__PURE__ */ import_react32.default.createElement("div", { className: "pointer-events-none absolute inset-0" }, children));
 }
 var wave_grid_background_default = WaveGridBackground;
 
@@ -104466,7 +104867,7 @@ function App() {
     {
       onRegisterEvent: handleRegisterSpecificEvent
     }
-  ), /* @__PURE__ */ react_default.createElement(
+  ), /* @__PURE__ */ react_default.createElement(GallerySection, null), /* @__PURE__ */ react_default.createElement(
     FeaturedArena,
     {
       onSelectCategory: (cat) => handleScrollToSection(cat === "sports" ? "sports-section" : "cultural-section"),
