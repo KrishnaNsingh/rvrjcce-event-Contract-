@@ -50,10 +50,10 @@ export function EventDiscovery({ onSelectCategory }) {
               Event Architecture
             </h2>
           </div>
-          <p className="text-body" style={{ maxWidth: '460px' }}>
+          {/* <p className="text-body" style={{ maxWidth: '460px' }}>
             Choose between competitive inter-collegiate sports brackets or our expansive
             literary, dramatic, musical, and visual arts competitions.
-          </p>
+          </p> */}
         </div>
 
         <div className="discovery-pillars">

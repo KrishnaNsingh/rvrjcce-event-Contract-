@@ -57601,32 +57601,31 @@ var staggerText_default = TextAnimation;
 
 // src/components/Hero.jsx
 function Hero({ onExploreEvents, onRegisterClick, liveStats }) {
-  const participantCount = liveStats && liveStats.total ? `${liveStats.total}+` : "1,200+";
   return /* @__PURE__ */ react_default.createElement("section", { className: "hero-reference-section", id: "home" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-panoramic-bg", "aria-hidden": "true" }, /* @__PURE__ */ react_default.createElement(
     "div",
     {
       className: "hero-panoramic-image",
       style: { backgroundImage: "url('/campus-hero-web.jpg')" }
     }
-  )), /* @__PURE__ */ react_default.createElement("div", { className: "container relative z-10" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-reference-grid" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-col" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-tag" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-dot" }), /* @__PURE__ */ react_default.createElement("span", null, INSTITUTION.name, " \u2022 40TH INTER-COLLEGIATE FESTIVAL")), /* @__PURE__ */ react_default.createElement("h1", { className: "hero-editorial-heading" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-1" }, "WHERE"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-2" }, "COMPETITION"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-3" }, "MEETS ART", /* @__PURE__ */ react_default.createElement("span", { className: "editorial-reg" }, "\xAE"))), /* @__PURE__ */ react_default.createElement("p", { className: "hero-editorial-sub" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.25 }, "COLORIDO 2K26  \u2022 Annual Meet 2026")), /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-actions" }, /* @__PURE__ */ react_default.createElement(
-    "button",
-    {
-      className: "btn-editorial-start",
-      onClick: onExploreEvents,
-      id: "hero-start-btn",
-      title: "Start Exploring Events"
-    },
-    /* @__PURE__ */ react_default.createElement("span", null, "START"),
-    /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.4" }, /* @__PURE__ */ react_default.createElement("path", { d: "M5 12h14M12 5l7 7-7 7" }))
-  ), /* @__PURE__ */ react_default.createElement(
+  ), /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-scrim" })), /* @__PURE__ */ react_default.createElement("div", { className: "container relative z-10" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-reference-grid" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-col" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-badges-wrapper" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-fest-badge" }, /* @__PURE__ */ react_default.createElement("span", { className: "hero-fest-dot" }), /* @__PURE__ */ react_default.createElement("span", { className: "hero-fest-name" }, "COLORIDO 2K26"), /* @__PURE__ */ react_default.createElement("span", { className: "hero-badge-sep" }, "\u2022"), /* @__PURE__ */ react_default.createElement("span", { className: "hero-fest-sub" }, INSTITUTION.name)), /* @__PURE__ */ react_default.createElement("div", { className: "hero-free-badge" }, /* @__PURE__ */ react_default.createElement("span", { className: "hero-free-icon" }, "\u2726"), /* @__PURE__ */ react_default.createElement("span", { className: "hero-free-text" }, "FREE REGISTRATION FOR ANY EVENT"), /* @__PURE__ */ react_default.createElement("span", { className: "hero-free-tag" }, "\u20B90 FEE"))), /* @__PURE__ */ react_default.createElement("h1", { className: "hero-editorial-heading" }, /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-1" }, "WHERE"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-2" }, "COMPETITION"), /* @__PURE__ */ react_default.createElement("span", { className: "editorial-line editorial-line-3" }, "MEETS ART", /* @__PURE__ */ react_default.createElement("span", { className: "editorial-reg" }, "\xAE"))), /* @__PURE__ */ react_default.createElement("p", { className: "hero-editorial-sub" }, /* @__PURE__ */ react_default.createElement(staggerText_default, { divideBy: "word", delay: 0.25 }, "Annual Inter-Collegiate Sports & Cultural Festival. Compete across 15+ championship disciplines with zero entry fee \u2014 100% free registration for all university students.")), /* @__PURE__ */ react_default.createElement("div", { className: "hero-editorial-actions" }, /* @__PURE__ */ react_default.createElement(
     animated_button_default,
     {
-      className: "btn-animated-navy",
+      className: "btn-hero-register",
       onClick: onRegisterClick,
       id: "hero-register-btn"
     },
-    "Register Now"
-  )))), /* @__PURE__ */ react_default.createElement("div", { className: "hero-bottom-strip" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-terracotta" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-text" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-headline" }, "24 Hours of Pure Grit!"), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-caption" }, "02 Flagship Disciplines \u2022 OAT Venues")), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-card-icon-area" }, /* @__PURE__ */ react_default.createElement("svg", { width: "42", height: "42", viewBox: "0 0 48 48", fill: "none" }, /* @__PURE__ */ react_default.createElement("path", { d: "M24 4L42 14V34L24 44L6 34V14L24 4Z", fill: "rgba(255,255,255,0.20)", stroke: "#FFFFFF", strokeWidth: "1.5" }), /* @__PURE__ */ react_default.createElement("path", { d: "M24 4V44M6 14L24 24L42 14M6 34L24 24", stroke: "#FFFFFF", strokeWidth: "1.5", strokeOpacity: "0.8" }), /* @__PURE__ */ react_default.createElement("circle", { cx: "24", cy: "24", r: "5", fill: "#FFFFFF" })))), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stats-center" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatars" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatar", style: { backgroundImage: "url('/sports-web.jpg')" }, title: "Athletics" }), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-avatar", style: { backgroundImage: "url('/cultural-web.jpg')" }, title: "Cultural Arts" })), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-details" }, /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-num" }, participantCount), /* @__PURE__ */ react_default.createElement("div", { className: "bottom-stat-lbl" }, "Registered Participants"))))));
+    /* @__PURE__ */ react_default.createElement("span", { className: "btn-hero-inner" }, /* @__PURE__ */ react_default.createElement("span", null, "Register Free Now"), /* @__PURE__ */ react_default.createElement("span", { className: "btn-zero-pill" }, "100% Free"), /* @__PURE__ */ react_default.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ react_default.createElement("path", { d: "M5 12h14M12 5l7 7-7 7" })))
+  ), /* @__PURE__ */ react_default.createElement(
+    "button",
+    {
+      className: "btn-hero-explore",
+      onClick: onExploreEvents,
+      id: "hero-start-btn",
+      title: "Explore Events"
+    },
+    /* @__PURE__ */ react_default.createElement("span", null, "EXPLORE EVENTS"),
+    /* @__PURE__ */ react_default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }, /* @__PURE__ */ react_default.createElement("path", { d: "M7 17L17 7M17 7H7M17 7V17" }))
+  )), /* @__PURE__ */ react_default.createElement("div", { className: "hero-trust-bar" }, /* @__PURE__ */ react_default.createElement("div", { className: "hero-trust-item" }, /* @__PURE__ */ react_default.createElement("svg", { width: "13", height: "13", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "3" }, /* @__PURE__ */ react_default.createElement("polyline", { points: "20 6 9 17 4 12" })), /* @__PURE__ */ react_default.createElement("span", null, "Zero Entry Fee")), /* @__PURE__ */ react_default.createElement("span", { className: "hero-trust-dot" }), /* @__PURE__ */ react_default.createElement("div", { className: "hero-trust-item" }, /* @__PURE__ */ react_default.createElement("svg", { width: "13", height: "13", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "3" }, /* @__PURE__ */ react_default.createElement("polyline", { points: "20 6 9 17 4 12" })), /* @__PURE__ */ react_default.createElement("span", null, "All Universities Eligible")), /* @__PURE__ */ react_default.createElement("span", { className: "hero-trust-dot" }), /* @__PURE__ */ react_default.createElement("div", { className: "hero-trust-item" }, /* @__PURE__ */ react_default.createElement("svg", { width: "13", height: "13", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "3" }, /* @__PURE__ */ react_default.createElement("polyline", { points: "20 6 9 17 4 12" })), /* @__PURE__ */ react_default.createElement("span", null, "15+ Arenas")), /* @__PURE__ */ react_default.createElement("span", { className: "hero-trust-dot" }), /* @__PURE__ */ react_default.createElement("div", { className: "hero-trust-item" }, /* @__PURE__ */ react_default.createElement("svg", { width: "13", height: "13", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "3" }, /* @__PURE__ */ react_default.createElement("polyline", { points: "20 6 9 17 4 12" })), /* @__PURE__ */ react_default.createElement("span", null, "Instant E-Pass")))))));
 }
 
 // src/components/IntroSection.jsx
@@ -87671,7 +87670,7 @@ function VideoSection({
         width: "100%",
         height: "230vh",
         // Provides scroll space for morphing GSAP-like scrub reveal
-        backgroundColor: "var(--bg-page, #FBFBFA)",
+        backgroundColor: "var(--bg-page, #ffffeeff)",
         zIndex: 20
       }
     },
@@ -87713,101 +87712,6 @@ function VideoSection({
             zIndex: 0
           }
         }
-      ),
-      /* @__PURE__ */ react_default.createElement(
-        "div",
-        {
-          className: "video-stepped-accent-right",
-          style: {
-            position: "absolute",
-            right: 0,
-            bottom: "8%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-end",
-            pointerEvents: "none",
-            zIndex: 1,
-            opacity: 0.9
-          }
-        },
-        /* @__PURE__ */ react_default.createElement(
-          "div",
-          {
-            style: {
-              width: "clamp(80px, 9vw, 120px)",
-              height: "clamp(24px, 2.5vw, 36px)",
-              background: "linear-gradient(90deg, #9333ea, #db2777)",
-              boxShadow: "0 0 25px rgba(219, 39, 119, 0.35)"
-            }
-          }
-        ),
-        /* @__PURE__ */ react_default.createElement(
-          "div",
-          {
-            style: {
-              width: "clamp(130px, 14vw, 190px)",
-              height: "clamp(28px, 3vw, 42px)",
-              background: "linear-gradient(90deg, #7e22ce, #c026d3)"
-            }
-          }
-        ),
-        /* @__PURE__ */ react_default.createElement(
-          "div",
-          {
-            style: {
-              width: "clamp(190px, 20vw, 270px)",
-              height: "clamp(34px, 3.5vw, 50px)",
-              background: "linear-gradient(90deg, #6b21a8, #9333ea)"
-            }
-          }
-        ),
-        /* @__PURE__ */ react_default.createElement(
-          "div",
-          {
-            style: {
-              width: "clamp(260px, 27vw, 370px)",
-              height: "clamp(42px, 4.5vw, 68px)",
-              background: "linear-gradient(90deg, #4c1d95, #6b21a8)"
-            }
-          }
-        )
-      ),
-      /* @__PURE__ */ react_default.createElement(
-        "div",
-        {
-          className: "video-stepped-accent-left",
-          style: {
-            position: "absolute",
-            left: 0,
-            bottom: 0,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            pointerEvents: "none",
-            zIndex: 1,
-            opacity: 0.85
-          }
-        },
-        /* @__PURE__ */ react_default.createElement(
-          "div",
-          {
-            style: {
-              width: "clamp(120px, 15vw, 220px)",
-              height: "clamp(28px, 3.5vw, 45px)",
-              background: "#0c1017"
-            }
-          }
-        ),
-        /* @__PURE__ */ react_default.createElement(
-          "div",
-          {
-            style: {
-              width: "clamp(200px, 24vw, 340px)",
-              height: "clamp(40px, 5vw, 70px)",
-              background: "#07080b"
-            }
-          }
-        )
       ),
       /* @__PURE__ */ react_default.createElement(
         "div",
@@ -87957,118 +87861,6 @@ function VideoSection({
                 zIndex: 3
               }
             }
-          ),
-          /* @__PURE__ */ react_default.createElement(
-            "div",
-            {
-              style: {
-                position: "absolute",
-                bottom: "clamp(1rem, 2.5vw, 2rem)",
-                right: "clamp(1rem, 2.5vw, 2.5rem)",
-                zIndex: 12
-              }
-            },
-            /* @__PURE__ */ react_default.createElement(
-              "button",
-              {
-                type: "button",
-                onClick: toggleSound,
-                "aria-label": isMuted ? "Unmute audio" : "Mute audio",
-                style: {
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  padding: "0.55rem 1rem",
-                  borderRadius: "9999px",
-                  background: "rgba(7, 8, 11, 0.65)",
-                  color: "#FFFFFF",
-                  border: "1px solid rgba(255, 255, 255, 0.22)",
-                  backdropFilter: "blur(12px)",
-                  fontSize: "0.8125rem",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.4)",
-                  transition: "all 0.2s ease"
-                },
-                onMouseEnter: (e2) => {
-                  e2.currentTarget.style.background = "rgba(7, 8, 11, 0.85)";
-                  e2.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.45)";
-                },
-                onMouseLeave: (e2) => {
-                  e2.currentTarget.style.background = "rgba(7, 8, 11, 0.65)";
-                  e2.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.22)";
-                }
-              },
-              isMuted ? /* @__PURE__ */ react_default.createElement(react_default.Fragment, null, /* @__PURE__ */ react_default.createElement(
-                "svg",
-                {
-                  width: "16",
-                  height: "16",
-                  viewBox: "0 0 24 24",
-                  fill: "none",
-                  stroke: "currentColor",
-                  strokeWidth: "2"
-                },
-                /* @__PURE__ */ react_default.createElement("path", { d: "M11 5L6 9H2v6h4l5 4V5z" }),
-                /* @__PURE__ */ react_default.createElement("line", { x1: "23", y1: "9", x2: "17", y2: "15" }),
-                /* @__PURE__ */ react_default.createElement("line", { x1: "17", y1: "9", x2: "23", y2: "15" })
-              ), /* @__PURE__ */ react_default.createElement("span", null, "Unmute")) : /* @__PURE__ */ react_default.createElement(react_default.Fragment, null, /* @__PURE__ */ react_default.createElement(
-                "svg",
-                {
-                  width: "16",
-                  height: "16",
-                  viewBox: "0 0 24 24",
-                  fill: "none",
-                  stroke: "currentColor",
-                  strokeWidth: "2"
-                },
-                /* @__PURE__ */ react_default.createElement("polygon", { points: "11 5 6 9 2 9 2 15 6 15 11 19 11 5" }),
-                /* @__PURE__ */ react_default.createElement("path", { d: "M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" })
-              ), /* @__PURE__ */ react_default.createElement("span", null, "Sound On"))
-            )
-          ),
-          /* @__PURE__ */ react_default.createElement(
-            "div",
-            {
-              style: {
-                position: "absolute",
-                bottom: "clamp(1rem, 2.5vw, 2rem)",
-                left: "clamp(1rem, 2.5vw, 2.5rem)",
-                zIndex: 12,
-                pointerEvents: "none"
-              }
-            },
-            /* @__PURE__ */ react_default.createElement(
-              "div",
-              {
-                style: {
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  padding: "0.4rem 0.85rem",
-                  borderRadius: "9999px",
-                  background: "rgba(0, 0, 0, 0.55)",
-                  border: "1px solid rgba(255, 255, 255, 0.15)",
-                  backdropFilter: "blur(8px)",
-                  fontSize: "0.75rem",
-                  color: "rgba(255, 255, 255, 0.8)",
-                  fontWeight: 500
-                }
-              },
-              /* @__PURE__ */ react_default.createElement(
-                "span",
-                {
-                  style: {
-                    width: "6px",
-                    height: "6px",
-                    borderRadius: "50%",
-                    backgroundColor: isPlaying ? "#22c55e" : "#eab308",
-                    boxShadow: isPlaying ? "0 0 8px #22c55e" : "0 0 8px #eab308"
-                  }
-                }
-              ),
-              /* @__PURE__ */ react_default.createElement("span", null, isPlaying ? "Live Campus Footage" : "Paused")
-            )
           ),
           /* @__PURE__ */ react_default.createElement(
             "svg",
